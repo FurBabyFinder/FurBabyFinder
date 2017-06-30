@@ -29,7 +29,7 @@ public class Pet {
     @Column(nullable = true, length = 2)
     private int age;
 
-    @Column(nullable = true, length = 1000);
+    @Column(nullable = true, length = 1000)
     private String privateNotes;
 
     @OneToOne
