@@ -54,6 +54,13 @@ public class User {
     @Column()
     private String AdoptAppInfo;
 
+    @ManyToMany (cascade = CascadeType.ALL)
+    @JoinTable (name = "user_favorites", // no model .... virtual table
+            joinColumns = {@JoinColumn(name="user")},
+            inverseJoinColumns = {@JoinColumn(name="pet_id")}
+    )
+    private List<Pet> pets;
+
     public User(long id, String username, String email, String password) {
         this.id = id;
         this.username = username;
