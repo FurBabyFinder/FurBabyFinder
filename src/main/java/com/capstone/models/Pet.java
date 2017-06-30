@@ -29,7 +29,7 @@ public class Pet {
     @Column(nullable = true, length = 2)
     private int age;
 
-    @Column(nullable = true, length = 1000);
+    @Column(nullable = true, length = 1000)
     private String privateNotes;
 
     @OneToOne
@@ -46,6 +46,7 @@ public class Pet {
             inverseJoinColumns = {@JoinColumn(name="filter_id")}
     )
     private List<Filter> filters;
+
 
     public Pet(String name, String story, int age, String privateNotes) {
         this.name = name;

@@ -25,7 +25,7 @@ public class PetImage {
     private boolean profilePic;
 
     @Column
-    private boolean after_adoption
+    private boolean after_adoption;
 
     @ManyToOne
     @JoinTable (name = "pet_id")
