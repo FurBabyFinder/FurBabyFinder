@@ -31,5 +31,55 @@ public class PetImage {
     @JoinTable (name = "pet_id")
     private Pet pet;
 
+    public PetImage(String imageUrl, String imageDescription, Pet pet) {
+        ImageUrl = imageUrl;
+        ImageDescription = imageDescription;
+        this.pet = pet;
+    }
 
+    public PetImage(){}
+
+    public long getId() {
+        return id;
+    }
+
+    public String getImageUrl() {
+        return ImageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        ImageUrl = imageUrl;
+    }
+
+    public String getImageDescription() {
+        return ImageDescription;
+    }
+
+    public void setImageDescription(String imageDescription) {
+        ImageDescription = imageDescription;
+    }
+
+    public boolean isProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(boolean profilePic) {
+        this.profilePic = profilePic;
+    }
+
+    public boolean isAfter_adoption() {
+        return after_adoption;
+    }
+
+    public void setAfter_adoption(boolean after_adoption) {
+        this.after_adoption = after_adoption;
+    }
+
+    public Pet getPet() {
+        return pet;
+    }
+
+    public void setPet(Pet pet) {
+        this.pet = pet;
+    }
 }

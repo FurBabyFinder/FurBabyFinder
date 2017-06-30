@@ -1,9 +1,11 @@
 package com.capstone.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 
 @Entity
@@ -37,6 +39,13 @@ public class Pet {
     @OneToOne
     @JoinColumn (name = "user_id")
     private User adopter;
+
+    @ManyToMany (cascade = CascadeType.ALL)
+    @JoinTable (name = "filter_pets", // no model .... virtual table
+            joinColumns = {@JoinColumn(name="pet_id")},
+            inverseJoinColumns = {@JoinColumn(name="filter_id")}
+    )
+    private List<Filter> filters;
 
     public Pet(String name, String story, int age, String privateNotes) {
         this.name = name;
