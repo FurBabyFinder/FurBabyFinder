@@ -29,15 +29,18 @@ public class Pet {
     @Column(nullable = true, length = 2)
     private int age;
 
+    @Column(nullable = false)
+    private String species;
+
     @Column(nullable = true, length = 1000)
     private String privateNotes;
 
     @OneToOne
-    @JoinColumn (name = "user_id")
+    @JoinColumn (name = "user_foster_id")
     private User foster;
 
     @OneToOne
-    @JoinColumn (name = "user_id")
+    @JoinColumn (name = "user_adopter_id")
     private User adopter;
 
     @ManyToMany (cascade = CascadeType.ALL)
@@ -84,6 +87,14 @@ public class Pet {
         this.age = age;
     }
 
+    public String getSpecies() {
+        return species;
+    }
+
+    public void setSpecies(String species) {
+        this.species = species;
+    }
+
     public String getPrivateNotes() {
         return privateNotes;
     }
@@ -106,5 +117,9 @@ public class Pet {
 
     public void setAdopter(User adopter) {
         this.adopter = adopter;
+    }
+
+    public List<Filter> getFilters() {
+        return filters;
     }
 }
