@@ -33,7 +33,7 @@ public class PetsController {
     @RequestMapping(path = "/pets", method = RequestMethod.GET)
     public String indexPage(Model model) {
         ArrayList<Pet> pets = (ArrayList<Pet>) petsRepository.findAll();
-        model.addAttribute("pet", pets);
+        model.addAttribute("pets", pets);
         return "pets/index";
     }
 
