@@ -12,11 +12,13 @@ import java.util.List;
 public interface PetsRepository extends CrudRepository<Pet, Long> {
 
     public Pet findById(Long id);
-    
+
     public List<Pet> findAllByName(String name);
 
     public List<Pet> findAllByAdopter(User adopter);
 
     public List<Pet> findAllByFoster(User foster);
+
+    public List<Pet> findAllByReadyToAdopt(Boolean trueOrFalse);
 
 }
