@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+<h1>test</h1>
+<div th:each="pet : ${pets}">
+    <!--<p><img th:src="@{'../uploads/'+ ${pet.imageUrl}}" /></p>-->
+    <p><h2><span th:text="${pet.name}"></span></h2></p>
+    <p><h4><span th:text="${pet.story}"></span></h4></p>
+</div>
+test
+</body>
+</html>
