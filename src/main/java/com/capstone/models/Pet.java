@@ -32,6 +32,9 @@ public class Pet {
     @Column(nullable = false)
     private String species;
 
+    @Column(nullable = false)
+    private Boolean readyToAdopt;
+
     @Column(nullable = true, length = 1000)
     private String privateNotes;
 
@@ -50,10 +53,11 @@ public class Pet {
     )
     private List<Filter> filters;
 
-    public Pet(String name, String story, int age, String privateNotes) {
+    public Pet(String name, String story, int age, String privateNotes, Boolean readyToAdopt) {
         this.name = name;
         this.story = story;
         this.age = age;
+        this.readyToAdopt = readyToAdopt;
         this.privateNotes = privateNotes;
     }
 
@@ -93,6 +97,14 @@ public class Pet {
 
     public void setSpecies(String species) {
         this.species = species;
+    }
+
+    public Boolean getReadyToAdopt() {
+        return readyToAdopt;
+    }
+
+    public void setReadyToAdopt(Boolean readyToAdopt) {
+        readyToAdopt = readyToAdopt;
     }
 
     public String getPrivateNotes() {

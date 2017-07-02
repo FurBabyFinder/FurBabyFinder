@@ -19,4 +19,6 @@ public interface PetsRepository extends CrudRepository<Pet, Long> {
 
     public List<Pet> findAllByFoster(User foster);
 
+    public List<Pet> findAllByReadyToAdopt(Boolean trueOrFalse);
+
 }
