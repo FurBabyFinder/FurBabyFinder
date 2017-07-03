@@ -11,6 +11,7 @@
 <span><c:out value="${searchTerm}" /></span>
 <!--<div class="btn btn-primary"><a th:href="@{'/pets/'+ ${selection}}" id="viewPost" style="color: white; text-decoration: none">male</a></div>-->
 <div class="btn btn-primary" id="male">male</div>
+<div class="btn btn-primary" id="neuterd_spayed">Nuetered/Spayed</div>
 <!--<div class="btn btn-primary"><a  id="potty_trained" style="color: white; text-decoration: none">male</a></div>-->
 <div th:each="pet : ${pets}">
     <!--<p><img th:src="@{'../uploads/'+ ${pet.imageUrl}}" /></p>-->
@@ -20,8 +21,10 @@
 <script src="http://code.jquery.com/jquery-2.2.4.min.js"  crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
 <script>
+
     var selection=[];
     var maleOnOff = "off";
+    var neuterd_spayed = "off";
     var href = "@{'/pets/'+ ${"+selection+"}}";
     $("#male").click(function(){
         switch(maleOnOff) {
@@ -40,6 +43,22 @@
         }
     });
 
+    $("#neuterd_spayed").click(function(){
+        switch(neuterd_spayed) {
+            case "off":
+                selection.push("neuterd_spayed");
+                neuterd_spayed="on";
+                window.location.href = "/pets/"+selection;
+                break;
+            case "on":
+                var index = selection.indexOf("neuterd_spayed");
+                selection.splice(index, 1);
+                window.location.href = "/pets/"+selection;
+                console.log(selection);
+                neuterd_spayed = "off";
+                break;
+        }
+    });
 
 </script>
 </body>
