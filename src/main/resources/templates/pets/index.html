@@ -4,8 +4,18 @@
 <head th:replace="fragments :: head" />
 <body>
 <nav th:replace="fragments :: navbar" />
-<div class="btn btn-info" id="male">male</div>
+<div class="btn btn-info" id="male">Male</div>
+<div class="btn btn-info" id="female">Female</div>
 <div class="btn btn-info" id="neuterd_spayed">Nuetered/Spayed</div>
+<div class="btn btn-info" id="potty_trained">Potty Trained</div>
+<div class="btn btn-info" id="goodWKids">Great With Kids</div>
+<div class="btn btn-info" id="crateTrained">Crate Trained</div>
+<div class="btn btn-info" id="greatWDogs">Great With Dogs</div>
+<div class="btn btn-info" id="catFriendly">Cat Friendly</div>
+<div class="btn btn-info" id="medicalFoster">Medical Foster</div>
+<div class="btn btn-info" id="microchipped">Microchipped</div>
+<div class="btn btn-info" id="noCats">Not cat friendly</div>
+<div class="btn btn-info" id="pup">Under a year</div>
 <div class="btn btn-primary" id="searchFiltered">Search</div>
 <div th:each="pet : ${pets}">
     <!--<p><img th:src="@{'../uploads/'+ ${pet.imageUrl}}" /></p>-->
@@ -18,7 +28,18 @@
 
     var selection=[];
     var maleOnOff = "off";
+    var femaleOnOff = "off";
     var neuterdOnOff = "off";
+    var pottyOnOff = "off";
+    var goodWKidsOnOff = "off";
+    var crateTrainedOnOff = "off";
+    var greatWDogsOnOff = "off";
+    var catFriendlyOnOff = "off";
+    var medFosterOnOff = "off";
+    var microchippedOfOff = "off";
+    var noCatsOnOff = "off";
+    var pupOnOff = "off";
+
 
    function selectFilter(onOffVar, selectString, id) {
        switch (onOffVar) {
@@ -63,6 +84,23 @@
         console.log("outside function " + maleOnOff);
     });
 
+    $("#female").click(function(){
+        switch (femaleOnOff) {
+            case "off":
+                selection.push("female");
+                femaleOnOff = "on";
+                $("#female").addClass("active");
+                break;
+            case "on":
+                var index = selection.indexOf("female");
+                selection.splice(index, 1);
+                $("#female").removeClass("active");
+                femaleOnOff = "off";
+                break;
+        }
+    });
+
+
     $("#neuterd_spayed").click(function(){
 //       selectFilter(neuterdOnOff, "neuterd_spayed", "#neuterd_spayed");
         switch (neuterdOnOff) {
@@ -80,6 +118,155 @@
                 break;
         }
     });
+
+    $("#potty_trained").click(function(){
+        switch (pottyOnOff) {
+            case "off":
+                selection.push("potty_trained");
+                pottyOnOff = "on";
+                $("#potty_trained").addClass("active");
+                break;
+            case "on":
+                var index = selection.indexOf("potty_trained");
+                selection.splice(index, 1);
+                $("#potty_trained").removeClass("active");
+                pottyOnOff = "off";
+                break;
+        }
+    });
+
+    $("#goodWKids").click(function(){
+        switch (goodWKidsOnOff) {
+            case "off":
+                selection.push("great_with_kids");
+                goodWKidsOnOff = "on";
+                $("#goodWKids").addClass("active");
+                break;
+            case "on":
+                var index = selection.indexOf("great_with_kids");
+                selection.splice(index, 1);
+                $("#goodWKids").removeClass("active");
+                goodWKidsOnOff = "off";
+                break;
+        }
+    });
+
+   $("#crateTrained").click(function(){
+        switch (crateTrainedOnOff) {
+            case "off":
+                selection.push("crate_trained");
+                crateTrainedOnOff = "on";
+                $("#crateTrained").addClass("active");
+                break;
+            case "on":
+                var index = selection.indexOf("crate_trained");
+                selection.splice(index, 1);
+                $("#crateTrained").removeClass("active");
+                crateTrainedOnOff = "off";
+                break;
+        }
+    });
+
+      $("#greatWDogs").click(function(){
+        switch (greatWDogsOnOff) {
+            case "off":
+                selection.push("great_with_dogs");
+                greatWDogsOnOff = "on";
+                $("#greatWDogs").addClass("active");
+                break;
+            case "on":
+                var index = selection.indexOf("great_with_dogs");
+                selection.splice(index, 1);
+                $("#greatWDogs").removeClass("active");
+                greatWDogsOnOff = "off";
+                break;
+        }
+    });
+
+      $("#catFriendly").click(function(){
+        switch (catFriendlyOnOff) {
+            case "off":
+                selection.push("cat_friendly");
+                catFriendlyOnOff = "on";
+                $("#catFriendly").addClass("active");
+                break;
+            case "on":
+                var index = selection.indexOf("cat_friendly");
+                selection.splice(index, 1);
+                $("#catFriendly").removeClass("active");
+                catFriendlyOnOff = "off";
+                break;
+        }
+    });
+
+
+      $("#medicalFoster").click(function(){
+        switch (medFosterOnOff) {
+            case "off":
+                selection.push("medical_foster");
+                medFosterOnOff = "on";
+                $("#medicalFoster").addClass("active");
+                break;
+            case "on":
+                var index = selection.indexOf("medical_foster");
+                selection.splice(index, 1);
+                $("#medicalFoster").removeClass("active");
+                medFosterOnOff = "off";
+                break;
+        }
+    });
+
+     $("#microchipped").click(function(){
+        switch (microchippedOfOff) {
+            case "off":
+                selection.push("microchipped");
+                microchippedOfOff = "on";
+                $("#microchipped").addClass("active");
+                break;
+            case "on":
+                var index = selection.indexOf("microchipped");
+                selection.splice(index, 1);
+                $("#microchipped").removeClass("active");
+                microchippedOfOff = "off";
+                break;
+        }
+    });
+
+     $("#noCats").click(function(){
+        switch (noCatsOnOff) {
+            case "off":
+                selection.push("not_cat_friendly");
+                noCatsOnOff = "on";
+                $("#noCats").addClass("active");
+                break;
+            case "on":
+                var index = selection.indexOf("not_cat_friendly");
+                selection.splice(index, 1);
+                $("#noCats").removeClass("active");
+                noCatsOnOff = "off";
+                break;
+        }
+    });
+
+    $("#pup").click(function(){
+        switch (pupOnOff) {
+            case "off":
+                selection.push("pup");
+                pupOnOff = "on";
+                $("#pup").addClass("active");
+                break;
+            case "on":
+                var index = selection.indexOf("pup");
+                selection.splice(index, 1);
+                $("#pup").removeClass("active");
+                pupOnOff = "off";
+                break;
+        }
+    });
+
+
+
+
 
     $("#searchFiltered").click(function(){
         if(selection.length == 0){
