@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
-</head>
+<head th:replace="fragments :: head" />
 <body>
-
-<span><c:out value="${searchTerm}" /></span>
-<!--<div class="btn btn-primary"><a th:href="@{'/pets/'+ ${selection}}" id="viewPost" style="color: white; text-decoration: none">male</a></div>-->
-<div class="btn btn-primary" id="male">male</div>
-<div class="btn btn-primary" id="neuterd_spayed">Nuetered/Spayed</div>
-<!--<div class="btn btn-primary"><a  id="potty_trained" style="color: white; text-decoration: none">male</a></div>-->
+<nav th:replace="fragments :: navbar" />
+<div class="btn btn-info" id="male">male</div>
+<div class="btn btn-info" id="neuterd_spayed">Nuetered/Spayed</div>
+<div class="btn btn-primary" id="searchFiltered">Search</div>
 <div th:each="pet : ${pets}">
     <!--<p><img th:src="@{'../uploads/'+ ${pet.imageUrl}}" /></p>-->
     <p><h2><span th:text="${pet.name}"></span></h2></p>
@@ -24,39 +18,75 @@
 
     var selection=[];
     var maleOnOff = "off";
-    var neuterd_spayed = "off";
-    var href = "@{'/pets/'+ ${"+selection+"}}";
+    var neuterdOnOff = "off";
+
+   function selectFilter(onOffVar, selectString, id) {
+       switch (onOffVar) {
+           case "off":
+               selection.push(selectString);
+               console.log(onOffVar + " before");
+               onOffVar = "on";
+               $(id).addClass("active");
+               console.log(onOffVar + " after");
+               break;
+           case "on":
+               var index = selection.indexOf(selectString);
+               selection.splice(index, 1);
+               $(id).removeClass("active");
+               console.log(selection);
+               console.log(onOffVar);
+               onOffVar = "off";
+               break;
+       }
+       console.log("inside function "+onOffVar);
+   }
+
     $("#male").click(function(){
-        switch(maleOnOff) {
+//        selectFilter(maleOnOff, "male", "#male");
+        switch (maleOnOff) {
             case "off":
-            selection.push("male");
-            maleOnOff="on";
-            window.location.href = "/pets/"+selection;
-            break;
+                selection.push("male");
+                console.log(maleOnOff + " before");
+                maleOnOff = "on";
+                $("#male").addClass("active");
+                console.log(maleOnOff + " after");
+                break;
             case "on":
                 var index = selection.indexOf("male");
                 selection.splice(index, 1);
-                window.location.href = "/pets/"+selection;
+                $("#male").removeClass("active");
                 console.log(selection);
+                console.log(maleOnOff);
                 maleOnOff = "off";
                 break;
         }
+        console.log("outside function " + maleOnOff);
     });
 
     $("#neuterd_spayed").click(function(){
-        switch(neuterd_spayed) {
+//       selectFilter(neuterdOnOff, "neuterd_spayed", "#neuterd_spayed");
+        switch (neuterdOnOff) {
             case "off":
                 selection.push("neuterd_spayed");
-                neuterd_spayed="on";
-                window.location.href = "/pets/"+selection;
+                neuterdOnOff = "on";
+                $("#neuterd_spayed").addClass("active");
                 break;
             case "on":
                 var index = selection.indexOf("neuterd_spayed");
                 selection.splice(index, 1);
-                window.location.href = "/pets/"+selection;
+                $("#neuterd_spayed").removeClass("active");
                 console.log(selection);
-                neuterd_spayed = "off";
+                neuterdOnOff = "off";
                 break;
+        }
+    });
+
+    $("#searchFiltered").click(function(){
+        if(selection.length == 0){
+            window.location.href = "/pets/all"
+        }
+        else {
+            window.location.href = "/pets/" + selection;
         }
     });
 
