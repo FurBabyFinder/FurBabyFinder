@@ -2,7 +2,9 @@ package com.capstone.controllers;
 
 import com.capstone.models.Filter;
 import com.capstone.models.Pet;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -11,6 +13,11 @@ import java.util.List;
  */
 public interface FilterRepository extends CrudRepository<Filter, Long> {
 
-    public List<Pet> findAllByFilterName(String name);
+    public List<Filter> findAllByFilterName(String name);
+
+    @Query("SELECT id FROM Filter WHERE filter_name = :passFilter")
+    public Long findFilterIDByFilterName(@Param("passFilter") String passFilter);
+
+
 
 }

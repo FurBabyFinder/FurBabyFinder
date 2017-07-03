@@ -1,16 +1,95 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-</head>
+<head th:replace="fragments :: head" />
 <body>
-
+<nav th:replace="fragments :: navbar" />
+<div class="btn btn-info" id="male">male</div>
+<div class="btn btn-info" id="neuterd_spayed">Nuetered/Spayed</div>
+<div class="btn btn-primary" id="searchFiltered">Search</div>
 <div th:each="pet : ${pets}">
     <!--<p><img th:src="@{'../uploads/'+ ${pet.imageUrl}}" /></p>-->
     <p><h2><span th:text="${pet.name}"></span></h2></p>
     <p><h4><span th:text="${pet.story}"></span></h4></p>
 </div>
+<script src="http://code.jquery.com/jquery-2.2.4.min.js"  crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script>
+
+    var selection=[];
+    var maleOnOff = "off";
+    var neuterdOnOff = "off";
+
+   function selectFilter(onOffVar, selectString, id) {
+       switch (onOffVar) {
+           case "off":
+               selection.push(selectString);
+               console.log(onOffVar + " before");
+               onOffVar = "on";
+               $(id).addClass("active");
+               console.log(onOffVar + " after");
+               break;
+           case "on":
+               var index = selection.indexOf(selectString);
+               selection.splice(index, 1);
+               $(id).removeClass("active");
+               console.log(selection);
+               console.log(onOffVar);
+               onOffVar = "off";
+               break;
+       }
+       console.log("inside function "+onOffVar);
+   }
+
+    $("#male").click(function(){
+//        selectFilter(maleOnOff, "male", "#male");
+        switch (maleOnOff) {
+            case "off":
+                selection.push("male");
+                console.log(maleOnOff + " before");
+                maleOnOff = "on";
+                $("#male").addClass("active");
+                console.log(maleOnOff + " after");
+                break;
+            case "on":
+                var index = selection.indexOf("male");
+                selection.splice(index, 1);
+                $("#male").removeClass("active");
+                console.log(selection);
+                console.log(maleOnOff);
+                maleOnOff = "off";
+                break;
+        }
+        console.log("outside function " + maleOnOff);
+    });
+
+    $("#neuterd_spayed").click(function(){
+//       selectFilter(neuterdOnOff, "neuterd_spayed", "#neuterd_spayed");
+        switch (neuterdOnOff) {
+            case "off":
+                selection.push("neuterd_spayed");
+                neuterdOnOff = "on";
+                $("#neuterd_spayed").addClass("active");
+                break;
+            case "on":
+                var index = selection.indexOf("neuterd_spayed");
+                selection.splice(index, 1);
+                $("#neuterd_spayed").removeClass("active");
+                console.log(selection);
+                neuterdOnOff = "off";
+                break;
+        }
+    });
+
+    $("#searchFiltered").click(function(){
+        if(selection.length == 0){
+            window.location.href = "/pets/all"
+        }
+        else {
+            window.location.href = "/pets/" + selection;
+        }
+    });
+
+</script>
 </body>
 </html>

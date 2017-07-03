@@ -5,7 +5,9 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -51,7 +53,7 @@ public class Pet {
             joinColumns = {@JoinColumn(name="pet_id")},
             inverseJoinColumns = {@JoinColumn(name="filter_id")}
     )
-    private List<Filter> filters;
+    private List<Filter> filtersPets;
 
     public Pet(String name, String story, int age, String privateNotes, Boolean readyToAdopt) {
         this.name = name;
@@ -132,6 +134,6 @@ public class Pet {
     }
 
     public List<Filter> getFilters() {
-        return filters;
+        return filtersPets;
     }
 }

@@ -1,12 +1,15 @@
 package com.capstone.controllers;
 
+import com.capstone.models.Filter;
 import com.capstone.models.Pet;
+
 import com.capstone.repositories.PetsRepository;
 import com.capstone.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,21 +37,31 @@ public class PetsController {
         this.filterRepository = filterRepository;
     }
 
-    @RequestMapping(path = "/pets", method = RequestMethod.GET)
-    public String indexPage(Model model) {
-        ArrayList<Pet> pets = (ArrayList<Pet>) petsRepository.findAllByReadyToAdopt(true);
-        model.addAttribute("pets", pets);
-        return "pets/index";
-    }
-
 //    @RequestMapping(path = "/pets/{selection}", method = RequestMethod.GET)
-//    public String indexPage(Model model,
-//                            @PathVariable List<String> selection) {
-//
-//        ArrayList<Pet> pets = (ArrayList<Pet>) petsRepository.findAll();
+//    public String indexPage(Model model) {
+//        ArrayList<Pet> pets = (ArrayList<Pet>) petsRepository.findAllByReadyToAdopt(true);
 //        model.addAttribute("pets", pets);
 //        return "pets/index";
 //    }
+
+    @RequestMapping(path = "/pets/{selection}", method = RequestMethod.GET)
+    public String indexPage(Model model,
+                            @PathVariable List<String> selection) {
+
+        ArrayList<Pet> pets = (ArrayList<Pet>) petsRepository.findAllByReadyToAdopt(true);
+        ArrayList<Pet> filteredPets = new ArrayList<>(pets);
+        System.out.println(filterRepository.findFilterIDByFilterName("male"));
+
+        if (!selection.get(0).equals("all")) {
+            for (int i = 0; i < selection.size(); i++) {
+                Long filterID = filterRepository.findFilterIDByFilterName(selection.get(i));
+                ArrayList tempArray = petsRepository.findPetsByFilter(filterID);
+               filteredPets.retainAll(tempArray);
+            }
+        }
+        model.addAttribute("pets", filteredPets);
+        return "pets/index";
+    }
 
 
 }
