@@ -2,6 +2,9 @@ package com.capstone.models;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table (name = "filters")
@@ -14,7 +17,13 @@ public class Filter {
     @Column
     private String filterName;
 
-    public Filter(){}
+    @ManyToMany(mappedBy="filtersPets")
+    private List<Pet> petCollection;
+
+
+    public Filter(){
+        petCollection = new ArrayList<Pet>();
+    }
 
     public Filter(String filterName) {
         this.filterName = filterName;
@@ -30,5 +39,10 @@ public class Filter {
 
     public void setFilterName(String filterName) {
         this.filterName = filterName;
+    }
+
+
+    public List<Pet> getPetCollection() {
+        return petCollection;
     }
 }

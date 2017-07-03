@@ -4,13 +4,43 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
 </head>
 <body>
 
+<span><c:out value="${searchTerm}" /></span>
+<!--<div class="btn btn-primary"><a th:href="@{'/pets/'+ ${selection}}" id="viewPost" style="color: white; text-decoration: none">male</a></div>-->
+<div class="btn btn-primary" id="male">male</div>
+<!--<div class="btn btn-primary"><a  id="potty_trained" style="color: white; text-decoration: none">male</a></div>-->
 <div th:each="pet : ${pets}">
     <!--<p><img th:src="@{'../uploads/'+ ${pet.imageUrl}}" /></p>-->
     <p><h2><span th:text="${pet.name}"></span></h2></p>
     <p><h4><span th:text="${pet.story}"></span></h4></p>
 </div>
+<script src="http://code.jquery.com/jquery-2.2.4.min.js"  crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script>
+    var selection=[];
+    var maleOnOff = "off";
+    var href = "@{'/pets/'+ ${"+selection+"}}";
+    $("#male").click(function(){
+        switch(maleOnOff) {
+            case "off":
+            selection.push("male");
+            maleOnOff="on";
+            window.location.href = "/pets/"+selection;
+            break;
+            case "on":
+                var index = selection.indexOf("male");
+                selection.splice(index, 1);
+                window.location.href = "/pets/"+selection;
+                console.log(selection);
+                maleOnOff = "off";
+                break;
+        }
+    });
+
+
+</script>
 </body>
 </html>
