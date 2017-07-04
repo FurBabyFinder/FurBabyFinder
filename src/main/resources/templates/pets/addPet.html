@@ -6,7 +6,7 @@
 <nav th:replace="fragments :: navbar" />
 <div class="container">
 <form action="/pets/addPet" method="post" th:object="${pet}" enctype="multipart/form-data">
-
+    <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
     <div class="form-group">
         <label for="name">Pet Name</label>
         <input id="name" type="text" size="20" th:field="*{name}"/>
@@ -26,6 +26,13 @@
         <input id="species" type="text" size="20" th:field="*{species}"/>
         <div class="alert alert-danger" th:if="${#fields.hasErrors('species')}">
             <p  th:errors="*{species}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="radio" id="readyToAdopt1" name="readyToAdopt" value="1" />Ready To Adopt<br/>
+        <input type="radio" id="readyToAdopt2" name="readyToAdopt" value="0" />Not Ready To Adopt<br/>
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('readyToAdopt')}">
+            <p  th:errors="*{readyToAdopt}" />
         </div>
     </div>
     <div class="form-group">
@@ -58,45 +65,46 @@
     </div>
 
 
-    <input type="radio" name="gender" value="male" /> Male<br/>
-    <input type="radio" name="gender" value="female"/> Female<br/>
-    <br />
+    <!--<input type="radio" id="genderm" name="gender" value="male" /> Male<br/>-->
+    <!--<input type="radio" id="genderf" name="gender" value="female"/> Female<br/>-->
+    <!--<br />-->
 
-    <input type="radio" name="catCompatibility" value="cat_friendly" />Great with cats<br/>
-    <input type="radio" name="catCompatibility" value="not_cat_friendly"/>Not cat friendly<br/>
-    <input type="radio" name="catCompatibility" value=""/>Neither/Unknown<br/>
-    <br />
+    <!--<input type="radio" id="catyes" name="catCompatibility" value="cat_friendly" />Great with cats<br/>-->
+    <!--<input type="radio" id="catno" name="catCompatibility" value="not_cat_friendly"/>Not cat friendly<br/>-->
+    <!--<input type="radio" name="catCompatibility" value=""/>Neither/Unknown<br/>-->
+    <!--<br />-->
 
-    <div class="checkbox">
-        <label><input type="checkbox" value="great_with_kids"/>Great With Kids</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" value="neuterd_spayed"/>Neutered/Spayed</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" value="potty_trained"/>Potty Trained</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" value="crate_trained"/>Crate Trained</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" value="great_with_dogs"/>Great With Dogs</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" value="medical_foster"/>Medical Foster</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" value="microchipped"/>Microchipped</label>
-    </div>
+    <!--<div class="checkbox">-->
+        <!--<label><input type="checkbox" id="great_with_kids"  name="filterName" value="great_with_kids"/>Great With Kids</label>-->
+    <!--</div>-->
+    <!--<div class="checkbox">-->
+        <!--<label><input type="checkbox" id="neuterd_spayed" name="filterName" value="neuterd_spayed"/>Neutered/Spayed</label>-->
+    <!--</div>-->
+    <!--<div class="checkbox">-->
+        <!--<label><input type="checkbox" id="potty_trained" name="filterName" value="potty_trained"/>Potty Trained</label>-->
+    <!--</div>-->
+    <!--<div class="checkbox">-->
+        <!--<label><input type="checkbox" id="crate_trained" name="filterName" value="crate_trained"/>Crate Trained</label>-->
+    <!--</div>-->
+    <!--<div class="checkbox">-->
+        <!--<label><input type="checkbox" id="great_with_dogs" name="filterName" value="great_with_dogs"/>Great With Dogs</label>-->
+    <!--</div>-->
+    <!--<div class="checkbox">-->
+        <!--<label><input type="checkbox" id="medical_foster" name="filterName" value="medical_foster"/>Medical Foster</label>-->
+    <!--</div>-->
+    <!--<div class="checkbox">-->
+        <!--<label><input type="checkbox" id="microchipped" name="filterName" value="microchipped"/>Microchipped</label>-->
+    <!--</div>-->
 
 
-    <label>Upload an image<input type="file" name="image" id="image1" /></label>
-    <label>Upload an image<input type="file" name="image" id="image2" /></label>
-    <label>Upload an image<input type="file" name="image" id="image3" /></label>
-    <label>Upload an image<input type="file" name="image" id="image4" /></label>
-    <label>Upload an image<input type="file" name="image" id="image5" /></label>
-    <label>Upload an image<input type="file" name="image" id="image6" /></label>
-    <br/>
+    <!--<label>Upload an image<input type="file" name="image" id="image1" /></label>-->
+    <!--<label>Upload an image<input type="file" name="image" id="image2" /></label>-->
+    <!--<label>Upload an image<input type="file" name="image" id="image3" /></label>-->
+    <!--<label>Upload an image<input type="file" name="image" id="image4" /></label>-->
+    <!--<label>Upload an image<input type="file" name="image" id="image5" /></label>-->
+    <!--<label>Upload an image<input type="file" name="image" id="image6" /></label>-->
+    <!--<br/>-->
+
     <button class="btn btn-default" value="upload">Save</button>
 
 </form>

@@ -1,4 +1,4 @@
-package com.capstone.controllers;
+package com.capstone.repositories;
 
 import com.capstone.models.Filter;
 import com.capstone.models.Pet;
@@ -19,5 +19,6 @@ public interface FilterRepository extends CrudRepository<Filter, Long> {
     public Long findFilterIDByFilterName(@Param("passFilter") String passFilter);
 
 
+    public Filter findByFilterName(String name);
 
 }
