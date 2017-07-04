@@ -9,3 +9,22 @@ body, html {
     background-position: center;
 }
 
+.hero-text {
+    color: white;
+    padding-top: 10%;
+}
+
+.container h1 {
+    color: white;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+h1 {
+    margin: 0;
+}
+
+
+
