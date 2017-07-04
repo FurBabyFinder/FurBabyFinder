@@ -37,12 +37,6 @@ public class PetsController {
         this.filterRepository = filterRepository;
     }
 
-//    @RequestMapping(path = "/pets/{selection}", method = RequestMethod.GET)
-//    public String indexPage(Model model) {
-//        ArrayList<Pet> pets = (ArrayList<Pet>) petsRepository.findAllByReadyToAdopt(true);
-//        model.addAttribute("pets", pets);
-//        return "pets/index";
-//    }
 
     @RequestMapping(path = "/pets/{selection}", method = RequestMethod.GET)
     public String indexPage(Model model,
@@ -50,7 +44,6 @@ public class PetsController {
 
         ArrayList<Pet> pets = (ArrayList<Pet>) petsRepository.findAllByReadyToAdopt(true);
         ArrayList<Pet> filteredPets = new ArrayList<>(pets);
-        System.out.println(filterRepository.findFilterIDByFilterName("male"));
 
         if (!selection.get(0).equals("all")) {
             for (int i = 0; i < selection.size(); i++) {
@@ -61,6 +54,12 @@ public class PetsController {
         }
         model.addAttribute("pets", filteredPets);
         return "pets/index";
+    }
+
+    @GetMapping ("/pets/add")
+    public String showCreateForm(Model model) {
+        model.addAttribute("pet", new Pet());
+        return "pets/addPet";
     }
 
 
