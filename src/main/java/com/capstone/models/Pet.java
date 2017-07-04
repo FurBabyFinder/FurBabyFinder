@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.List;
@@ -25,19 +26,21 @@ public class Pet {
 
     @Column(nullable = false, length = 1000)
     @NotBlank(message = "Pet must have a story")
-    @Size(min = 50, message = "Pet name must be at least 50 characters")
+    @Size(min = 10, message = "Pet story must be at least 50 characters")
     private String story;
 
-    @Column(nullable = true, length = 2)
+    @Column(length = 2)
     private int age;
 
     @Column(nullable = false)
+    @NotBlank(message = "Pet must have a species")
     private String species;
 
     @Column(nullable = false)
-    private Boolean readyToAdopt;
+    @NotNull(message = "Pet must be marked ready or not to adopt")
+    private boolean readyToAdopt;
 
-    @Column(nullable = true, length = 1000)
+    @Column(length = 1000)
     private String privateNotes;
 
     @OneToOne
@@ -55,7 +58,7 @@ public class Pet {
     )
     private List<Filter> filtersPets;
 
-    public Pet(String name, String story, int age, String privateNotes, Boolean readyToAdopt) {
+    public Pet(String name, String story, int age, String privateNotes, boolean readyToAdopt) {
         this.name = name;
         this.story = story;
         this.age = age;
@@ -101,11 +104,11 @@ public class Pet {
         this.species = species;
     }
 
-    public Boolean getReadyToAdopt() {
+    public boolean getReadyToAdopt() {
         return readyToAdopt;
     }
 
-    public void setReadyToAdopt(Boolean readyToAdopt) {
+    public void setReadyToAdopt(boolean readyToAdopt) {
         readyToAdopt = readyToAdopt;
     }
 
@@ -135,5 +138,9 @@ public class Pet {
 
     public List<Filter> getFilters() {
         return filtersPets;
+    }
+
+    public void setFiltersPets(List<Filter> filtersPets) {
+        this.filtersPets = filtersPets;
     }
 }
