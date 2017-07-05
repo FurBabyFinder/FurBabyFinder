@@ -3,54 +3,9 @@ body, html {
 }
 
 .hero-image {
-    background-image: url("../img/hero_img.jpg");
+    background-image: url("../img/hero-img.jpg");
     background-size: cover;
-    height: 70%;
+    height: 100%;
     background-position: center;
-}
-
-.hero-text {
-    color: white;
-    padding-top: 10%;
-    padding-bottom: 10%;
-    margin-top: 10%;
-    background: rgb(0, 0, 0); /* for browsers without RGBA-support */
-    background: rgba(0, 0, 0, 0.7);
-}
-
-.navbar {
-    margin-bottom: 0;
-}
-
-h1 {
-    margin-bottom: 2%;
-    font-family: 'Patua One', cursive;
-}
-
-
-.button-primary {
-    background-color: darkblue;
-    border: 3px solid white;
-    height: 40px;
-    width: 150px;
-    margin: 5px;
-    font-size: 18px;
-    font-family: 'Lato', sans-serif;
-}
-
-.button-secondary {
-    background-color: transparent;
-    border: 3px solid white;
-    height: 40px;
-    width: 150px;
-    margin: 5px;
-    fonT-size: 18px;
-    font-family: 'Lato', sans-serif;
-}
-
-.homepage-text{
-    padding: 3%;
-    font-family: 'Lato', sans-serif;
-    font-size: 18px;
 }
 
