@@ -29,8 +29,8 @@
         </div>
     </div>
     <div class="form-group">
-        <input type="radio" id="readyToAdopt1" name="readyToAdopt" value="1" />Ready To Adopt<br/>
-        <input type="radio" id="readyToAdopt2" name="readyToAdopt" value="0" />Not Ready To Adopt<br/>
+        <input type="radio" id="readyToAdopt1" name="readyToAdopt" th:field="*{readyToAdopt}" value="true" />Ready To Adopt<br/>
+        <input type="radio" id="readyToAdopt2" name="readyToAdopt"  th:field="*{readyToAdopt}" value="false" />Not Ready To Adopt<br/>
         <div class="alert alert-danger" th:if="${#fields.hasErrors('readyToAdopt')}">
             <p  th:errors="*{readyToAdopt}" />
         </div>
@@ -69,10 +69,10 @@
     <!--<input type="radio" id="genderf" name="gender" value="female"/> Female<br/>-->
     <!--<br />-->
 
-    <!--<input type="radio" id="catyes" name="catCompatibility" value="cat_friendly" />Great with cats<br/>-->
-    <!--<input type="radio" id="catno" name="catCompatibility" value="not_cat_friendly"/>Not cat friendly<br/>-->
-    <!--<input type="radio" name="catCompatibility" value=""/>Neither/Unknown<br/>-->
-    <!--<br />-->
+    <input type="radio" id="catyes" name="catCompatibility"  value="cat_friendly" />Great with cats<br/>
+    <input type="radio" id="catno" name="catCompatibility" value="not_cat_friendly"/>Not cat friendly<br/>
+    <input type="radio" name="catCompatibility" value=""/>Neither/Unknown<br/>
+    <br />
 
     <!--<div class="checkbox">-->
         <!--<label><input type="checkbox" id="great_with_kids"  name="filterName" value="great_with_kids"/>Great With Kids</label>-->
