@@ -20,3 +20,7 @@ VALUES (1, "Bentley", "In west Philadelphia born and raised On the playground wa
   (8, "TimmyD", "He is a retired circus animal.", 12, "He can jump thru a flaming hula hoop.", FALSE, "Tiger"),
   (9, "Barney", "Former TV star turned homeless looking for his furrever home.", 10, "He loves you", FALSE, "Dinosaur"),
   (10, "Tommy Boy", "Considered the black sheep of his family he was ostracized.", 2, "He means well", FALSE, "Sheep");
+
+INSERT INTO user_roles (id, role) VALUES (1, adopter),
+  (2, foster),
+  (3, admin);
