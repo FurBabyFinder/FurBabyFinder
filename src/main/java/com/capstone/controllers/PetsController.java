@@ -45,6 +45,14 @@ public class PetsController {
         this.petImageRepository = petImageRepository;
     }
 
+    @GetMapping ("/pets/pet{id}")
+    public String showCreateForm(@PathVariable long id, Model model) {
+        Pet pet = petsRepository.findById(id);
+        model.addAttribute("pet", pet);
+        return "pets/individualPet";
+    }
+
+
 
     @RequestMapping(path = "/pets/{selection}", method = RequestMethod.GET)
     public String indexPage(Model model,
