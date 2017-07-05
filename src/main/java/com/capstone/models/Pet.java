@@ -149,4 +149,20 @@ public class Pet {
     public void setFiltersPets(List<Filter> filtersPets) {
         this.filtersPets = filtersPets;
     }
+
+    public List<PetImage> getImages() {
+        return images;
+    }
+
+    public void setImages(List<PetImage> images) {
+        this.images = images;
+    }
+
+    public List<MedicalRecord> getRecords() {
+        return records;
+    }
+
+    public void setRecords(List<MedicalRecord> records) {
+        this.records = records;
+    }
 }

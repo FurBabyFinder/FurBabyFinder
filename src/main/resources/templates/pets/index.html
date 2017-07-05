@@ -15,12 +15,17 @@
 <div class="btn btn-info" id="medicalFoster">Medical Foster</div>
 <div class="btn btn-info" id="microchipped">Microchipped</div>
 <div class="btn btn-info" id="noCats">Not cat friendly</div>
-<div class="btn btn-info" id="pup">Under a year</div>
+<div class="btn btn-info" id="underYear">Under a year</div>
 <div class="btn btn-primary" id="searchFiltered">Search</div>
 <div th:each="pet : ${pets}">
-    <!--<p><img th:src="@{'../uploads/'+ ${pet.imageUrl}}" /></p>-->
-    <p><h2><span th:text="${pet.name}"></span></h2></p>
-    <p><h4><span th:text="${pet.story}"></span></h4></p>
+    <p><h2>Name: <span th:text="${pet.name}"></span></h2></p>
+    <p><h4>Info: <span th:text="${pet.story}"></span></h4></p>
+    <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
+    <p><h4>Internal Notes:  <span th:text="${pet.privateNotes}"></span></h4></p>
+    <div th:each="petImage : ${pet.getImages()}">
+        <p><img th:src="@{'../uploads/'+ ${petImage.imageUrl}}" /></p>
+    </div>
+
 </div>
 <script src="http://code.jquery.com/jquery-2.2.4.min.js"  crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
@@ -38,233 +43,74 @@
     var medFosterOnOff = "off";
     var microchippedOfOff = "off";
     var noCatsOnOff = "off";
-    var pupOnOff = "off";
+    var underYearOnOff = "off";
 
 
    function selectFilter(onOffVar, selectString, id) {
        switch (onOffVar) {
            case "off":
                selection.push(selectString);
-               console.log(onOffVar + " before");
                onOffVar = "on";
                $(id).addClass("active");
-               console.log(onOffVar + " after");
-               break;
+               return onOffVar;
            case "on":
                var index = selection.indexOf(selectString);
                selection.splice(index, 1);
                $(id).removeClass("active");
-               console.log(selection);
-               console.log(onOffVar);
                onOffVar = "off";
-               break;
+               return onOffVar;
        }
-       console.log("inside function "+onOffVar);
    }
 
     $("#male").click(function(){
-//        selectFilter(maleOnOff, "male", "#male");
-        switch (maleOnOff) {
-            case "off":
-                selection.push("male");
-                console.log(maleOnOff + " before");
-                maleOnOff = "on";
-                $("#male").addClass("active");
-                console.log(maleOnOff + " after");
-                break;
-            case "on":
-                var index = selection.indexOf("male");
-                selection.splice(index, 1);
-                $("#male").removeClass("active");
-                console.log(selection);
-                console.log(maleOnOff);
-                maleOnOff = "off";
-                break;
-        }
-        console.log("outside function " + maleOnOff);
+        maleOnOff = selectFilter(maleOnOff, "male", "#male");
     });
 
     $("#female").click(function(){
-        switch (femaleOnOff) {
-            case "off":
-                selection.push("female");
-                femaleOnOff = "on";
-                $("#female").addClass("active");
-                break;
-            case "on":
-                var index = selection.indexOf("female");
-                selection.splice(index, 1);
-                $("#female").removeClass("active");
-                femaleOnOff = "off";
-                break;
-        }
+        femaleOnOff = selectFilter(femaleOnOff, "female", "#female");
     });
 
 
     $("#neuterd_spayed").click(function(){
-//       selectFilter(neuterdOnOff, "neuterd_spayed", "#neuterd_spayed");
-        switch (neuterdOnOff) {
-            case "off":
-                selection.push("neuterd_spayed");
-                neuterdOnOff = "on";
-                $("#neuterd_spayed").addClass("active");
-                break;
-            case "on":
-                var index = selection.indexOf("neuterd_spayed");
-                selection.splice(index, 1);
-                $("#neuterd_spayed").removeClass("active");
-                console.log(selection);
-                neuterdOnOff = "off";
-                break;
-        }
+        neuterdOnOff = selectFilter(neuterdOnOff, "neuterd_spayed", "#neuterd_spayed");
     });
 
     $("#potty_trained").click(function(){
-        switch (pottyOnOff) {
-            case "off":
-                selection.push("potty_trained");
-                pottyOnOff = "on";
-                $("#potty_trained").addClass("active");
-                break;
-            case "on":
-                var index = selection.indexOf("potty_trained");
-                selection.splice(index, 1);
-                $("#potty_trained").removeClass("active");
-                pottyOnOff = "off";
-                break;
-        }
+        pottyOnOff = selectFilter(pottyOnOff, "potty_trained", "#potty_trained");
     });
 
     $("#goodWKids").click(function(){
-        switch (goodWKidsOnOff) {
-            case "off":
-                selection.push("great_with_kids");
-                goodWKidsOnOff = "on";
-                $("#goodWKids").addClass("active");
-                break;
-            case "on":
-                var index = selection.indexOf("great_with_kids");
-                selection.splice(index, 1);
-                $("#goodWKids").removeClass("active");
-                goodWKidsOnOff = "off";
-                break;
-        }
+        goodWKidsOnOff = selectFilter(goodWKidsOnOff, "great_with_kids", "#goodWKids");
     });
 
    $("#crateTrained").click(function(){
-        switch (crateTrainedOnOff) {
-            case "off":
-                selection.push("crate_trained");
-                crateTrainedOnOff = "on";
-                $("#crateTrained").addClass("active");
-                break;
-            case "on":
-                var index = selection.indexOf("crate_trained");
-                selection.splice(index, 1);
-                $("#crateTrained").removeClass("active");
-                crateTrainedOnOff = "off";
-                break;
-        }
+       crateTrainedOnOff = selectFilter(crateTrainedOnOff, "crate_trained", "#crateTrained");
     });
 
       $("#greatWDogs").click(function(){
-        switch (greatWDogsOnOff) {
-            case "off":
-                selection.push("great_with_dogs");
-                greatWDogsOnOff = "on";
-                $("#greatWDogs").addClass("active");
-                break;
-            case "on":
-                var index = selection.indexOf("great_with_dogs");
-                selection.splice(index, 1);
-                $("#greatWDogs").removeClass("active");
-                greatWDogsOnOff = "off";
-                break;
-        }
+          greatWDogsOnOff = selectFilter(greatWDogsOnOff, "great_with_dogs", "#greatWDogs");
     });
 
       $("#catFriendly").click(function(){
-        switch (catFriendlyOnOff) {
-            case "off":
-                selection.push("cat_friendly");
-                catFriendlyOnOff = "on";
-                $("#catFriendly").addClass("active");
-                break;
-            case "on":
-                var index = selection.indexOf("cat_friendly");
-                selection.splice(index, 1);
-                $("#catFriendly").removeClass("active");
-                catFriendlyOnOff = "off";
-                break;
-        }
+         catFriendlyOnOff = selectFilter(catFriendlyOnOff, "cat_friendly", "#catFriendly");
     });
 
 
       $("#medicalFoster").click(function(){
-        switch (medFosterOnOff) {
-            case "off":
-                selection.push("medical_foster");
-                medFosterOnOff = "on";
-                $("#medicalFoster").addClass("active");
-                break;
-            case "on":
-                var index = selection.indexOf("medical_foster");
-                selection.splice(index, 1);
-                $("#medicalFoster").removeClass("active");
-                medFosterOnOff = "off";
-                break;
-        }
+          medFosterOnOff = selectFilter(medFosterOnOff, "medical_foster", "#medicalFoster");
     });
 
      $("#microchipped").click(function(){
-        switch (microchippedOfOff) {
-            case "off":
-                selection.push("microchipped");
-                microchippedOfOff = "on";
-                $("#microchipped").addClass("active");
-                break;
-            case "on":
-                var index = selection.indexOf("microchipped");
-                selection.splice(index, 1);
-                $("#microchipped").removeClass("active");
-                microchippedOfOff = "off";
-                break;
-        }
+         microchippedOfOff = selectFilter(microchippedOfOff, "microchipped", "#microchipped");
     });
 
      $("#noCats").click(function(){
-        switch (noCatsOnOff) {
-            case "off":
-                selection.push("not_cat_friendly");
-                noCatsOnOff = "on";
-                $("#noCats").addClass("active");
-                break;
-            case "on":
-                var index = selection.indexOf("not_cat_friendly");
-                selection.splice(index, 1);
-                $("#noCats").removeClass("active");
-                noCatsOnOff = "off";
-                break;
-        }
+        noCatsOnOff = selectFilter(noCatsOnOff, "not_cat_friendly", "#noCats");
     });
 
-    $("#pup").click(function(){
-        switch (pupOnOff) {
-            case "off":
-                selection.push("pup");
-                pupOnOff = "on";
-                $("#pup").addClass("active");
-                break;
-            case "on":
-                var index = selection.indexOf("pup");
-                selection.splice(index, 1);
-                $("#pup").removeClass("active");
-                pupOnOff = "off";
-                break;
-        }
+    $("#underYear").click(function(){
+        underYearOnOff = selectFilter(underYearOnOff, "under_year", "#underYear");
     });
-
-
 
 
 
