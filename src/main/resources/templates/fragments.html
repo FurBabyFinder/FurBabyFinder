@@ -8,8 +8,8 @@
     <title th:text="${title}">Fur Baby Finder</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
-    <link rel="stylesheet" type="text/css" href="../css/style.css" />
-    <link href="https://fonts.googleapis.com/css?family=Lato|Patua+One" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato|Patua+One" rel="stylesheet"/>
 
 </head>
 
@@ -53,6 +53,54 @@
     </div><!-- /.container-fluid -->
 </nav>
 
+
+<footer th:fragment="footer" class="">
+    <div class="row footer-row">
+
+        <div class="col-sm-3">
+            <div class="text-center footer footer-contact">
+                <h4>Contact</h4>
+                <p> Address: </p>
+                <p> 4450 Candyland Pkwy </p>
+                <p> San Antonio, TX 78210 </p>
+                <p> Phone: </p>
+                <p> 210-456-8383 </p>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="text-center footer footer-map">
+                <h4>Map</h4>
+                <div class="placeholder-map">
+                    <img class="map" th:src="@{../img/map-placeholder.jpg}"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="text-center footer footer-nav">
+                <h4>Navigation</h4>
+                <ul class="text-center footer-list">
+                    <li><a href="/pets/all">Find A Pet</a></li>
+                    <li><a href="">About Us</a></li>
+                    <li><a href="">How It Works</a></li>
+                    <li><a href="">Volunteer</a></li>
+                    <li><a href="">Foster</a></li>
+                    <li><a href="">Events</a></li>
+                    <li><a href="">Donate</a></li>
+                    <li><a href="">Register/Login</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="text-center footer footer-follow">
+                <h4>Follow Us</h4>
+                <img class="icon" th:src="@{../img/Facebook.png}"/>
+                <img class="icon" th:src="@{../img/Google.png}"/>
+                <img class="icon" th:src="@{../img/Instagram.png}"/>
+                <img class="icon" th:src="@{../img/Twitter.png}"/>
+            </div>
+        </div>
+    </div>
+</footer>
 
 <div th:fragment="scripts">
     <script src="http://code.jquery.com/jquery-2.2.4.min.js"
