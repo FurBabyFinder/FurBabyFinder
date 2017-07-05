@@ -11,19 +11,24 @@ body, html {
 
 .hero-text {
     color: white;
-    padding-top: 10%;
+    border: 5px solid red;
+    padding-top: 15%;
+    padding-bottom: 15%;
+    margin-top: 15%;
+    background: rgb(204, 204, 204); /* for browsers without RGBA-support */
+    background: rgba(0, 0, 0, 0.7);
 }
 
-.container h1 {
-    color: white;
-}
+/*.container h1 {*/
+    /*color: black;*/
+/*}*/
 
 .navbar {
     margin-bottom: 0;
 }
 
 h1 {
-    margin: 0;
+    margin-bottom: 2%;
 }
 
 
