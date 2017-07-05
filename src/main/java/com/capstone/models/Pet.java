@@ -51,6 +51,12 @@ public class Pet {
     @JoinColumn (name = "user_adopter_id")
     private User adopter;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
+    private List<PetImage> images;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
+    private List<MedicalRecord> records;
+
     @ManyToMany (cascade = CascadeType.ALL)
     @JoinTable (name = "filter_pets", // no model .... virtual table
             joinColumns = {@JoinColumn(name="pet_id")},

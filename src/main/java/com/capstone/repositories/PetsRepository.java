@@ -29,7 +29,3 @@ public interface PetsRepository extends CrudRepository<Pet, Long> {
 
 
 }
-
-// SELECT * FROM Hospital WHERE Postcode = 3000 AND Hospital_id IN
-//         (SELECT Hospital_id FROM Hospital_Medical hm INNER JOIN Medical_Service m ON hm.Medical_id = m.Medical_id
-//         where Medical_name = 'Emergency')  (SELECT Pet FROM Pet.filters WHERE Filter.id = :passID) AND (@Param("passID") long passID)

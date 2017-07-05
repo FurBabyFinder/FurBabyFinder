@@ -18,7 +18,7 @@ public class MedicalRecord {
 
 
     @ManyToOne
-    @JoinTable (name = "pet_id")
+    @JoinTable (name = "pet_medical")
     private Pet pet;
 
 }
