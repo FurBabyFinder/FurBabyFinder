@@ -101,5 +101,28 @@ INSERT INTO filter_pets(pet_id, filter_id) VALUES (5,5),
   (10, 8),
   (10, 10);
 
+INSERT INTO pet_images(id, image_description, image_url, profile_pic) VALUES (1, "Bentley Profile Photo", "static/img/bentley.jpg", TRUE),
+  (2, "Tiny Profile Photo", "static/img/tiny.jpg", TRUE),
+  (3, "Major Profile Photo", "static/img/major.jpg", TRUE),
+  (4, "Susie Profile Phoeo", "static/img/susie.jpg", TRUE),
+  (5, "Henry Profile Photo", "static/img/henry.jpg", TRUE),
+  (6, "Ms. Cuddlesworth Profile Photo", "static/img/msc.jpg", TRUE),
+  (7, "Dempsey Profile Phoeo", "static/img/dempsey.jpg", TRUE),
+  (8, "TimmyD Profile Photo", "static/img/timmyd.jpg", TRUE),
+  (9, "Barney Profile Photo", "static/img/barney.jpg", TRUE),
+  (10, "Tommy Boy Profile Phoeo", "static/img/tommy.jpg", TRUE);
+
+INSERT INTO pet_to_image(pet_id, id) VALUES (1, 1),
+  (2, 2),
+  (3, 3),
+  (4, 4),
+  (5, 5),
+  (6, 6),
+  (7, 7),
+  (8, 8),
+  (9, 9),
+  (10, 10);
+
+
 
 
