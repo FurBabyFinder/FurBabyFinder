@@ -3,25 +3,20 @@ body, html {
 }
 
 .hero-image {
-    background-image: url("../img/hero-img.jpg");
+    background-image: url("../img/hero_img.jpg");
     background-size: cover;
-    height: 100%;
+    height: 70%;
     background-position: center;
 }
 
 .hero-text {
     color: white;
-    border: 5px solid red;
-    padding-top: 15%;
-    padding-bottom: 15%;
-    margin-top: 15%;
-    background: rgb(204, 204, 204); /* for browsers without RGBA-support */
+    padding-top: 10%;
+    padding-bottom: 10%;
+    margin-top: 10%;
+    background: rgb(0, 0, 0); /* for browsers without RGBA-support */
     background: rgba(0, 0, 0, 0.7);
 }
-
-/*.container h1 {*/
-    /*color: black;*/
-/*}*/
 
 .navbar {
     margin-bottom: 0;
@@ -29,7 +24,33 @@ body, html {
 
 h1 {
     margin-bottom: 2%;
+    font-family: 'Patua One', cursive;
 }
 
 
+.button-primary {
+    background-color: darkblue;
+    border: 3px solid white;
+    height: 40px;
+    width: 150px;
+    margin: 5px;
+    font-size: 18px;
+    font-family: 'Lato', sans-serif;
+}
+
+.button-secondary {
+    background-color: transparent;
+    border: 3px solid white;
+    height: 40px;
+    width: 150px;
+    margin: 5px;
+    fonT-size: 18px;
+    font-family: 'Lato', sans-serif;
+}
+
+.homepage-text{
+    padding: 3%;
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+}
 
