@@ -3,7 +3,9 @@ package com.capstone.controllers;
 import com.capstone.models.Filter;
 import com.capstone.models.Pet;
 
+import com.capstone.models.PetImage;
 import com.capstone.repositories.FilterRepository;
+import com.capstone.repositories.PetImageRepository;
 import com.capstone.repositories.PetsRepository;
 import com.capstone.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,16 +31,18 @@ public class PetsController {
 
     private final PetsRepository petsRepository;
     private final FilterRepository filterRepository;
+    private final PetImageRepository petImageRepository;
     private final UsersRepository usersRepository;
 
     @Value("${file-upload-path}")
     private String uploadPath;
 
     @Autowired
-    public PetsController(PetsRepository petsRepository, UsersRepository usersRepository, FilterRepository filterRepository) {
+    public PetsController(PetsRepository petsRepository, UsersRepository usersRepository, FilterRepository filterRepository, PetImageRepository petImageRepository) {
         this.petsRepository = petsRepository;
         this.usersRepository = usersRepository;
         this.filterRepository = filterRepository;
+        this.petImageRepository = petImageRepository;
     }
 
 
@@ -68,9 +75,7 @@ public class PetsController {
             @Valid Pet pet,
             Errors validation,
             @RequestParam (name ="filterName") List<String> filterNames,
-//            @RequestParam(name = "great_with_kids") String kidsyes,
-//            @RequestParam(name = "neuterd_spayed") String nuetyes,
-//            @RequestParam(name = "potty_trained") String pottyYes,
+            @RequestParam(name = "image") List<MultipartFile> uploadedfiles,
             Model model){
         if (validation.hasErrors()){
             model.addAttribute("errors", validation);
@@ -78,19 +83,6 @@ public class PetsController {
             return "pets/addPet";
         }
         else {
-//            String filename =  uploadedfile.getOriginalFilename().replace(" ", "_");
-//            String filepath = Paths.get(uploadPath, filename).toString();
-//            File destinationFile = new File(filepath);
-
-
-//            try {
-//                pet.setImageUrl(filename);
-//                uploadedfile.transferTo(destinationFile);
-//                model.addAttribute("message", "File successfully uploaded!");
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//                model.addAttribute("message", "Oops! Something went wrong! " + e);
-//            }
             List<Filter> filters = new ArrayList<>();
             for(String name : filterNames){
                 filters.add(filterRepository.findByFilterName(name));
@@ -98,16 +90,29 @@ public class PetsController {
             pet.setFiltersPets(filters);
             petsRepository.save(pet);
             Long id = pet.getId();
-//            List<Filter> petFilterList = new ArrayList<>();
-//            System.out.println(catCompatibility);
-//            if(catCompatibility != null){
-//                Filter catFilter  =  new Filter();
-//                 catFilter = filterRepository.findByFilterName(catCompatibility);
-//                petFilterList.add(catFilter);
-//                System.out.println(petFilterList.size());
-//            }
+            Pet addedPet = petsRepository.findById(id);
+            for(MultipartFile image : uploadedfiles) {
 
-//            pet.setFiltersPets(petFilterList);
+                if (!image.isEmpty()) {
+                    String filename = image.getOriginalFilename().replace(" ", "_");
+                    filename = id.toString() + filename;
+                    String filepath = Paths.get(uploadPath, filename).toString();
+                    File destinationFile = new File(filepath);
+                    PetImage petImage = new PetImage(addedPet);
+
+
+                    try {
+                        petImage.setImageUrl(filename);
+                        petImageRepository.save(petImage);
+                        image.transferTo(destinationFile);
+                        model.addAttribute("message", "File successfully uploaded!");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        model.addAttribute("message", "Oops! Something went wrong! " + e);
+                    }
+                }
+            }
+
             return "redirect:/pets/all";
         }
     }

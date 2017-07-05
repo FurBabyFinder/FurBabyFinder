@@ -17,8 +17,9 @@ public class PetImage {
     @NotBlank(message = "Image must have a url")
     private String ImageUrl;
 
-    @Column(nullable = false, length = 45)
-    @NotBlank(message = "Image must have a description")
+    @Column
+//            (nullable = false, length = 45)
+//    @NotBlank(message = "Image must have a description")
     private String ImageDescription;
 
     @Column
@@ -28,12 +29,16 @@ public class PetImage {
     private boolean after_adoption;
 
     @ManyToOne
-    @JoinTable (name = "pet_id")
+    @JoinTable (name = "pet_to_image")
     private Pet pet;
 
     public PetImage(String imageUrl, String imageDescription, Pet pet) {
         ImageUrl = imageUrl;
         ImageDescription = imageDescription;
+        this.pet = pet;
+    }
+
+    public PetImage (Pet pet){
         this.pet = pet;
     }
 
