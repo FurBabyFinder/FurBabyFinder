@@ -18,13 +18,15 @@
 <div class="btn btn-info" id="underYear">Under a year</div>
 <div class="btn btn-primary" id="searchFiltered">Search</div>
 <div th:each="pet : ${pets}">
-    <p><h2>Name: <span th:text="${pet.name}"></span></h2></p>
+    <p><h2>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet" style="text-decoration: none"><span th:text="${pet.name}"></span></a></h2></p>
     <p><h4>Info: <span th:text="${pet.story}"></span></h4></p>
     <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
     <p><h4>Internal Notes:  <span th:text="${pet.privateNotes}"></span></h4></p>
-    <div th:each="petImage : ${pet.getImages()}">
-        <p><img th:src="@{'/img/'+ ${petImage.imageUrl}}" /></p>
-    </div>
+
+
+    <p th:if = "${pet.getImages().size() > 0}"><img th:src="@{'/img/'+ ${pet.getImages().get(0).imageUrl}}" /></p>
+
+
 
 </div>
 <script src="http://code.jquery.com/jquery-2.2.4.min.js"  crossorigin="anonymous"></script>
