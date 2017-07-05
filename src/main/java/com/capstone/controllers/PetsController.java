@@ -67,10 +67,7 @@ public class PetsController {
     public String create(
             @Valid Pet pet,
             Errors validation,
-             @RequestParam(name="readyToAdopt") boolean ready,
-//            @RequestParam(name = "file") MultipartFile uploadedfile,
-//            @RequestParam(name = "gender") String gender,
-              @RequestParam String catCompatibility,
+            @RequestParam (name ="filterName") List<String> filterNames,
 //            @RequestParam(name = "great_with_kids") String kidsyes,
 //            @RequestParam(name = "neuterd_spayed") String nuetyes,
 //            @RequestParam(name = "potty_trained") String pottyYes,
@@ -84,9 +81,8 @@ public class PetsController {
 //            String filename =  uploadedfile.getOriginalFilename().replace(" ", "_");
 //            String filepath = Paths.get(uploadPath, filename).toString();
 //            File destinationFile = new File(filepath);
-//
-//
-//
+
+
 //            try {
 //                pet.setImageUrl(filename);
 //                uploadedfile.transferTo(destinationFile);
@@ -95,39 +91,23 @@ public class PetsController {
 //                e.printStackTrace();
 //                model.addAttribute("message", "Oops! Something went wrong! " + e);
 //            }
-//            postSvc.save(post);
-//            Long id = post.getId();
-//            if (tag1 != null){
-//                Tag tagObj1 = new Tag(tag1, post);
-//                tagsRepository.save(tagObj1);
-//                post.setTag(tagObj1);
-//            }
-//            if (tag2 != null){
-//                Tag tagObj2 = new Tag(tag2, post);
-//                tagsRepository.save(tagObj2);
-//                post.setTag(tagObj2);
-//            }
-//            if (tag3 != null){
-//                Tag tagObj3 = new Tag(tag3, post);
-//                tagsRepository.save(tagObj3);
-//                post.setTag(tagObj3);
-//            }
-
+            List<Filter> filters = new ArrayList<>();
+            for(String name : filterNames){
+                filters.add(filterRepository.findByFilterName(name));
+            }
+            pet.setFiltersPets(filters);
             petsRepository.save(pet);
             Long id = pet.getId();
-            List<Filter> petFilterList = new ArrayList<>();
-            System.out.println(catCompatibility);
-            if(catCompatibility != null){
-                Filter catFilter  =  new Filter();
-                 catFilter = filterRepository.findByFilterName(catCompatibility);
-                petFilterList.add(catFilter);
-                System.out.println(petFilterList.size());
-            }
-//            if(kidsyes != null){
-//                Filter kidFilter  =  filterRepository.findByFilterName(catsYesOrNo);
-//                pet.getFilters().add(kidFilter);
+//            List<Filter> petFilterList = new ArrayList<>();
+//            System.out.println(catCompatibility);
+//            if(catCompatibility != null){
+//                Filter catFilter  =  new Filter();
+//                 catFilter = filterRepository.findByFilterName(catCompatibility);
+//                petFilterList.add(catFilter);
+//                System.out.println(petFilterList.size());
 //            }
-            pet.setFiltersPets(petFilterList);
+
+//            pet.setFiltersPets(petFilterList);
             return "redirect:/pets/all";
         }
     }
