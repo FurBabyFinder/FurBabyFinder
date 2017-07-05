@@ -109,7 +109,7 @@ public class Pet {
     }
 
     public void setReadyToAdopt(boolean readyToAdopt) {
-        readyToAdopt = readyToAdopt;
+        this.readyToAdopt = readyToAdopt;
     }
 
     public String getPrivateNotes() {

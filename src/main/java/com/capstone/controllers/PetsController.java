@@ -67,9 +67,10 @@ public class PetsController {
     public String create(
             @Valid Pet pet,
             Errors validation,
+             @RequestParam(name="readyToAdopt") boolean ready,
 //            @RequestParam(name = "file") MultipartFile uploadedfile,
 //            @RequestParam(name = "gender") String gender,
-//            @RequestParam(name = "catCompatibility") String catsYesOrNo,
+              @RequestParam String catCompatibility,
 //            @RequestParam(name = "great_with_kids") String kidsyes,
 //            @RequestParam(name = "neuterd_spayed") String nuetyes,
 //            @RequestParam(name = "potty_trained") String pottyYes,
@@ -111,16 +112,22 @@ public class PetsController {
 //                tagsRepository.save(tagObj3);
 //                post.setTag(tagObj3);
 //            }
+
             petsRepository.save(pet);
             Long id = pet.getId();
-//            if(catsYesOrNo != null){
-//                Filter catFilter  =  filterRepository.findByFilterName(catsYesOrNo);
-//                pet.getFilters().add(catFilter);
-//            }
+            List<Filter> petFilterList = new ArrayList<>();
+            System.out.println(catCompatibility);
+            if(catCompatibility != null){
+                Filter catFilter  =  new Filter();
+                 catFilter = filterRepository.findByFilterName(catCompatibility);
+                petFilterList.add(catFilter);
+                System.out.println(petFilterList.size());
+            }
 //            if(kidsyes != null){
 //                Filter kidFilter  =  filterRepository.findByFilterName(catsYesOrNo);
 //                pet.getFilters().add(kidFilter);
 //            }
+            pet.setFiltersPets(petFilterList);
             return "redirect:/pets/all";
         }
     }

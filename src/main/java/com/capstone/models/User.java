@@ -28,25 +28,31 @@ public class User {
     private String password;
 
     @Column()
-    private String first_name;
+    private String firstName;
 
     @Column()
-    private String last_name;
+    private String lastName;
 
     @Column()
-    private String street_addr_1;
+    private String streetAdd1;
 
     @Column()
-    private String street_addr_2;
+    private String streetAdd2;
+
+    @Column()
+    private String city;
+
+    @Column()
+    private  String state;
 
     @Column()
     private String zip;
 
     @Column()
-    private String main_phone;
+    private String mainPhone;
 
     @Column()
-    private String alt_phone;
+    private String altPhone;
 
     @Column()
     private String FosterAppInfo;
@@ -99,37 +105,54 @@ public class User {
         this.password = password;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getStreet_addr_1() {
-        return street_addr_1;
+    public String getStreetAdd1() {
+        return streetAdd1;
     }
 
-    public void setStreet_addr_1(String street_addr_1) {
-        this.street_addr_1 = street_addr_1;
+    public void setStreetAdd1(String streetAdd1) {
+        this.streetAdd1 = streetAdd1;
     }
 
-    public String getStreet_addr_2() {
-        return street_addr_2;
+    public String getStreetAdd2() {
+        return streetAdd2;
     }
 
-    public void setStreet_addr_2(String street_addr_2) {
-        this.street_addr_2 = street_addr_2;
+    public void setStreetAdd2(String streetAdd2) {
+        this.streetAdd2 = streetAdd2;
     }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
 
     public String getZip() {
         return zip;
@@ -139,20 +162,20 @@ public class User {
         this.zip = zip;
     }
 
-    public String getMain_phone() {
-        return main_phone;
+    public String getMainPhone() {
+        return mainPhone;
     }
 
-    public void setMain_phone(String main_phone) {
-        this.main_phone = main_phone;
+    public void setMainPhone(String mainPhone) {
+        this.mainPhone = mainPhone;
     }
 
-    public String getAlt_phone() {
-        return alt_phone;
+    public String getAltPhone() {
+        return altPhone;
     }
 
-    public void setAlt_phone(String alt_phone) {
-        this.alt_phone = alt_phone;
+    public void setAltPhone(String altPhone) {
+        this.altPhone = altPhone;
     }
 
     public String getFosterAppInfo() {
@@ -169,5 +192,13 @@ public class User {
 
     public void setAdoptAppInfo(String adoptAppInfo) {
         AdoptAppInfo = adoptAppInfo;
+    }
+
+    public List<Pet> getPets() {
+        return pets;
+    }
+
+    public void setPets(List<Pet> pets) {
+        this.pets = pets;
     }
 }
