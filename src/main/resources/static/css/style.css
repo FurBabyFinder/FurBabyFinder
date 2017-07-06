@@ -85,20 +85,22 @@ h1 {
     background-color: antiquewhite;
 }
 
-.pet-box {
-    border: 1px solid black;
-}
-
-/*.img-container {*/
-    /*max-width: 50%;*/
-    /*height: auto;*/
-/*}*/
-
 img {
     height: 200px;
     width: 200px;
 }
 
-.pet-info {
+.pet-container {
+    border: 2px solid black;
+    margin-bottom: 5px;
+    background-color: aliceblue;
+}
 
+.container-pet-view {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.pet-filter {
+    background-color: aliceblue;
 }
