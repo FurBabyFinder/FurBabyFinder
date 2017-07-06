@@ -1,3 +1,5 @@
+USE FurBabyFinder;
+
 INSERT INTO users (username, email, password, first_name, last_name, street_add1, street_add2, city, state, zip, main_phone, alt_phone, foster_app_info, adopt_app_info, id)
 VALUES
   ("frenchfryes", "dave@mail.com", "codeup", "Bill", "Smith", "13249 Washita Way", "", "San Antonio", "Texas", "47401",
@@ -34,7 +36,6 @@ INSERT INTO user_favorites (user, pet_id) VALUES (1,2),
   (3,2),
   (3,8);
 
-USE fur_db;
 INSERT INTO filters(id, filter_name) VALUES (1,"great_with_kids"),
   (2, "neutered_spayed"),
   (3, "potty_trained"),
