@@ -84,3 +84,21 @@ h1 {
 .footer-row {
     background-color: antiquewhite;
 }
+
+.pet-box {
+    border: 1px solid black;
+}
+
+/*.img-container {*/
+    /*max-width: 50%;*/
+    /*height: auto;*/
+/*}*/
+
+img {
+    height: 200px;
+    width: 200px;
+}
+
+.pet-info {
+
+}
