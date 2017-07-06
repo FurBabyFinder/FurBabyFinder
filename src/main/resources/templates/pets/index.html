@@ -36,7 +36,7 @@
 
                     <div class="col-sm-3 pet-picture"
                          th:if="${pet.getImages().size() > 0}"><img class="img-thumbnail"
-                            th:src="@{'/img/'+ ${pet.getImages().get(0).imageUrl}}"/>
+                            th:src="@{'/uploads/img'+ ${pet.getImages().get(0).imageUrl}}"/>
                     </div>
 
                     <div class="col-sm-9 pet-info">
