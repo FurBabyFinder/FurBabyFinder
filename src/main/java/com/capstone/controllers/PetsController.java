@@ -49,6 +49,7 @@ public class PetsController {
     public String showCreateForm(@PathVariable long id, Model model) {
         Pet pet = petsRepository.findById(id);
         model.addAttribute("pet", pet);
+        model.addAttribute("list", petsRepository.findSpecies());
         return "pets/individualPet";
     }
 
@@ -68,6 +69,7 @@ public class PetsController {
                filteredPets.retainAll(tempArray);
             }
         }
+        model.addAttribute("list", petsRepository.findSpecies());
         model.addAttribute("pets", filteredPets);
         return "pets/index";
     }
@@ -151,6 +153,8 @@ public class PetsController {
                 filteredPets.retainAll(tempArray);
             }
         }
+        model.addAttribute("list", petsRepository.findSpecies());
+        model.addAttribute("species", species);
         model.addAttribute("pets", filteredPets);
         return "pets/index";
     }
