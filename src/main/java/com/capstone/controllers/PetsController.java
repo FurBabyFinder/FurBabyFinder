@@ -109,18 +109,14 @@ public class PetsController {
                     String filepath = Paths.get(uploadPath, filename).toString();
                     File destinationFile = new File(filepath);
                     PetImage petImage = new PetImage(addedPet);
-                    System.out.println(ImageDescriptions.get(i) + " string");
-                    System.out.println(ImageDescriptions.size() + " size");
 
 
                     try {
                         petImage.setImageUrl(filename);
                         petImageRepository.save(petImage);
                         long imageID = petImage.getId();
-                        System.out.println(imageID + " image ID");
                         PetImage imageAdded = petImageRepository.findById(imageID);
                         uploadedfiles.get(i).transferTo(destinationFile);
-                        System.out.println(ImageDescriptions.get(i) + " and i is " + i);
                         imageAdded.setImageDescription(ImageDescriptions.get(i));
                         petImageRepository.save(imageAdded);
                         model.addAttribute("message", "File successfully uploaded!");
