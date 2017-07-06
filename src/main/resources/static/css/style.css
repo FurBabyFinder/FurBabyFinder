@@ -104,3 +104,8 @@ img {
 .pet-filter {
     background-color: aliceblue;
 }
+
+.login-container {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
