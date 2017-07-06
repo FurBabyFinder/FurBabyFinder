@@ -17,6 +17,7 @@
 <div class="btn btn-info" id="noCats">Not cat friendly</div>
 <div class="btn btn-info" id="underYear">Under a year</div>
 <div class="btn btn-primary" id="searchFiltered">Search</div>
+
 <div th:each="pet : ${pets}">
     <p><h2>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet" style="text-decoration: none"><span th:text="${pet.name}"></span></a></h2></p>
     <p><h4>Info: <span th:text="${pet.story}"></span></h4></p>
@@ -28,9 +29,13 @@
 
 
 
+
 </div>
+<input type="hidden" th:value="${species}" id="species"/>
 <script src="http://code.jquery.com/jquery-2.2.4.min.js"  crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script src="/js/species.js"></script>
+<!--<script src="/js/filters.js"></script>-->
 <script>
 
     var selection=[];
@@ -62,6 +67,12 @@
                onOffVar = "off";
                return onOffVar;
        }
+//       if(selection.length == 0){
+//           window.location.href = "/pets/all"
+//       }
+//       else {
+//           window.location.href =  "/pets/" + selection +  "/filterSearch.json";
+//       }
    }
 
     $("#male").click(function(){
@@ -117,11 +128,15 @@
 
 
     $("#searchFiltered").click(function(){
+        var species = $("#species").val();
         if(selection.length == 0){
             window.location.href = "/pets/all"
         }
+        else if (species != "") {
+            window.location.href =  "/pets/" + species + "/type/" + selection;
+        }
         else {
-            window.location.href = "/pets/" + selection;
+            window.location.href =  "/pets/" + selection;
         }
     });
 

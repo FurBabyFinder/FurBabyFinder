@@ -33,7 +33,14 @@
 
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/pets/all">Find A Pet</a></li>
+                <li class="dropdown" th:attr="data-types=${list}">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">View Pets <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{'/pets/all'}">all</a></li>
+                        <li th:each="oneSpecies : ${list}"><a th:href="@{'/pets/'+ ${oneSpecies} + '/type/all'}" th:text="${oneSpecies}+'s'"></a></li>
+                    </ul>
+                </li>
                 <li><a href="/about/us">About Us</a></li>
                 <li><a href="/how-it-works">How It Works</a></li>
                 <li class="dropdown">
@@ -79,7 +86,14 @@
             <div class="text-center footer footer-nav">
                 <h4>Navigation</h4>
                 <ul class="text-center footer-list">
-                    <li><a href="/pets/all">Find A Pet</a></li>
+                    <li class="dropdown" th:attr="data-types=${list}">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">View Pets <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{'/pets/all'}">all</a></li>
+                            <li th:each="oneSpecies : ${list}"><a th:href="@{'/pets/'+ ${oneSpecies} + '/type/all'}" th:text="${oneSpecies}+'s'"></a></li>
+                        </ul>
+                    </li>
                     <li><a href="/about-us">About Us</a></li>
                     <li><a href="/how-it-works">How It Works</a></li>
                     <li><a href="/volunteer">Volunteer</a></li>
@@ -108,6 +122,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+    <script src="/js/species.js"></script>
 </div>
 
 </html>
