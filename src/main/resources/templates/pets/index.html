@@ -1,213 +1,145 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head th:replace="fragments :: head"/>
+<head th:replace="fragments :: head" />
 <body>
-<nav th:replace="fragments :: navbar"/>
+<nav th:replace="fragments :: navbar" />
+<div class="btn btn-info" id="male">Male</div>
+<div class="btn btn-info" id="female">Female</div>
+<div class="btn btn-info" id="neuterd_spayed">Nuetered/Spayed</div>
+<div class="btn btn-info" id="potty_trained">Potty Trained</div>
+<div class="btn btn-info" id="goodWKids">Great With Kids</div>
+<div class="btn btn-info" id="crateTrained">Crate Trained</div>
+<div class="btn btn-info" id="greatWDogs">Great With Dogs</div>
+<div class="btn btn-info" id="catFriendly">Cat Friendly</div>
+<div class="btn btn-info" id="medicalFoster">Medical Foster</div>
+<div class="btn btn-info" id="microchipped">Microchipped</div>
+<div class="btn btn-info" id="noCats">Not cat friendly</div>
+<div class="btn btn-info" id="underYear">Under a year</div>
+<div class="btn btn-primary" id="searchFiltered">Search</div>
+
+<div th:each="pet : ${pets}">
+    <p><h2>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet" style="text-decoration: none"><span th:text="${pet.name}"></span></a></h2></p>
+    <p><h4>Info: <span th:text="${pet.story}"></span></h4></p>
+    <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
+    <p><h4>Internal Notes:  <span th:text="${pet.privateNotes}"></span></h4></p>
 
 
-<div class="container">
-    <div class="row">
-
-        <div class="col-sm-2">
-
-            <!--<div class="checkbox">-->
-            <!--<label>-->
-            <!--<input type="checkbox" value="">-->
-            <!--Option one is this and be sure to include why it's great-->
-            <!--</label>-->
-            <!--</div>-->
-            <!--<div class="checkbox disabled">-->
-            <!--<label>-->
-            <!--<input type="checkbox" value="" disabled>-->
-            <!--Option two is disabled-->
-            <!--</label>-->
-            <!--</div>-->
-            <div class="checkbox">
-                <label class="checkbox" id="male">Male</label>
-                <label class="checkbox" id="female">Female</label>
-                <label class="checkbox" id="neuterd_spayed">Nuetered/Spayed</label>
-                <label class="checkbox" id="potty_trained">Potty Trained</label>
-                <label class="checkbox" id="goodWKids">Great With Kids</label>
-                <label class="checkbox" id="crateTrained">Crate Trained</label>
-                <label class="checkbox" id="greatWDogs">Great With Dogs</label>
-                <label class="checkbox" id="catFriendly">Cat Friendly</label>
-                <label class="checkbox" id="medicalFoster">Medical Foster</label>
-                <label class="checkbox" id="microchipped">Microchipped</label>
-                <label class="checkbox" id="noCats">Not cat friendly</label>
-                <label class="checkbox" id="underYear">Under a year</label>
-                <div class="btn btn-primary" id="searchFiltered">Search</div>
-            </div>
-
-            <!--<div class="checkbox">-->
-            <!--<label><input type="checkbox" value="">Option 1</label>-->
-            <!--</div>-->
-            <!--<div class="checkbox">-->
-            <!--<label><input type="checkbox" value="">Option 2</label>-->
-            <!--</div>-->
-            <!--<div class="checkbox">-->
-            <!--<label><input type="checkbox" value="" disabled>Option 3</label>-->
-            <!--</div>-->
-
-        </div>
-
-        <div class="col-sm-10">
+    <p th:if = "${pet.getImages().size() > 0}"><img th:src="@{'/uploads/img/'+ ${pet.getImages().get(0).imageUrl}}" /></p>
 
 
-            <div class="pet-box" th:each="pet : ${pets}">
-
-                <div class="row">
 
 
-                    <div class="col-sm-3 pet-picture"
-                         th:if="${pet.getImages().size() > 0}"><img
-                            th:src="@{'/img/'+ ${pet.getImages().get(0).imageUrl}}"/>
-                    </div>
-
-                    <div class="col-sm-9 pet-info">
-                        <h2>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet"
-                                     style="text-decoration: none"><span
-                                th:text="${pet.name}"></span></a></h2>
-
-                        <p><h4>Info: <span th:text="${pet.story}"></span></h4></p>
-
-
-                        <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
-
-                        <p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
 </div>
+<input type="hidden" th:value="${species}" id="species"/>
+<script src="http://code.jquery.com/jquery-2.2.4.min.js"  crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script src="/js/species.js"></script>
+<!--<script src="/js/filters.js"></script>-->
+<script>
 
-    <!--<div class="btn btn-info" id="male">Male</div>-->
-    <!--<div class="btn btn-info" id="female">Female</div>-->
-    <!--<div class="btn btn-info" id="neuterd_spayed">Nuetered/Spayed</div>-->
-    <!--<div class="btn btn-info" id="potty_trained">Potty Trained</div>-->
-    <!--<div class="btn btn-info" id="goodWKids">Great With Kids</div>-->
-    <!--<div class="btn btn-info" id="crateTrained">Crate Trained</div>-->
-    <!--<div class="btn btn-info" id="greatWDogs">Great With Dogs</div>-->
-    <!--<div class="btn btn-info" id="catFriendly">Cat Friendly</div>-->
-    <!--<div class="btn btn-info" id="medicalFoster">Medical Foster</div>-->
-    <!--<div class="btn btn-info" id="microchipped">Microchipped</div>-->
-    <!--<div class="btn btn-info" id="noCats">Not cat friendly</div>-->
-    <!--<div class="btn btn-info" id="underYear">Under a year</div>-->
-    <!--<div class="btn btn-primary" id="searchFiltered">Search</div>-->
-
-
-    <!--<div class="pet-box text-center" th:each="pet : ${pets}">-->
-    <!--<p><h2>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet" style="text-decoration: none"><span th:text="${pet.name}"></span></a></h2></p>-->
-    <!--<p><h4>Info: <span th:text="${pet.story}"></span></h4></p>-->
-    <!--<p><h4>Age <span th:text="${pet.age}"></span></h4></p>-->
-    <!--<p><h4>Internal Notes:  <span th:text="${pet.privateNotes}"></span></h4></p>-->
-
-
-    <!--<p th:if = "${pet.getImages().size() > 0}"><img th:src="@{'/img/'+ ${pet.getImages().get(0).imageUrl}}" /></p>-->
-
-    <!--</div>-->
+    var selection=[];
+    var maleOnOff = "off";
+    var femaleOnOff = "off";
+    var neuterdOnOff = "off";
+    var pottyOnOff = "off";
+    var goodWKidsOnOff = "off";
+    var crateTrainedOnOff = "off";
+    var greatWDogsOnOff = "off";
+    var catFriendlyOnOff = "off";
+    var medFosterOnOff = "off";
+    var microchippedOfOff = "off";
+    var noCatsOnOff = "off";
+    var underYearOnOff = "off";
 
 
-    <script src="http://code.jquery.com/jquery-2.2.4.min.js" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
-    <script>
+   function selectFilter(onOffVar, selectString, id) {
+       switch (onOffVar) {
+           case "off":
+               selection.push(selectString);
+               onOffVar = "on";
+               $(id).addClass("active");
+               return onOffVar;
+           case "on":
+               var index = selection.indexOf(selectString);
+               selection.splice(index, 1);
+               $(id).removeClass("active");
+               onOffVar = "off";
+               return onOffVar;
+       }
+//       if(selection.length == 0){
+//           window.location.href = "/pets/all"
+//       }
+//       else {
+//           window.location.href =  "/pets/" + selection +  "/filterSearch.json";
+//       }
+   }
 
-        var selection = [];
-        var maleOnOff = "off";
-        var femaleOnOff = "off";
-        var neuterdOnOff = "off";
-        var pottyOnOff = "off";
-        var goodWKidsOnOff = "off";
-        var crateTrainedOnOff = "off";
-        var greatWDogsOnOff = "off";
-        var catFriendlyOnOff = "off";
-        var medFosterOnOff = "off";
-        var microchippedOfOff = "off";
-        var noCatsOnOff = "off";
-        var underYearOnOff = "off";
+    $("#male").click(function(){
+        maleOnOff = selectFilter(maleOnOff, "male", "#male");
+    });
+
+    $("#female").click(function(){
+        femaleOnOff = selectFilter(femaleOnOff, "female", "#female");
+    });
 
 
-        function selectFilter(onOffVar, selectString, id) {
-            switch (onOffVar) {
-                case "off":
-                    selection.push(selectString);
-                    onOffVar = "on";
-                    $(id).addClass("active");
-                    return onOffVar;
-                case "on":
-                    var index = selection.indexOf(selectString);
-                    selection.splice(index, 1);
-                    $(id).removeClass("active");
-                    onOffVar = "off";
-                    return onOffVar;
-            }
+    $("#neuterd_spayed").click(function(){
+        neuterdOnOff = selectFilter(neuterdOnOff, "neuterd_spayed", "#neuterd_spayed");
+    });
+
+    $("#potty_trained").click(function(){
+        pottyOnOff = selectFilter(pottyOnOff, "potty_trained", "#potty_trained");
+    });
+
+    $("#goodWKids").click(function(){
+        goodWKidsOnOff = selectFilter(goodWKidsOnOff, "great_with_kids", "#goodWKids");
+    });
+
+   $("#crateTrained").click(function(){
+       crateTrainedOnOff = selectFilter(crateTrainedOnOff, "crate_trained", "#crateTrained");
+    });
+
+      $("#greatWDogs").click(function(){
+          greatWDogsOnOff = selectFilter(greatWDogsOnOff, "great_with_dogs", "#greatWDogs");
+    });
+
+      $("#catFriendly").click(function(){
+         catFriendlyOnOff = selectFilter(catFriendlyOnOff, "cat_friendly", "#catFriendly");
+    });
+
+
+      $("#medicalFoster").click(function(){
+          medFosterOnOff = selectFilter(medFosterOnOff, "medical_foster", "#medicalFoster");
+    });
+
+     $("#microchipped").click(function(){
+         microchippedOfOff = selectFilter(microchippedOfOff, "microchipped", "#microchipped");
+    });
+
+     $("#noCats").click(function(){
+        noCatsOnOff = selectFilter(noCatsOnOff, "not_cat_friendly", "#noCats");
+    });
+
+    $("#underYear").click(function(){
+        underYearOnOff = selectFilter(underYearOnOff, "under_year", "#underYear");
+    });
+
+
+
+    $("#searchFiltered").click(function(){
+        var species = $("#species").val();
+        if(selection.length == 0){
+            window.location.href = "/pets/all"
         }
+        else if (species != "") {
+            window.location.href =  "/pets/" + species + "/type/" + selection;
+        }
+        else {
+            window.location.href =  "/pets/" + selection;
+        }
+    });
 
-        $("#male").click(function () {
-            maleOnOff = selectFilter(maleOnOff, "male", "#male");
-        });
-
-        $("#female").click(function () {
-            femaleOnOff = selectFilter(femaleOnOff, "female", "#female");
-        });
-
-
-        $("#neuterd_spayed").click(function () {
-            neuterdOnOff = selectFilter(neuterdOnOff, "neuterd_spayed", "#neuterd_spayed");
-        });
-
-        $("#potty_trained").click(function () {
-            pottyOnOff = selectFilter(pottyOnOff, "potty_trained", "#potty_trained");
-        });
-
-        $("#goodWKids").click(function () {
-            goodWKidsOnOff = selectFilter(goodWKidsOnOff, "great_with_kids", "#goodWKids");
-        });
-
-        $("#crateTrained").click(function () {
-            crateTrainedOnOff = selectFilter(crateTrainedOnOff, "crate_trained", "#crateTrained");
-        });
-
-        $("#greatWDogs").click(function () {
-            greatWDogsOnOff = selectFilter(greatWDogsOnOff, "great_with_dogs", "#greatWDogs");
-        });
-
-        $("#catFriendly").click(function () {
-            catFriendlyOnOff = selectFilter(catFriendlyOnOff, "cat_friendly", "#catFriendly");
-        });
-
-
-        $("#medicalFoster").click(function () {
-            medFosterOnOff = selectFilter(medFosterOnOff, "medical_foster", "#medicalFoster");
-        });
-
-        $("#microchipped").click(function () {
-            microchippedOfOff = selectFilter(microchippedOfOff, "microchipped", "#microchipped");
-        });
-
-        $("#noCats").click(function () {
-            noCatsOnOff = selectFilter(noCatsOnOff, "not_cat_friendly", "#noCats");
-        });
-
-        $("#underYear").click(function () {
-            underYearOnOff = selectFilter(underYearOnOff, "under_year", "#underYear");
-        });
-
-
-        $("#searchFiltered").click(function () {
-            if (selection.length == 0) {
-                window.location.href = "/pets/all"
-            }
-            else {
-                window.location.href = "/pets/" + selection;
-            }
-        });
-
-    </script>
-
+</script>
 </body>
 </html>
