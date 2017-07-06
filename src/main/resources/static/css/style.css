@@ -84,3 +84,13 @@ h1 {
 .footer-row {
     background-color: antiquewhite;
 }
+
+img {
+    height: 200px;
+    width: 200px;
+}
+
+.pet-container {
+    border: 2px solid black;
+    margin-bottom: 5px;
+}
