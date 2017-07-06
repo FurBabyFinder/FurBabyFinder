@@ -103,7 +103,7 @@ INSERT INTO filter_pets(pet_id, filter_id) VALUES (5,5),
   (10, 8),
   (10, 10);
 
-INSERT INTO pet_images(id, image_description, image_url, after_adoption, profile_pic) VALUES (1, "Bentley Profile Photo", "bentley.jpg", TRUE),
+INSERT INTO pet_images(id, image_description, image_url, after_adoption, profile_pic) VALUES (1, "Bentley Profile Photo", "bentley.jpg", FALSE, TRUE),
   (2, "Tiny Profile Photo", "tiny.jpeg", FALSE, TRUE),
   (3, "Major Profile Photo", "major.jpg", FALSE, TRUE),
   (4, "Susie Profile Phoeo", "susie.jpg", FALSE, TRUE),
