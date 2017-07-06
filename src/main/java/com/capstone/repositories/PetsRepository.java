@@ -24,8 +24,11 @@ public interface PetsRepository extends CrudRepository<Pet, Long> {
 
     public List<Pet> findAllByReadyToAdopt(Boolean trueOrFalse);
 
+    public List<Pet> findAllByReadyToAdoptAndSpecies(Boolean trueOrFalse, String species);
+
     @Query ("Select p from Pet p inner join p.filtersPets f where f.id = :passID")
     public ArrayList<Pet> findPetsByFilter(@Param("passID") long passID);
 
-
+    @Query(value = "select p.species from Pet p where p.readyToAdopt = true group by p.species")
+    public List<String> findSpecies();
 }

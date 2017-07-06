@@ -125,7 +125,35 @@ public class PetsController {
         }
     }
 
+    @GetMapping("/petTypes.json")
+    public @ResponseBody Iterable<String> listSpecies() {
+        return petsRepository.findSpecies();
+    }
 
+    @GetMapping("/test")
+    public String viewAllPostsInJSONFormat(Model model) {
+                model.addAttribute("list", petsRepository.findSpecies());
+                return "test";
+    }
+
+    @RequestMapping(path = "/pets/{species}/type/{selection}", method = RequestMethod.GET)
+    public String indexPage(Model model,
+                            @PathVariable List<String> selection,
+                            @PathVariable String species) {
+
+        ArrayList<Pet> pets = (ArrayList<Pet>) petsRepository.findAllByReadyToAdoptAndSpecies(true, species);
+        ArrayList<Pet> filteredPets = new ArrayList<>(pets);
+
+        if (!selection.get(0).equals("all")) {
+            for (int i = 0; i < selection.size(); i++) {
+                Long filterID = filterRepository.findFilterIDByFilterName(selection.get(i));
+                ArrayList tempArray = petsRepository.findPetsByFilter(filterID);
+                filteredPets.retainAll(tempArray);
+            }
+        }
+        model.addAttribute("pets", filteredPets);
+        return "pets/index";
+    }
 
 
 }

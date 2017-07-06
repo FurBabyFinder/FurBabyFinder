@@ -24,7 +24,7 @@
     <p><h4>Internal Notes:  <span th:text="${pet.privateNotes}"></span></h4></p>
 
 
-    <p th:if = "${pet.getImages().size() > 0}"><img th:src="@{'/img/'+ ${pet.getImages().get(0).imageUrl}}" /></p>
+    <p th:if = "${pet.getImages().size() > 0}"><img th:src="@{'../uploads/'+ ${pet.getImages().get(0).imageUrl}}" /></p>
 
 
 
