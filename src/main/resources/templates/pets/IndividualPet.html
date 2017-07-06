@@ -10,7 +10,7 @@
 <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
 <p><h4>Internal Notes:  <span th:text="${pet.privateNotes}"></span></h4></p>
 <div th:each="petImage : ${pet.getImages()}">
-    <p><img th:src="@{'../uploads/'+ ${petImage.imageUrl}}" /></p>
+    <p><img th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}" /></p>
 </div>
 
 <script src="http://code.jquery.com/jquery-2.2.4.min.js"  crossorigin="anonymous"></script>
