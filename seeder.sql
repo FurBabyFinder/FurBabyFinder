@@ -1,4 +1,4 @@
-USE FurBabyFinder;
+USE furbabyfinder;
 
 INSERT INTO users (username, email, password, first_name, last_name, street_add1, street_add2, city, state, zip, main_phone, alt_phone, foster_app_info, adopt_app_info, id)
 VALUES
