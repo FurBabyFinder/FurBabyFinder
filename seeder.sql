@@ -1,3 +1,5 @@
+USE furbabyfinder;
+
 INSERT INTO users (username, email, password, first_name, last_name, street_add1, street_add2, city, state, zip, main_phone, alt_phone, foster_app_info, adopt_app_info, id)
 VALUES
   ("frenchfryes", "dave@mail.com", "codeup", "Bill", "Smith", "13249 Washita Way", "", "San Antonio", "Texas", "47401",
@@ -34,7 +36,6 @@ INSERT INTO user_favorites (user, pet_id) VALUES (1,2),
   (3,2),
   (3,8);
 
-USE fur_db;
 INSERT INTO filters(id, filter_name) VALUES (1,"great_with_kids"),
   (2, "neutered_spayed"),
   (3, "potty_trained"),
@@ -103,15 +104,15 @@ INSERT INTO filter_pets(pet_id, filter_id) VALUES (5,5),
   (10, 10);
 
 INSERT INTO pet_images(id, image_description, image_url, after_adoption, profile_pic) VALUES (1, "Bentley Profile Photo", "static/img/bentley.jpg", TRUE),
-  (2, "Tiny Profile Photo", "tiny.jpg", FALSE, TRUE),
+  (2, "Tiny Profile Photo", "tiny.jpeg", FALSE, TRUE),
   (3, "Major Profile Photo", "major.jpg", FALSE, TRUE),
   (4, "Susie Profile Phoeo", "susie.jpg", FALSE, TRUE),
-  (5, "Henry Profile Photo", "henry.jpg", FALSE, TRUE),
+  (5, "Henry Profile Photo", "henry.jpeg", FALSE, TRUE),
   (6, "Ms. Cuddlesworth Profile Photo", "msc.jpg", FALSE, TRUE),
   (7, "Dempsey Profile Phoeo", "dempsey.jpg", FALSE, TRUE),
   (8, "TimmyD Profile Photo", "timmyd.jpg", FALSE, TRUE),
   (9, "Barney Profile Photo", "barney.jpg", FALSE, TRUE),
-  (10, "Tommy Boy Profile Phoeo", "tommy.jpg", FALSE, TRUE);
+  (10, "Tommy Boy Profile Phoeo", "tommy.jpeg", FALSE, TRUE);
 
 INSERT INTO pet_to_image(pet_id, id) VALUES (1, 1),
   (2, 2),
