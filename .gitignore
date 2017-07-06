@@ -23,3 +23,4 @@ nbdist/
 .nb-gradle/
 
 src/main/resources/application.properties
+src/main/resources/static/uploads/img
