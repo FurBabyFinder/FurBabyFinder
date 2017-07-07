@@ -16,6 +16,19 @@ $(document).ready(function(){
         document.getElementById("additionalImages").innerHTML = insertImages;
     })();
 
+    (function checkTheProfile() {
+
+      $('.profilePic').each(function(){
+           var trueOrNot = $(this).val();
+           console.log(trueOrNot);
+          if(trueOrNot == "true"){
+              console.log('pass');
+              $(this).attr('checked', true);
+          }
+      })
+
+    })();
+
 
     $('.profilePic').click(function(){
         var $inputs = $('.profilePic');
