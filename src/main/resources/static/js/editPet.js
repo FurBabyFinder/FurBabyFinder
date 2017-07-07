@@ -10,7 +10,7 @@ $(document).ready(function(){
 
     (function insertImageInputs() {
         var insertImages;
-        for (var j = 0; j < addImages; j++){
+        for (var j = 1; j < addImages; j++){
             insertImages = insertImages + imageInput;
         }
         document.getElementById("additionalImages").innerHTML = insertImages;
@@ -29,6 +29,24 @@ $(document).ready(function(){
 
     })();
 
+    function updateIds (classname, idbase){
+        var number = 1;
+        var id;
+
+        $(classname).each(function () {
+             id = idbase + number;
+            var that = this;
+             console.log("id name is " + id);
+            $(this).attr("id", id);
+            console.log(this);
+            // that.id = id;
+            number++;
+        })
+    }
+
+    updateIds('.hiddenChecks', 'hiddenChecks');
+    updateIds('.imageInputs', 'image');
+    updateIds('.profilePic', 'profilePic');
 
     $('.profilePic').click(function(){
         var $inputs = $('.profilePic');
