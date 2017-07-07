@@ -105,3 +105,7 @@ img {
     background-color: aliceblue;
 }
 
+.cursor-hand {
+    cursor: pointer;
+    cursor: hand;
+}
