@@ -5,9 +5,15 @@
 <body>
 <nav th:replace="fragments :: navbar" />
 <div class="container">
-    <form th:action="${'/pets/'+pet.id+'edit'}" method="post" th:object="${pet}" enctype="multipart/form-data">
+    <form th:action="${'/pets/'+pet.id+'/edit'}" method="post" th:object="${pet}" enctype="multipart/form-data">
 
-
+        <div class="form-group">
+            <label for="name">Pet System ID</label>
+            <input id="name" type="text" size="20" th:field="*{id}"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('name')}">
+                <p  th:errors="*{id}" />
+            </div>
+        </div>
     <div th:include="fragments :: petdata"></div>
 
         <div  th:each="filter : ${filters}">
