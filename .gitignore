@@ -25,6 +25,11 @@ nbdist/
 
 src/main/resources/application.properties
 
+
 src/main/resources/static/uploads/img
 
-/private
+
+
+src/main/resources/static/uploads/img
+
+
