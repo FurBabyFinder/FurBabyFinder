@@ -10,46 +10,47 @@
 
 
 
-<div class="container login-container">
-    <div class="row">
-
-        <div class="col-sm-6">
-
-            <form>
-                <label for="username">Username</label>
-                <input id="username" class="form-control"  />
-
-                <label for="email">Email</label>
-                <input id="email" class="form-control" />
-
-                <label for="password">Password</label>
-                <input id="password" type="password" class="form-control" />
-
-                <input class="btn" type="submit" />
-            </form>
 
 
-        </div>
 
-        <div class="col-sm-6">
+                <div class="row">
 
-            <form>
-                <label for="username">Username</label>
-                <input id="username" class="form-control"  />
+                    <div class="col-sm-6 login-container">
 
-                <label for="email">Email</label>
-                <input id="email" class="form-control" />
+                        <form>
+                            <label for="username">Username</label>
+                            <input id="username" class="form-control"/>
 
-                <label for="password">Password</label>
-                <input id="password" type="password" class="form-control" />
+                            <label for="password">Password</label>
+                            <input id="password" type="password" class="form-control"/>
 
-                <input class="btn" type="submit" />
-            </form>
+                            <button type="button" class="btn btn-default">Login</button>
+                        </form>
 
-        </div>
 
-    </div>
-</div>
+                    </div>
+
+                    <div class="col-sm-6">
+
+                        <!--<form>-->
+                            <!--<label for="username">Username</label>-->
+                            <!--<input id="username" class="form-control"/>-->
+
+                            <!--<label for="email">Email</label>-->
+                            <!--<input id="email" class="form-control"/>-->
+
+                            <!--<label for="password">Password</label>-->
+                            <!--<input id="password" type="password" class="form-control"/>-->
+
+                            <!--<input class="btn" type="submit"/>-->
+                        <!--</form>-->
+                        <h3>Don't have an account yet?</h3>
+                        <button type="button" class="btn btn-primary">Register</button>
+                    </div>
+
+                </div>
+
+
 
 
 <div th:replace="fragments :: footer"></div>
@@ -57,3 +58,9 @@
 
 </body>
 </html>
+
+
+
+
+
+
