@@ -39,21 +39,10 @@
                     </div>
 
                     <div class="col-sm-6">
-
-                        <!--<form>-->
-                        <!--<label for="username">Username</label>-->
-                        <!--<input id="username" class="form-control"/>-->
-
-                        <!--<label for="email">Email</label>-->
-                        <!--<input id="email" class="form-control"/>-->
-
-                        <!--<label for="password">Password</label>-->
-                        <!--<input id="password" type="password" class="form-control"/>-->
-
-                        <!--<input class="btn" type="submit"/>-->
-                        <!--</form>-->
                         <h3>Need an account?</h3>
-                        <button type="button" class="btn btn-primary">Register</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target=".bs-register-modal-sm">Register
+                        </button>
                     </div>
 
                 </div>
@@ -65,6 +54,46 @@
     </div>
 </div>
 
+<div class="modal fade bs-register-modal-sm" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="gridSystemModalLabel">Login</h4>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="row">
+
+
+                    <div class="col-sm-12">
+
+                        <form>
+                            <label for="username">Username</label>
+                            <input id="username" class="form-control"/>
+
+                            <label for="email">Email</label>
+                            <input id="email" class="form-control"/>
+
+                            <label for="password">Password</label>
+                            <input id="password" type="password" class="form-control"/>
+
+                            <input class="btn" type="submit"/>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+
+</div>
 
 <div th:replace="fragments :: footer"></div>
 <div th:replace="fragments :: scripts"></div>
