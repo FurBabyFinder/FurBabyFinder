@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
-<head th:fragment="head">
+<head th:fragment="head(title)">
     <meta charset="UTF-8"/>
 
     <title th:text="${title}">Fur Baby Finder</title>
@@ -28,6 +28,17 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">Logo</a>
+            <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                   aria-expanded="false">Administrative <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/pets/add">Add Animal</a></li>
+                    <li><a href="">Search Users</a></li>
+                    <li><a href="/events">Find Animal By ID</a></li>
+                </ul>
+            </li>
+            </ul>
         </div><!-- /.navbar-header -->
 
 
@@ -53,13 +64,76 @@
                     </ul>
                 </li>
                 <li><a href="/donate">Donate</a></li>
-                <li><a href="/register-login">Register/Login</a></li>
+                <li><a class="cursor-hand" data-toggle="modal" data-target=".bs-login-modal-sm">Register/Login</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
 
     </div><!-- /.container-fluid -->
 </nav>
 
+
+
+<div th:fragment="petdata">
+    <div class="form-group">
+        <label for="name">Pet Name</label>
+        <input id="name" type="text" size="20" th:field="*{name}"/>
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('name')}">
+            <p  th:errors="*{name}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="age">Pet Age in Years</label>
+        <input id="age" type="text" size="2" th:field="*{age}"/>
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('age')}">
+            <p  th:errors="*{age}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="species">Pet Species</label>
+        <input id="species" type="text" size="20" th:field="*{species}"/>
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('species')}">
+            <p  th:errors="*{species}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="radio" id="readyToAdopt1" name="readyToAdopt" th:field="*{readyToAdopt}" value="true" />Ready To Adopt<br/>
+        <input type="radio" id="readyToAdopt2" name="readyToAdopt"  th:field="*{readyToAdopt}" value="false" />Not Ready To Adopt<br/>
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('readyToAdopt')}">
+            <p  th:errors="*{readyToAdopt}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="foster">ID Number of Foster</label>
+        <input id="foster" type="text" size="20" th:field="*{foster}"/>
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('foster')}">
+            <p  th:errors="*{foster}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="adopter">ID Number of Adopting Person/Family</label>
+        <input id="adopter" type="text" size="20" th:field="*{adopter}"/>
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('adopter')}">
+            <p  th:errors="*{adopter}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="story">Story</label>
+        <input id="story" type="text" size="500" th:field="*{story}"/>
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('story')}">
+            <p  th:errors="*{story}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="privateNotes">Notes for Employees and Fosters Only</label>
+        <input id="privateNotes" type="text" size="500" th:field="*{privateNotes}"/>
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('privateNotes')}">
+            <p  th:errors="*{privateNotes}" />
+        </div>
+    </div>
+
+
+
+</div>
 
 <footer th:fragment="footer" class="">
     <div class="row footer-row">
@@ -115,6 +189,92 @@
         </div>
     </div>
 </footer>
+
+<div th:fragment="login" class="modal fade bs-login-modal-sm" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="gridSystemModalLabel">Login</h4>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="row">
+
+                    <div class="col-sm-6 login-container">
+
+                        <form>
+                            <label for="username">Username</label>
+                            <input id="username" class="form-control"/>
+
+                            <label for="password">Password</label>
+                            <input id="password" type="password" class="form-control"/>
+
+                            <button type="button" class="btn btn-default form-button">Login</button>
+                        </form>
+
+
+                    </div>
+
+                    <div class="col-sm-6">
+                        <h3>Need an account?</h3>
+                        <button type="button" class="btn btn-primary form-button" data-toggle="modal"
+                                data-target=".bs-register-modal-sm">Register
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="register" class="modal fade bs-register-modal-sm" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="gridSystemModalLabel">Register</h4>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="row">
+
+
+                    <div class="col-sm-12">
+
+                        <form>
+                            <label for="username">Username</label>
+                            <input id="username" class="form-control"/>
+
+                            <label for="email">Email</label>
+                            <input id="email" class="form-control"/>
+
+                            <label for="password">Password</label>
+                            <input id="password" type="password" class="form-control"/>
+
+                            <input class="btn form-button" type="submit"/>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+
+</div>
+
 
 <div th:fragment="scripts">
     <script src="http://code.jquery.com/jquery-2.2.4.min.js"

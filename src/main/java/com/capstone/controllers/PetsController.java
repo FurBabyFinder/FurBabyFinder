@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -45,14 +46,13 @@ public class PetsController {
         this.petImageRepository = petImageRepository;
     }
 
-    @GetMapping ("/pets/pet{id}")
+    @GetMapping("/pets/pet{id}")
     public String showCreateForm(@PathVariable long id, Model model) {
         Pet pet = petsRepository.findById(id);
         model.addAttribute("pet", pet);
         model.addAttribute("list", petsRepository.findSpecies());
         return "pets/individualPet";
     }
-
 
 
     @RequestMapping(path = "/pets/{selection}", method = RequestMethod.GET)
@@ -66,7 +66,7 @@ public class PetsController {
             for (int i = 0; i < selection.size(); i++) {
                 Long filterID = filterRepository.findFilterIDByFilterName(selection.get(i));
                 ArrayList tempArray = petsRepository.findPetsByFilter(filterID);
-               filteredPets.retainAll(tempArray);
+                filteredPets.retainAll(tempArray);
             }
         }
         model.addAttribute("list", petsRepository.findSpecies());
@@ -74,8 +74,9 @@ public class PetsController {
         return "pets/index";
     }
 
-    @GetMapping ("/pets/add")
+    @GetMapping("/pets/add")
     public String showCreateForm(Model model) {
+        model.addAttribute("list", petsRepository.findSpecies());
         model.addAttribute("pet", new Pet());
         return "pets/addPet";
     }
@@ -84,27 +85,27 @@ public class PetsController {
     public String create(
             @Valid Pet pet,
             Errors validation,
-            @RequestParam (name ="filterName") List<String> filterNames,
+            @RequestParam(name = "filterName") List<String> filterNames,
             @RequestParam(name = "image") List<MultipartFile> uploadedfiles,
-            Model model){
-        if (validation.hasErrors()){
+            @RequestParam(name = "imageDescription[]") List<String> ImageDescriptions,
+            @RequestParam(name = "profilePic[]") List<Boolean> profilePicture,
+            Model model) {
+        if (validation.hasErrors()) {
             model.addAttribute("errors", validation);
             model.addAttribute("pet", pet);
             return "pets/addPet";
-        }
-        else {
+        } else {
             List<Filter> filters = new ArrayList<>();
-            for(String name : filterNames){
+            for (String name : filterNames) {
                 filters.add(filterRepository.findByFilterName(name));
             }
             pet.setFiltersPets(filters);
             petsRepository.save(pet);
             Long id = pet.getId();
             Pet addedPet = petsRepository.findById(id);
-            for(MultipartFile image : uploadedfiles) {
-
-                if (!image.isEmpty()) {
-                    String filename = image.getOriginalFilename().replace(" ", "_");
+            for (int i = 0; i < uploadedfiles.size(); i++) {
+                if (!uploadedfiles.get(i).isEmpty()) {
+                    String filename = uploadedfiles.get(i).getOriginalFilename().replace(" ", "_");
                     filename = id.toString() + filename;
                     String filepath = Paths.get(uploadPath, filename).toString();
                     File destinationFile = new File(filepath);
@@ -114,7 +115,12 @@ public class PetsController {
                     try {
                         petImage.setImageUrl(filename);
                         petImageRepository.save(petImage);
-                        image.transferTo(destinationFile);
+                        long imageID = petImage.getId();
+                        PetImage imageAdded = petImageRepository.findById(imageID);
+                        uploadedfiles.get(i).transferTo(destinationFile);
+                        imageAdded.setImageDescription(ImageDescriptions.get(i));
+                        imageAdded.setProfilePic(profilePicture.get(i));
+                        petImageRepository.save(imageAdded);
                         model.addAttribute("message", "File successfully uploaded!");
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -128,15 +134,16 @@ public class PetsController {
     }
 
     @GetMapping("/petTypes.json")
-    public @ResponseBody Iterable<String> listSpecies() {
+    public @ResponseBody
+    Iterable<String> listSpecies() {
         return petsRepository.findSpecies();
     }
 
-    @GetMapping("/test")
-    public String viewAllPostsInJSONFormat(Model model) {
-                model.addAttribute("list", petsRepository.findSpecies());
-                return "test";
-    }
+//    @GetMapping("/test")
+//    public String viewAllPostsInJSONFormat(Model model) {
+//        model.addAttribute("list", petsRepository.findSpecies());
+//        return "test";
+//    }
 
     @RequestMapping(path = "/pets/{species}/type/{selection}", method = RequestMethod.GET)
     public String indexPage(Model model,
@@ -158,6 +165,20 @@ public class PetsController {
         model.addAttribute("pets", filteredPets);
         return "pets/index";
     }
+
+    @GetMapping("/pets/{id}/edit")
+    public String showEditForm(@PathVariable long id, Model model) {
+        Pet pet = petsRepository.findById(id);
+        List <Filter> petsFilters = pet.getFilters();
+        List<PetImage> petsImages = pet.getImages();
+        int numberImages = petsImages.size();
+        model.addAttribute("pet", pet);
+        model.addAttribute("filters", petsFilters);
+        model.addAttribute("images", petsImages);
+        model.addAttribute("imageCount", numberImages);
+        return "pets/edit";
+    }
+
 
 
 }

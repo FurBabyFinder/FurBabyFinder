@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:include="fragments :: head ('Edit Animal Record')" />
+<body>
+<nav th:replace="fragments :: navbar" />
+<div class="container">
+    <form th:action="${'/pets/'+pet.id+'edit'}" method="post" th:object="${pet}" enctype="multipart/form-data">
+
+
+    <div th:include="fragments :: petdata"></div>
+
+        <div  th:each="filter : ${filters}">
+            <input type="hidden" th:id="@{'petHas'+ ${filter.filterName}}"   value="true"/>
+            </div>
+
+        <div class="checkbox">
+            <label><input type="checkbox" id="male"  name="filterName" value="male"/>Male</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id="female" name="filterName" value="female"/>Female</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id="cat_friendly" name="filterName" value="cat_friendly"/>Cat Friendly</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id="not_cat_friendly" name="filterName" value="not_cat_friendly"/>Not Cat Friendly</label>
+        </div>
+
+        <div class="checkbox">
+            <label><input type="checkbox" id="great_with_kids"  name="filterName" value="great_with_kids"/>Great With Kids</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id="neuterd_spayed" name="filterName" value="neuterd_spayed"/>Neutered/Spayed</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id="potty_trained" name="filterName" value="potty_trained"/>Potty Trained</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id="crate_trained" name="filterName" value="crate_trained"/>Crate Trained</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id="great_with_dogs" name="filterName" value="great_with_dogs"/>Great With Dogs</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id="medical_foster" name="filterName" value="medical_foster"/>Medical Foster</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id="microchipped" name="filterName" value="microchipped"/>Microchipped</label>
+        </div>
+
+        <input type="hidden" th:value="${imageCount}" id="imageCount" />
+
+        <div  class="pet-picture" th:each="petImage : ${pet.getImages()}">
+            <p><img th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}" /></p>
+            <div><label>Upload an image<input type="file" name="image" class="imageInputs" id="" /></label>
+                <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
+                <div class="checkbox">
+                    <label><input type="checkbox" class="profilePic" id="" th:value="${petImage.profilePic}" />Profile Picture</label>
+                    <input type="hidden" value="false" name="profilePic[]" id="" class="hiddenChecks"/>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" class="afterAdopt"  name="afterAdoption" th:value="${petImage.afterAdoption}" />Picture After Adoption</label>
+                </div>
+            </div>
+        </div>
+
+        <div id="additionalImages"></div>
+
+
+
+        <br/>
+
+        <button class="btn btn-default" value="upload">Save</button>
+
+    </form>
+</div>
+
+    <div id="imageInput" hidden="hidden">
+        <div><label>Upload an image<input type="file" class="imageInputs" name="image" id="" /></label>
+            <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
+            <div class="checkbox">
+                <label><input type="checkbox" class="profilePic" id=""/>Profile Picture</label>
+                <input type="hidden" value="false" name="profilePic[]" id="" class="hiddenChecks"/>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" class="afterAdopt"  name="afterAdoption" value="true"/>Picture After Adoption</label>
+            </div>
+        </div>
+    </div>
+
+<div th:replace="fragments :: scripts"/>
+<script src="/js/editPet.js"></script>
+</body>
+</html>

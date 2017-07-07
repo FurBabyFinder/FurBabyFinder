@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head th:replace="fragments :: head"/>
+
+<body>
+<nav th:replace="fragments :: navbar"/>
+
+
+<div class="hero-image">
+
+    <div class="container multiBannerText">
+        <div class="row">
+
+            <div class="col-sm-4">
+                <div class="hero-text text-center hp-text">
+                    <h1>Fury Baby Finder</h1>
+                    <p class="homepage-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consequuntur doloremque est
+                    </p>
+                    <button class="button-primary">See Pets</button>
+                    <button class="button-secondary">Schedule a Visit</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div th:replace="fragments :: login"/>
+<div th:replace="fragments :: register"/>
+<div th:replace="fragments :: footer"/>
+<div th:replace="fragments :: scripts"/>
+
+</body>
+</html>
+
+

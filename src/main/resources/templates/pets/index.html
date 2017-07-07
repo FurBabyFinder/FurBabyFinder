@@ -1,37 +1,105 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head th:replace="fragments :: head" />
+<head th:replace="fragments :: head('Find Pet')" />
 <body>
 <nav th:replace="fragments :: navbar" />
-<div class="btn btn-info" id="male">Male</div>
-<div class="btn btn-info" id="female">Female</div>
-<div class="btn btn-info" id="neuterd_spayed">Nuetered/Spayed</div>
-<div class="btn btn-info" id="potty_trained">Potty Trained</div>
-<div class="btn btn-info" id="goodWKids">Great With Kids</div>
-<div class="btn btn-info" id="crateTrained">Crate Trained</div>
-<div class="btn btn-info" id="greatWDogs">Great With Dogs</div>
-<div class="btn btn-info" id="catFriendly">Cat Friendly</div>
-<div class="btn btn-info" id="medicalFoster">Medical Foster</div>
-<div class="btn btn-info" id="microchipped">Microchipped</div>
-<div class="btn btn-info" id="noCats">Not cat friendly</div>
-<div class="btn btn-info" id="underYear">Under a year</div>
-<div class="btn btn-primary" id="searchFiltered">Search</div>
-
-<div th:each="pet : ${pets}">
-    <p><h2>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet" style="text-decoration: none"><span th:text="${pet.name}"></span></a></h2></p>
-    <p><h4>Info: <span th:text="${pet.story}"></span></h4></p>
-    <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
-    <p><h4>Internal Notes:  <span th:text="${pet.privateNotes}"></span></h4></p>
-
-
-    <p th:if = "${pet.getImages().size() > 0}"><img th:src="@{'/uploads/img/'+ ${pet.getImages().get(0).imageUrl}}" /></p>
 
 
 
 
+<div class="container container-pet-view">
+    <div class="row">
+
+        <div class="col-sm-2 pet-filter">
+            <div class="checkbox">
+                <label><input type="checkbox" id="male" />Male</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" id="female" />Female</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" id="neutered_spayed" />Neutered/Spayed</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" id="potty_trained" />Potty Trained</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" id="goodWKids"/>Great With Kids</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" id="crateTrained"/>Crate Trained</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" id="greatWDogs"/>Great With Dogs</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" id="medicalFoster"/>Medical Foster</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" id="microchipped"/>Microchipped</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" id="noCats"/>Not Cat Friendly</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" id="underYear"/>Under a Year</label>
+            </div>
+            <div class="btn btn-primary" id="searchFiltered">Search</div>
+
+
+
+        </div>
+
+        <div class="col-sm-10">
+            <div class="pet-container" th:each="pet : ${pets}">
+                <div class="row">
+
+                    <div class="col-sm-3 pet-picture"
+                         th:if="${pet.getImages().size() > 0}"><img class="img-thumbnail"
+                            th:src="@{'/uploads/img/'+ ${pet.getImages().get(0).imageUrl}}"/>
+                    </div>
+
+                    <div class="col-sm-9 pet-info">
+                        <h2>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet"
+                                     style="text-decoration: none"><span
+                                th:text="${pet.name}"></span></a></h2>
+
+                        <p><h4>Info: <span th:text="${pet.story}"></span></h4></p>
+
+
+                        <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
+
+                        <p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
+
+
+
+
+
+<!--<div th:each="pet : ${pets}">-->
+    <!--<p><h2>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet" style="text-decoration: none"><span th:text="${pet.name}"></span></a></h2></p>-->
+    <!--<p><h4>Info: <span th:text="${pet.story}"></span></h4></p>-->
+    <!--<p><h4>Age <span th:text="${pet.age}"></span></h4></p>-->
+    <!--<p><h4>Internal Notes:  <span th:text="${pet.privateNotes}"></span></h4></p>-->
+
+
+    <!--<p th:if = "${pet.getImages().size() > 0}"><img th:src="@{'/img/'+ ${pet.getImages().get(0).imageUrl}}" /></p>-->
+    <!---->
+<!--</div>-->
+
+<div th:replace="fragments :: footer"/>
+
+
 <input type="hidden" th:value="${species}" id="species"/>
+
 <script src="http://code.jquery.com/jquery-2.2.4.min.js"  crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
 <script src="/js/species.js"></script>
@@ -85,7 +153,7 @@
 
 
     $("#neuterd_spayed").click(function(){
-        neuterdOnOff = selectFilter(neuterdOnOff, "neuterd_spayed", "#neuterd_spayed");
+        neuterdOnOff = selectFilter(neuterdOnOff, "neutered_spayed", "#neutered_spayed");
     });
 
     $("#potty_trained").click(function(){

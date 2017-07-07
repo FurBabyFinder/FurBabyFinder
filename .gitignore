@@ -1,4 +1,4 @@
-target/
+ target/
 
 ### STS ###
 .apt_generated
@@ -8,13 +8,14 @@ target/
 .settings
 .springBeans
 
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
 *.ipr
 
-### NetBeans ###
+   ### NetBeans ###
 nbproject/private/
 build/
 nbbuild/
@@ -24,4 +25,6 @@ nbdist/
 
 src/main/resources/application.properties
 
-private/
+
+src/main/resources/static/uploads/img
+

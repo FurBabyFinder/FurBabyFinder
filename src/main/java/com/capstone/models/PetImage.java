@@ -26,7 +26,7 @@ public class PetImage {
     private boolean profilePic;
 
     @Column
-    private boolean after_adoption = false;
+    private boolean afterAdoption = false;
 
     @ManyToOne
     @JoinTable (name = "pet_to_image")
@@ -72,12 +72,12 @@ public class PetImage {
         this.profilePic = profilePic;
     }
 
-    public boolean isAfter_adoption() {
-        return after_adoption;
+    public boolean isAfterAdoption() {
+        return afterAdoption;
     }
 
-    public void setAfter_adoption(boolean after_adoption) {
-        this.after_adoption = after_adoption;
+    public void setAfterAdoption(boolean afterAdoption) {
+        this.afterAdoption = afterAdoption;
     }
 
     public Pet getPet() {

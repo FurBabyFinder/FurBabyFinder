@@ -1,5 +1,6 @@
 package com.capstone.repositories;
 
+import com.capstone.models.Filter;
 import com.capstone.models.Pet;
 import com.capstone.models.User;
 import org.springframework.data.jpa.repository.Query;
@@ -31,4 +32,6 @@ public interface PetsRepository extends CrudRepository<Pet, Long> {
 
     @Query(value = "select p.species from Pet p where p.readyToAdopt = true group by p.species")
     public List<String> findSpecies();
+
+
 }

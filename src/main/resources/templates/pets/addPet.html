@@ -1,117 +1,145 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head th:replace="fragments :: head" />
+<head th:replace="fragments :: head('Add Animal')" />
 <body>
 <nav th:replace="fragments :: navbar" />
 <div class="container">
-<form action="/pets/addPet" method="post" th:object="${pet}" enctype="multipart/form-data">
-    <!--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
-    <div class="form-group">
-        <label for="name">Pet Name</label>
-        <input id="name" type="text" size="20" th:field="*{name}"/>
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('name')}">
-            <p  th:errors="*{name}" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="age">Pet Age in Years</label>
-        <input id="age" type="text" size="2" th:field="*{age}"/>
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('age')}">
-            <p  th:errors="*{age}" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="species">Pet Species</label>
-        <input id="species" type="text" size="20" th:field="*{species}"/>
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('species')}">
-            <p  th:errors="*{species}" />
-        </div>
-    </div>
-    <div class="form-group">
-        <input type="radio" id="readyToAdopt1" name="readyToAdopt" th:field="*{readyToAdopt}" value="true" />Ready To Adopt<br/>
-        <input type="radio" id="readyToAdopt2" name="readyToAdopt"  th:field="*{readyToAdopt}" value="false" />Not Ready To Adopt<br/>
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('readyToAdopt')}">
-            <p  th:errors="*{readyToAdopt}" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="foster">ID Number of Foster</label>
-        <input id="foster" type="text" size="20" th:field="*{foster}"/>
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('foster')}">
-            <p  th:errors="*{foster}" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="adopter">ID Number of Adopting Person/Family</label>
-        <input id="adopter" type="text" size="20" th:field="*{adopter}"/>
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('adopter')}">
-            <p  th:errors="*{adopter}" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="story">Story</label>
-        <input id="story" type="text" size="500" th:field="*{story}"/>
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('story')}">
-            <p  th:errors="*{story}" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="privateNotes">Notes for Employees and Fosters Only</label>
-        <input id="privateNotes" type="text" size="500" th:field="*{privateNotes}"/>
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('privateNotes')}">
-            <p  th:errors="*{privateNotes}" />
-        </div>
-    </div>
+    <form action="/pets/addPet" method="post" th:object="${pet}" enctype="multipart/form-data">
+        <div th:include="fragments :: petdata"></div>
 
 
-    <div class="checkbox">
-        <label><input type="checkbox" id="male"  name="filterName" value="male"/>Male</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" id="female" name="filterName" value="female"/>Female</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" id="cat_friendly" name="filterName" value="cat_friendly"/>Cat Friendly</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" id="not_cat_friendly" name="filterName" value="not_cat_friendly"/>Not Cat Friendly</label>
-    </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id="male"  name="filterName" value="male"/>Male</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id="female" name="filterName" value="female"/>Female</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id="cat_friendly" name="filterName" value="cat_friendly"/>Cat Friendly</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id="not_cat_friendly" name="filterName" value="not_cat_friendly"/>Not Cat Friendly</label>
+        </div>
 
-    <div class="checkbox">
-        <label><input type="checkbox" id="great_with_kids"  name="filterName" value="great_with_kids"/>Great With Kids</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" id="neuterd_spayed" name="filterName" value="neuterd_spayed"/>Neutered/Spayed</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" id="potty_trained" name="filterName" value="potty_trained"/>Potty Trained</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" id="crate_trained" name="filterName" value="crate_trained"/>Crate Trained</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" id="great_with_dogs" name="filterName" value="great_with_dogs"/>Great With Dogs</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" id="medical_foster" name="filterName" value="medical_foster"/>Medical Foster</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" id="microchipped" name="filterName" value="microchipped"/>Microchipped</label>
-    </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id="great_with_kids"  name="filterName" value="great_with_kids"/>Great With Kids</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id="neuterd_spayed" name="filterName" value="neuterd_spayed"/>Neutered/Spayed</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id="potty_trained" name="filterName" value="potty_trained"/>Potty Trained</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id="crate_trained" name="filterName" value="crate_trained"/>Crate Trained</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id="great_with_dogs" name="filterName" value="great_with_dogs"/>Great With Dogs</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id="medical_foster" name="filterName" value="medical_foster"/>Medical Foster</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" id="microchipped" name="filterName" value="microchipped"/>Microchipped</label>
+        </div>
 
 
-    <label>Upload an image<input type="file" name="image" id="image1" /></label>
-    <label>Upload an image<input type="file" name="image" id="image2" /></label>
-    <label>Upload an image<input type="file" name="image" id="image3" /></label>
-    <label>Upload an image<input type="file" name="image" id="image4" /></label>
-    <label>Upload an image<input type="file" name="image" id="image5" /></label>
-    <label>Upload an image<input type="file" name="image" id="image6" /></label>
-    <br/>
+        <div><label>Upload an image<input type="file" name="image" id="image1" /></label>
+            <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
+            <div class="checkbox">
+                <label><input type="checkbox" class="profilePic" id="profilePic1" />Profile Picture</label>
+                <input type="hidden" value="false" name="profilePic[]" id="hiddenCheck1" class="hiddenChecks"/>
+            </div>
+            <div class="checkbox" visibility="hidden">
+                <label><input type="checkbox" class="afterAdopt" name="afterAdoption" value="true"/>Picture After Adoption</label>
+            </div>
+        </div>
 
-    <button class="btn btn-default" value="upload">Save</button>
+        <div><label>Upload an image<input type="file" name="image" id="image2" /></label>
+            <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
+            <div class="checkbox">
+                <label><input type="checkbox" class="profilePic" id="profilePic2" />Profile Picture</label>
+                <input type="hidden" value="false" name="profilePic[]" id="hiddenCheck2" class="hiddenChecks"/>
+            </div>
+            <div class="checkbox" visibility="hidden">
+                <label><input type="checkbox" class="afterAdopt" name="afterAdoption" />Picture After Adoption</label>
+            </div>
+        </div>
 
-</form>
+        <div><label>Upload an image<input type="file" name="image" id="image3" /></label>
+            <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
+            <div class="checkbox">
+                <label><input type="checkbox" class="profilePic" id="profilePic3"/>Profile Picture</label>
+                <input type="hidden" value="false" name="profilePic[]" id="hiddenCheck3" class="hiddenChecks"/>
+            </div>
+            <div class="checkbox" visibility="hidden">
+                <label><input type="checkbox" class="afterAdopt" name="afterAdoption" value="true"/>Picture After Adoption</label>
+            </div>
+        </div>
+
+        <div><label>Upload an image<input type="file" name="image" id="image4" /></label>
+            <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
+            <div class="checkbox">
+                <label><input type="checkbox" class="profilePic" id="profilePic4" />Profile Picture</label>
+                <input type="hidden" value="false" name="profilePic[]" id="hiddenCheck4" class="hiddenChecks"/>
+            </div>
+            <div class="checkbox" visibility="hidden">
+                <label><input type="checkbox" class="afterAdopt"  name="afterAdoption" value="true"/>Picture After Adoption</label>
+            </div>
+        </div>
+
+        <div><label>Upload an image<input type="file" name="image" id="image5" /></label>
+            <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
+            <div class="checkbox">
+                <label><input type="checkbox" class="profilePic" id="profilePic5" />Profile Picture</label>
+                <input type="hidden" value="false" name="profilePic[]" id="hiddenCheck5" class="hiddenChecks"/>
+            </div>
+            <div class="checkbox" visibility="hidden">
+                <label><input type="checkbox" class="afterAdopt"  name="afterAdoption" value="true"/>Picture After Adoption</label>
+            </div>
+        </div>
+
+        <div><label>Upload an image<input type="file" name="image" id="image6" /></label>
+            <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
+            <div class="checkbox">
+                <label><input type="checkbox" class="profilePic" id="profilePic6"/>Profile Picture</label>
+                <input type="hidden" value="false" name="profilePic[]" id="hiddenCheck6" class="hiddenChecks"/>
+            </div>
+            <div class="checkbox" visibility="hidden">
+                <label><input type="checkbox" class="afterAdopt"  name="afterAdoption" value="true"/>Picture After Adoption</label>
+            </div>
+        </div>
+
+        <br/>
+
+        <button class="btn btn-default" value="upload">Save</button>
+
+    </form>
 </div>
+<div th:replace="fragments :: scripts"/>
+<script>
+    $(document).ready(function(){
+
+
+        $('.profilePic').click(function(){
+            var $inputs = $('.profilePic');
+            if($(this).is(':checked')){
+                var thatID = $(this).attr('id');
+                 thatID = thatID.substr(-1);
+                 var newID = "#hiddenCheck" + thatID;
+                 $(newID).val("true");
+                $inputs.not(this).prop('disabled',true);
+            }else{
+                $inputs.prop('disabled',false);
+                $('.hiddenChecks').val("false");
+            }
+        })
+
+
+
+    });
+
+</script>
 </body>
 </html>

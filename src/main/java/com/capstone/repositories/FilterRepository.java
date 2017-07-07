@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -18,7 +20,13 @@ public interface FilterRepository extends CrudRepository<Filter, Long> {
     @Query("SELECT id FROM Filter WHERE filter_name = :passFilter")
     public Long findFilterIDByFilterName(@Param("passFilter") String passFilter);
 
+    public List<Filter> findAllByOrderByIdAsc ();
+
 
     public Filter findByFilterName(String name);
+
+    public List<Filter> findAllByPetCollection(Collection<Pet> petCollection);
+
+
 
 }
