@@ -179,6 +179,63 @@ public class PetsController {
         return "pets/edit";
     }
 
+    @PostMapping("/pets/{id}/edit")
+    public String editPet(
+            @ModelAttribute Pet pet,
+            Errors validation,
+            @PathVariable long id,
+            @RequestParam(name = "filterName") List<String> filterNames,
+            @RequestParam(name = "image") List<MultipartFile> uploadedfiles,
+            @RequestParam(name = "imageDescription[]") List<String> ImageDescriptions,
+            @RequestParam(name = "profilePic[]") List<Boolean> profilePicture,
+            Model model) {
+        if (validation.hasErrors()) {
+            model.addAttribute("errors", validation);
+            model.addAttribute("pet", pet);
+            return "pets/edit";
+        } else {
+            List<Filter> filters = new ArrayList<>();
+            for (String name : filterNames) {
+                filters.add(filterRepository.findByFilterName(name));
+            }
+
+//            Pet updatePet = petsRepository.findOne(id);
+            pet.setId(id);
+            pet.setFiltersPets(filters);
+
+            petsRepository.save(pet);
+//            Long id = updatePet.getId();;
+
+//            Pet addedPet = petsRepository.findById(id);
+            for (int i = 0; i < uploadedfiles.size(); i++) {
+                if (!uploadedfiles.get(i).isEmpty()) {
+                    String filename = uploadedfiles.get(i).getOriginalFilename().replace(" ", "_");
+                    filename = id + filename;
+                    String filepath = Paths.get(uploadPath, filename).toString();
+                    File destinationFile = new File(filepath);
+                    PetImage petImage = new PetImage(pet);
+
+
+                    try {
+                        petImage.setImageUrl(filename);
+                        petImageRepository.save(petImage);
+                        long imageID = petImage.getId();
+                        PetImage imageAdded = petImageRepository.findById(imageID);
+                        uploadedfiles.get(i).transferTo(destinationFile);
+                        imageAdded.setImageDescription(ImageDescriptions.get(i));
+                        imageAdded.setProfilePic(profilePicture.get(i));
+                        petImageRepository.save(imageAdded);
+                        model.addAttribute("message", "File successfully uploaded!");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        model.addAttribute("message", "Oops! Something went wrong! " + e);
+                    }
+                }
+            }
+
+            return "redirect:/pets/all";
+        }
+    }
 
 
 }
