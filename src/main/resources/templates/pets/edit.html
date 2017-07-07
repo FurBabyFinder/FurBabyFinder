@@ -51,16 +51,16 @@
 
         <input type="hidden" th:value="${imageCount}" id="imageCount" />
 
-        <div  class="col-sm-3 pet-picture" th:each="petImage : ${pet.getImages()}">
+        <div  class="pet-picture" th:each="petImage : ${pet.getImages()}">
             <p><img th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}" /></p>
-            <div><label>Upload an image<input type="file" name="image" id="image6" /></label>
+            <div><label>Upload an image<input type="file" name="image" class="imageInputs" id="" /></label>
                 <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
                 <div class="checkbox">
-                    <label><input type="checkbox" class="profilePic" id="profilePic6"/>Profile Picture</label>
-                    <input type="hidden" value="false" name="profilePic[]" id="hiddenCheck6" class="hiddenChecks"/>
+                    <label><input type="checkbox" class="profilePic" id="" th:value="${petImage.profilePic}" />Profile Picture</label>
+                    <input type="hidden" value="false" name="profilePic[]" id="" class="hiddenChecks"/>
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox" class="afterAdopt"  name="afterAdoption" value="true"/>Picture After Adoption</label>
+                    <label><input type="checkbox" class="afterAdopt"  name="afterAdoption" th:value="${petImage.afterAdoption}" />Picture After Adoption</label>
                 </div>
             </div>
         </div>
@@ -77,11 +77,11 @@
 </div>
 
     <div id="imageInput" hidden="hidden">
-        <div><label>Upload an image<input type="file" name="image" id="image6" /></label>
+        <div><label>Upload an image<input type="file" class="imageInputs" name="image" id="" /></label>
             <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
             <div class="checkbox">
-                <label><input type="checkbox" class="profilePic" id="profilePic6"/>Profile Picture</label>
-                <input type="hidden" value="false" name="profilePic[]" id="hiddenCheck6" class="hiddenChecks"/>
+                <label><input type="checkbox" class="profilePic" id=""/>Profile Picture</label>
+                <input type="hidden" value="false" name="profilePic[]" id="" class="hiddenChecks"/>
             </div>
             <div class="checkbox">
                 <label><input type="checkbox" class="afterAdopt"  name="afterAdoption" value="true"/>Picture After Adoption</label>
