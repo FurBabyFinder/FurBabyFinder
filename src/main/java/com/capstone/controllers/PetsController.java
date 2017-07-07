@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -87,6 +88,7 @@ public class PetsController {
             @RequestParam(name = "filterName") List<String> filterNames,
             @RequestParam(name = "image") List<MultipartFile> uploadedfiles,
             @RequestParam(name = "imageDescription[]") List<String> ImageDescriptions,
+            @RequestParam(name = "profilePic[]") List<Boolean> profilePicture,
             Model model) {
         if (validation.hasErrors()) {
             model.addAttribute("errors", validation);
@@ -101,7 +103,6 @@ public class PetsController {
             petsRepository.save(pet);
             Long id = pet.getId();
             Pet addedPet = petsRepository.findById(id);
-//            for(MultipartFile image : uploadedfiles) {
             for (int i = 0; i < uploadedfiles.size(); i++) {
                 if (!uploadedfiles.get(i).isEmpty()) {
                     String filename = uploadedfiles.get(i).getOriginalFilename().replace(" ", "_");
@@ -118,6 +119,7 @@ public class PetsController {
                         PetImage imageAdded = petImageRepository.findById(imageID);
                         uploadedfiles.get(i).transferTo(destinationFile);
                         imageAdded.setImageDescription(ImageDescriptions.get(i));
+                        imageAdded.setProfilePic(profilePicture.get(i));
                         petImageRepository.save(imageAdded);
                         model.addAttribute("message", "File successfully uploaded!");
                     } catch (IOException e) {
@@ -137,11 +139,11 @@ public class PetsController {
         return petsRepository.findSpecies();
     }
 
-    @GetMapping("/test")
-    public String viewAllPostsInJSONFormat(Model model) {
-        model.addAttribute("list", petsRepository.findSpecies());
-        return "test";
-    }
+//    @GetMapping("/test")
+//    public String viewAllPostsInJSONFormat(Model model) {
+//        model.addAttribute("list", petsRepository.findSpecies());
+//        return "test";
+//    }
 
     @RequestMapping(path = "/pets/{species}/type/{selection}", method = RequestMethod.GET)
     public String indexPage(Model model,
@@ -163,6 +165,20 @@ public class PetsController {
         model.addAttribute("pets", filteredPets);
         return "pets/index";
     }
+
+    @GetMapping("/pets/{id}/edit")
+    public String showEditForm(@PathVariable long id, Model model) {
+        Pet pet = petsRepository.findById(id);
+        List <Filter> petsFilters = pet.getFilters();
+        List<PetImage> petsImages = pet.getImages();
+        int numberImages = petsImages.size();
+        model.addAttribute("pet", pet);
+        model.addAttribute("filters", petsFilters);
+        model.addAttribute("images", petsImages);
+        model.addAttribute("imageCount", numberImages);
+        return "pets/edit";
+    }
+
 
 
 }
