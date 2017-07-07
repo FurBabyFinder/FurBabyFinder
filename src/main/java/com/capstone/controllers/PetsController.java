@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -138,11 +139,11 @@ public class PetsController {
         return petsRepository.findSpecies();
     }
 
-    @GetMapping("/test")
-    public String viewAllPostsInJSONFormat(Model model) {
-        model.addAttribute("list", petsRepository.findSpecies());
-        return "test";
-    }
+//    @GetMapping("/test")
+//    public String viewAllPostsInJSONFormat(Model model) {
+//        model.addAttribute("list", petsRepository.findSpecies());
+//        return "test";
+//    }
 
     @RequestMapping(path = "/pets/{species}/type/{selection}", method = RequestMethod.GET)
     public String indexPage(Model model,
@@ -164,6 +165,20 @@ public class PetsController {
         model.addAttribute("pets", filteredPets);
         return "pets/index";
     }
+
+    @GetMapping("/pets/{id}/edit")
+    public String showEditForm(@PathVariable long id, Model model) {
+        Pet pet = petsRepository.findById(id);
+        List <Filter> petsFilters = pet.getFilters();
+        List<PetImage> petsImages = pet.getImages();
+        int numberImages = petsImages.size();
+        model.addAttribute("pet", pet);
+        model.addAttribute("filters", petsFilters);
+        model.addAttribute("images", petsImages);
+        model.addAttribute("imageCount", numberImages);
+        return "pets/edit";
+    }
+
 
 
 }
