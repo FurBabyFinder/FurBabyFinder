@@ -31,6 +31,9 @@
                 <label><input type="checkbox" id="crateTrained"/>Crate Trained</label>
             </div>
             <div class="checkbox">
+                <label><input type="checkbox" id="noDogs"/>Not Dog Friendly</label>
+            </div>
+            <div class="checkbox">
                 <label><input type="checkbox" id="greatWDogs"/>Great With Dogs</label>
             </div>
             <div class="checkbox">
@@ -41,6 +44,9 @@
             </div>
             <div class="checkbox">
                 <label><input type="checkbox" id="noCats"/>Not Cat Friendly</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" id="catFriendly"/>Good With Cats</label>
             </div>
             <div class="checkbox">
                 <label><input type="checkbox" id="underYear"/>Under a Year</label>
@@ -170,6 +176,10 @@
 
       $("#greatWDogs").click(function(){
           greatWDogsOnOff = selectFilter(greatWDogsOnOff, "great_with_dogs", "#greatWDogs");
+    });
+
+    $("#noDogs").click(function(){
+        greatWDogsOnOff = selectFilter(greatWDogsOnOff, "not_dog_friendly", "#noDogs");
     });
 
       $("#catFriendly").click(function(){
