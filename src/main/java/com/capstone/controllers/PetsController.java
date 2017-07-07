@@ -87,6 +87,7 @@ public class PetsController {
             @RequestParam(name = "filterName") List<String> filterNames,
             @RequestParam(name = "image") List<MultipartFile> uploadedfiles,
             @RequestParam(name = "imageDescription[]") List<String> ImageDescriptions,
+            @RequestParam(name = "profilePic[]") List<Boolean> profilePicture,
             Model model) {
         if (validation.hasErrors()) {
             model.addAttribute("errors", validation);
@@ -101,7 +102,6 @@ public class PetsController {
             petsRepository.save(pet);
             Long id = pet.getId();
             Pet addedPet = petsRepository.findById(id);
-//            for(MultipartFile image : uploadedfiles) {
             for (int i = 0; i < uploadedfiles.size(); i++) {
                 if (!uploadedfiles.get(i).isEmpty()) {
                     String filename = uploadedfiles.get(i).getOriginalFilename().replace(" ", "_");
@@ -118,6 +118,7 @@ public class PetsController {
                         PetImage imageAdded = petImageRepository.findById(imageID);
                         uploadedfiles.get(i).transferTo(destinationFile);
                         imageAdded.setImageDescription(ImageDescriptions.get(i));
+                        imageAdded.setProfilePic(profilePicture.get(i));
                         petImageRepository.save(imageAdded);
                         model.addAttribute("message", "File successfully uploaded!");
                     } catch (IOException e) {
