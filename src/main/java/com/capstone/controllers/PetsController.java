@@ -4,6 +4,7 @@ import com.capstone.models.Filter;
 import com.capstone.models.Pet;
 
 import com.capstone.models.PetImage;
+import com.capstone.models.User;
 import com.capstone.repositories.FilterRepository;
 import com.capstone.repositories.PetImageRepository;
 import com.capstone.repositories.PetsRepository;
@@ -62,7 +63,11 @@ public class PetsController {
     @GetMapping("/pets/pet{id}")
     public String showCreateForm(@PathVariable long id, Model model) {
         Pet pet = petsRepository.findById(id);
+        User foster = pet.getFoster();
+        User adopter = pet.getAdopter();
         model.addAttribute("pet", pet);
+        model.addAttribute("foster", foster);
+        model.addAttribute("adopter", adopter);
         model.addAttribute("list", petsRepository.findSpecies());
         return "pets/individualPet";
     }
@@ -151,11 +156,6 @@ public class PetsController {
         return petsRepository.findBreedBySpecies(species);
     }
 
-//    @GetMapping("/test")
-//    public String viewAllPostsInJSONFormat(Model model) {
-//        model.addAttribute("list", petsRepository.findSpecies());
-//        return "test";
-//    }
 
     @RequestMapping(path = "/pets/{species}/type/{selection}", method = RequestMethod.GET)
     public String indexPage(Model model,
