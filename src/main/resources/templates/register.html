@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head('Register form')"/>
+<body>
+
+<nav th:replace="fragments :: my-navbar"/>
+
+
+<div class="container">
+
+
+    <div class="row">
+
+
+        <div class="col-sm-12">
+
+            <form th:action="@{/register}" method="post" th:object="${user}">
+                <label for="username">Username</label>
+                <input id="username" class="form-control" th:field="*{username}"/>
+
+                <label for="email">Email</label>
+                <input id="email" class="form-control" th:field="*{email}"/>
+
+                <label for="password">Password</label>
+                <input id="password" type="password" class="form-control" th:field="*{password}"/>
+                <input class="btn form-button" type="submit"/>
+            </form>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<div th:replace="fragments :: footer"/>
+<div th:replace="fragments :: scripts"/>
+</body>
+</html>
