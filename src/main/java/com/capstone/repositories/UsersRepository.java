@@ -18,6 +18,8 @@ public interface UsersRepository extends CrudRepository<User, Long> {
 
     public List<User> findAllByLastName(String lastNAme);
 
+    public User findByUsername(String username);
+
 //    public User findByFirst_nameAndLast_name(String first, String last);
 
 }
