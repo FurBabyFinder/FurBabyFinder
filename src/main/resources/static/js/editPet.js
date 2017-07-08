@@ -80,6 +80,7 @@ $(document).ready(function(){
     checkFiltersPetHas("crate_trained");
     checkFiltersPetHas("great_with_dogs");
     checkFiltersPetHas("great_with_kids");
+    checkFiltersPetHas("not_dog_friendly");
     checkFiltersPetHas("medical_foster");
     checkFiltersPetHas("microchipped");
 

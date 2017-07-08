@@ -139,6 +139,12 @@ public class PetsController {
         return petsRepository.findSpecies();
     }
 
+    @GetMapping("/petBreeds.json")
+    public @ResponseBody
+    Iterable<String> listBreeds(@RequestParam String species) {
+        return petsRepository.findBreedBySpecies(species);
+    }
+
 //    @GetMapping("/test")
 //    public String viewAllPostsInJSONFormat(Model model) {
 //        model.addAttribute("list", petsRepository.findSpecies());
@@ -160,11 +166,37 @@ public class PetsController {
                 filteredPets.retainAll(tempArray);
             }
         }
+        model.addAttribute("breeds", petsRepository.findBreedBySpecies(species));
         model.addAttribute("list", petsRepository.findSpecies());
         model.addAttribute("species", species);
         model.addAttribute("pets", filteredPets);
         return "pets/index";
     }
+
+    @RequestMapping(path = "/pets/{species}/breed/{breed}/{selection}", method = RequestMethod.GET)
+    public String indexPage(Model model,
+                            @PathVariable List<String> selection,
+                            @PathVariable String breed,
+                            @PathVariable String species) {
+
+        ArrayList<Pet> pets = (ArrayList<Pet>) petsRepository.findAllByReadyToAdoptAndSpeciesAndBreed(true, species, breed);
+        ArrayList<Pet> filteredPets = new ArrayList<>(pets);
+
+        if (!selection.get(0).equals("all")) {
+            for (int i = 0; i < selection.size(); i++) {
+                Long filterID = filterRepository.findFilterIDByFilterName(selection.get(i));
+                ArrayList tempArray = petsRepository.findPetsByFilter(filterID);
+                filteredPets.retainAll(tempArray);
+            }
+        }
+        model.addAttribute("breeds", petsRepository.findBreedBySpecies(species));
+        model.addAttribute("list", petsRepository.findSpecies());
+        model.addAttribute("species", species);
+        model.addAttribute("pets", filteredPets);
+        return "pets/index";
+    }
+
+
 
     @GetMapping("/pets/{id}/edit")
     public String showEditForm(@PathVariable long id, Model model) {
@@ -176,6 +208,8 @@ public class PetsController {
         model.addAttribute("filters", petsFilters);
         model.addAttribute("images", petsImages);
         model.addAttribute("imageCount", numberImages);
+        model.addAttribute("list", petsRepository.findSpecies());
+
         return "pets/edit";
     }
 
