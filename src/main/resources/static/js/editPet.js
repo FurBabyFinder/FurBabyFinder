@@ -20,9 +20,7 @@ $(document).ready(function(){
 
       $('.profilePic').each(function(){
            var trueOrNot = $(this).val();
-           console.log(trueOrNot);
           if(trueOrNot == "true"){
-              console.log('pass');
               $(this).attr('checked', true);
           }
       })
@@ -35,11 +33,7 @@ $(document).ready(function(){
 
         $(classname).each(function () {
              id = idbase + number;
-            var that = this;
-             console.log("id name is " + id);
             $(this).attr("id", id);
-            console.log(this);
-            // that.id = id;
             number++;
         })
     }
@@ -80,8 +74,10 @@ $(document).ready(function(){
     checkFiltersPetHas("crate_trained");
     checkFiltersPetHas("great_with_dogs");
     checkFiltersPetHas("great_with_kids");
+    checkFiltersPetHas("not_dog_friendly");
     checkFiltersPetHas("medical_foster");
     checkFiltersPetHas("microchipped");
+
 
 
 });

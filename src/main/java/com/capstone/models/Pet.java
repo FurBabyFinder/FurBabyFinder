@@ -36,6 +36,9 @@ public class Pet {
     @NotBlank(message = "Pet must have a species")
     private String species;
 
+    @Column
+    private String breed;
+
     @Column(nullable = false)
     @NotNull(message = "Pet must be marked ready or not to adopt")
     private boolean readyToAdopt;
@@ -112,6 +115,14 @@ public class Pet {
 
     public void setSpecies(String species) {
         this.species = species;
+    }
+
+    public String getBreed() {
+        return breed;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
     }
 
     public boolean getReadyToAdopt() {
