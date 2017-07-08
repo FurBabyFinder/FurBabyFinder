@@ -25,6 +25,12 @@ public interface PetsRepository extends CrudRepository<Pet, Long> {
 
     public List<Pet> findAllByReadyToAdopt(Boolean trueOrFalse);
 
+    public List<Pet> findAllByReadyToAdoptAndFoster(Boolean ready, User foster);
+
+    public List<Pet> findAllByAdopterAndFosterAndReadyToAdopt(User adopter, User foster, Boolean ready);
+
+    public List<Pet> findAllByAdopterAndFoster(User adopter, User foster);
+
     public List<Pet> findAllByReadyToAdoptAndSpecies(Boolean trueOrFalse, String species);
 
     public List<Pet> findAllByReadyToAdoptAndSpeciesAndBreed(Boolean trueOrFalse, String species, String breed);
