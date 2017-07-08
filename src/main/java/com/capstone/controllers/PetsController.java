@@ -259,9 +259,7 @@ public class PetsController {
 
     @GetMapping("/pets/findOne")
     public String SearchById (Model model){
-//        List<Pet> pets = new ArrayList<>();
         model.addAttribute("list", petsRepository.findSpecies());
-//        model.addAttribute("pets", pets);
         return "pets/searchIndividual";
     }
 
@@ -282,6 +280,111 @@ public class PetsController {
         model.addAttribute("list", petsRepository.findSpecies());
         model.addAttribute("pets", pets);
         return "pets/searchIndividual";
+    }
+
+    @GetMapping("/pets/searchByUser")
+    public String SearchByUser (Model model){
+        model.addAttribute("list", petsRepository.findSpecies());
+        return "pets/findPetsByUser";
+    }
+
+
+
+    @GetMapping("/pets/searchAdopterID/{id}")
+    public String SearchByAdopterId (Model model,
+                              @PathVariable long id ){
+        User adopter = usersRepository.findOne(id);
+        List<Pet> pets = petsRepository.findAllByAdopter(adopter);
+        model.addAttribute("list", petsRepository.findSpecies());
+        model.addAttribute("pets", pets);
+        return "pets/findPetsByUser";
+    }
+
+    private List<User> getUserList(String firstName, String lastName){
+        List <User> users = new ArrayList<>();
+        if (firstName.equals("none")){
+            users = usersRepository.findAllByLastName(lastName);
+        }
+        else if (lastName.equals("none")){
+            users = usersRepository.findAllByFirstName(firstName);
+        }
+        else {
+            users = usersRepository.findAllByFirstNameAndLastName(firstName, lastName);
+        }
+        return users;
+    }
+
+    @GetMapping("/pets/{firstName}/searchAdopterName/{lastName}")
+    public String SearchByAdopterName (Model model,
+                                     @PathVariable String firstName,
+                                     @PathVariable String lastName){
+        List<User> adopters = getUserList(firstName, lastName);
+        List <Pet> pets = new ArrayList<>();
+        for (User adopter : adopters) {
+            List<Pet> tempPets = petsRepository.findAllByAdopter(adopter);
+            pets.addAll(tempPets);
+        }
+        model.addAttribute("list", petsRepository.findSpecies());
+        model.addAttribute("pets", pets);
+        return "pets/findPetsByUser";
+    }
+
+    private List<Pet> getPetList (Boolean ready, Boolean exclude, User foster){
+
+        List<Pet> pets = new ArrayList<>();
+
+        if((ready == true) & (exclude == true)) {
+            pets = petsRepository.findAllByAdopterAndFosterAndReadyToAdopt(null, foster, true);
+        }
+
+        else if (exclude == true){
+
+            pets = petsRepository.findAllByAdopterAndFoster(null, foster);
+
+        }
+
+        else if (ready == true){
+            pets = petsRepository.findAllByReadyToAdoptAndFoster(true, foster);
+        }
+        else {
+            pets = petsRepository.findAllByFoster(foster);
+        }
+
+        return pets;
+
+    }
+
+
+    @GetMapping("/pets/searchFosterID/{id}/{ready}/{exclude}")
+    public String SearchByFosterId (Model model,
+                              @PathVariable long id,
+                               @PathVariable boolean ready,
+                                @PathVariable boolean exclude){
+        User foster = usersRepository.findOne(id);
+
+        List<Pet> pets = getPetList(ready,exclude,foster);
+
+        model.addAttribute("list", petsRepository.findSpecies());
+        model.addAttribute("pets", pets);
+        return "pets/findPetsByUser";
+    }
+
+
+    @GetMapping("/pets/{firstName}/searchFosterName/{lastName}/{ready}/{exclude}")
+    public String SearchByFosterName (Model model,
+                                       @PathVariable String firstName,
+                                       @PathVariable String lastName,
+                                      @PathVariable boolean ready,
+                                      @PathVariable boolean exclude){
+        List<User> fosters = getUserList(firstName, lastName);
+        List <Pet> pets = new ArrayList<>();
+        for (User foster : fosters) {
+            List<Pet> tempPets = getPetList(ready,exclude,foster);
+            pets.addAll(tempPets);
+        }
+        model.addAttribute("list", petsRepository.findSpecies());
+        model.addAttribute("pets", pets);
+        return "pets/findPetsByUser";
     }
 
 

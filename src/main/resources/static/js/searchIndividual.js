@@ -1,7 +1,7 @@
 /**
  * Created by melodytempleton on 7/7/17.
  */
-$("#searchFiltered").click(function(){
+$("#searchIndividual").click(function(){
     var petID = $("#petID").val();
     var petName = $("#petName").val();
      if ((petName != "") & (petID != "")) {

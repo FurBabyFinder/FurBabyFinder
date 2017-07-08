@@ -10,11 +10,16 @@
 <p><h4>Breed: <span th:text="${pet.breed}"></span></h4></p>
 <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
 <p><h4>Internal Notes:  <span th:text="${pet.privateNotes}"></span></h4></p>
+<p th:if="${foster != null }"><h4>Foster ID  <span th:text="${foster.id}"></span></h4></p>
+<p th:if="${foster != null }"><h4>Foster Name  <span th:text="${foster.firstName}"></span>  <span th:text="${foster.lastName}"></span></h4></p>
+<p th:if="${adopter != null }"><h4>Adopter ID  <span th:text="${adopter.id}"></span></h4></p>
+<p th:if="${adopter != null }"><h4>Adopter Name  <span th:text="${adopter.firstName}"></span>  <span th:text="${adopter.lastName}"></span></h4></p>
+
 <div th:each="petImage : ${pet.getImages()}">
     <p><img th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}" /></p>
 </div>
 
-<div class="btn btn-primary" id="searchFiltered"><a style="text-decoration: none; color: white" th:href="@{'/pets/' + ${pet.id}+ '/edit'}">Edit/Delete this pet</a></div>
+<div class="btn btn-primary" id="searchFiltered"><a style="text-decoration: none; color: white" th:href="@{'/pets/' + ${pet.id}+ '/edit'}">Edit this pet</a></div>
 
 <script src="http://code.jquery.com/jquery-2.2.4.min.js"  crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
