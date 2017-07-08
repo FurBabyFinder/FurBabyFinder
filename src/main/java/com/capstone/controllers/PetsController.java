@@ -1,5 +1,6 @@
 package com.capstone.controllers;
 
+import com.capstone.Pojos.ImageList;
 import com.capstone.models.Filter;
 import com.capstone.models.Pet;
 
@@ -194,11 +195,16 @@ public class PetsController {
     public String showEditForm(@PathVariable long id, Model model) {
         Pet pet = petsRepository.findById(id);
         List <Filter> petsFilters = pet.getFilters();
+        ImageList imageList = new ImageList();
         List<PetImage> petsImages = pet.getImages();
+        for(PetImage image: petsImages){
+            imageList.add(image);
+        }
         int numberImages = petsImages.size();
         model.addAttribute("pet", pet);
         model.addAttribute("filters", petsFilters);
-        model.addAttribute("images", petsImages);
+//        model.addAttribute("images", petsImages);
+        model.addAttribute("imageList", imageList);
         model.addAttribute("imageCount", numberImages);
         model.addAttribute("list", petsRepository.findSpecies());
 
@@ -208,12 +214,14 @@ public class PetsController {
     @PostMapping("/pets/{id}/edit")
     public String editPet(
             @ModelAttribute Pet pet,
+            @ModelAttribute("imageList") ImageList imageList,
             Errors validation,
             @PathVariable long id,
             @RequestParam(name = "filterName") List<String> filterNames,
             @RequestParam(name = "image") List<MultipartFile> uploadedfiles,
             @RequestParam(name = "imageDescription[]") List<String> ImageDescriptions,
             @RequestParam(name = "profilePic[]") List<Boolean> profilePicture,
+            @RequestParam(name = "afterAdopt[]") List<Boolean> afterAdopt,
             Model model) {
         if (validation.hasErrors()) {
             model.addAttribute("errors", validation);
@@ -226,6 +234,12 @@ public class PetsController {
             }
             pet.setId(id);
             pet.setFiltersPets(filters);
+            List<PetImage> petImageList = imageList.getImages();
+            System.out.println(imageList.getImages());
+            for(PetImage image : petImageList){
+                System.out.println(image.getId());
+                petImageRepository.save(image);
+            }
 
             petsRepository.save(pet);
             for (int i = 0; i < uploadedfiles.size(); i++) {
@@ -236,7 +250,6 @@ public class PetsController {
                     File destinationFile = new File(filepath);
                     PetImage petImage = new PetImage(pet);
 
-
                     try {
                         petImage.setImageUrl(filename);
                         petImageRepository.save(petImage);
@@ -245,6 +258,7 @@ public class PetsController {
                         uploadedfiles.get(i).transferTo(destinationFile);
                         imageAdded.setImageDescription(ImageDescriptions.get(i));
                         imageAdded.setProfilePic(profilePicture.get(i));
+                        imageAdded.setAfterAdoption(afterAdopt.get(i));
                         petImageRepository.save(imageAdded);
                         model.addAttribute("message", "File successfully uploaded!");
                     } catch (IOException e) {

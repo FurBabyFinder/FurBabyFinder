@@ -8,6 +8,7 @@ $(document).ready(function(){
 
     var imageInput = document.getElementById("imageInput").innerHTML;
 
+    // ============================insert html to upload additional images=============================
     (function insertImageInputs() {
         var insertImages;
         for (var j = 1; j < addImages; j++){
@@ -16,6 +17,25 @@ $(document).ready(function(){
         document.getElementById("additionalImages").innerHTML = insertImages;
     })();
 
+    function updateIds (classname, idbase){
+        var number = 1;
+        var id;
+
+        $(classname).each(function () {
+            id = idbase + number;
+            $(this).attr("id", id);
+            number++;
+        })
+    }
+
+    updateIds('.hiddenChecks', 'hiddenChecks');
+    updateIds('.hiddenChecksAfter', 'hiddenChecksAfter');
+    updateIds('.imageInputs', 'image');
+    updateIds('.profilePic', 'profilePic');
+    updateIds('.afterAdopt', 'afterAdopt');
+
+
+// ======================================check checkboxes for existing images if profile or after adoption ============
     (function checkTheProfile() {
 
       $('.profilePic').each(function(){
@@ -27,20 +47,20 @@ $(document).ready(function(){
 
     })();
 
-    function updateIds (classname, idbase){
-        var number = 1;
-        var id;
+    (function checkAfterAdopt() {
 
-        $(classname).each(function () {
-             id = idbase + number;
-            $(this).attr("id", id);
-            number++;
+        $('.afterAdopt').each(function(){
+            var trueOrNot = $(this).val();
+            if(trueOrNot == "true"){
+                $(this).attr('checked', true);
+            }
         })
-    }
 
-    updateIds('.hiddenChecks', 'hiddenChecks');
-    updateIds('.imageInputs', 'image');
-    updateIds('.profilePic', 'profilePic');
+    })();
+
+
+
+// ==========Only one profile pic gets checked === Set Values for profile checks and Adopt Checks======================
 
     $('.profilePic').click(function(){
         var $inputs = $('.profilePic');
@@ -55,6 +75,25 @@ $(document).ready(function(){
             $('.hiddenChecks').val("false");
         }
     });
+
+    $('.afterAdopt').click(function(){
+        var $inputs = $('.afterAdopt');
+        if($(this).is(':checked')){
+            var thatID = $(this).attr('id');
+            thatID = thatID.substr(-1);
+            var newID = "#hiddenCheck" + thatID;
+            $(newID).val("true");
+        }
+        else if($(this).not(':checked')) {
+            var thatID = $(this).attr('id');
+            thatID = thatID.substr(-1);
+            var newID = "#hiddenCheck" + thatID;
+            $(newID).val("false");
+        }
+    });
+
+
+    // ===========check which filters the pet already has and check them ====================
 
     function checkFiltersPetHas (filterName){
         var hiddenID = "#petHas" + filterName;

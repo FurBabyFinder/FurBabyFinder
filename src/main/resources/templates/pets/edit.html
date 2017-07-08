@@ -5,7 +5,7 @@
 <body>
 <nav th:replace="fragments :: navbar" />
 <div class="container">
-    <form th:action="${'/pets/'+pet.id+'/edit'}" method="post" th:object="${pet}" enctype="multipart/form-data">
+    <form th:action="${'/pets/'+pet.id+'/edit'}" method="post" th:object="${pet}" enctype="multipart/form-data"  modelAttribute="imageList">
 
         <div class="form-group">
             <label for="name">Pet System ID</label>
@@ -58,21 +58,26 @@
             <label><input type="checkbox" id="microchipped" name="filterName" value="microchipped"/>Microchipped</label>
         </div>
 
-        <input type="hidden" th:value="${imageCount}" id="imageCount" />
 
-        <div  class="pet-picture" th:each="petImage : ${pet.getImages()}">
+
+        <input type="hidden" th:value="${imageCount}" id="imageCount" />
+        <div>
+        <div  class="pet-picture" th:each="petImage : ${imageList.images}">
+          <div>
             <p><img th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}" /></p>
-            <div><label>Upload an image<input type="file" name="image" class="imageInputs" id="" /></label>
-                <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
+             <input type="hidden" name="existingImages" th:value="${petImage.id}"/>
+                <p><input name="imageDescription" size="150" type="text"/>Description of Image</p>
                 <div class="checkbox">
-                    <label><input type="checkbox" class="profilePic" id="" th:value="${petImage.profilePic}" />Profile Picture</label>
-                    <input type="hidden" value="false" name="profilePic[]" id="" class="hiddenChecks"/>
+                    <label><input type="checkbox" class="profilePic" name="profilePic" id="" th:value="${petImage.profilePic}" />Profile Picture</label>
+                    <input type="hidden" value="false" name="profilePic" id="" class="hiddenChecks"/>
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox" class="afterAdopt"  name="afterAdoption" th:value="${petImage.afterAdoption}" />Picture After Adoption</label>
+                    <label><input type="checkbox" class="afterAdopt" id="" name="afterAdoption" th:value="${petImage.afterAdoption}" />Picture After Adoption</label>
+                    <input type="hidden" value="false" name="afterAdopt" id="" class="hiddenChecksAdopt"/>
                 </div>
             </div>
-        </div>
+            </div>
+            </div>
 
         <div id="additionalImages"></div>
 
@@ -94,7 +99,8 @@
                 <input type="hidden" value="false" name="profilePic[]" id="" class="hiddenChecks"/>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" class="afterAdopt"  name="afterAdoption" value="true"/>Picture After Adoption</label>
+                <label><input type="checkbox" class="afterAdopt"  id="" />Picture After Adoption</label>
+                <input type="hidden" value="false" name="afterAdopt[]" id="" class="hiddenChecksAfter"/>
             </div>
         </div>
     </div>
