@@ -12,8 +12,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 
-
-
 @Configuration
 @EnableWebSecurity
 @ComponentScan(basePackageClasses = UserWithRoles.class)
@@ -32,18 +30,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/")
-                .permitAll()
+                .defaultSuccessUrl("/") // user's home page, it can be any URL
+                .permitAll() // Anyone can go to the login page
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/logout")
+                .antMatchers("/", "/logout") // anyone can see the home and logout page
                 .permitAll()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/login?logout")
+                .logoutSuccessUrl("/login?logout") // append a query string value
                 .and()
                 .authorizeRequests()
-                .antMatchers()
+                .antMatchers(
+                        "/pets/create",
+                        "/pets/?/edit",
+                        "/pets/create"
+                ) // only authenticated users can create ads
                 .authenticated()
         ;
     }
