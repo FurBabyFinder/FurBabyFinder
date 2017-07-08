@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head('Login form')" />
+<body>
+
+<nav th:replace="fragments :: my-navbar" />
+
+
+<div th:if="${param.error}">
+    That is an incorrect username or password.
+</div>
+
+
+<div class="container">
+
+
+    <div class="row">
+
+        <div class="col-sm-6 login-container">
+
+
+            <div th:if="${param.error}">
+                That is an incorrect username or password.
+            </div>
+
+            <form th:action="@{/login}" method="post">
+                <label for="username">Username</label>
+                <input id="username" name="username" type="text"/>
+
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password"/>
+
+                <input type="submit" value="Log In"/>
+            </form>
+
+
+        </div>
+
+        <div class="col-sm-6">
+            <h3>Need an account?</h3>
+            <button type="button" class="btn btn-default form-button"><a href="/register">Register</a>
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>
