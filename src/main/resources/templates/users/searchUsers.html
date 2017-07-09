@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head('Search User')" />
+<body>
+<nav th:replace="fragments :: navbar" />
+
+<div class="container">
+    <div class="jumbotron">
+        <h3>Search Users</h3>
+<p>
+    <lable><input id="userID" type="text" size="15" name="userID"/>Search by ID</lable>
+</p>
+<p>
+    <lable><input id="userFirstName" type="text" size="30" name="userFirstName"/>Search First Name</lable>
+</p>
+<p>
+    <lable><input id="userLastName" type="text" size="30" name="userLastName"/>Search Last Name</lable>
+</p>
+<div class="btn btn-primary" id="searchUser">Search</div>
+
+<div style="display: none" id="warningMessageNotBoth" class="alert alert-danger alert-dismissible" role="alert">
+    <strong>Please search by ID or Name, but not both at the same time. </strong>
+</div>
+</div>
+</div>
+
+<div class="col-sm-10">
+    <div th:if="${users != null}">
+        <div th:if="${users.size() == 0 }">No users found with that criteria</div>
+    </div>
+    <div class="pet-container" th:each="user : ${users}">
+        <div class="row">
+
+            <div class="col-sm-9 pet-info">
+                <h2>Name: <a th:href="@{'/users/user/'+ ${user.id}}" id="viewUser" style="text-decoration: none">
+                    <span th:text="${user.firstName}"></span><span> </span> <span th:text="${user.lastName}"></span> </a></h2>
+
+                <p><h4>Email <span th:text="${user.email}"></span></h4></p>
+
+
+                <p><h4>Main Phone <span th:text="${user.mainPhone}"></span></h4></p>
+
+                <p><h4>Alt Phone <span th:text="${user.altPhone}"></span></h4></p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="fragments :: login"/>
+<div th:replace="fragments :: register"/>
+<div th:replace="fragments :: scripts"/>
+<script src="/js/searchUser.js"></script>
+
+</body>
+</html>

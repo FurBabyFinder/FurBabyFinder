@@ -9,7 +9,7 @@ $("#searchUser").click(function(){
     var exclude = "false";
 
     function hideWarnings() {
-        $('#warningMessage').css("display", "none");
+        $('#warningMessageNotBoth').css("display", "none");
         $('#warningMessageChooseUser').css("display", "none");
         $('#warningMessageReadyExclude').css("display", "none");
     }
