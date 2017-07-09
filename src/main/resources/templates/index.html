@@ -8,27 +8,56 @@
 <nav th:replace="fragments :: navbar"/>
 
 
-<div class="hero-image">
+<!--<div class="hero-image">-->
 
-    <div class="container multiBannerText">
-        <div class="row">
+    <!--<div class="container multiBannerText">-->
+        <!--<div class="row">-->
 
-            <div class="col-sm-4">
-                <div class="hero-text text-center hp-text">
-                    <h1>Fur Baby Finder</h1>
-                    <blockquote class="blockquote">
-                    <p class="homepage-text mb-0">When you bring a pet into your life, you begin a journey — a journey that will bring you more love and devotion than you have ever known
-                    </p>
-                    <footer class="blockquote-footer">Crystal Ward Kent</footer><cite>The Journey</cite>
-                    </blockquote>
-                    <button class="button-primary"><a href="pets/all" style="color: white">See Pets</a></button>
-                    <button class="button-secondary">Schedule a Visit</button>
-                </div>
+            <!--<div class="col-sm-4">-->
+                <!--<div class="hero-text text-center hp-text">-->
+                    <!--<h1>Fur Baby Finder</h1>-->
+                    <!--<blockquote class="blockquote">-->
+                    <!--<p class="homepage-text mb-0">When you bring a pet into your life, you begin a journey — a journey that will bring you more love and devotion than you have ever known-->
+                    <!--</p>-->
+                    <!--<footer class="blockquote-footer">Crystal Ward Kent</footer><cite>The Journey</cite>-->
+                    <!--</blockquote>-->
+                    <!--<button class="button-primary"><a href="pets/all" style="color: white">See Pets</a></button>-->
+                    <!--<button class="button-secondary">Schedule a Visit</button>-->
+                <!--</div>-->
+            <!--</div>-->
+
+        <!--</div>-->
+    <!--</div>-->
+
+<!--</div>-->
+
+
+<div class="container-fluid homepage-container-top">
+    <div class="row row-eq-height homepage-row-top">
+        <div class="col-sm-4 homepage-columns-top text-center" id="homepage-col-left">
+            <div class="vertical-center">
+                <h1 class="">Find Your Furever Fur Friend</h1>
+                <p>Search our library of lovable, ready-to-adopt companions who are excited to meet you.
+                </p>
+                <button class="button-primary"><a href="pets/all" style="color: white">Find A Pet</a></button>
             </div>
+        </div>
 
+        <div class="col-sm-4 homepage-columns-top" id="homepage-col-middle">
+            <img class="img-responsive dog-homepage text-center" th:src="@{http://via.placeholder.com/400x532}"/>
+        </div>
+
+        <div class="col-sm-4 homepage-columns-top" id="homepage-col-right">
+            <img class="img-responsive cat-homepage" th:src="@{http://via.placeholder.com/400x250}"/>
+            <img class="img-responsive hamster-homepage" th:src="@{http://via.placeholder.com/400x250}"/>
         </div>
     </div>
+</div>
 
+<div class="container-fluid homepage-container-2">
+    <div class="homepage-row-2">
+        <h2>How It Works</h2>
+    </div>
 </div>
 
 <div th:replace="fragments :: login"/>
