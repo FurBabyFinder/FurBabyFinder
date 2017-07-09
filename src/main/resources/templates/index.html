@@ -9,7 +9,7 @@
 
 <div class="container-fluid homepage-container-top">
     <div class="row row-eq-height homepage-row-top">
-        <div class="col-sm-4 homepage-columns-top text-center" id="homepage-col-left">
+        <div class="col-xs-12 col-sm-12 col-md-4 homepage-columns-top text-center" id="homepage-col-left">
             <div class="vertical-center">
                 <h1 class="">Find Your Furever Fur Friend</h1>
                 <p>Search our library of lovable, ready-to-adopt companions who are excited to meet you.
@@ -18,22 +18,22 @@
             </div>
         </div>
 
-        <div class="col-sm-4 homepage-columns-top" id="homepage-col-middle">
-            <img class="img-responsive dog-homepage text-center" th:src="@{http://via.placeholder.com/400x532}"/>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center homepage-columns-top" id="homepage-col-middle">
+                <img class="img-responsive dog-homepage text-center" th:src="@{../img/dog-homepage.png}"/>
         </div>
 
-        <div class="col-sm-4 homepage-columns-top" id="homepage-col-right">
-            <img class="img-responsive cat-homepage" th:src="@{http://via.placeholder.com/400x250}"/>
-            <img class="img-responsive hamster-homepage" th:src="@{http://via.placeholder.com/400x250}"/>
+        <div class="col-xs-12 col-sm-6 col-md-4 homepage-columns-top" id="homepage-col-right">
+            <img class="img-responsive cat-homepage" th:src="@{../img/cat-homepage.png}"/>
+            <img class="img-responsive hamster-homepage" th:src="@{../img/hamster-homepage.png}"/>
         </div>
     </div>
 </div>
 
-<div class="container-fluid homepage-container-2">
-    <div class="homepage-row-2">
-        <h2>How It Works</h2>
-    </div>
-</div>
+<!--<div class="container-fluid homepage-container-2">-->
+<!--<div class="homepage-row-2">-->
+<!--<h2>How It Works</h2>-->
+<!--</div>-->
+<!--</div>-->
 
 <div th:replace="fragments :: login"/>
 <div th:replace="fragments :: register"/>

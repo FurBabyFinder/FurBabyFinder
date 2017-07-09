@@ -46,23 +46,38 @@ body, html {
 
 .dog-homepage {
     object-fit: cover;
-    /*width:100%;*/
-    height:100%;
+    height: 532px;
     padding: 16px 16px 16px 16px;
 }
 
 .cat-homepage {
     object-fit: cover;
-    height:50%;
+    height: 266px;
     padding: 16px 16px 16px 16px;
-
 }
 
 .hamster-homepage {
     object-fit: cover;
-    height: 50%;
+    height: 266px;
     padding: 16px 16px 16px 16px;
 }
+
+.img-responsive {
+    width: 100%;
+}
+
+
+/*#homepage-col-left {*/
+    /*border: 2px solid white;*/
+/*}*/
+
+/*#homepage-col-middle {*/
+    /*border: 2px solid white;*/
+/*}*/
+
+/*#homepage-col-right {*/
+    /*border: 2px solid white;*/
+/*}*/
 
 
 h1 {
@@ -83,6 +98,7 @@ p {
     padding-bottom: 25%;
     padding-left: 10%;
     padding-right: 10%;
+    height: 532px;
 }
 
 
