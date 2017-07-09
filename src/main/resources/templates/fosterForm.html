@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head th:replace="fragments :: head('Foster')"/>
+
+<body>
+<nav th:replace="fragments :: navbar"/>
+<div class="container">
+    <div class="jumbotron">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSejVu3gwNIaCvHiCI5XSDpPvKENEOwW4J3f5OD3Bm1O68jpyA/viewform?embedded=true" width="760" height="700" frameborder="0" marginheight="0" marginwidth="0" style="margin-left: 13%">Loading...</iframe>
+    </div>
+</div>
+<div th:replace="fragments :: login"/>
+<div th:replace="fragments :: register"/>
+<div th:replace="fragments :: scripts"/>
+
+</body>
+</html>

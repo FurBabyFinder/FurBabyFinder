@@ -3,12 +3,55 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head th:replace="fragments :: head('Foster')"/>
-
-<body>
 <nav th:replace="fragments :: navbar"/>
+<body>
+<div class="container multiBannerText">
+    <div class="row">
 
+        <div class="col-sm-4">
+            <div class="text-center hp-text">
+                <h1>Apply to Be A Foster</h1>
+                <button class="button-primary"><a href="/fosterForm" style="color: white">Complete Form</a></button>
+            </div>
+        </div>
 
+    </div>
+</div>
 
+<div class="container">
+    <div class="jumbotron">
+<h3>What is a foster?</h3>
+<p>A foster home means that you will open up your home and provide a safe, loving, nurturing and temporary living situation until the foster pet can recover physically and emotionally from the stress of their previous living situation. You are providing much needed human socialization as well as basic training that will make our dogs even more highly adoptable! Being a foster is a temporary placement that allows the animal to be taken off of the kill shelters euthanasia list or avoid going into the kill shelter.</p>
+
+<h4>What should I expect when fostering?</h4>
+<ul></ul>
+<p>Alamo City Pit Bull Rescue will give you all of the information and resources you need in order to successfully foster. Because of the breed stereotypes, our dogs are harder to place into forever homes than most. Foster situations can last from as little as a few days, to as long as several months. This all depends on the type of case you take on. Medical fosters will take longer than healthy dogs.</p>
+
+<h4>Why do we need foster homes?</h4>
+<ul></ul>
+<p>There are several reasons that we need foster homes, but the main ones are because we do not have a physical shelter to place the dogs in until we can find forever homes. Sometimes, the puppy is too young to be adopted out, so we need a safe place for them to stay until they are old enough for adoption. We need fosters for dogs who are recovering from surgery, illness or injury and they need a safe, quiet place to recover. We need fosters for dogs who do not do well in the shelter environment, dogs that have not lived in a home before or has not had much contact with people and needs to be socialized and most often, the shelter only give 72 hours or less before the dogs are euthanized.</p>
+
+<h4>Why should I foster?</h4>
+
+<p>Fostering a dog is one of the most rewarding experiences you can have (other than adopting, of course)! By taking an animal in need temporarily into your home you’re:</p>
+<ul>
+    <li>freeing up a spot so the shelter or rescue can take in another dog.</li>
+    <li>giving your foster dog the time he needs to be ready for adoption.</li>
+    <li>helping the shelter or rescue learn more about the dog so he can end up in the best home possible.</li>
+    <li>socializing the dog to a home environment and possibly getting him used to being around other pets and different types of people.</li>
+</ul>
+<h4>What are my responsibilities while fostering?</h4>
+<p>Our fosters are responsible for:</p>
+<ul>
+    <li>Providing a safe, clean, caring environment</li>
+    <li>Providing food, water, activity/toys, and shelter</li>
+    <li>Providing exercise and socialization as appropriate</li>
+    <li>Monitoring any medical and/or behavioral problems</li>
+    <li>Transporting to/from any necessary vet appointments</li>
+    <li>Transporting to/from adoption events at least twice per month</li>
+</ul>
+</div>
+    </div>
 <div th:replace="fragments :: login"/>
 <div th:replace="fragments :: register"/>
 <div th:replace="fragments :: footer"/>

@@ -32,5 +32,38 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/adoptionForm")
+    public String adoptionForm(Model model){
+
+        model.addAttribute("list", petsRepository.findSpecies());
+        return "adoptionForm";
+
+    }
+
+    @GetMapping("/fosterForm")
+    public String fosterForm(Model model){
+
+        model.addAttribute("list", petsRepository.findSpecies());
+        return "fosterForm";
+
+    }
+
+    @GetMapping("/foster")
+    public String foster(Model model){
+
+        model.addAttribute("list", petsRepository.findSpecies());
+        return "foster";
+
+    }
+
+
+    @GetMapping("how-it-works")
+    public String howItWorks(Model model){
+
+        model.addAttribute("list", petsRepository.findSpecies());
+        return "how-it-works";
+
+    }
+
 
 }

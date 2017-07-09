@@ -17,6 +17,10 @@ public class UserRole {
     @Column(name = "user_id")
     private long userId;
 
+    public UserRole(long userId, String role) {
+        this.userId = userId;
+        this.role = role;
+    }
 
     public long getId() {
         return id;
