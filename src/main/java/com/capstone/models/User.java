@@ -53,12 +53,6 @@ public class User {
     @Column()
     private String altPhone;
 
-    @Column()
-    private String FosterAppInfo;
-
-    @Column()
-    private String AdoptAppInfo;
-
     @ManyToMany (cascade = CascadeType.ALL)
     @JoinTable (name = "user_favorites", // no model .... virtual table
             joinColumns = {@JoinColumn(name="user")},
@@ -182,22 +176,6 @@ public class User {
 
     public void setAltPhone(String altPhone) {
         this.altPhone = altPhone;
-    }
-
-    public String getFosterAppInfo() {
-        return FosterAppInfo;
-    }
-
-    public void setFosterAppInfo(String fosterAppInfo) {
-        FosterAppInfo = fosterAppInfo;
-    }
-
-    public String getAdoptAppInfo() {
-        return AdoptAppInfo;
-    }
-
-    public void setAdoptAppInfo(String adoptAppInfo) {
-        AdoptAppInfo = adoptAppInfo;
     }
 
     public List<Pet> getPets() {
