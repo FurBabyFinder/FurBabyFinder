@@ -11,7 +11,7 @@ $(document).ready(function(){
     // ============================insert html to upload additional images=============================
     (function insertImageInputs() {
         var insertImages;
-        for (var j = 1; j < addImages; j++){
+        for (var j = 0; j < addImages; j++){
             insertImages = insertImages + imageInput;
         }
         document.getElementById("additionalImages").innerHTML = insertImages;
@@ -28,12 +28,11 @@ $(document).ready(function(){
         })
     }
 
-    updateIds('.hiddenChecks', 'hiddenChecks');
-    updateIds('.hiddenChecksAfter', 'hiddenChecksAfter');
+    updateIds('.hiddenChecks', 'hiddenCheck');
+    updateIds('.hiddenChecksAdopt', 'hiddenCheckAdopt');
     updateIds('.imageInputs', 'image');
     updateIds('.profilePic', 'profilePic');
     updateIds('.afterAdopt', 'afterAdopt');
-
 
 // ======================================check checkboxes for existing images if profile or after adoption ============
     (function checkTheProfile() {
@@ -65,29 +64,33 @@ $(document).ready(function(){
     $('.profilePic').click(function(){
         var $inputs = $('.profilePic');
         if($(this).is(':checked')){
+            $('.profilePic').prop('checked', false); // uncheck them all so existing images are unchecked
+            $(this).prop('checked', true); // recheck the one that just got checked
             var thatID = $(this).attr('id');
             thatID = thatID.substr(-1);
-            var newID = "#hiddenCheck" + thatID;
-            $(newID).val("true");
-            $inputs.not(this).prop('disabled',true);
+            var newID = "#hiddenCheck" + thatID; // get the id of the hidden fields
+            $('.hiddenChecks').val("false"); // make sure everything if false (so just the newly checked is true
+            $(newID).val("true"); // newly checked is now true
+            $inputs.not(this).prop('disabled',true);  // all other checks for profile pic are disabled until this one is unchecked
         }else{
-            $inputs.prop('disabled',false);
+            $inputs.prop('disabled',false); // if unchecking, make other checkboxes availble again to b selected
             $('.hiddenChecks').val("false");
         }
     });
+
 
     $('.afterAdopt').click(function(){
         var $inputs = $('.afterAdopt');
         if($(this).is(':checked')){
             var thatID = $(this).attr('id');
             thatID = thatID.substr(-1);
-            var newID = "#hiddenCheck" + thatID;
+            var newID = "#hiddenCheckAdopt" + thatID;
             $(newID).val("true");
         }
         else if($(this).not(':checked')) {
             var thatID = $(this).attr('id');
             thatID = thatID.substr(-1);
-            var newID = "#hiddenCheck" + thatID;
+            var newID = "#hiddenCheckAdopt" + thatID;
             $(newID).val("false");
         }
     });
