@@ -192,6 +192,54 @@
     </div>
 </footer>
 
+<footer th:fragment="altfooter" class="" >
+    <div style="margin-left: 1%">
+    <div class="row footer-row" style="background-color:#F8F8F8!important;">
+
+        <div class="col-sm-4">
+            <h3 style="text-align: center; margin-top: 7%">Contact</h3>
+            <div class="row ">
+
+                 <div class="row">
+                 <div class="col-sm-9" style="text-align: center">
+                <h4> Address: </h4>
+                 </div>
+                 </div>
+                <div class="col-sm-5">
+                    <span> 4450 Candyland Pkwy </span>
+                </div>
+                <div class="col-sm-3">
+                <p> San Antonio, TX 78210 </p>
+                 </div>
+                <div class="col-sm-4">
+                <h4 style="margin-top: -17%"> Phone: </h4>
+                <span> 210-456-8383 </span>
+                 </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="text-center footer footer-map">
+                <h4>Map</h4>
+                <div class="placeholder-map">
+                    <img class="map" th:src="@{../img/map-placeholder.jpg}"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="text-center footer footer-follow">
+                <h4>Follow Us</h4>
+                <img class="icon" th:src="@{../img/Facebook.png}"/>
+                <img class="icon" th:src="@{../img/Google.png}"/>
+                <img class="icon" th:src="@{../img/Instagram.png}"/>
+                <img class="icon" th:src="@{../img/Twitter.png}"/>
+            </div>
+        </div>
+    </div>
+        </div>
+</footer>
+
+
 <!--<div th:fragment="login" class="modal fade bs-login-modal-sm" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">-->
     <!--<div class="modal-dialog" role="document">-->
         <!--<div class="modal-content">-->
