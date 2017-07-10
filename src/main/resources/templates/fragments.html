@@ -3,11 +3,12 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head th:fragment="head(title)">
-    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <title th:text="${title}">Fur Baby Finder</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" type="text/css" href="../css/style.css"/>
     <link href="https://fonts.googleapis.com/css?family=Lato|Patua+One" rel="stylesheet"/>
 
@@ -15,7 +16,7 @@
 
 
 <!-- bootstrap navbar -->
-<nav th:fragment="navbar" class="navbar navbar-default navbar-static-top">
+<nav th:fragment="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
 
 
@@ -163,104 +164,104 @@
 <footer th:fragment="footer" class="">
     <div class="row footer-row">
 
-        <div class="col-sm-3">
+        <div class="col-sm-12">
             <div class="text-center footer footer-contact">
-                <h4>Contact</h4>
-                <p> Address: </p>
-                <p> 4450 Candyland Pkwy </p>
-                <p> San Antonio, TX 78210 </p>
-                <p> Phone: </p>
-                <p> 210-456-8383 </p>
+                <div class="contact-info"> 4450 Candyland Pkwy </div>
+                <div class="contact-info"> San Antonio, TX 78210 </div>
+                <div class="contact-info"> 210-456-8383 </div>
+                <i class="fa fa-facebook" aria-hidden="true" style="font-size:48px;color:#EC9A29"></i>
+                <i class="fa fa-twitter" aria-hidden="true" style="font-size:48px;color:#EC9A29"></i>
+                <i class="fa fa-google-plus" aria-hidden="true" style="font-size:48px;color:#EC9A29"></i>
+                <i class="fa fa-instagram" aria-hidden="true" style="font-size:48px;color:#EC9A29"></i>
             </div>
         </div>
-        <div class="col-sm-3">
-            <div class="text-center footer footer-map">
-                <h4>Map</h4>
-                <div class="placeholder-map">
-                    <img class="map" th:src="@{../img/map-placeholder.jpg}"/>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="text-center footer footer-nav">
-                <h4>Navigation</h4>
-                <ul class="text-center footer-list">
-                    <li class="dropdown" th:attr="data-types=${list}">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">View Pets <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a th:href="@{'/pets/all'}">all</a></li>
-                            <li th:each="oneSpecies : ${list}"><a th:href="@{'/pets/'+ ${oneSpecies} + '/type/all'}" th:text="${oneSpecies}+'s'"></a></li>
-                        </ul>
-                    </li>
-                    <li><a href="/about-us">About Us</a></li>
-                    <li><a href="/how-it-works">How It Works</a></li>
-                    <li><a href="/volunteer">Volunteer</a></li>
-                    <li><a href="/foster">Foster</a></li>
-                    <li><a href="/events">Events</a></li>
-                    <li><a href="/donate">Donate</a></li>
-                    <li><a href="/register-login">Register/Login</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="text-center footer footer-follow">
-                <h4>Follow Us</h4>
-                <img class="icon" th:src="@{../img/Facebook.png}"/>
-                <img class="icon" th:src="@{../img/Google.png}"/>
-                <img class="icon" th:src="@{../img/Instagram.png}"/>
-                <img class="icon" th:src="@{../img/Twitter.png}"/>
-            </div>
-        </div>
+        <!--<div class="col-sm-6">-->
+            <!--<div class="text-center footer footer-map">-->
+                <!--<div class="placeholder-map">-->
+                    <!--<img class="map" th:src="@{../img/map-placeholder.jpg}"/>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-sm-3">-->
+            <!--<div class="text-center footer footer-nav">-->
+                <!--<h4>Navigation</h4>-->
+                <!--<ul class="text-center footer-list">-->
+                    <!--<li class="dropdown" th:attr="data-types=${list}">-->
+                        <!--<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"-->
+                           <!--aria-expanded="false">View Pets <span class="caret"></span></a>-->
+                        <!--<ul class="dropdown-menu">-->
+                            <!--<li><a th:href="@{'/pets/all'}">all</a></li>-->
+                            <!--<li th:each="oneSpecies : ${list}"><a th:href="@{'/pets/'+ ${oneSpecies} + '/type/all'}" th:text="${oneSpecies}+'s'"></a></li>-->
+                        <!--</ul>-->
+                    <!--</li>-->
+                    <!--<li><a href="/about-us">About Us</a></li>-->
+                    <!--<li><a href="/how-it-works">How It Works</a></li>-->
+                    <!--<li><a href="/volunteer">Volunteer</a></li>-->
+                    <!--<li><a href="/foster">Foster</a></li>-->
+                    <!--<li><a href="/events">Events</a></li>-->
+                    <!--<li><a href="/donate">Donate</a></li>-->
+                    <!--<li><a href="/register-login">Register/Login</a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-sm-3">-->
+            <!--<div class="text-center footer footer-follow">-->
+                <!--<h4>Follow Us</h4>-->
+                <!--<img class="icon" th:src="@{../img/Facebook.png}"/>-->
+                <!--<img class="icon" th:src="@{../img/Google.png}"/>-->
+                <!--<img class="icon" th:src="@{../img/Instagram.png}"/>-->
+                <!--<img class="icon" th:src="@{../img/Twitter.png}"/>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 </footer>
 
-<footer th:fragment="altfooter" class="" >
-    <div style="margin-left: 1%">
-    <div class="row footer-row" style="background-color:#F8F8F8!important;">
+<!--<footer th:fragment="altfooter" class="" >-->
+    <!--<div style="margin-left: 1%">-->
+    <!--<div class="row footer-row" style="background-color:#F8F8F8!important;">-->
 
-        <div class="col-sm-4">
-            <h3 style="text-align: center; margin-top: 7%">Contact</h3>
-            <div class="row ">
+        <!--<div class="col-sm-4">-->
+            <!--<h3 style="text-align: center; margin-top: 7%">Contact</h3>-->
+            <!--<div class="row ">-->
 
-                 <div class="row">
-                 <div class="col-sm-9" style="text-align: center">
-                <h4> Address: </h4>
-                 </div>
-                 </div>
-                <div class="col-sm-5">
-                    <span> 4450 Candyland Pkwy </span>
-                </div>
-                <div class="col-sm-3">
-                <p> San Antonio, TX 78210 </p>
-                 </div>
-                <div class="col-sm-4">
-                <h4 style="margin-top: -17%"> Phone: </h4>
-                <span> 210-456-8383 </span>
-                 </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="text-center footer footer-map">
-                <h4>Map</h4>
-                <div class="placeholder-map">
-                    <img class="map" th:src="@{../img/map-placeholder.jpg}"/>
-                </div>
-            </div>
-        </div>
+                 <!--<div class="row">-->
+                 <!--<div class="col-sm-9" style="text-align: center">-->
+                <!--<h4> Address: </h4>-->
+                 <!--</div>-->
+                 <!--</div>-->
+                <!--<div class="col-sm-5">-->
+                    <!--<span> 4450 Candyland Pkwy </span>-->
+                <!--</div>-->
+                <!--<div class="col-sm-3">-->
+                <!--<p> San Antonio, TX 78210 </p>-->
+                 <!--</div>-->
+                <!--<div class="col-sm-4">-->
+                <!--<h4 style="margin-top: -17%"> Phone: </h4>-->
+                <!--<span> 210-456-8383 </span>-->
+                 <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-sm-4">-->
+            <!--<div class="text-center footer footer-map">-->
+                <!--<h4>Map</h4>-->
+                <!--<div class="placeholder-map">-->
+                    <!--<img class="map" th:src="@{../img/map-placeholder.jpg}"/>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
 
-        <div class="col-sm-4">
-            <div class="text-center footer footer-follow">
-                <h4>Follow Us</h4>
-                <img class="icon" th:src="@{../img/Facebook.png}"/>
-                <img class="icon" th:src="@{../img/Google.png}"/>
-                <img class="icon" th:src="@{../img/Instagram.png}"/>
-                <img class="icon" th:src="@{../img/Twitter.png}"/>
-            </div>
-        </div>
-    </div>
-        </div>
-</footer>
+        <!--<div class="col-sm-4">-->
+            <!--<div class="text-center footer footer-follow">-->
+                <!--<h4>Follow Us</h4>-->
+                <!--<img class="icon" th:src="@{../img/Facebook.png}"/>-->
+                <!--<img class="icon" th:src="@{../img/Google.png}"/>-->
+                <!--<img class="icon" th:src="@{../img/Instagram.png}"/>-->
+                <!--<img class="icon" th:src="@{../img/Twitter.png}"/>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+        <!--</div>-->
+<!--</footer>-->
 
 
 <!--<div th:fragment="login" class="modal fade bs-login-modal-sm" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">-->
