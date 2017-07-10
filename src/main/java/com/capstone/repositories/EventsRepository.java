@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
  * Created by frenchfryes on 7/9/17.
  */
 public interface EventsRepository extends CrudRepository<Event, Long>{
-    public Event findById(Long id);
+    Event findById(Long id);
 }

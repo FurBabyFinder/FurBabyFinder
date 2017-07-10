@@ -34,7 +34,7 @@ public class Event {
 
     @Column()
     private String link;
-    @Column()
+    @Column(nullable = false)
     private String date;
 
     @Column()

@@ -16,6 +16,7 @@ import java.util.List;
  */
 @Controller
 public class EventsController {
+    @Autowired
     private final EventsRepository eventsRepository;
 
     @Autowired
@@ -27,14 +28,16 @@ public class EventsController {
     EventsRepository eventsDao;
 
     @GetMapping("/events")
-    public String showEvents() {
+    public String showEvents(Model model){
+        Iterable<Event> events = eventsRepository.findAll();
+        model.addAttribute("events", events);
         return "events";
     }
 
     @GetMapping("/events/create")
     public String showEventForm(Model model) {
         model.addAttribute("event", new Event());
-        return "events/create";
+        return "eventscreate";
     }
 
 
@@ -48,11 +51,11 @@ public class EventsController {
         if (validation.hasErrors()) {
             model.addAttribute("errors", validation);
             model.addAttribute("event", event);
-            return "events/create";
+            return "redirect:/events";
         }
+        eventsRepository.save(event);
+        return "redirect:/events";
     }
-
-
     @GetMapping("/events/{id}/edit")
     public String showEditForm(@PathVariable long id, Model model) {
         model.addAttribute("event", eventsDao.findById(id));
