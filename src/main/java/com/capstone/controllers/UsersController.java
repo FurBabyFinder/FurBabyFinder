@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -78,10 +79,10 @@ PetsRepository petsRepository;
                                        @PathVariable String lastName){
         List <User> users = new ArrayList<>();
         if (firstName.equals("none")){
-            users = usersDao.findAllByLastName(lastName);
+            users = usersDao.findAllByLastNameStartingWith(lastName);
         }
         else if (lastName.equals("none")){
-            users = usersDao.findAllByFirstName(firstName);
+            users = usersDao.findAllByFirstNameStartingWith(firstName);
         }
         else {
             users = usersDao.findAllByFirstNameAndLastName(firstName, lastName);
@@ -91,7 +92,65 @@ PetsRepository petsRepository;
         return "users/searchUsers";
     }
 
+    @GetMapping("/users/user/{id}")
+    public String viewUser (Model model,
+                              @PathVariable long id ){
+        User user = usersDao.findOne(id);
+        List<Pet> fosteredPets = petsRepository.findAllByFoster(user);
+        List<Pet> adoptedPets  = petsRepository.findAllByAdopter(user);
+        List<UserRole> roles = userRolesRepository.findAllByUserId(id);
+        model.addAttribute("roles", roles);
+        model.addAttribute("list", petsRepository.findSpecies());
+        model.addAttribute("fosteredPets", fosteredPets);
+        model.addAttribute("adoptedPets", adoptedPets);
+        model.addAttribute("user", user);
+        return "users/viewIndividualUser";
+    }
 
+    @GetMapping("/users/update/{id}")
+    public String viewUpdateUser (Model model,
+                            @PathVariable long id ){
+        User user = usersDao.findOne(id);
+        List<UserRole> roles = userRolesRepository.findAllByUserId(id);
+        model.addAttribute("roles", roles);
+        model.addAttribute("list", petsRepository.findSpecies());
+        model.addAttribute("user", user);
+        return "users/updateUser";
+    }
+
+    @PostMapping("/users/update/{id}")
+    public String postUpdateUser (Model model,
+                                  @PathVariable long id,
+                                  @ModelAttribute User user,
+                                  @ModelAttribute("deleteRolesIds") String deleteRolesIds,
+                                  Errors validation){
+        if (validation.hasErrors()) {
+            model.addAttribute("errors", validation);
+            model.addAttribute("user", user);
+            return "users/updateUser";
+        } else {
+            System.out.println(deleteRolesIds);
+            String[] stringArray = deleteRolesIds.split(",");
+            int[] intIdsArray = new int[stringArray.length];
+           for(int i=0; i < stringArray.length; i++){
+               String numberAsString = stringArray[i];
+               intIdsArray[i] = Integer.parseInt(numberAsString);
+            };
+            for (long removeID : intIdsArray) {
+                UserRole deleteRole = userRolesRepository.findOne(removeID);
+                System.out.println(deleteRole);
+                userRolesRepository.delete(deleteRole);
+            }
+            User userPassword = usersDao.findOne(id);
+            String password = userPassword.getPassword();
+            user.setId(id);
+            user.setPassword(password);
+            usersDao.save(user);
+            model.addAttribute("list", petsRepository.findSpecies());
+            model.addAttribute("user", user);
+            return "redirect:/users/user/" + id;
+        }
+    }
 
 
 }

@@ -1,10 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:include="fragments :: head ('Edit User Record')" />
 <body>
+<nav th:replace="fragments :: navbar" />
+<div class="container">
+    <div class="jumbotron">
+        <form th:action="${'/users/update/'+user.id}" method="post" th:object="${user}">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input id="firstName" type="text" size="20" th:field="*{firstName}"/>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('firstName')}">
+                    <p  th:errors="*{firstName}" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input id="lastName" type="text" size="20" th:field="*{lastName}"/>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('lastName')}">
+                    <p  th:errors="*{lastName}" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input id="username" type="text" size="20" th:field="*{username}"/>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('username')}">
+                    <p  th:errors="*{username}" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" type="text" size="20" th:field="*{email}"/>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('email')}">
+                    <p  th:errors="*{email}" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="streetAdd1">Street Address 1</label>
+                <input id="streetAdd1" type="text" size="20" th:field="*{streetAdd1}"/>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('streetAdd1')}">
+                    <p  th:errors="*{streetAdd1}" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="streetAdd2">Street Address 2</label>
+                <input id="streetAdd2" type="text" size="20" th:field="*{streetAdd2}"/>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('streetAdd2')}">
+                    <p  th:errors="*{streetAdd2}" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input id="city" type="text" size="20" th:field="*{city}"/>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('city')}">
+                    <p  th:errors="*{city}" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="state">State</label>
+                <input id="state" type="text" size="20" th:field="*{state}"/>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('state')}">
+                    <p  th:errors="*{state}" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="zip">Zip</label>
+                <input id="zip" type="text" size="20" th:field="*{zip}"/>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('zip')}">
+                    <p  th:errors="*{zip}" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mainPhone">Main Phone</label>
+                <input id="mainPhone" type="text" size="20" th:field="*{mainPhone}"/>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('mainPhone')}">
+                    <p  th:errors="*{mainPhone}" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="altPhone">Alt Phone</label>
+                <input id="altPhone" type="text" size="20" th:field="*{altPhone}"/>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('altPhone')}">
+                    <p  th:errors="*{altPhone}" />
+                </div>
+            </div>
 
+        <div>
+            <p><h4>Roles</h4></p>
+            <div th:if="${roles != null}">
+                <div class="row">
+                    <div class="col-md-3" th:each="role : ${roles}">
+                        <p><h4><span th:text="${role.role}"></span></h4></p>
+                     <label>Remove Role<input type="checkbox" class="roleIds" th:value="${role.id}"/></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <input type="hidden" value="" id="deleteRolesIds" name="deleteRolesIds"/>
+    <button class="btn btn-default" value="upload">Save</button>
+    </form>
+        </div>
+</div>
+<div th:replace="fragments :: scripts"/>
+<script src="/js/updateUser.js"></script>
 </body>
 </html>

@@ -14,7 +14,13 @@ public interface UsersRepository extends CrudRepository<User, Long> {
 
     public List<User> findAllByFirstNameAndLastName(String firstName, String lastName);
 
+    public List<User> findAllByFirstNameStartingWithAndLastName(String firstName, String lastName);
+
     public List<User> findAllByFirstName(String firstName);
+
+    public List<User> findAllByLastNameStartingWith(String lastName);
+
+    public List<User> findAllByFirstNameStartingWith(String firstName);
 
     public List<User> findAllByLastName(String lastNAme);
 

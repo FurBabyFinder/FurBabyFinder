@@ -10,6 +10,7 @@ import com.capstone.repositories.FilterRepository;
 import com.capstone.repositories.PetImageRepository;
 import com.capstone.repositories.PetsRepository;
 import com.capstone.repositories.UsersRepository;
+import com.capstone.svcs.PetDTO;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -99,7 +100,7 @@ public class PetsController {
             Errors validation,
             @RequestParam(name = "filterName") List<String> filterNames,
             @RequestParam(name = "image") List<MultipartFile> uploadedfiles,
-            @RequestParam(name = "imageDescription[]") List<String> ImageDescriptions,
+            @RequestParam(name = "imageDescription[]") List<String> imageDescriptions,
             @RequestParam(name = "profilePic[]") List<Boolean> profilePicture,
             Model model) {
         if (validation.hasErrors()) {
@@ -130,7 +131,7 @@ public class PetsController {
                         long imageID = petImage.getId();
                         PetImage imageAdded = petImageRepository.findById(imageID);
                         uploadedfiles.get(i).transferTo(destinationFile);
-                        imageAdded.setImageDescription(ImageDescriptions.get(i));
+                        imageAdded.setImageDescription(imageDescriptions.get(i));
                         imageAdded.setProfilePic(profilePicture.get(i));
                         petImageRepository.save(imageAdded);
                         model.addAttribute("message", "File successfully uploaded!");
@@ -195,16 +196,16 @@ public class PetsController {
     public String showEditForm(@PathVariable long id, Model model) {
         Pet pet = petsRepository.findById(id);
         List <Filter> petsFilters = pet.getFilters();
-        ImageList imageList = new ImageList();
         List<PetImage> petsImages = pet.getImages();
-        for(PetImage image: petsImages){
-            imageList.add(image);
-        }
+//        for(PetImage image: petsImages){
+//            petsImages.add(image);
+//        }
         int numberImages = petsImages.size();
-        model.addAttribute("pet", pet);
+        PetDTO petDTO = new PetDTO(pet, petsImages);
+//        model.addAttribute("pet", pet);
         model.addAttribute("filters", petsFilters);
 //        model.addAttribute("images", petsImages);
-        model.addAttribute("imageList", imageList);
+        model.addAttribute("petDTO", petDTO);
         model.addAttribute("imageCount", numberImages);
         model.addAttribute("list", petsRepository.findSpecies());
 
@@ -213,35 +214,49 @@ public class PetsController {
 
     @PostMapping("/pets/{id}/edit")
     public String editPet(
-            @ModelAttribute Pet pet,
-            @ModelAttribute("imageList") ImageList imageList,
+//            @ModelAttribute Pet pet,
+//            @ModelAttribute("imageList") ImageList imageList,
+            @ModelAttribute ("petDTO") PetDTO petDTO,
             Errors validation,
             @PathVariable long id,
             @RequestParam(name = "filterName") List<String> filterNames,
             @RequestParam(name = "image") List<MultipartFile> uploadedfiles,
-            @RequestParam(name = "imageDescription[]") List<String> ImageDescriptions,
+            @RequestParam(name = "imageDescription[]") List<String> imageDescriptions,
             @RequestParam(name = "profilePic[]") List<Boolean> profilePicture,
             @RequestParam(name = "afterAdopt[]") List<Boolean> afterAdopt,
             Model model) {
         if (validation.hasErrors()) {
             model.addAttribute("errors", validation);
-            model.addAttribute("pet", pet);
+            model.addAttribute("pet", petDTO.getPet());
             return "pets/edit";
         } else {
             List<Filter> filters = new ArrayList<>();
             for (String name : filterNames) {
                 filters.add(filterRepository.findByFilterName(name));
             }
+            System.out.println(petDTO.getPet().getName());
+            Pet pet = petDTO.getPet();
+            List<PetImage> imageList = petDTO.getImageList();
             pet.setId(id);
             pet.setFiltersPets(filters);
-            List<PetImage> petImageList = imageList.getImages();
-            System.out.println(imageList.getImages());
-            for(PetImage image : petImageList){
+
+            System.out.println(imageList);
+
+            petsRepository.save(pet);
+            for(PetImage image : imageList){
                 System.out.println(image.getId());
+                image.setId(id);
+                String d = image.getImageDescription();
+                System.out.println(image.getImageDescription());
+                boolean p = image.isProfilePic();
+                boolean a = image.isAfterAdoption();
+                image.setImageDescription(d);
+                image.setProfilePic(p);
+                image.setAfterAdoption(a);
                 petImageRepository.save(image);
             }
 
-            petsRepository.save(pet);
+
             for (int i = 0; i < uploadedfiles.size(); i++) {
                 if (!uploadedfiles.get(i).isEmpty()) {
                     String filename = uploadedfiles.get(i).getOriginalFilename().replace(" ", "_");
@@ -256,7 +271,7 @@ public class PetsController {
                         long imageID = petImage.getId();
                         PetImage imageAdded = petImageRepository.findById(imageID);
                         uploadedfiles.get(i).transferTo(destinationFile);
-                        imageAdded.setImageDescription(ImageDescriptions.get(i));
+                        imageAdded.setImageDescription(imageDescriptions.get(i));
                         imageAdded.setProfilePic(profilePicture.get(i));
                         imageAdded.setAfterAdoption(afterAdopt.get(i));
                         petImageRepository.save(imageAdded);
@@ -267,7 +282,7 @@ public class PetsController {
                     }
                 }
             }
-            return "redirect:/pets/all";
+            return "redirect:/pets/pet" + id;
         }
     }
 
@@ -277,19 +292,19 @@ public class PetsController {
         return "pets/searchIndividual";
     }
 
-  @GetMapping("/pets/searchID/{id}")
+    @GetMapping("/pets/searchID/{id}")
     public String SearchById (Model model,
                               @PathVariable long id ){
         List<Pet> pets = new ArrayList<>();
-          pets.add(petsRepository.findById(id));
-      model.addAttribute("list", petsRepository.findSpecies());
-      model.addAttribute("pets", pets);
-      return "pets/searchIndividual";
-  }
+        pets.add(petsRepository.findById(id));
+        model.addAttribute("list", petsRepository.findSpecies());
+        model.addAttribute("pets", pets);
+        return "pets/searchIndividual";
+    }
 
     @GetMapping("/pets/searchName/{name}")
     public String SearchByName (Model model,
-                              @PathVariable String name ){
+                                @PathVariable String name ){
         List<Pet> pets = petsRepository.findAllByName(name);
         model.addAttribute("list", petsRepository.findSpecies());
         model.addAttribute("pets", pets);
@@ -306,7 +321,7 @@ public class PetsController {
 
     @GetMapping("/pets/searchAdopterID/{id}")
     public String SearchByAdopterId (Model model,
-                              @PathVariable long id ){
+                                     @PathVariable long id ){
         User adopter = usersRepository.findOne(id);
         List<Pet> pets = petsRepository.findAllByAdopter(adopter);
         model.addAttribute("list", petsRepository.findSpecies());
@@ -330,8 +345,8 @@ public class PetsController {
 
     @GetMapping("/pets/{firstName}/searchAdopterName/{lastName}")
     public String SearchByAdopterName (Model model,
-                                     @PathVariable String firstName,
-                                     @PathVariable String lastName){
+                                       @PathVariable String firstName,
+                                       @PathVariable String lastName){
         List<User> adopters = getUserList(firstName, lastName);
         List <Pet> pets = new ArrayList<>();
         for (User adopter : adopters) {
@@ -371,9 +386,9 @@ public class PetsController {
 
     @GetMapping("/pets/searchFosterID/{id}/{ready}/{exclude}")
     public String SearchByFosterId (Model model,
-                              @PathVariable long id,
-                               @PathVariable boolean ready,
-                                @PathVariable boolean exclude){
+                                    @PathVariable long id,
+                                    @PathVariable boolean ready,
+                                    @PathVariable boolean exclude){
         User foster = usersRepository.findOne(id);
 
         List<Pet> pets = getPetList(ready,exclude,foster);
@@ -386,8 +401,8 @@ public class PetsController {
 
     @GetMapping("/pets/{firstName}/searchFosterName/{lastName}/{ready}/{exclude}")
     public String SearchByFosterName (Model model,
-                                       @PathVariable String firstName,
-                                       @PathVariable String lastName,
+                                      @PathVariable String firstName,
+                                      @PathVariable String lastName,
                                       @PathVariable boolean ready,
                                       @PathVariable boolean exclude){
         List<User> fosters = getUserList(firstName, lastName);

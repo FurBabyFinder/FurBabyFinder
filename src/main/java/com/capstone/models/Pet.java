@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -46,6 +47,12 @@ public class Pet {
     @Column(length = 1000)
     private String privateNotes;
 
+    @Column
+    private String arrivalDate;
+
+    @Column
+    private String adoptionDate;
+
     @OneToOne
     @JoinColumn (name = "user_foster_id")
     private User foster;
@@ -54,7 +61,7 @@ public class Pet {
     @JoinColumn (name = "user_adopter_id")
     private User adopter;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet") //, fetch = FetchType.EAGER)
     private List<PetImage> images;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
@@ -67,12 +74,15 @@ public class Pet {
     )
     private List<Filter> filtersPets;
 
-    public Pet(String name, String story, int age, String privateNotes, boolean readyToAdopt) {
+    public Pet(String name, String story, int age, String species, String breed, boolean readyToAdopt, String privateNotes, String arrivalDate) {
         this.name = name;
         this.story = story;
         this.age = age;
+        this.species = species;
+        this.breed = breed;
         this.readyToAdopt = readyToAdopt;
         this.privateNotes = privateNotes;
+        this.arrivalDate = arrivalDate;
     }
 
     public  Pet (){}
@@ -139,6 +149,22 @@ public class Pet {
 
     public void setPrivateNotes(String privateNotes) {
         this.privateNotes = privateNotes;
+    }
+
+    public String getArrivalDate() {
+        return arrivalDate;
+    }
+
+    public void setArrivalDate(String arrivalDate) {
+        this.arrivalDate = arrivalDate;
+    }
+
+    public String getAdoptionDate() {
+        return adoptionDate;
+    }
+
+    public void setAdoptionDate(String adoptionDate) {
+        this.adoptionDate = adoptionDate;
     }
 
     public User getFoster() {
