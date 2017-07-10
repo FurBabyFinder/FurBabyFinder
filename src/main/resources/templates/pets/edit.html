@@ -11,7 +11,6 @@
             <label for="name">Pet System ID</label>
             <input id="name" type="text" size="20" th:field="*{pet.id}"/>
         </div>
-        <!--<div th:include="fragments :: petdata"></div>-->
         <div class="form-group">
             <label for="name">Pet Name</label>
             <input id="name" type="text" size="20" th:field="*{pet.name}"/>
@@ -150,26 +149,29 @@
 
         <input type="hidden" th:value="${imageCount}" id="imageCount" />
         <div>
-            <div  class="pet-picture" th:each="petImage : ${petDTO.imageList}">
+            <div  class="pet-picture" th:each="petImage, status : ${petDTO.imageList}">
                 <div>
                     <div class="form-group">
                         <p><img th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}" /></p>
-                        <input type="hidden" name="existingImages" th:value="${petImage.id}"/>
-                        <p><input name="imageDescription" size="150" th:value="${petImage.imageDescription}" type="text"/>Description of Image</p>
+                        <input type="hidden" th:field="*{imageList[__${status.index}__].imageUrl}"/>
+                        <input type="hidden" th:field="*{imageList[__${status.index}__].id}" th:value="${petImage.id}"/>
+                        <p><input th:field="*{imageList[__${status.index}__].imageDescription}" size="150" type="text"/>Description of Image</p>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" class="profilePic" name="profilePic" id="" th:value="${petImage.profilePic}" />Profile Picture</label>
+                        <label><input type="checkbox" class="profilePic" th:field="*{imageList[__${status.index}__].profilePic}"  id=""  />Profile Picture</label>
+                        <!--<input type="hidden" class="profilePicHidden" name="profilePic"  id="" th:value="${petImage.profilePic}" />-->
                         <input type="hidden" value="false" name="profilePic" id="" class="hiddenChecks"/>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" class="afterAdopt" id="" name="afterAdoption" th:value="${petImage.afterAdoption}" />Picture After Adoption</label>
+                        <label><input type="checkbox" class="afterAdopt" id="" th:field="*{imageList[__${status.index}__].afterAdoption}"  />Picture After Adoption</label>
+                        <!--<input type="hidden" class="afterAdoptHidden" id="" name="afterAdopttion" th:value="${petImage.afterAdoption}" />-->
                         <input type="hidden" value="false" name="afterAdopt" id="" class="hiddenChecksAdopt"/>
                     </div>
                     <!--<div th:text="${petDTO.imageList.add(petImage)}"></div>-->
                 </div>
             </div>
         </div>
-
+        th:value="${petImage.imageDescription}"   th:value="${petImage.profilePic}" th:value="${petImage.afterAdoption}"
 
         <div id="additionalImages">
 

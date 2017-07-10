@@ -236,17 +236,27 @@ public class PetsController {
             }
             System.out.println(petDTO.getPet().getName());
             Pet pet = petDTO.getPet();
-//             List<PetImage> imageList = petDTO.getImageList();
+             List<PetImage> imageList = petDTO.getImageList();
             pet.setId(id);
             pet.setFiltersPets(filters);
 
-//            System.out.println(imageList);
-//            for(PetImage image : imageList){
-//                System.out.println(image.getId());
-//                petImageRepository.save(image);
-//            }
+            System.out.println(imageList);
 
             petsRepository.save(pet);
+            for(PetImage image : imageList){
+                System.out.println(image.getId());
+                image.setId(id);
+                String d = image.getImageDescription();
+                System.out.println(image.getImageDescription());
+                boolean p = image.isProfilePic();
+                boolean a = image.isAfterAdoption();
+                image.setImageDescription(d);
+                image.setProfilePic(p);
+                image.setAfterAdoption(a);
+                petImageRepository.save(image);
+            }
+
+
             for (int i = 0; i < uploadedfiles.size(); i++) {
                 if (!uploadedfiles.get(i).isEmpty()) {
                     String filename = uploadedfiles.get(i).getOriginalFilename().replace(" ", "_");
