@@ -236,7 +236,7 @@ public class PetsController {
             }
             System.out.println(petDTO.getPet().getName());
             Pet pet = petDTO.getPet();
-             List<PetImage> imageList = petDTO.getImageList();
+            List<PetImage> imageList = petDTO.getImageList();
             pet.setId(id);
             pet.setFiltersPets(filters);
 
@@ -292,19 +292,19 @@ public class PetsController {
         return "pets/searchIndividual";
     }
 
-  @GetMapping("/pets/searchID/{id}")
+    @GetMapping("/pets/searchID/{id}")
     public String SearchById (Model model,
                               @PathVariable long id ){
         List<Pet> pets = new ArrayList<>();
-          pets.add(petsRepository.findById(id));
-      model.addAttribute("list", petsRepository.findSpecies());
-      model.addAttribute("pets", pets);
-      return "pets/searchIndividual";
-  }
+        pets.add(petsRepository.findById(id));
+        model.addAttribute("list", petsRepository.findSpecies());
+        model.addAttribute("pets", pets);
+        return "pets/searchIndividual";
+    }
 
     @GetMapping("/pets/searchName/{name}")
     public String SearchByName (Model model,
-                              @PathVariable String name ){
+                                @PathVariable String name ){
         List<Pet> pets = petsRepository.findAllByName(name);
         model.addAttribute("list", petsRepository.findSpecies());
         model.addAttribute("pets", pets);
@@ -321,7 +321,7 @@ public class PetsController {
 
     @GetMapping("/pets/searchAdopterID/{id}")
     public String SearchByAdopterId (Model model,
-                              @PathVariable long id ){
+                                     @PathVariable long id ){
         User adopter = usersRepository.findOne(id);
         List<Pet> pets = petsRepository.findAllByAdopter(adopter);
         model.addAttribute("list", petsRepository.findSpecies());
@@ -345,8 +345,8 @@ public class PetsController {
 
     @GetMapping("/pets/{firstName}/searchAdopterName/{lastName}")
     public String SearchByAdopterName (Model model,
-                                     @PathVariable String firstName,
-                                     @PathVariable String lastName){
+                                       @PathVariable String firstName,
+                                       @PathVariable String lastName){
         List<User> adopters = getUserList(firstName, lastName);
         List <Pet> pets = new ArrayList<>();
         for (User adopter : adopters) {
@@ -386,9 +386,9 @@ public class PetsController {
 
     @GetMapping("/pets/searchFosterID/{id}/{ready}/{exclude}")
     public String SearchByFosterId (Model model,
-                              @PathVariable long id,
-                               @PathVariable boolean ready,
-                                @PathVariable boolean exclude){
+                                    @PathVariable long id,
+                                    @PathVariable boolean ready,
+                                    @PathVariable boolean exclude){
         User foster = usersRepository.findOne(id);
 
         List<Pet> pets = getPetList(ready,exclude,foster);
@@ -401,8 +401,8 @@ public class PetsController {
 
     @GetMapping("/pets/{firstName}/searchFosterName/{lastName}/{ready}/{exclude}")
     public String SearchByFosterName (Model model,
-                                       @PathVariable String firstName,
-                                       @PathVariable String lastName,
+                                      @PathVariable String firstName,
+                                      @PathVariable String lastName,
                                       @PathVariable boolean ready,
                                       @PathVariable boolean exclude){
         List<User> fosters = getUserList(firstName, lastName);
