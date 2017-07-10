@@ -15,12 +15,12 @@ public class PetImage {
 
     @Column(nullable = false, length = 45)
     @NotBlank(message = "Image must have a url")
-    private String ImageUrl;
+    private String imageUrl;
 
     @Column
 //            (nullable = false, length = 45)
 //    @NotBlank(message = "Image must have a description")
-    private String ImageDescription;
+    private String imageDescription;
 
     @Column
     private boolean profilePic;
@@ -33,8 +33,8 @@ public class PetImage {
     private Pet pet;
 
     public PetImage(String imageUrl, String imageDescription, Pet pet) {
-        ImageUrl = imageUrl;
-        ImageDescription = imageDescription;
+        this.imageUrl = imageUrl;
+        this.imageDescription = imageDescription;
         this.pet = pet;
     }
 
@@ -49,19 +49,19 @@ public class PetImage {
     }
 
     public String getImageUrl() {
-        return ImageUrl;
+        return imageUrl;
     }
 
     public void setImageUrl(String imageUrl) {
-        ImageUrl = imageUrl;
+        this.imageUrl = imageUrl;
     }
 
     public String getImageDescription() {
-        return ImageDescription;
+        return imageDescription;
     }
 
     public void setImageDescription(String imageDescription) {
-        ImageDescription = imageDescription;
+        this.imageDescription = imageDescription;
     }
 
     public boolean isProfilePic() {

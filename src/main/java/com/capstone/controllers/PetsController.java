@@ -99,7 +99,7 @@ public class PetsController {
             Errors validation,
             @RequestParam(name = "filterName") List<String> filterNames,
             @RequestParam(name = "image") List<MultipartFile> uploadedfiles,
-            @RequestParam(name = "imageDescription[]") List<String> ImageDescriptions,
+            @RequestParam(name = "imageDescription[]") List<String> imageDescriptions,
             @RequestParam(name = "profilePic[]") List<Boolean> profilePicture,
             Model model) {
         if (validation.hasErrors()) {
@@ -130,7 +130,7 @@ public class PetsController {
                         long imageID = petImage.getId();
                         PetImage imageAdded = petImageRepository.findById(imageID);
                         uploadedfiles.get(i).transferTo(destinationFile);
-                        imageAdded.setImageDescription(ImageDescriptions.get(i));
+                        imageAdded.setImageDescription(imageDescriptions.get(i));
                         imageAdded.setProfilePic(profilePicture.get(i));
                         petImageRepository.save(imageAdded);
                         model.addAttribute("message", "File successfully uploaded!");
@@ -219,7 +219,7 @@ public class PetsController {
             @PathVariable long id,
             @RequestParam(name = "filterName") List<String> filterNames,
             @RequestParam(name = "image") List<MultipartFile> uploadedfiles,
-            @RequestParam(name = "imageDescription[]") List<String> ImageDescriptions,
+            @RequestParam(name = "imageDescription[]") List<String> imageDescriptions,
             @RequestParam(name = "profilePic[]") List<Boolean> profilePicture,
             @RequestParam(name = "afterAdopt[]") List<Boolean> afterAdopt,
             Model model) {
@@ -256,7 +256,7 @@ public class PetsController {
                         long imageID = petImage.getId();
                         PetImage imageAdded = petImageRepository.findById(imageID);
                         uploadedfiles.get(i).transferTo(destinationFile);
-                        imageAdded.setImageDescription(ImageDescriptions.get(i));
+                        imageAdded.setImageDescription(imageDescriptions.get(i));
                         imageAdded.setProfilePic(profilePicture.get(i));
                         imageAdded.setAfterAdoption(afterAdopt.get(i));
                         petImageRepository.save(imageAdded);

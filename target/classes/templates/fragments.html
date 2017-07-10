@@ -84,17 +84,24 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="age">Pet Age in Years</label>
+        <label for="age">Animal Age in Years</label>
         <input id="age" type="text" size="2" th:field="*{age}"/>
         <div class="alert alert-danger" th:if="${#fields.hasErrors('age')}">
             <p  th:errors="*{age}" />
         </div>
     </div>
     <div class="form-group">
-        <label for="species">Pet Species</label>
+        <label for="species">Animal Species</label>
         <input id="species" type="text" size="20" th:field="*{species}"/>
         <div class="alert alert-danger" th:if="${#fields.hasErrors('species')}">
             <p  th:errors="*{species}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="species">Animal Breed</label>
+        <input id="species" type="text" size="20" th:field="*{breed}"/>
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('breed')}">
+            <p  th:errors="*{breed}" />
         </div>
     </div>
     <div class="form-group">
@@ -102,6 +109,21 @@
         <input type="radio" id="readyToAdopt2" name="readyToAdopt"  th:field="*{readyToAdopt}" value="false" />Not Ready To Adopt<br/>
         <div class="alert alert-danger" th:if="${#fields.hasErrors('readyToAdopt')}">
             <p  th:errors="*{readyToAdopt}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="story">Story</label>
+        <input id="story" type="text" size="500" th:field="*{story}"/>
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('story')}">
+            <p  th:errors="*{story}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="arrivalDate">Date Of Arrival</label>
+        <input id="arrivalDate" type="text" placeholder="MM/DD/YYYY" size="15" th:field="*{arrivalDate}"/>
+        <div class="alert alert-danger" style="display: none" id="arrivalDateWarning"><span>Date Must Be in mm/dd/yyyy format</span></div>
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('arrivalDate')}">
+            <p  th:errors="*{arrivalDate}" />
         </div>
     </div>
     <div class="form-group">
@@ -119,10 +141,11 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="story">Story</label>
-        <input id="story" type="text" size="500" th:field="*{story}"/>
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('story')}">
-            <p  th:errors="*{story}" />
+        <label for="adoptionDate">Date Of Adoption</label>
+        <input id="adoptionDate" type="text" placeholder="MM/DD/YYYY" size="15" th:field="*{adoptionDate}"/>
+        <div class="alert alert-danger" style="display: none" id="adoptionDateWarning"><span>Date Must Be in mm/dd/yyyy format</span></div>
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('adoptionDate')}">
+            <p  th:errors="*{adoptionDate}" />
         </div>
     </div>
     <div class="form-group">

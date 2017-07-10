@@ -14,11 +14,11 @@
                 <p  th:errors="*{id}" />
             </div>
         </div>
-    <div th:include="fragments :: petdata"></div>
+        <div th:include="fragments :: petdata"></div>
 
         <div  th:each="filter : ${filters}">
             <input type="hidden" th:id="@{'petHas'+ ${filter.filterName}}"   value="true"/>
-            </div>
+        </div>
 
         <div class="checkbox">
             <label><input type="checkbox" id="male"  name="filterName" value="male"/>Male</label>
@@ -26,13 +26,21 @@
         <div class="checkbox">
             <label><input type="checkbox" id="female" name="filterName" value="female"/>Female</label>
         </div>
+        <div class="alert alert-danger" style="display: none" id="maleFemaleMustBeOne">
+            <span>You must choose Male or Female</span>
+        </div>
+        <div class="alert alert-danger" style="display: none" id="maleFemaleCantBeBoth">
+            <span>You cannot select both Male and Female</span>
+        </div>
         <div class="checkbox">
             <label><input type="checkbox" id="cat_friendly" name="filterName" value="cat_friendly"/>Cat Friendly</label>
         </div>
         <div class="checkbox">
             <label><input type="checkbox" id="not_cat_friendly" name="filterName" value="not_cat_friendly"/>Not Cat Friendly</label>
         </div>
-
+        <div class="alert alert-danger" style="display: none" id="catsOrNoCats">
+            <span>You cannot select both cat friendly and not cat friendly</span>
+        </div>
         <div class="checkbox">
             <label><input type="checkbox" id="great_with_kids"  name="filterName" value="great_with_kids"/>Great With Kids</label>
         </div>
@@ -51,6 +59,9 @@
         <div class="checkbox">
             <label><input type="checkbox" id="not_dog_friendly" name="filterName" value="not_dog_friendly" />Not Dog Friendly</label>
         </div>
+        <div class="alert alert-danger" style="display: none" id="dogsOrNoDats">
+            <span>You cannot select both good with dogs and not good with dogs</span>
+        </div>
         <div class="checkbox">
             <label><input type="checkbox" id="medical_foster" name="filterName" value="medical_foster"/>Medical Foster</label>
         </div>
@@ -62,38 +73,42 @@
 
         <input type="hidden" th:value="${imageCount}" id="imageCount" />
         <div>
-        <div  class="pet-picture" th:each="petImage : ${imageList.images}">
-          <div>
-            <p><img th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}" /></p>
-             <input type="hidden" name="existingImages" th:value="${petImage.id}"/>
-                <p><input name="imageDescription" size="150" type="text"/>Description of Image</p>
-                <div class="checkbox">
-                    <label><input type="checkbox" class="profilePic" name="profilePic" id="" th:value="${petImage.profilePic}" />Profile Picture</label>
-                    <input type="hidden" value="false" name="profilePic" id="" class="hiddenChecks"/>
+            <div  class="pet-picture" th:each="petImage : ${imageList.images}">
+                <div>
+                    <div class="form-group">
+                        <p><img th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}" /></p>
+                        <input type="hidden" name="existingImages" th:value="${petImage.id}"/>
+                        <p><input name="imageDescription" size="150" th:value="${petImage.imageDescription}" type="text"/>Description of Image</p>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" class="profilePic" name="profilePic" id="" th:value="${petImage.profilePic}" />Profile Picture</label>
+                        <input type="hidden" value="false" name="profilePic" id="" class="hiddenChecks"/>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" class="afterAdopt" id="" name="afterAdoption" th:value="${petImage.afterAdoption}" />Picture After Adoption</label>
+                        <input type="hidden" value="false" name="afterAdopt" id="" class="hiddenChecksAdopt"/>
+                    </div>
                 </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" class="afterAdopt" id="" name="afterAdoption" th:value="${petImage.afterAdoption}" />Picture After Adoption</label>
-                    <input type="hidden" value="false" name="afterAdopt" id="" class="hiddenChecksAdopt"/>
-                </div>
             </div>
-            </div>
-            </div>
-
-        <div id="additionalImages"></div>
+        </div>
 
 
+        <div id="additionalImages">
+
+        </div>
 
         <br/>
 
-        <button class="btn btn-default" value="upload">Save</button>
-
-
+         <button class="btn btn-default" value="upload">Save</button>
     </form>
 </div>
 
-    <div id="imageInput" hidden="hidden">
-        <div><label>Upload an image<input type="file" class="imageInputs" name="image" id="" /></label>
-            <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
+<div id="imageInput" hidden="hidden">
+    <div>
+        <div class="form-group">
+            <div><label>Upload an image<input type="file" class="imageInputs" name="image" id="" /></label>
+                <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
+            </div>
             <div class="checkbox">
                 <label><input type="checkbox" class="profilePic" id=""/>Profile Picture</label>
                 <input type="hidden" value="false" name="profilePic[]" id="" class="hiddenChecks"/>
@@ -104,9 +119,9 @@
             </div>
         </div>
     </div>
-
-<div th:replace="fragments :: scripts"/>
-<script src="/js/editPet.js"></script>
+</div>
+    <div th:replace="fragments :: scripts"/>
+    <script src="/js/editPet.js"></script>
 
 </body>
 </html>
