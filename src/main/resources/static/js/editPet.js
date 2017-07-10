@@ -87,10 +87,8 @@ $(document).ready(function(){
             var newID = "#hiddenCheck" + thatID; // get the id of the hidden fields
             $('.hiddenChecks').val("false"); // make sure everything if false (so just the newly checked is true
             $('.profilePic').val("false");
-            console.log("hiddenchecks false" + $('.hiddenChecks').val());
             $(newID).val("true"); // newly checked is now true
             $(this).val("true");
-            console.log("newid  " + newID + " value "+$(newID).val() );
             $inputs.not(this).prop('disabled',true);  // all other checks for profile pic are disabled until this one is unchecked
         }else{
             $inputs.prop('disabled',false); // if unchecking, make other checkboxes availble again to b selected
