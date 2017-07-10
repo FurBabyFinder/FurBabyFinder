@@ -1,4 +1,4 @@
- target/
+/target
 
 ### STS ###
 .apt_generated
@@ -31,5 +31,4 @@ src/main/resources/static/uploads/img
 
 
 src/main/resources/static/uploads/img
-
 
