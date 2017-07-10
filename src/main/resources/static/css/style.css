@@ -34,15 +34,11 @@ body, html {
 }
 
 
-[class*="col-"]{
-    margin-bottom: -99999px;
-    padding-bottom: 99999px;
-}
+/*[class*="col-"]{*/
+    /*margin-bottom: -99999px;*/
+    /*padding-bottom: 99999px;*/
+/*}*/
 
-.homepage-row-2 {
-    height: 500px;
-    background-color: #DAD2D8;
-}
 
 .dog-homepage {
     object-fit: cover;
@@ -66,17 +62,8 @@ body, html {
     width: 100%;
 }
 
-
-/*#homepage-col-left {*/
-    /*border: 2px solid white;*/
-/*}*/
-
-/*#homepage-col-middle {*/
-    /*border: 2px solid white;*/
-/*}*/
-
-/*#homepage-col-right {*/
-    /*border: 2px solid white;*/
+/*.homepage-container-2 {*/
+    /*background-color: #EDAD2D8;*/
 /*}*/
 
 
@@ -90,6 +77,12 @@ h1 {
 p {
     color: white;
     font-size: 19px;
+}
+
+.howitworks {
+    color: #143642;
+    font-size: 35px;
+    padding-top: 16px;
 }
 
 .vertical-center {
@@ -170,4 +163,65 @@ p {
 
 .form-button {
     margin-top: 10px;
+}
+
+.square {
+    height: 200px;
+    width: 200px;
+    background-color: black;
+}
+
+.number {
+    border: 2px solid black;
+    width: 25%;
+    max-width: 250px;
+    display: inline-block;
+    margin: auto;
+    padding: 20px;
+}
+
+.numbers {
+    height: 300px;
+}
+
+.how-it-works-heading {
+    color: white;
+    border: none;
+    font-size: 35px;
+    padding: 16px
+}
+
+.how-it-works-body {
+    color: white;
+    border: none;
+    padding-right: 16px;
+    padding-left: 16px;
+    margin-bottom: 20px;
+    font-size: 17px;
+}
+
+.how-it-works {
+    padding-top: 90px;
+    padding-bottom: 90px;
+    background-color: #143642;
+}
+
+
+.get-started-btn {
+    margin-top: 26px;
+}
+
+.quote-container {
+    background-color: #EC9A29;
+    color: #143642;
+    padding-top: 90px;
+    padding-bottom: 90px;
+}
+
+blockquote footer {
+    color: #143642;
+}
+
+cite {
+    color: #143642;
 }

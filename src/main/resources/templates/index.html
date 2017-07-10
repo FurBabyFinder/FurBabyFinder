@@ -19,7 +19,7 @@
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 text-center homepage-columns-top" id="homepage-col-middle">
-                <img class="img-responsive dog-homepage text-center" th:src="@{../img/dog-homepage.png}"/>
+            <img class="img-responsive dog-homepage text-center" th:src="@{../img/dog-homepage.png}"/>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4 homepage-columns-top" id="homepage-col-right">
@@ -29,11 +29,87 @@
     </div>
 </div>
 
-<!--<div class="container-fluid homepage-container-2">-->
-<!--<div class="homepage-row-2">-->
-<!--<h2>How It Works</h2>-->
-<!--</div>-->
-<!--</div>-->
+
+<div class="container-fluid text-center how-it-works">
+    <div class="row-fluid">
+        <div class="container">
+            <div class="row flex">
+                <div class="col-sm-3">
+                    <div class="how-it-works-box">
+                        <div class="how-it-works-heading">Search</div>
+                        <div class="how-it-works-body">
+                            The first step in finding your furever friend is to search our extensive database of pets.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="how-it-works-box">
+                        <div class="how-it-works-heading">Meet</div>
+                        <div class="how-it-works-body">
+                            It's just not the same visiting our fur friends from your screen. Schedule a furbaby play date today!
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="how-it-works-box">
+                        <div class="how-it-works-heading">Apply</div>
+                        <div class="how-it-works-body">
+                            We promise not to make you fill out too much paperwork. This is just to make sure your a good fit for your new pet.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="how-it-works-box">
+                        <div class="how-it-works-heading">Adopt</div>
+                        <div class="how-it-works-body">
+                            The moment you and your new pet have both been waiting for. What are you waiting for?
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row text-center">
+            <button class="button-primary get-started-btn"><a href="pets/all" style="color: white">Get Started</a></button>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+<div class="container-fluid text-center quote-container">
+    <div class="row-fluid">
+        <div class="container">
+            <div class="row flex">
+                <div class="col-sm-12">
+                    <div class="quote-box">
+                        <div class="quote">
+                            <blockquote class="blockquote">
+                                <p class="homepage-text mb-0">When you bring a pet into your life, you begin a journey — a journey that will bring you more love and devotion than you have ever known
+                                </p>
+                                <footer class="blockquote-footer">Crystal Ward Kent</footer><cite>The Journey</cite>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center">
+                <button class="button-primary journey-btn"><a href="pets/all" style="color: white">Begin Journey</a></button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
 
 <div th:replace="fragments :: login"/>
 <div th:replace="fragments :: register"/>
