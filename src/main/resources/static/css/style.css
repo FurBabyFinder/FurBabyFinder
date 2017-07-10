@@ -355,3 +355,9 @@ label {
     margin-right: 5px;
     margin-left: 5px;
 }
+
+.icon-hp {
+    margin: 0;
+    color: #0F8B8D;
+    font-size: 48px;
+}
