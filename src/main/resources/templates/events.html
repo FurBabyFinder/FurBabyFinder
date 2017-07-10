@@ -238,148 +238,41 @@ body {
     <div th:replace="fragments :: login"/>
     <div th:replace="fragments :: register"/>
 
-    <div class="container1">
+    <div class="event-container" th:each="event : ${events}" >
         <div class="row">
             <div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ]">
                 <ul class="event-list">
                     <li>
-                        <time datetime="2017-07-14">
-                            <span class="day">14</span>
-                            <span class="month">July</span>
-                            <span class="year">2017</span>
-                            <span class="time">ALL DAY</span>
-                        </time>
+                        <time th:field="${event.date}"/>
 
                         <div class="info">
-                            <h2 class="title">Adoption Event</h2>
-                            <p class="desc">We have an doption event at Petsmart.</p>
-                        </div>
-                        <div class="social">
-                            <ul>
-                                <li class="facebook" style="width:33%;"><a href="https://www.facebook.com/alamocitypitbull/"><span
-                                        class="fa fa-facebook"></span></a></li>
-                                <li class="twitter" style="width:34%;"><a href="http://www.twitter.com/"><span
-                                        class="fa fa-twitter"></span></a></li>
-                                <li class="google-plus" style="width:33%;"><a
-                                        href="https://www.youtube.com"><span
-                                        class="fa fa-youtube-play"></span></a></li>
-                            </ul>
+                            <h2 class="title" th:field="${event.title}" />
+                            <p class="desc" th:field="${event.eventDesc}" />
                         </div>
                     </li>
                     <li class="event-details">
                         <div class="info" style="height:auto">
-                            <p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet assumenda
-                                atque deleniti distinctio dolor doloribus eos ex harum incidunt itaque magni maxime
-                                minima
-                                minus nam nemo neque nesciunt nihil nisi omnis perferendis porro praesentium, quae quam
-                                quisquam quos recusandae repellat sed similique sit soluta sunt tempora vel veritatis
-                                voluptate?</p>
-                        </div>
-                    </li>
-
-                    <li>
-                        <time datetime="2017-07-14 0000">
-                            <span class="day">20</span>
-                            <span class="month">July</span>
-                            <span class="year">2017</span>
-                            <span class="time">7:00 PM</span>
-                        </time>
-                        <div class="info">
-                            <h2 class="title">Lorem ipsum dolor sit amet.</h2>
-                            <p class="desc">Lorem ipsum</p>
+                            <p class="desc" th:field="${event.eventDesc}" />
                             <ul>
-                                <li style="width:50%;"><a href="http://petsmart.com"><span class="fa fa-globe"></span>
+                                <li style="width:100%;"><a th:href="@{events.link}" ><span class="fa fa-globe"></span>
                                     Website</a></li>
-                                <li style="width:50%;"><span class="fa fa-money"></span> Free</li>
+
+                                Street Address:
+                                <li th:field="${event.street1}" />
+                                <br />
+                                Street Address continued:
+                                <li th:field="${event.street2}" />
+                                <br />
+                                City:
+                                <li th:field="${event.city1}" />
+                                <br />
+                                State:
+                                <li th:field="${event.state1}" />
+                                <br />
+                                Zip:
+                                <li th:field="${event.zip1}" />
+                                <br />
                             </ul>
-                        </div>
-                        <div class="social">
-                            <ul>
-                                <li class="facebook" style="width:33%;"><a href="#facebook"><span
-                                        class="fa fa-facebook"></span></a></li>
-                                <li class="twitter" style="width:34%;"><a href="#twitter"><span
-                                        class="fa fa-twitter"></span></a></li>
-                                <li class="google-plus" style="width:33%;"><a href="#google-plus"><span
-                                        class="fa fa-google-plus"></span></a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="event-details">
-                        <div class="info" style="height:auto">
-                            <p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet assumenda
-                                atque deleniti distinctio dolor doloribus eos ex harum incidunt itaque magni maxime
-                                minima
-                                minus nam nemo neque nesciunt nihil nisi omnis perferendis porro praesentium, quae quam
-                                quisquam quos recusandae repellat sed similique sit soluta sunt tempora vel veritatis
-                                voluptate?</p>
-                        </div>
-                    </li>
-                    <time datetime="2017-07-27 2000">
-                        <span class="day">27</span>
-                        <span class="month">July</span>
-                        <span class="year">2017</span>
-                        <span class="time">All Day</span>
-                    </time>
-
-                    <div class="info">
-                        <h2 class="title">Lorem ipsum dolor sit.</h2>
-                        <p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto,
-                            perferendis.</p>
-                    </div>
-                    <div class="social">
-                        <ul>
-                            <li class="facebook" style="width:33%;"><a href="#facebook"><span
-                                    class="fa fa-facebook"></span></a>
-                            </li>
-                            <li class="twitter" style="width:34%;"><a href="#twitter"><span
-                                    class="fa fa-twitter"></span></a></li>
-                            <li class="google-plus" style="width:33%;"><a href="#google-plus"><span
-                                    class="fa fa-google-plus"></span></a></li>
-                        </ul>
-                    </div>
-
-                    <li class="event-details">
-                        <div class="info" style="height:auto">
-                            <p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet assumenda
-                                atque deleniti distinctio dolor doloribus eos ex harum incidunt itaque magni maxime
-                                minima
-                                minus nam nemo neque nesciunt nihil nisi omnis perferendis porro praesentium, quae quam
-                                quisquam quos recusandae repellat sed similique sit soluta sunt tempora vel veritatis
-                                voluptate?</p>
-                        </div>
-                    </li>
-                    <time datetime="2017-08-07 1600">
-                        <span class="day">07</span>
-                        <span class="month">Aug</span>
-                        <span class="year">2017</span>
-                        <span class="time">7:00 PM</span>
-                    </time>
-
-                    <div class="info">
-                        <h2 class="title">Lorem ipsum.</h2>
-                        <p class="desc"> Lorem ipsum dolor sit amet, consectetur.</p>
-
-                    </div>
-                    <div class="social">
-                        <ul>
-                            <li class="facebook" style="width:33%;"><a href="#facebook"><span
-                                    class="fa fa-facebook"></span></a>
-                            </li>
-                            <li class="twitter" style="width:34%;"><a href="#twitter"><span
-                                    class="fa fa-twitter"></span></a></li>
-                            <li class="google-plus" style="width:33%;"><a href="#google-plus"><span
-                                    class="fa fa-google-plus"></span></a></li>
-                        </ul>
-                    </div>
-
-                    <li class="event-details">
-                        <div class="info" style="height:auto">
-                            <p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet assumenda
-                                atque deleniti distinctio dolor doloribus eos ex harum incidunt itaque magni maxime
-                                minima
-                                minus nam nemo neque nesciunt nihil nisi omnis perferendis porro praesentium, quae quam
-                                quisquam quos recusandae repellat sed similique sit soluta sunt tempora vel veritatis
-                                voluptate?</p>
                         </div>
                     </li>
                 </ul>
