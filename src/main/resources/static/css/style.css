@@ -2,6 +2,11 @@ body, html {
     height: 100%;
 }
 
+body{
+    padding-top: 50px;
+    background-color: #DAD2D8;
+}
+
 .navbar {
     margin-bottom: 0;
     background-color: #143642;
@@ -27,7 +32,6 @@ body, html {
 
 .homepage-container-top{
     background-color: #0F8B8D;
-    padding-top: 50px;
 }
 
 
@@ -146,18 +150,32 @@ p {
 }
 
 .pet-container {
-    border: 2px solid black;
-    margin-bottom: 5px;
-    background-color: aliceblue;
+    display: inline-block;
+    margin: 20px 20px 40px 20px;
+    /*background-color: #143642;*/
 }
 
 .container-pet-view {
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #DAD2D8;
+    color: white;
 }
 
 .pet-filter {
-    background-color: aliceblue;
+    background-color: 0F8B8D;
+    color: white;
+    padding-left: 30px;
+}
+
+a {
+    color: #143642;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #143642;
+    text-decoration: underline;
 }
 
 .cursor-hand {
@@ -233,4 +251,36 @@ cite {
 .contact-info {
     color: white;
     font-size: 20px;
+}
+
+.img-thumbnail {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    padding: 4px;
+    line-height: 1.42857143;
+    /*background-color: #fff;*/
+    border: none;
+    border-radius: 0;
+}
+
+.pets-all {
+    display: inline-block;
+}
+
+.img-pet {
+    height: 200px;
+    width: 200px;
+}
+
+.allpets-btn {
+    margin-top: 15px;
+}
+
+h3 {
+    color: #143642;
+}
+
+.checkbox {
+    color: #143642;
 }
