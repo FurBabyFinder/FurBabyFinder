@@ -6,6 +6,7 @@ body, html {
     margin-bottom: 0;
     background-color: #143642;
     border: #143642;
+    margin-bottom:16px;
 }
 .navbar-default .navbar-nav>li>a {
     color: white;
@@ -26,6 +27,7 @@ body, html {
 
 .homepage-container-top{
     background-color: #0F8B8D;
+    padding-top: 50px;
 }
 
 
@@ -116,19 +118,21 @@ p {
 
 
 .footer {
-    margin-top: 8%;
+    margin-top: 50px;
 }
 
 .map {
     height: 150px;
-    width: 100%;
+    width: 150px;
     margin-bottom: 8%;
 }
 
 
-.icon {
-    height: 50px;
-    width: 50px;
+
+
+.fa {
+    padding:20px;
+    margin-bottom: 50px;
 }
 
 
@@ -138,7 +142,7 @@ p {
 }
 
 .footer-row {
-    background-color: antiquewhite;
+    background-color: #0F8B8D;
 }
 
 .pet-container {
@@ -224,4 +228,9 @@ blockquote footer {
 
 cite {
     color: #143642;
+}
+
+.contact-info {
+    color: white;
+    font-size: 20px;
 }
