@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head th:replace="fragments :: head('View Pet')" />
+<head th:replace="fragments :: head('View User')" />
 <body>
 <nav th:replace="fragments :: navbar" />
 
@@ -9,7 +9,7 @@
     <div class="jumbotron">
 
         <p><h4>ID: <span th:text="${user.id}"></span></h4></p>
-        <p><a th:href="@{'/users/update/'+ ${user.id}}" id="updateUser" style="text-decoration: none"><h2>Name:  <span th:text="${user.firstName}"></span><span> </span><span th:text="${user.lastName}"></span></h2></a></p>
+        <p><h2>Name:  <span th:text="${user.firstName}"></span><span> </span><span th:text="${user.lastName}"></span></h2></p>
         <p><h4>Username: <span th:text="${user.username}"></span></h4></p>
         <p><h4>Email: <span th:text="${user.email}"></span></h4></p>
         <p><h4>Street Address 1 <span th:text="${user.streetAdd1}"></span></h4></p>
@@ -19,9 +19,18 @@
         <p><h4>Zip <span th:text="${user.zip}"></span></h4></p>
         <p><h4>Main Phone  <span th:text="${user.mainPhone}"></span></h4></p>
         <p><h4>Alternate Phone  <span th:text="${user.altPhone}"></span></h4></p>
-
-
-    </div>
+        <div>
+        <p><h4>Roles</h4></p>
+        <div th:if="${roles != null}">
+            <div class="row">
+            <div class="col-sm-2" th:each="role : ${roles}">
+                    <p><h4><span th:text="${role.role}"></span></h4></p>
+        </div>
+            </div>
+                </div>
+        </div>
+        <button><a th:href="@{'/users/update/'+ ${user.id}}" id="updateUser" style="text-decoration: none">Update User</a></button>
+                </div>
 
         <!--<div th:if="${user.getPets().size() > 0 }" class="col-sm-10">-->
     <!-- <p>   =================================================================  </p>-->

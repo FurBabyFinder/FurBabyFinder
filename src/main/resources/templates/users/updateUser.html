@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:include="fragments :: head ('Edit User Record')" />
 <body>
-<!--<nav th:replace="fragments :: navbar" />-->
+<nav th:replace="fragments :: navbar" />
 <div class="container">
     <div class="jumbotron">
         <form th:action="${'/users/update/'+user.id}" method="post" th:object="${user}">
@@ -84,10 +84,25 @@
                     <p  th:errors="*{altPhone}" />
                 </div>
             </div>
-            <button class="btn btn-default" value="upload">Save</button>
-        </form>
-    </div>
+
+        <div>
+            <p><h4>Roles</h4></p>
+            <div th:if="${roles != null}">
+                <div class="row">
+                    <div class="col-md-3" th:each="role : ${roles}">
+                        <p><h4><span th:text="${role.role}"></span></h4></p>
+                     <label>Remove Role<input type="checkbox" class="roleIds" th:value="${role.id}"/></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <input type="hidden" value="" id="deleteRolesIds" name="deleteRolesIds"/>
+    <button class="btn btn-default" value="upload">Save</button>
+    </form>
+        </div>
 </div>
 <div th:replace="fragments :: scripts"/>
+<script src="/js/updateUser.js"></script>
 </body>
 </html>
