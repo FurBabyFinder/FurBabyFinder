@@ -5,23 +5,36 @@
 <body>
 <nav th:replace="fragments :: navbar"/>
 
+
+<div class="container-fluid">
+    <div class="row row-header">
+
+        <div class="col-sm-12">
+            <div class="text-center footer footer-contact">
+                <h1 th:text="${pet.name}"></h1>
+                <h4>Adopt of foster now</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="fluid-container">
-    <div class="row jumbotron">
-        <div class="col-xs-4 text-center">
+    <div class="row row-individual-pet">
+        <div class="col-xs-12 col-md-4 text-center">
 
             <div th:each="petImage : ${pet.getImages()}">
-                <img class="single-pet" th:alt="${petImage.imageDescription}"
+                <img class="single-pet img-responsive text-center" th:alt="${petImage.imageDescription}"
                      th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}"/>
             </div>
 
         </div>
 
-        <div class="col-xs-4 single-pets-info">
-            <h2 th:text="${pet.name}"></h2>
-            <p><h4>Info: <span th:text="${pet.story}"></span></h4></p>
+        <div class="col-xs-12 col-md-4 single-pets-info">
+            <!--<h2 th:text="${pet.name}"></h2>-->
+            <h4>Info: <span th:text="${pet.story}"></span></h4>
             <p><h4>Breed: <span th:text="${pet.breed}"></span></h4></p>
             <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
-            <p><h4>Date of Arrival <span th:text="${pet.arrivalDate}"></span></h4></p>
+            <p><h4>Date of Arrival: <span th:text="${pet.arrivalDate}"></span></h4></p>
             <p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>
             <p th:if="${foster != null }"><h4>Foster ID <span th:text="${foster.id}"></span></h4></p>
             <p th:if="${foster != null }"><h4>Foster Name <span th:text="${foster.firstName}"></span> <span
@@ -29,28 +42,26 @@
             <p th:if="${adopter != null }"><h4>Adopter ID <span th:text="${adopter.id}"></span></h4></p>
             <p th:if="${adopter != null }"><h4>Adopter Name <span th:text="${adopter.firstName}"></span> <span
                 th:text="${adopter.lastName}"></span></h4></p>
-            <p><h4>Adoption Date <span th:text="${pet.adoptionDate}"></span></h4></p>
+            <p><h4>Adoption Date: <span th:text="${pet.adoptionDate}"></span></h4></p>
 
 
         </div>
 
 
-        <div class="col-xs-4 text-center">
+        <div class="col-xs-12 col-md-4 text-center">
+            <div>
             
-            <button class="button-primary journey-btn"><a href="pets/all" style="color: white">Begin Journey</a>
+            <button class="button-primary"><a href="/adoptionForm" style="color: white">Adopt</a>
             </button>
 
-            <button class="button-primary journey-btn"><a href="pets/all" style="color: white">Begin Journey</a>
+            <button class="button-primary"><a href="/fosterForm" style="color: white">Foster</a>
             </button>
 
-            <button class="button-primary journey-btn"><a href="pets/all" style="color: white">Begin Journey</a>
+            <button class="button-secondary" id="searchFiltered"><a style="text-decoration: none; color: white"
+                                                                th:href="@{'/pets/' + ${pet.id}+ '/edit'}">Edit</a>
             </button>
 
-            <div class="btn btn-primary" id="searchFiltered"><a style="text-decoration: none; color: white"
-                                                                th:href="@{'/pets/' + ${pet.id}+ '/edit'}">Edit this
-                pet</a>
             </div>
-
         </div>
 
     </div>
