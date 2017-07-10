@@ -4,7 +4,6 @@ body, html {
 
 body{
     padding-top: 50px;
-    background-color: #DAD2D8;
 }
 
 .navbar {
@@ -281,6 +280,24 @@ h3 {
     color: #143642;
 }
 
+h2 {
+    margin-top: 0;
+}
+
 .checkbox {
     color: #143642;
+}
+
+.jumbotron {
+    margin-bottom: 0;
+}
+
+.single-pet {
+    object-fit: cover;
+    height:300px;
+    width:300px;
+}
+
+.single-pets-info {
+    /*padding-right: 50px;*/
 }
