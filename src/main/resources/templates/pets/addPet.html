@@ -5,126 +5,117 @@
 <body>
 <nav th:replace="fragments :: navbar" />
 <div class="container">
-    <form action="/pets/addPet" method="post" th:object="${pet}" enctype="multipart/form-data">
-        <div th:include="fragments :: petdata"></div>
+    <div class="jumbotron">
+        <form action="/pets/addPet" method="post" th:object="${pet}" enctype="multipart/form-data">
+            <div th:include="fragments :: petdata"></div>
 
 
-        <div class="checkbox">
-            <label><input type="checkbox" id="male"  name="filterName" value="male"/>Male</label>
-        </div>
-        <div class="checkbox">
-            <label><input type="checkbox" id="female" name="filterName" value="female"/>Female</label>
-        </div>
-        <div class="checkbox">
-            <label><input type="checkbox" id="cat_friendly" name="filterName" value="cat_friendly"/>Cat Friendly</label>
-        </div>
-        <div class="checkbox">
-            <label><input type="checkbox" id="not_cat_friendly" name="filterName" value="not_cat_friendly"/>Not Cat Friendly</label>
-        </div>
-
-        <div class="checkbox">
-            <label><input type="checkbox" id="great_with_kids"  name="filterName" value="great_with_kids"/>Great With Kids</label>
-        </div>
-        <div class="checkbox">
-            <label><input type="checkbox" id="neuterd_spayed" name="filterName" value="neuterd_spayed"/>Neutered/Spayed</label>
-        </div>
-        <div class="checkbox">
-            <label><input type="checkbox" id="potty_trained" name="filterName" value="potty_trained"/>Potty Trained</label>
-        </div>
-        <div class="checkbox">
-            <label><input type="checkbox" id="crate_trained" name="filterName" value="crate_trained"/>Crate Trained</label>
-        </div>
-        <div class="checkbox">
-            <label><input type="checkbox" id="great_with_dogs" name="filterName" value="great_with_dogs"/>Great With Dogs</label>
-        </div>
-        <div class="checkbox">
-            <label><input type="checkbox" id="not_dog_friendly" name="filterName" value="not_dog_friendly" />Not Dog Friendly</label>
-        </div>
-        <div class="checkbox">
-            <label><input type="checkbox" id="medical_foster" name="filterName" value="medical_foster"/>Medical Foster</label>
-        </div>
-        <div class="checkbox">
-            <label><input type="checkbox" id="microchipped" name="filterName" value="microchipped"/>Microchipped</label>
-        </div>
-
-
-        <div><label>Upload an image<input type="file" name="image" id="image1" /></label>
-            <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
             <div class="checkbox">
-                <label><input type="checkbox" class="profilePic" id="profilePic1" />Profile Picture</label>
-                <input type="hidden" value="false" name="profilePic[]" id="hiddenCheck1" class="hiddenChecks"/>
+                <label><input type="checkbox" id="male"  name="filterName" value="male"/>Male</label>
             </div>
-        </div>
-
-        <div><label>Upload an image<input type="file" name="image" id="image2" /></label>
-            <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
             <div class="checkbox">
-                <label><input type="checkbox" class="profilePic" id="profilePic2" />Profile Picture</label>
-                <input type="hidden" value="false" name="profilePic[]" id="hiddenCheck2" class="hiddenChecks"/>
+                <label><input type="checkbox" id="female" name="filterName" value="female"/>Female</label>
             </div>
-        </div>
-
-        <div><label>Upload an image<input type="file" name="image" id="image3" /></label>
-            <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
+            <div class="alert alert-danger" style="display: none" id="maleFemaleMustBeOne">
+                <span>You must choose Male or Female</span>
+            </div>
+            <div class="alert alert-danger" style="display: none" id="maleFemaleCantBeBoth">
+                <span>You cannot select both Male and Female</span>
+            </div>
             <div class="checkbox">
-                <label><input type="checkbox" class="profilePic" id="profilePic3"/>Profile Picture</label>
-                <input type="hidden" value="false" name="profilePic[]" id="hiddenCheck3" class="hiddenChecks"/>
+                <label><input type="checkbox" id="cat_friendly" name="filterName" value="cat_friendly"/>Cat Friendly</label>
             </div>
-        </div>
-
-        <div><label>Upload an image<input type="file" name="image" id="image4" /></label>
-            <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
             <div class="checkbox">
-                <label><input type="checkbox" class="profilePic" id="profilePic4" />Profile Picture</label>
-                <input type="hidden" value="false" name="profilePic[]" id="hiddenCheck4" class="hiddenChecks"/>
+                <label><input type="checkbox" id="not_cat_friendly" name="filterName" value="not_cat_friendly"/>Not Cat Friendly</label>
             </div>
-        </div>
-
-        <div><label>Upload an image<input type="file" name="image" id="image5" /></label>
-            <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
+            <div class="alert alert-danger" style="display: none" id="catsOrNoCats">
+                <span>You cannot select both cat friendly and not cat friendly</span>
+            </div>
             <div class="checkbox">
-                <label><input type="checkbox" class="profilePic" id="profilePic5" />Profile Picture</label>
-                <input type="hidden" value="false" name="profilePic[]" id="hiddenCheck5" class="hiddenChecks"/>
+                <label><input type="checkbox" id="great_with_kids"  name="filterName" value="great_with_kids"/>Great With Kids</label>
             </div>
-        </div>
-
-        <div><label>Upload an image<input type="file" name="image" id="image6" /></label>
-            <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
             <div class="checkbox">
-                <label><input type="checkbox" class="profilePic" id="profilePic6"/>Profile Picture</label>
-                <input type="hidden" value="false" name="profilePic[]" id="hiddenCheck6" class="hiddenChecks"/>
+                <label><input type="checkbox" id="neuterd_spayed" name="filterName" value="neuterd_spayed"/>Neutered/Spayed</label>
             </div>
-        </div>
+            <div class="checkbox">
+                <label><input type="checkbox" id="potty_trained" name="filterName" value="potty_trained"/>Potty Trained</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" id="crate_trained" name="filterName" value="crate_trained"/>Crate Trained</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" id="great_with_dogs" name="filterName" value="great_with_dogs"/>Great With Dogs</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" id="not_dog_friendly" name="filterName" value="not_dog_friendly" />Not Dog Friendly</label>
+            </div>
+            <div class="alert alert-danger" style="display: none" id="dogsOrNoDats">
+                <span>You cannot select both good with dogs and not good with dogs</span>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" id="medical_foster" name="filterName" value="medical_foster"/>Medical Foster</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" id="microchipped" name="filterName" value="microchipped"/>Microchipped</label>
+            </div>
 
-        <br/>
 
-        <button class="btn btn-default" value="upload">Save</button>
+            <div><label>Upload an image<input type="file" name="image" id="image1" /></label>
+                <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
+                <div class="checkbox">
+                    <label><input type="checkbox" class="profilePic" id="profilePic1" />Profile Picture</label>
+                    <input type="hidden" value="false" name="profilePic[]" id="hiddenCheck1" class="hiddenChecks"/>
+                </div>
+            </div>
 
-    </form>
+            <div><label>Upload an image<input type="file" name="image" id="image2" /></label>
+                <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
+                <div class="checkbox">
+                    <label><input type="checkbox" class="profilePic" id="profilePic2" />Profile Picture</label>
+                    <input type="hidden" value="false" name="profilePic[]" id="hiddenCheck2" class="hiddenChecks"/>
+                </div>
+            </div>
+
+            <div><label>Upload an image<input type="file" name="image" id="image3" /></label>
+                <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
+                <div class="checkbox">
+                    <label><input type="checkbox" class="profilePic" id="profilePic3"/>Profile Picture</label>
+                    <input type="hidden" value="false" name="profilePic[]" id="hiddenCheck3" class="hiddenChecks"/>
+                </div>
+            </div>
+
+            <div><label>Upload an image<input type="file" name="image" id="image4" /></label>
+                <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
+                <div class="checkbox">
+                    <label><input type="checkbox" class="profilePic" id="profilePic4" />Profile Picture</label>
+                    <input type="hidden" value="false" name="profilePic[]" id="hiddenCheck4" class="hiddenChecks"/>
+                </div>
+            </div>
+
+            <div><label>Upload an image<input type="file" name="image" id="image5" /></label>
+                <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
+                <div class="checkbox">
+                    <label><input type="checkbox" class="profilePic" id="profilePic5" />Profile Picture</label>
+                    <input type="hidden" value="false" name="profilePic[]" id="hiddenCheck5" class="hiddenChecks"/>
+                </div>
+            </div>
+
+            <div><label>Upload an image<input type="file" name="image" id="image6" /></label>
+                <p><input name="imageDescription[]" size="150" type="text"/>Description of Image</p>
+                <div class="checkbox">
+                    <label><input type="checkbox" class="profilePic" id="profilePic6"/>Profile Picture</label>
+                    <input type="hidden" value="false" name="profilePic[]" id="hiddenCheck6" class="hiddenChecks"/>
+                </div>
+            </div>
+
+            <br/>
+
+            <button id="saveButton" class="btn btn-default" value="upload">Save</button>
+
+        </form>
+    </div>
 </div>
 <div th:replace="fragments :: scripts"/>
-<script>
-    $(document).ready(function(){
-
-
-        $('.profilePic').click(function(){
-            var $inputs = $('.profilePic');
-            if($(this).is(':checked')){
-                var thatID = $(this).attr('id');
-                 thatID = thatID.substr(-1);
-                 var newID = "#hiddenCheck" + thatID;
-                 $(newID).val("true");
-                $inputs.not(this).prop('disabled',true);
-            }else{
-                $inputs.prop('disabled',false);
-                $('.hiddenChecks').val("false");
-            }
-        });
-
-
-
-    });
-
-</script>
+<script src="/js/addPet.js"></script>
 </body>
 </html>
