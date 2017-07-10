@@ -10,6 +10,7 @@ import com.capstone.repositories.FilterRepository;
 import com.capstone.repositories.PetImageRepository;
 import com.capstone.repositories.PetsRepository;
 import com.capstone.repositories.UsersRepository;
+import com.capstone.svcs.PetDTO;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -195,16 +196,16 @@ public class PetsController {
     public String showEditForm(@PathVariable long id, Model model) {
         Pet pet = petsRepository.findById(id);
         List <Filter> petsFilters = pet.getFilters();
-        ImageList imageList = new ImageList();
         List<PetImage> petsImages = pet.getImages();
-        for(PetImage image: petsImages){
-            imageList.add(image);
-        }
+//        for(PetImage image: petsImages){
+//            petsImages.add(image);
+//        }
         int numberImages = petsImages.size();
-        model.addAttribute("pet", pet);
+        PetDTO petDTO = new PetDTO(pet, petsImages);
+//        model.addAttribute("pet", pet);
         model.addAttribute("filters", petsFilters);
 //        model.addAttribute("images", petsImages);
-        model.addAttribute("imageList", imageList);
+        model.addAttribute("petDTO", petDTO);
         model.addAttribute("imageCount", numberImages);
         model.addAttribute("list", petsRepository.findSpecies());
 
@@ -213,8 +214,9 @@ public class PetsController {
 
     @PostMapping("/pets/{id}/edit")
     public String editPet(
-            @ModelAttribute Pet pet,
-            @ModelAttribute("imageList") ImageList imageList,
+//            @ModelAttribute Pet pet,
+//            @ModelAttribute("imageList") ImageList imageList,
+            @ModelAttribute ("petDTO") PetDTO petDTO,
             Errors validation,
             @PathVariable long id,
             @RequestParam(name = "filterName") List<String> filterNames,
@@ -225,23 +227,36 @@ public class PetsController {
             Model model) {
         if (validation.hasErrors()) {
             model.addAttribute("errors", validation);
-            model.addAttribute("pet", pet);
+            model.addAttribute("pet", petDTO.getPet());
             return "pets/edit";
         } else {
             List<Filter> filters = new ArrayList<>();
             for (String name : filterNames) {
                 filters.add(filterRepository.findByFilterName(name));
             }
+            System.out.println(petDTO.getPet().getName());
+            Pet pet = petDTO.getPet();
+             List<PetImage> imageList = petDTO.getImageList();
             pet.setId(id);
             pet.setFiltersPets(filters);
-            List<PetImage> petImageList = imageList.getImages();
-            System.out.println(imageList.getImages());
-            for(PetImage image : petImageList){
+
+            System.out.println(imageList);
+
+            petsRepository.save(pet);
+            for(PetImage image : imageList){
                 System.out.println(image.getId());
+                image.setId(id);
+                String d = image.getImageDescription();
+                System.out.println(image.getImageDescription());
+                boolean p = image.isProfilePic();
+                boolean a = image.isAfterAdoption();
+                image.setImageDescription(d);
+                image.setProfilePic(p);
+                image.setAfterAdoption(a);
                 petImageRepository.save(image);
             }
 
-            petsRepository.save(pet);
+
             for (int i = 0; i < uploadedfiles.size(); i++) {
                 if (!uploadedfiles.get(i).isEmpty()) {
                     String filename = uploadedfiles.get(i).getOriginalFilename().replace(" ", "_");
@@ -267,7 +282,7 @@ public class PetsController {
                     }
                 }
             }
-            return "redirect:/pets/all";
+            return "redirect:/pets/pet" + id;
         }
     }
 

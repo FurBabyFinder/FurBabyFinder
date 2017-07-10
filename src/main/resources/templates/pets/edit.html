@@ -5,16 +5,92 @@
 <body>
 <nav th:replace="fragments :: navbar" />
 <div class="container">
-    <form th:action="${'/pets/'+pet.id+'/edit'}" method="post" th:object="${pet}" enctype="multipart/form-data"  modelAttribute="imageList">
+    <form th:action="${'/pets/'+petDTO.pet.id+'/edit'}" method="post" th:object="${petDTO}" enctype="multipart/form-data"  modelAttribute="imageList">
 
         <div class="form-group">
             <label for="name">Pet System ID</label>
-            <input id="name" type="text" size="20" th:field="*{id}"/>
-            <div class="alert alert-danger" th:if="${#fields.hasErrors('name')}">
-                <p  th:errors="*{id}" />
-            </div>
+            <input id="name" type="text" size="20" th:field="*{pet.id}"/>
         </div>
-        <div th:include="fragments :: petdata"></div>
+        <div class="form-group">
+            <label for="name">Pet Name</label>
+            <input id="name" type="text" size="20" th:field="*{pet.name}"/>
+            <!--<div class="alert alert-danger" th:if="${#fields.hasErrors('name')}">-->
+                <!--<p  th:errors="*{name}" />-->
+            <!--</div>-->
+        </div>
+        <div class="form-group">
+            <label for="age">Animal Age in Years</label>
+            <input id="age" type="text" size="2" th:field="*{pet.age}"/>
+            <!--<div class="alert alert-danger" th:if="${#fields.hasErrors('age')}">-->
+                <!--<p  th:errors="*{age}" />-->
+            <!--</div>-->
+        </div>
+        <div class="form-group">
+            <label for="species">Animal Species</label>
+            <input id="species" type="text" size="20" th:field="*{pet.species}"/>
+            <!--<div class="alert alert-danger" th:if="${#fields.hasErrors('species')}">-->
+                <!--<p  th:errors="*{species}" />-->
+            <!--</div>-->
+        </div>
+        <div class="form-group">
+            <label for="species">Animal Breed</label>
+            <input id="species" type="text" size="20" th:field="*{pet.breed}"/>
+            <!--<div class="alert alert-danger" th:if="${#fields.hasErrors('breed')}">-->
+                <!--<p  th:errors="*{breed}" />-->
+            <!--</div>-->
+        </div>
+        <div class="form-group">
+            <input type="radio" id="readyToAdopt1" name="readyToAdopt" th:field="*{pet.readyToAdopt}" value="true" />Ready To Adopt<br/>
+            <input type="radio" id="readyToAdopt2" name="readyToAdopt"  th:field="*{pet.readyToAdopt}" value="false" />Not Ready To Adopt<br/>
+            <!--<div class="alert alert-danger" th:if="${#fields.hasErrors('readyToAdopt')}">-->
+                <!--<p  th:errors="*{readyToAdopt}" />-->
+            <!--</div>-->
+        </div>
+        <div class="form-group">
+            <label for="story">Story</label>
+            <input id="story" type="text" size="500" th:field="*{pet.story}"/>
+            <!--<div class="alert alert-danger" th:if="${#fields.hasErrors('story')}">-->
+                <!--<p  th:errors="*{story}" />-->
+            <!--</div>-->
+        </div>
+        <div class="form-group">
+            <label for="arrivalDate">Date Of Arrival</label>
+            <input id="arrivalDate" type="text" placeholder="MM/DD/YYYY" size="15" th:field="*{pet.arrivalDate}"/>
+            <div class="alert alert-danger" style="display: none" id="arrivalDateWarning"><span>Date Must Be in mm/dd/yyyy format</span></div>
+            <!--<div class="alert alert-danger" th:if="${#fields.hasErrors('arrivalDate')}">-->
+                <!--<p  th:errors="*{arrivalDate}" />-->
+            <!--</div>-->
+        </div>
+        <div class="form-group">
+            <label for="foster">ID Number of Foster</label>
+            <input id="foster" type="text" size="20" th:field="*{pet.foster}"/>
+            <!--<div class="alert alert-danger" th:if="${#fields.hasErrors('foster')}">-->
+                <!--<p  th:errors="*{foster}" />-->
+            <!--</div>-->
+        </div>
+        <div class="form-group">
+            <label for="adopter">ID Number of Adopting Person/Family</label>
+            <input id="adopter" type="text" size="20" th:field="*{pet.adopter}"/>
+            <!--<div class="alert alert-danger" th:if="${#fields.hasErrors('adopter')}">-->
+                <!--<p  th:errors="*{adopter}" />-->
+            <!--</div>-->
+        </div>
+        <div class="form-group">
+            <label for="adoptionDate">Date Of Adoption</label>
+            <input id="adoptionDate" type="text" placeholder="MM/DD/YYYY" size="15" th:field="*{pet.adoptionDate}"/>
+            <div class="alert alert-danger" style="display: none" id="adoptionDateWarning"><span>Date Must Be in mm/dd/yyyy format</span></div>
+            <!--<div class="alert alert-danger" th:if="${#fields.hasErrors('adoptionDate')}">-->
+                <!--<p  th:errors="*{adoptionDate}" />-->
+            <!--</div>-->
+        </div>
+        <div class="form-group">
+            <label for="privateNotes">Notes for Employees and Fosters Only</label>
+            <input id="privateNotes" type="text" size="500" th:field="*{pet.privateNotes}"/>
+            <!--<div class="alert alert-danger" th:if="${#fields.hasErrors('privateNotes')}">-->
+                <!--<p  th:errors="*{privateNotes}" />-->
+            <!--</div>-->
+        </div>
+
 
         <div  th:each="filter : ${filters}">
             <input type="hidden" th:id="@{'petHas'+ ${filter.filterName}}"   value="true"/>
@@ -73,25 +149,29 @@
 
         <input type="hidden" th:value="${imageCount}" id="imageCount" />
         <div>
-            <div  class="pet-picture" th:each="petImage : ${imageList.images}">
+            <div  class="pet-picture" th:each="petImage, status : ${petDTO.imageList}">
                 <div>
                     <div class="form-group">
                         <p><img th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}" /></p>
-                        <input type="hidden" name="existingImages" th:value="${petImage.id}"/>
-                        <p><input name="imageDescription" size="150" th:value="${petImage.imageDescription}" type="text"/>Description of Image</p>
+                        <input type="hidden" th:field="*{imageList[__${status.index}__].imageUrl}"/>
+                        <input type="hidden" th:field="*{imageList[__${status.index}__].id}" th:value="${petImage.id}"/>
+                        <p><input th:field="*{imageList[__${status.index}__].imageDescription}" size="150" type="text"/>Description of Image</p>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" class="profilePic" name="profilePic" id="" th:value="${petImage.profilePic}" />Profile Picture</label>
+                        <label><input type="checkbox" class="profilePic" th:field="*{imageList[__${status.index}__].profilePic}"  id=""  />Profile Picture</label>
+                        <!--<input type="hidden" class="profilePicHidden" name="profilePic"  id="" th:value="${petImage.profilePic}" />-->
                         <input type="hidden" value="false" name="profilePic" id="" class="hiddenChecks"/>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox" class="afterAdopt" id="" name="afterAdoption" th:value="${petImage.afterAdoption}" />Picture After Adoption</label>
+                        <label><input type="checkbox" class="afterAdopt" id="" th:field="*{imageList[__${status.index}__].afterAdoption}"  />Picture After Adoption</label>
+                        <!--<input type="hidden" class="afterAdoptHidden" id="" name="afterAdopttion" th:value="${petImage.afterAdoption}" />-->
                         <input type="hidden" value="false" name="afterAdopt" id="" class="hiddenChecksAdopt"/>
                     </div>
+                    <!--<div th:text="${petDTO.imageList.add(petImage)}"></div>-->
                 </div>
             </div>
         </div>
-
+        th:value="${petImage.imageDescription}"   th:value="${petImage.profilePic}" th:value="${petImage.afterAdoption}"
 
         <div id="additionalImages">
 

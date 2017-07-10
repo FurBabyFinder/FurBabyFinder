@@ -32,30 +32,46 @@ $(document).ready(function(){
     updateIds('.hiddenChecksAdopt', 'hiddenCheckAdopt');
     updateIds('.imageInputs', 'image');
     updateIds('.profilePic', 'profilePic');
+    updateIds('.profilePicHidden', 'profilePicHidden');
     updateIds('.afterAdopt', 'afterAdopt');
+    updateIds('.afterAdoptHidden', 'afterAdoptHidden');
 
 // ======================================check checkboxes for existing images if profile or after adoption ============
-    (function checkTheProfile() {
+//     (function checkTheProfile() {
 
-      $('.profilePic').each(function(){
-           var trueOrNot = $(this).val();
-          if(trueOrNot == "true"){
-              $(this).attr('checked', true);
-          }
-      })
-
-    })();
-
-    (function checkAfterAdopt() {
-
-        $('.afterAdopt').each(function(){
-            var trueOrNot = $(this).val();
-            if(trueOrNot == "true"){
-                $(this).attr('checked', true);
-            }
-        })
-
-    })();
+    //   $('.profilePicHidden').each(function(){
+    //        var trueOrNot = $(this).val();
+    //       var currentID = $(this).attr('id');
+    //       console.log(currentID);
+    //       var idEndingNumber = currentID.slice(15,2);
+    //       console.log("ending num "+ idEndingNumber);
+    //       currentID = currentID.slice(0, 10);
+    //       currentID = "#"+currentID+idEndingNumber;
+    //       console.log(currentID);
+    //       if(trueOrNot == "true"){
+    //           $(currentID).attr('checked', true);
+    //       }
+    //   })
+    //
+    // })();
+    //
+    // (function checkAfterAdopt() {
+    //
+    //     $('.afterAdoptHidden').each(function(){
+    //         var trueOrNot = $(this).val();
+    //         var currentID = $(this).attr('id');
+    //         console.log(currentID);
+    //         var idEndingNumber = currentID.slice(15,2);
+    //         console.log("ending num "+ idEndingNumber);
+    //         currentID = currentID.slice(0, 10);
+    //         currentID = "#"+currentID+idEndingNumber;
+    //         console.log(currentID);
+    //         if(trueOrNot == "true"){
+    //             $(currentID).attr('checked', true);
+    //         }
+    //     })
+    //
+    // })();
 
 
 
@@ -70,11 +86,16 @@ $(document).ready(function(){
             thatID = thatID.substr(-1);
             var newID = "#hiddenCheck" + thatID; // get the id of the hidden fields
             $('.hiddenChecks').val("false"); // make sure everything if false (so just the newly checked is true
+            $('.profilePic').val("false");
+            console.log("hiddenchecks false" + $('.hiddenChecks').val());
             $(newID).val("true"); // newly checked is now true
+            $(this).val("true");
+            console.log("newid  " + newID + " value "+$(newID).val() );
             $inputs.not(this).prop('disabled',true);  // all other checks for profile pic are disabled until this one is unchecked
         }else{
             $inputs.prop('disabled',false); // if unchecking, make other checkboxes availble again to b selected
             $('.hiddenChecks').val("false");
+            $('.profilePic').val("false");
         }
     });
 

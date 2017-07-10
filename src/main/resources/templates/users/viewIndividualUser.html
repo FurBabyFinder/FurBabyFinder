@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments :: head('View Pet')" />
+<body>
+<nav th:replace="fragments :: navbar" />
+
+<div class="container">
+    <div class="jumbotron">
+
+        <p><h4>ID: <span th:text="${user.id}"></span></h4></p>
+        <p><a th:href="@{'/users/update/'+ ${user.id}}" id="updateUser" style="text-decoration: none"><h2>Name:  <span th:text="${user.firstName}"></span><span> </span><span th:text="${user.lastName}"></span></h2></a></p>
+        <p><h4>Username: <span th:text="${user.username}"></span></h4></p>
+        <p><h4>Email: <span th:text="${user.email}"></span></h4></p>
+        <p><h4>Street Address 1 <span th:text="${user.streetAdd1}"></span></h4></p>
+        <p><h4>Street Address 2 <span th:text="${user.streetAdd2}"></span></h4></p>
+        <p><h4>City <span th:text="${user.city}"></span></h4></p>
+        <p><h4>State <span th:text="${user.state}"></span></h4></p>
+        <p><h4>Zip <span th:text="${user.zip}"></span></h4></p>
+        <p><h4>Main Phone  <span th:text="${user.mainPhone}"></span></h4></p>
+        <p><h4>Alternate Phone  <span th:text="${user.altPhone}"></span></h4></p>
+
+
+    </div>
+
+        <!--<div th:if="${user.getPets().size() > 0 }" class="col-sm-10">-->
+    <!-- <p>   =================================================================  </p>-->
+            <!--<h2>Favorited Animals</h2>-->
+    <!--  <p>   =================================================================  </p>-->
+            <!--<div class="pet-container" th:each="pet : ${user.getpets()}">-->
+                <!--<div class="row">-->
+                    <!--<div class="col-sm-3 pet-picture" th:if="${pet.getImages().size() > 0}">-->
+                        <!--<div th:each="petImage : ${pet.getImages()}">-->
+                            <!--<div th:if="${petImage.profilePic} == true">-->
+                                <!--<img class="img-thumbnail" th:alt="${petImage.ImageDescription}" th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}"/>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-sm-9 pet-info">-->
+                        <!--<h2>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet" style="text-decoration: none"><span th:text="${pet.name}"></span></a></h2>-->
+                        <!--<p><h4>Info: <span th:text="${pet.story}"></span></h4></p>-->
+                        <!--<p><h4>Age <span th:text="${pet.age}"></span></h4></p>-->
+                        <!--<p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <div th:if="${fosteredPets.size() > 0}" class="col-sm-10">
+            <p>   =================================================================  </p>
+            <h2>Fostered Animals</h2>
+            <p>   =================================================================  </p>
+            <div class="pet-container" th:each="pet : ${fosteredPets}">
+                <div class="row">
+                    <div class="col-sm-3 pet-picture" th:if="${pet.getImages().size() > 0}">
+                        <div th:each="petImage : ${pet.getImages()}">
+                            <div th:if="${petImage.profilePic} == true">
+                                <img class="img-thumbnail" th:alt="${petImage.ImageDescription}" th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-9 pet-info">
+                        <h2>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet" style="text-decoration: none"><span th:text="${pet.name}"></span></a></h2>
+                        <p><h4>Info: <span th:text="${pet.story}"></span></h4></p>
+                        <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
+                        <p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div th:if="${adoptedPets.size() > 0}" class="col-sm-10">
+            <p>   =================================================================  </p>
+            <h2>Adopted Animals</h2>
+            <p>   =================================================================  </p>
+            <div class="pet-container" th:each="pet : ${adoptedPets}">
+                <div class="row">
+                    <div class="col-sm-3 pet-picture" th:if="${pet.getImages().size() > 0}">
+                        <div th:each="petImage : ${pet.getImages()}">
+                            <div th:if="${petImage.profilePic} == true">
+                                <img class="img-thumbnail" th:alt="${petImage.ImageDescription}" th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-9 pet-info">
+                        <h2>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet" style="text-decoration: none"><span th:text="${pet.name}"></span></a></h2>
+                        <p><h4>Info: <span th:text="${pet.story}"></span></h4></p>
+                        <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
+                        <p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+</div>
+<script src="http://code.jquery.com/jquery-2.2.4.min.js"  crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
