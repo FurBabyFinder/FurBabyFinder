@@ -1,47 +1,80 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head th:replace="fragments :: head('Find by Foster/Adopter')" />
+<head th:replace="fragments :: head('Find by Foster/Adopter')"/>
 <body>
-<nav th:replace="fragments :: navbar" />
+<nav th:replace="fragments :: navbar"/>
 
 
-<div class="container">
-    <div class="jumbotron">
-        <div class="checkbox">
-            <label><input type="checkbox" id="readyToAdoptOnly" value="ready"/>Only Ready To Adopt (Foster Search)</label>
+<div class="container-fluid">
+    <div class="row row-header">
+
+        <div class="col-sm-12">
+            <div class="text-center footer footer-contact">
+                <h1>Login</h1>
+                <h4>So you can have more options!</h4>
+            </div>
         </div>
-
-        <div class="checkbox">
-            <label><input type="checkbox" id="excludedAdopted" name="excludeAdopted" value="exclude"/>Exclude Adopted Former Guest (Foster Search)</label>
-            <input type="hidden" value="on" name="_excludeAdopted"/>
-        </div>
+    </div>
+</div>
 
 
-        <input type="radio" id="adopter" name="userType"  value="adopter" />Search By Adopter<br/>
-        <input type="radio" id="foster" name="userType"  value="foster" />Search By Foster<br/>
+<div class="container-fluid pet-by-user-container">
+    <div class="row">
+        <div class="col-sm-12">
+            <form class="form-horizontal form-group">
 
 
-        <p>
-            <lable><input id="userID" type="text" size="15" name="userID"/>Search by ID</lable>
-        </p>
-        <p>
-            <lable><input id="userFirstName" type="text" size="30" name="userFirstName"/>Search First Name</lable>
-        </p>
-        <p>
-            <lable><input id="userLastName" type="text" size="30" name="userLastName"/>Search Last Name</lable>
-        </p>
-        <div class="btn btn-primary" id="searchUser">Search</div>
 
-        <div style="display: none" id="warningMessageNotBoth" class="alert alert-danger alert-dismissible" role="alert">
-            <strong>Please search by ID or Name, but not both at the same time. </strong>
-        </div>
+                    <label for="readyToAdoptOnly" class="control-label">Only Ready To Adopt (FosterSearch)</label>
+                    <input class="form-control" type="checkbox" id="readyToAdoptOnly"
+                           value="ready"/>
 
-        <div style="display: none" id="warningMessageChooseUser" class="alert alert-danger alert-dismissible" role="alert">
-            <strong>Please Select Foster or Adopter for Search</strong>
-        </div>
-        <div style="display: none" id="warningMessageReadyExclude" class="alert alert-danger alert-dismissible" role="alert">
-            <strong>Ready to Adopt and Exlucde Adopted are for Foster searches only</strong>
+
+                    <label for="excludedAdopted" class="control-label">ExcludeAdopted Former Guest (Foster Search)</label>
+                    <input class="form-control" type="checkbox" id="excludedAdopted"
+                           name="excludeAdopted" value="exclude"/>
+                    <input class="form-control" type="hidden" value="on" name="_excludeAdopted"/>
+
+
+                <label for="adopter" class="control-label">Search By Adopter</label>
+                <input class="form-control" type="radio" id="adopter" name="userType" value="adopter"/>
+
+                <label for="foster" class="control-label">Search By Foster</label>
+                <input class="form-control" type="radio" id="foster" name="userType" value="foster"/>
+
+
+                <label for="userID" class="control-label">Search by ID</label>
+                <input class="form-control" id="userID" type="text" size="15"
+                       name="userID"/>
+
+
+                <label for="userFirstName" class="control-label">Search First Name</label>
+                <input class="form-control" id="userFirstName" type="text" size="30"
+                       name="userFirstName"/>
+
+
+                <label for="userLastName" class="control-label">Search Last Name</label>
+                <input class="form-control" id="userLastName" type="text" size="30"
+                       name="userLastName"/>
+
+                <div class="btn btn-default" id="searchUser">Search</div>
+
+                <div style="display: none" id="warningMessageNotBoth" class="alert alert-danger alert-dismissible"
+                     role="alert">
+                    <strong>Please search by ID or Name, but not both at the same time. </strong>
+                </div>
+
+                <div style="display: none" id="warningMessageChooseUser" class="alert alert-danger alert-dismissible"
+                     role="alert">
+                    <strong>Please Select Foster or Adopter for Search</strong>
+                </div>
+                <div style="display: none" id="warningMessageReadyExclude" class="alert alert-danger alert-dismissible"
+                     role="alert">
+                    <strong>Ready to Adopt and Exlucde Adopted are for Foster searches only</strong>
+                </div>
+
+            </form>
         </div>
     </div>
 </div>
