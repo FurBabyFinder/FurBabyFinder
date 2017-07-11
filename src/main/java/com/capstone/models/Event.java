@@ -56,7 +56,8 @@ public class Event {
     @JsonManagedReference
     private User owner;
 
-    public Event(String title, String imageLoc, String eventDesc, String link, String date, String street1, String street2, String city1, String state1, String zip1){
+    public Event(Long id,  String title, String imageLoc, String eventDesc, String link, String date, String street1, String street2, String city1, String state1, String zip1){
+        this.id = id;
         this.title = title;
         this.imageLoc = imageLoc;
         this.eventDesc = eventDesc;

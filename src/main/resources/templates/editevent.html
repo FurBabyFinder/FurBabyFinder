@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments :: head('Events')"/>
+<body>
+<ul>
+    <nav th:replace="fragments :: navbar"/>
+
+
+    <div th:replace="fragments :: login"/>
+    <div th:replace="fragments :: register"/>
+
+    <div class="container">
+        <form th:action="@{/events/edit}" th:method="post" th:object="${event}">
+            Title:
+            <input th:field="*{title}" />
+            <br />
+            Date:
+            <input placeholder="MM/DD/YYYY" th:field="*{date}" />
+            <br />
+            Description:
+            <input th:field="*{eventDesc}" />
+            <br />
+            Link:
+            <input th:field="*{link}" />
+            <br />
+            Street Address:
+            <input th:field="*{street1}" />
+            <br />
+            Street Address continued:
+            <input th:field="*{street2}" />
+            <br />
+            City:
+            <input th:field="*{city1}" />
+            <br />
+            State:
+            <input th:field="*{state1}" />
+            <br />
+            Zip:
+            <input th:field="*{zip1}" />
+            <br />
+            <div><label>Upload an image<input type="file" name="imageLoc" id="eventImage" /></label>
+            </div>
+            <br />
+            <input type="submit" />
+            <input type="hidden" th:field="*{id}" />
+        </form>
+    </div>
+
+    <div th:replace="fragments :: footer"/>
+    <div th:replace="fragments :: scripts"/>
+</ul>
+</body>
+</html>
