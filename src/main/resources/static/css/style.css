@@ -406,3 +406,12 @@ h2 {
 .form-control {
     background-color: #DAD2D8;
 }
+
+
+.search-user-container {
+    padding: 50px;
+}
+
+#searchUser {
+    margin-top: 10px;
+}
