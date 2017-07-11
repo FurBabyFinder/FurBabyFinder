@@ -11,10 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,7 +111,10 @@ PetsRepository petsRepository;
                             @PathVariable long id ){
         User user = usersDao.findOne(id);
         List<UserRole> roles = userRolesRepository.findAllByUserId(id);
+        List<String> allRoles = userRolesRepository.findAllRoles();
+
         model.addAttribute("roles", roles);
+        model.addAttribute("allRoles", allRoles);
         model.addAttribute("list", petsRepository.findSpecies());
         model.addAttribute("user", user);
         return "users/updateUser";
@@ -125,13 +125,15 @@ PetsRepository petsRepository;
                                   @PathVariable long id,
                                   @ModelAttribute User user,
                                   @ModelAttribute("deleteRolesIds") String deleteRolesIds,
-                                  Errors validation){
+                                  Errors validation,
+                                  @RequestParam(name = "addRolesNames") String addRolesNames
+                                  ){
         if (validation.hasErrors()) {
             model.addAttribute("errors", validation);
             model.addAttribute("user", user);
             return "users/updateUser";
         } else {
-            System.out.println(deleteRolesIds);
+
             if(!deleteRolesIds.equals("")) {
                 String[] stringArray = deleteRolesIds.split(",");
                 int[] intIdsArray = new int[stringArray.length];
@@ -142,8 +144,14 @@ PetsRepository petsRepository;
                 ;
                 for (long removeID : intIdsArray) {
                     UserRole deleteRole = userRolesRepository.findOne(removeID);
-                    System.out.println(deleteRole);
                     userRolesRepository.delete(deleteRole);
+                }
+            }
+            if(!addRolesNames.equals("")) {
+                String[] stringArray = addRolesNames.split(",");
+                for (String add : stringArray) {
+                    UserRole addRole = new UserRole(id,add);
+                    userRolesRepository.save(addRole);
                 }
             }
             User userPassword = usersDao.findOne(id);

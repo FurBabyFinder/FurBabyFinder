@@ -2,6 +2,7 @@ package com.capstone.repositories;
 
 import com.capstone.models.User;
 import com.capstone.models.UserRole;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -12,6 +13,9 @@ import java.util.List;
 public interface UserRolesRepository extends CrudRepository<UserRole, Long>{
 
     public List<User> findAllByRole(String role);
+
+    @Query("SELECT r.role From UserRole r group by r.role")
+    public List<String> findAllRoles();
 
     public List<UserRole> findAllByUserId(long id);
 
