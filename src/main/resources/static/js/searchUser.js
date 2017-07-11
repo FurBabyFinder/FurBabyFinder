@@ -11,12 +11,16 @@ $("#searchUser").click(function() {
     }
     function hideWarnings() {
         $('#warningMessageNotBoth').css("display", "none");
+        $('#warningMessageNumeric').css("display", "none");
     }
 
     if (userID != "") {
-
+        if(!($.isNumeric(userID))){
+            $('#warningMessageNumeric').css("display", "inline-block");
+        }
+        else{
         window.location.href = "/users/searchID/" + userID;
-        hideWarnings();
+        hideWarnings();}
     }
     else if (userFirstName != "") {
         window.location.href = "/users/" + userFirstName + "/searchName/none";

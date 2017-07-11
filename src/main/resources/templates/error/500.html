@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head('Unexpected Error')"/>
+<body>
+<nav th:replace="fragments :: navbar"/>
+<div class="containter">
+    <div class="jumbotron">
+        <h2>There was an unexpected error (type=Internal Server Error, status=500)</h2>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center ">
+            <img class="img-responsive text-center" style="margin-left: 60%; margin-top: 15%" th:src="@{/img/pug500.jpg}"/>
+        </div>
+    </div></div>
+<div th:replace="fragments :: login"/>
+<div th:replace="fragments :: register"/>
+<div th:replace="fragments :: scripts"/>
+</body>
+</html>

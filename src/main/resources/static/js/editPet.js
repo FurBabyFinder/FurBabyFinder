@@ -35,6 +35,8 @@ $(document).ready(function(){
     updateIds('.profilePicHidden', 'profilePicHidden');
     updateIds('.afterAdopt', 'afterAdopt');
     updateIds('.afterAdoptHidden', 'afterAdoptHidden');
+    updateIds('existImg', 'existImg');
+    updateIds('imageInputs', 'imageInputs');
 
 // ======================================check checkboxes for existing images if profile or after adoption ============
 //     (function checkTheProfile() {
@@ -114,8 +116,32 @@ $(document).ready(function(){
         }
     });
 
+    function replaceImages(){
+        var i = 1
+        $(".imageInputs").each(function(){
+           var file = $(this).val();
+            var replaceID = "#existImg" + i;
+            i++
+            console.log(replaceID);
+            console.log(file);
+            if(file != "" && file != null){
+                var pass = document.createElement('input');
+                pass.type = 'password';
+                document.body.appendChild(pass);
+                pass.type = 'text';
+                pass.value = 'Password';
+                console.log($(replaceID).attr("type") + " type");
+                $(replaceID).val(file);
+            }
+        });
+    }
 
-    // ===========check which filters the pet already has and check them ====================
+    // <input type="hidden existImg" id="" th:field="*{imageList[__${status.index}__].imageUrl}"/>
+    //     <input type="hidden" th:field="*{imageList[__${status.index}__].id}" th:value="${petImage.id}"/>
+    //     <label>Upload a new image<input type="file" class="imageInputs" name="image" id="" /></label>
+
+
+        // ===========check which filters the pet already has and check them ====================
 
     function checkFiltersPetHas (filterName){
         var hiddenID = "#petHas" + filterName;
@@ -204,6 +230,11 @@ $(document).ready(function(){
 
         if(adoptdateGoodOrNot==false || arrivaldateGoodOrNot == false || maleFemaleChecksGoodOrNot ==false || catsGoodOrNot == false || dogsGoodOrNot == false) {
             event.preventDefault();
+        }
+        else {
+            event.preventDefault();
+            replaceImages();
+            this.submit();
         }
     }
 

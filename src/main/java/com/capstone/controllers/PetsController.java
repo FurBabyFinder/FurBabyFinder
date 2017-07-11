@@ -221,10 +221,11 @@ public class PetsController {
             @PathVariable long id,
             @RequestParam(name = "filterName") List<String> filterNames,
             @RequestParam(name = "image") List<MultipartFile> uploadedfiles,
+            @RequestParam(name = "imageReplace") List<MultipartFile> replacefiles,
             @RequestParam(name = "imageDescription[]") List<String> imageDescriptions,
             @RequestParam(name = "profilePic[]") List<Boolean> profilePicture,
             @RequestParam(name = "afterAdopt[]") List<Boolean> afterAdopt,
-            Model model) {
+            Model model) throws IOException {
         if (validation.hasErrors()) {
             model.addAttribute("errors", validation);
             model.addAttribute("pet", petDTO.getPet());
@@ -240,10 +241,24 @@ public class PetsController {
             pet.setId(id);
             pet.setFiltersPets(filters);
 
-            System.out.println(imageList);
 
             petsRepository.save(pet);
+            for(int i = 0; i < imageList.size(); i++){
+                System.out.println(replacefiles.get(i).getOriginalFilename());
+                if (!replacefiles.get(i).getOriginalFilename().equals("")){
+
+                    String filename = replacefiles.get(i).getOriginalFilename().replace(" ", "_");
+                    filename = id + filename;
+                    String filepath = Paths.get(uploadPath, filename).toString();
+                    File destinationFile = new File(filepath);
+                    imageList.get(i).setImageUrl(filename);
+                    System.out.println(imageList.get(i).getImageUrl() + " current url");
+                    System.out.println(filename);
+                    replacefiles.get(i).transferTo(destinationFile);
+                }
+            }
             for(PetImage image : imageList){
+                String url = image.getImageUrl();
                 System.out.println(image.getId());
                 image.setId(id);
                 String d = image.getImageDescription();
@@ -253,6 +268,7 @@ public class PetsController {
                 image.setImageDescription(d);
                 image.setProfilePic(p);
                 image.setAfterAdoption(a);
+                image.setImageUrl(url);
                 petImageRepository.save(image);
             }
 

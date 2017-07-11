@@ -40,7 +40,8 @@ PetsRepository petsRepository;
 
 
     @PostMapping("register")
-    public String saveUser(@ModelAttribute User user){
+    public String saveUser(@ModelAttribute User user,
+                           Model model){
 
 //        THIS IS THE ENCODED VERSION WE NEED TO PUT BACK IN LATER
 //        user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -50,6 +51,7 @@ PetsRepository petsRepository;
         usersDao.save(user);
 
         UserRole userRole = new UserRole(user.getId(), "basic");
+        model.addAttribute("list", petsRepository.findSpecies());
         userRolesRepository.save(userRole);
         //Create a default user role for the new user
 
@@ -130,16 +132,19 @@ PetsRepository petsRepository;
             return "users/updateUser";
         } else {
             System.out.println(deleteRolesIds);
-            String[] stringArray = deleteRolesIds.split(",");
-            int[] intIdsArray = new int[stringArray.length];
-           for(int i=0; i < stringArray.length; i++){
-               String numberAsString = stringArray[i];
-               intIdsArray[i] = Integer.parseInt(numberAsString);
-            };
-            for (long removeID : intIdsArray) {
-                UserRole deleteRole = userRolesRepository.findOne(removeID);
-                System.out.println(deleteRole);
-                userRolesRepository.delete(deleteRole);
+            if(!deleteRolesIds.equals("")) {
+                String[] stringArray = deleteRolesIds.split(",");
+                int[] intIdsArray = new int[stringArray.length];
+                for (int i = 0; i < stringArray.length; i++) {
+                    String numberAsString = stringArray[i];
+                    intIdsArray[i] = Integer.parseInt(numberAsString);
+                }
+                ;
+                for (long removeID : intIdsArray) {
+                    UserRole deleteRole = userRolesRepository.findOne(removeID);
+                    System.out.println(deleteRole);
+                    userRolesRepository.delete(deleteRole);
+                }
             }
             User userPassword = usersDao.findOne(id);
             String password = userPassword.getPassword();
