@@ -361,3 +361,38 @@ label {
     color: #0F8B8D;
     font-size: 48px;
 }
+
+
+.how-it-works-content {
+    color: #143642;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.how-it-works-row {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.foster-row {
+    background-color: white;
+    color: #143642;
+}
+
+.foster-content {
+    color: #143642;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.foster-p {
+    font-size: 19px;
+    color: #143642;
+}
+
+.login-row {
+    background-color: #143642;
+    color: white;
+    padding-top: 200px;
+    padding-bottom: 200px;
+}
