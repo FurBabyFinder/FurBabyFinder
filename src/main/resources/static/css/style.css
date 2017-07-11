@@ -389,3 +389,10 @@ label {
     font-size: 19px;
     color: #143642;
 }
+
+.login-row {
+    background-color: #143642;
+    color: white;
+    padding-top: 200px;
+    padding-bottom: 200px;
+}
