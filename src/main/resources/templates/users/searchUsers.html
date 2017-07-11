@@ -1,28 +1,47 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments :: head('Search User')" />
+<head th:replace="fragments :: head('Search User')"/>
 <body>
-<nav th:replace="fragments :: navbar" />
+<nav th:replace="fragments :: navbar"/>
 
-<div class="container">
-    <div class="jumbotron">
-        <h3>Search Users</h3>
-        <p>
-            <lable><input id="userID" type="text" size="15" name="userID"/>Search by ID</lable>
-        </p>
-        <p>
-            <lable><input id="userFirstName" type="text" size="30" name="userFirstName"/>Search First Name</lable>
-        </p>
-        <p>
-            <lable><input id="userLastName" type="text" size="30" name="userLastName"/>Search Last Name</lable>
-        </p>
-        <div class="btn btn-primary" id="searchUser">Search</div>
 
-        <div style="display: none" id="warningMessageNotBoth" class="alert alert-danger alert-dismissible" role="alert">
-            <strong>Please search by ID or Name, but not both at the same time. </strong>
+<div class="container-fluid">
+    <div class="row row-header">
+
+        <div class="col-sm-12">
+            <div class="text-center footer footer-contact">
+                <h1>Search For Users</h1>
+                <h4>You have the power!</h4>
+            </div>
         </div>
-        <div style="display: none" id="warningMessageNumeric" class="alert alert-danger alert-dismissible" role="alert">
-            <strong>ID must be numeric</strong>
+    </div>
+</div>
+
+<div class="container-fluid search-user-container">
+    <div class="row">
+        <div class="col-sm-12">
+            <form class="form-horizontal">
+
+                <div class="form-group">
+                    <label class="control-label" for="userID">Search by ID</label>
+                    <input class="form-control" id="userID" type="text" size="15" name="userID"/>
+                    <label class="control-label" for="userFirstName">Search First Name</label>
+                    <input class="form-control" id="userFirstName" type="text" size="30" name="userFirstName"/>
+
+                    <label class="control-label" for="userLastName">Search Last Name</label>
+                    <input class="form-control" id="userLastName" type="text" size="30" name="userLastName"/>
+                    <div class="btn btn-default" id="searchUser">Search</div>
+
+                    <div style="display: none" id="warningMessageNotBoth" class="alert alert-danger alert-dismissible"
+                         role="alert">
+                        <strong>Please search by ID or Name, but not both at the same time. </strong>
+                    </div>
+                    <div style="display: none" id="warningMessageNumeric" class="alert alert-danger alert-dismissible"
+                         role="alert">
+                        <strong>ID must be numeric</strong>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -36,7 +55,8 @@
 
             <div class="col-sm-9 pet-info">
                 <h2>Name: <a th:href="@{'/users/user/'+ ${user.id}}" id="viewUser" style="text-decoration: none">
-                    <span th:text="${user.firstName}"></span><span> </span> <span th:text="${user.lastName}"></span> </a></h2>
+                    <span th:text="${user.firstName}"></span><span> </span> <span th:text="${user.lastName}"></span>
+                </a></h2>
 
                 <p><h4>Email <span th:text="${user.email}"></span></h4></p>
 
