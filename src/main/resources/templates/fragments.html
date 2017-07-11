@@ -67,55 +67,55 @@
     </div><!-- /.container-fluid -->
 </nav>
 
-
+<div class="form-group">
 <div th:fragment="petdata">
     <div class="form-group">
-        <label for="name">Pet Name</label>
-        <input id="name" type="text" size="20" th:field="*{name}"/>
+        <label class="control-label" for="name">Pet Name</label>
+        <input class="form-control" id="name" type="text" size="20" th:field="*{name}"/>
         <div class="alert alert-danger" th:if="${#fields.hasErrors('name')}">
             <p th:errors="*{name}"/>
         </div>
     </div>
     <div class="form-group">
-        <label for="age">Animal Age in Years</label>
-        <input id="age" type="text" size="2" th:field="*{age}"/>
+        <label class="control-label" for="age">Animal Age in Years</label>
+        <input class="form-control" id="age" type="text" size="2" th:field="*{age}"/>
         <div class="alert alert-danger" th:if="${#fields.hasErrors('age')}">
             <p th:errors="*{age}"/>
         </div>
     </div>
     <div class="form-group">
-        <label for="species">Animal Species</label>
-        <input id="species" type="text" size="20" th:field="*{species}"/>
+        <label class="control-label" for="species">Animal Species</label>
+        <input class="form-control" id="species" type="text" size="20" th:field="*{species}"/>
         <div class="alert alert-danger" th:if="${#fields.hasErrors('species')}">
             <p th:errors="*{species}"/>
         </div>
     </div>
     <div class="form-group">
-        <label for="species">Animal Breed</label>
-        <input id="species" type="text" size="20" th:field="*{breed}"/>
+        <label class="control-label" for="species">Animal Breed</label>
+        <input class="form-control" id="species" type="text" size="20" th:field="*{breed}"/>
         <div class="alert alert-danger" th:if="${#fields.hasErrors('breed')}">
             <p th:errors="*{breed}"/>
         </div>
     </div>
     <div class="form-group">
-        <input type="radio" id="readyToAdopt1" name="readyToAdopt" th:field="*{readyToAdopt}" value="true"/>Ready To
+        <input class="form-control" type="radio" id="readyToAdopt1" name="readyToAdopt" th:field="*{readyToAdopt}" value="true"/>Ready To
         Adopt<br/>
-        <input type="radio" id="readyToAdopt2" name="readyToAdopt" th:field="*{readyToAdopt}" value="false"/>Not Ready
+        <input class="form-control" type="radio" id="readyToAdopt2" name="readyToAdopt" th:field="*{readyToAdopt}" value="false"/>Not Ready
         To Adopt<br/>
         <div class="alert alert-danger" th:if="${#fields.hasErrors('readyToAdopt')}">
             <p th:errors="*{readyToAdopt}"/>
         </div>
     </div>
     <div class="form-group">
-        <label for="story">Story</label>
-        <input id="story" type="text" size="500" th:field="*{story}"/>
+        <label class="control-label" for="story">Story</label>
+        <input class="form-control" id="story" type="text" size="500" th:field="*{story}"/>
         <div class="alert alert-danger" th:if="${#fields.hasErrors('story')}">
             <p th:errors="*{story}"/>
         </div>
     </div>
     <div class="form-group">
-        <label for="arrivalDate">Date Of Arrival</label>
-        <input id="arrivalDate" type="text" placeholder="MM/DD/YYYY" size="15" th:field="*{arrivalDate}"/>
+        <label class="control-label" for="arrivalDate">Date Of Arrival</label>
+        <input class="form-control" id="arrivalDate" type="text" placeholder="MM/DD/YYYY" size="15" th:field="*{arrivalDate}"/>
         <div class="alert alert-danger" style="display: none" id="arrivalDateWarning"><span>Date Must Be in mm/dd/yyyy format</span>
         </div>
         <div class="alert alert-danger" th:if="${#fields.hasErrors('arrivalDate')}">
@@ -123,22 +123,22 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="foster">ID Number of Foster</label>
-        <input id="foster" type="text" size="20" th:field="*{foster}"/>
+        <label class="control-label" for="foster">ID Number of Foster</label>
+        <input class="form-control" id="foster" type="text" size="20" th:field="*{foster}"/>
         <div class="alert alert-danger" th:if="${#fields.hasErrors('foster')}">
             <p th:errors="*{foster}"/>
         </div>
     </div>
     <div class="form-group">
-        <label for="adopter">ID Number of Adopting Person/Family</label>
-        <input id="adopter" type="text" size="20" th:field="*{adopter}"/>
+        <label class="control-label" for="adopter">ID Number of Adopting Person/Family</label>
+        <input clas="form-control" class="form-control" id="adopter" type="text" size="20" th:field="*{adopter}"/>
         <div class="alert alert-danger" th:if="${#fields.hasErrors('adopter')}">
             <p th:errors="*{adopter}"/>
         </div>
     </div>
     <div class="form-group">
-        <label for="adoptionDate">Date Of Adoption</label>
-        <input id="adoptionDate" type="text" placeholder="MM/DD/YYYY" size="15" th:field="*{adoptionDate}"/>
+        <label class="control-label" for="adoptionDate">Date Of Adoption</label>
+        <input class="form-control" id="adoptionDate" type="text" placeholder="MM/DD/YYYY" size="15" th:field="*{adoptionDate}"/>
         <div class="alert alert-danger" style="display: none" id="adoptionDateWarning"><span>Date Must Be in mm/dd/yyyy format</span>
         </div>
         <div class="alert alert-danger" th:if="${#fields.hasErrors('adoptionDate')}">
@@ -146,8 +146,8 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="privateNotes">Notes for Employees and Fosters Only</label>
-        <input id="privateNotes" type="text" size="500" th:field="*{privateNotes}"/>
+        <label class="control-label" for="privateNotes">Notes for Employees and Fosters Only</label>
+        <input class="form-control" id="privateNotes" type="text" size="500" th:field="*{privateNotes}"/>
         <div class="alert alert-danger" th:if="${#fields.hasErrors('privateNotes')}">
             <p th:errors="*{privateNotes}"/>
         </div>
@@ -155,7 +155,7 @@
 
 
 </div>
-
+</div>
 <footer th:fragment="footer" class="">
     <div class="row footer-row">
 
