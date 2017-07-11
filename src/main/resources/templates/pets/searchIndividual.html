@@ -1,25 +1,47 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head th:replace="fragments :: head('Find Guest Animal')" />
+<head th:replace="fragments :: head('Find Guest Animal')"/>
 <body>
-<nav th:replace="fragments :: navbar" />
+<nav th:replace="fragments :: navbar"/>
 
 
-<div class="container">
+<div class="container-fluid">
+    <div class="row row-header">
 
-    <p>
-        <lable><input id="petID" type="text" size="15" name="petID"/>Search by ID</lable>
-    </p>
-    <p>
-        <lable><input id="petName" type="text" size="30" name="petName"/>Search by Name</lable>
-    </p>
-    <div class="btn btn-primary" id="searchIndividual">Search</div>
-</div>
-<div style="display: none" id="warningMessage" class="alert alert-danger alert-dismissible" role="alert">
-    <strong>Please search by ID or Name, but not both at the same time. </strong>
+        <div class="col-sm-12">
+            <div class="text-center footer footer-contact">
+                <h1>Add A Fur Baby Here</h1>
+                <h4>Let's get them in the database so we can get them into a home.</h4>
+            </div>
+        </div>
+    </div>
 </div>
 
+
+<div class="container-fluid one-pet-container">
+    <div class="row">
+        <div class="col-sm-12">
+            <form class="form-group">
+
+            <label for="petID" class="control-label">Search by ID</label>
+            <input class="form-control" id="petID" type="text" size="15" name="petID"/>
+
+
+            <label for="petName" class="control-label">Search by Name</label>
+            <input class="form-control" id="petName" type="text" size="30" name="petName"/>
+
+
+            <div class="btn btn-default" id="searchIndividual">Search</div>
+
+            <div style="display: none" id="warningMessage" class="alert alert-danger alert-dismissible" role="alert">
+                <strong>Please search by ID or Name, but not both at the same time. </strong>
+            </div>
+
+            </form>
+        </div>
+    </div>
+</div>
 
 <div class="col-sm-10">
     <div class="pet-container" th:each="pet : ${pets}">

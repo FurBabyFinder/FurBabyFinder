@@ -336,10 +336,10 @@ h2 {
     display:inline-block;
 }
 
-label {
-    margin-right: 5px;
-    margin-left: 5px;
-}
+/*label {*/
+    /*margin-right: 5px;*/
+    /*margin-left: 5px;*/
+/*}*/
 
 .filter-button {
 
@@ -395,4 +395,35 @@ label {
     color: white;
     padding-top: 200px;
     padding-bottom: 200px;
+}
+
+
+.add-pet-container {
+    padding:50px;
+}
+
+
+.form-control {
+    background-color: #DAD2D8;
+}
+
+
+.search-user-container {
+    padding: 50px;
+}
+
+#searchUser {
+    margin-top: 10px;
+}
+
+#searchIndividual {
+    margin-top: 10px;
+}
+
+.one-pet-container {
+    padding:50px;
+}
+
+.pet-by-user-container {
+    padding:50px;
 }
