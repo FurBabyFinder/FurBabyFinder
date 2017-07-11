@@ -85,22 +85,34 @@
                 </div>
             </div>
 
-        <div>
-            <p><h4>Roles</h4></p>
-            <div th:if="${roles != null}">
-                <div class="row">
-                    <div class="col-md-3" th:each="role : ${roles}">
-                        <p><h4><span th:text="${role.role}"></span></h4></p>
-                     <label>Remove Role<input type="checkbox" class="roleIds" th:value="${role.id}"/></label>
+            <div class="row rolesRow">
+                <div class="col-md-8">
+                    <p><h4>Current Roles</h4></p>
+                    <div th:if="${roles != null}">
+                        <div class="row">
+                            <div class="col-md-3" th:each="role : ${roles}">
+                                <p><h4><span class="hasRoles" th:text="${role.role}"></span></h4></p>
+                                <label>Remove Role<input type="checkbox" class="roleIds" th:value="${role.id}"/></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <input type="hidden"  th:value="${allRoles}" id="allRolesList"/>
+                    <p><h4 id="h4">Add Roles</h4></p>
+                    <div id="target"  th:each="role : ${allRoles}" class="hideAddRoles" >
+                        <div id="jsutcheckdiv" class="checkbox">
+                            <label id="label"><input class="addRoleChecks" type="checkbox" id=""  name="role" th:value="${role}"/><span class="addRoles"  th:text="${role}"></span></label>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-    <input type="hidden" value="" id="deleteRolesIds" name="deleteRolesIds"/>
-    <button class="btn btn-default" value="upload">Save</button>
-    </form>
-        </div>
+            <input type="hidden" value="" id="deleteRolesIds" name="deleteRolesIds"/>
+            <input type="hidden" value="" id="addRolesNames" name="addRolesNames"/>
+            <button class="btn btn-default" value="upload">Save</button>
+        </form>
+    </div>
 </div>
 <div th:replace="fragments :: scripts"/>
 <script src="/js/updateUser.js"></script>
