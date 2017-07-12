@@ -18,14 +18,51 @@
     </div>
 </div>
 
+
 <div class="fluid-container">
     <div class="row row-individual-pet">
         <div class="col-xs-12 col-md-4 text-center">
 
             <div th:each="petImage : ${pet.getImages()}">
-                <img class="single-pet img-responsive text-center" th:alt="${petImage.imageDescription}"
-                     th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}"/>
+                <div th:if="${petImage.profilePic} == true">
+                    <img class="img-pet" th:alt="${petImage.ImageDescription}"
+                         th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}"/>
+                </div>
+
+                <!-- Button trigger modal -->
+                <button class="button-primary font-white" data-toggle="modal" data-target="#modalLong">More Pictures
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="modalLong" tabindex="-1" role="dialog" aria-labelledby="modalLongTitle"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalLongTitle">Title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+
+                                <div th:each="petImage : ${pet.getImages()}">
+                                    <img class="single-pet img-responsive text-center"
+                                         th:alt="${petImage.imageDescription}"
+                                         th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}"/>
+                                </div>
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
 
         </div>
 
@@ -50,16 +87,16 @@
 
         <div class="col-xs-12 col-md-4 text-center">
             <div>
-            
-            <button class="button-primary"><a href="/adoptionForm" style="color: white">Adopt</a>
-            </button>
 
-            <button class="button-primary"><a href="/fosterForm" style="color: white">Foster</a>
-            </button>
+                <button class="button-primary"><a href="/adoptionForm" style="color: white">Adopt</a>
+                </button>
 
-            <button class="button-secondary" id="searchFiltered"><a style="text-decoration: none; color: white"
-                                                                th:href="@{'/pets/' + ${pet.id}+ '/edit'}">Edit</a>
-            </button>
+                <button class="button-primary"><a href="/fosterForm" style="color: white">Foster</a>
+                </button>
+
+                <button class="button-secondary" id="searchFiltered"><a style="text-decoration: none; color: white"
+                                                                        th:href="@{'/pets/' + ${pet.id}+ '/edit'}">Edit</a>
+                </button>
 
             </div>
         </div>
@@ -72,5 +109,11 @@
 <div th:replace="fragments :: register"/>
 <div th:replace="fragments :: footer"/>
 <div th:replace="fragments :: scripts"/>
+<script src="/js/species.js"></script>
+<script src="/js/petsIndex.js"></script>
+
+
 </body>
 </html>
+
+
