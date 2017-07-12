@@ -1,4 +1,4 @@
-USE furbabies;
+
 
 INSERT INTO users (username, email, password, first_name, last_name, street_add1, street_add2, city, state, zip, main_phone, alt_phone, foster_app_info, adopt_app_info, id)
 VALUES
@@ -124,6 +124,10 @@ INSERT INTO pet_to_image(pet_id, id) VALUES (1, 1),
   (8, 8),
   (9, 9),
   (10, 10);
+
+INSERT INTO events(id, city1, event_desc, image_loc, link, state1, street1, street2, title, zip1, owner_id, date) VALUES
+  (1, "San Antonio" , "We are so excited for you to join us this Saturday at Petsmart." , "map-placeholder.jpg" , "http://facebook.com" , "Texas" , "123 Codeup Way" , "Suite 350" , "Adoption Event" , "78249" , 3, "07/15/17");
+(2, "San Antonio" , "" , "map-placeholder.jpg" , "http://facebook.com" , "Texas" , "120 Codeup Way" , "Suite 300" , "Adoption Event" , "78229" , 3, "07/20/17");
 
 
 
