@@ -169,7 +169,7 @@
                                 <input type="hidden" th:field="*{imageList[__${status.index}__].imageUrl}" />
                                 <input type="hidden" th:field="*{imageList[__${status.index}__].id}" th:value="${petImage.id}"/>
                                 <label>Upload a new image<input type="file" class="imageInputs" name="imageReplace" id=""/></label>
-                                <p><input class="form-control" th:field="*{imageList[__${status.index}__].imageDescription}" size="150" type="text"/>Description of Image</p>
+                                <p class="font-dark-blue"><input class="form-control" th:field="*{imageList[__${status.index}__].imageDescription}" size="150" type="text"/>Description of Image</p>
                             </div>
                             <div class="checkboxEdit">
                                 <label><input type="checkbox" class="control-label profilePic" th:field="*{imageList[__${status.index}__].profilePic}"  id=""  />Profile Picture</label>
