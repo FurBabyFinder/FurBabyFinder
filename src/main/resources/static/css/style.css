@@ -390,6 +390,18 @@ a:hover {
     color: #143642;
 }
 
+#editPetForm {
+    max-width: 1200px;
+}
+
+.checkboxEdit {
+    display: inline-block;
+    margin-right: 1vw;
+}
+
+.imageForm {
+    background-color: #f6f7fb;
+}
 
 .single-pet {
     object-fit: cover;
@@ -486,7 +498,7 @@ a:hover {
 #wrapLogin {
     color: #27213C;
     background-color: white;
-    height: 10vw;
+    height: 12vw;
 }
 
 #login-form{
