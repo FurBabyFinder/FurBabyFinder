@@ -2,7 +2,7 @@
  * Created by frenchfryes on 7/7/17.
  */
 $(document).ready(function () {
-    $('.event-details').css('display', 'none');
+    $('.event-details').css('display', 'block');
     $('.event-details').css('height', 'auto');
     $('.event-details').css('margin-top', '-17px');
     $('.event-details > .info').css('height', 'auto');
@@ -24,6 +24,11 @@ $(document).ready(function () {
             center: location,
             zoom: 15
         });
+        var marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+        marker.setMap(map);
 
     }
 
@@ -50,13 +55,22 @@ $(document).ready(function () {
 
     }
     var addressElements = document.getElementsByClassName("address");
+    console.log(addressElements);
+    console.log(addressElements[0].getAttribute("data"));
+    var count=0;
+     var intervalId = setInterval(function () {
+         console.log(count);
+         console.log(addressElements[count]);
+         var targetElement = addressElements[count].getAttribute("data");
+         var mapAddress = addressElements[count].innerHTML;
+         centerAddress(mapAddress, targetElement);
 
-    for(var i = 0; i < addressElements.length; i++){
-        var targetElement = addressElements[i].getAttribute("data-target");
-        var mapAddress = addressElements[i].innerHTML;
-        centerAddress(mapAddress, targetElement);
+         if(count < addressElements.length - 1){
+             count++;
+         }else{
+             clearInterval(intervalId);
+         }
+     }, 400);
 
-    }
-
-})
+});
 

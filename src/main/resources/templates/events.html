@@ -231,8 +231,8 @@ body {
 }
 .map {
     height: 100%;
-    width:100%;
-    min-height: 200px;
+    width:80%;
+    min-height: 400px;
 }
 </style>
 
@@ -261,11 +261,11 @@ body {
                                 <li class="facebook" style="width:33%;"><a
                                         href="https://www.facebook.com/alamocitypitbull/"><span
                                         class="fa fa-facebook"></span></a></li>
-                                <li class="twitter" style="width:34%;"><a href="http://www.alamocitypitbull.org"><span
+                                <!--<li class="twitter" style="width:34%;"><a href="http://www.alamocitypitbull.org"><span
                                         class="fa fa-twitter"></span></a></li>
                                 <li class="google-plus" style="width:33%;"><a
                                         href="https://www.youtube.com"><span
-                                        class="fa fa-youtube-play"></span></a></li>
+                                        class="fa fa-youtube-play"></span></a></li>-->
                             </ul>
                         </div>
                     </li>
@@ -273,13 +273,13 @@ body {
                         <div class="info" style="height:100%">
                             <p class="desc" th:text="${event.eventDesc}"/>
                             <ul>
-                                <li style="width:50%;"><a th:href="@{events.link}"><span class="fa fa-globe"></span>
+                                <li style="width:100%;"><a th:href="@{${event.link}}"><span class="fa fa-globe"></span>
                                     Website</a></li>
 
                                 <div class="map" th:id="${'map' + event.id}"></div>
 
                                 Street Address:
-                                <li class="address" th:text="${event.street1 + ', ' + event.city1 + ', ' + event.state1 + ', ' + event.zip1}" th:data-target="${'map' + event.id}"/>
+                                <li class="address" th:text="${event.street1 + ', ' + event.city1 + ', ' + event.state1 + ', ' + event.zip1}" th:data="${'map' + event.id}"/>
 
                                 <br/>
                             </ul>
@@ -293,7 +293,7 @@ body {
     <div th:replace="fragments :: footer"/>
     <div th:replace="fragments :: scripts"/>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8myyJLZLLyxisVE_Mlqb_zf1BxBNWa4M"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeBPdm_RDTNZ3V2ooakIHvy4yg29DrMJ8" async="async" defer="defer"></script>
     <script src="/js/events.js"></script>
 </ul>
 </body>
