@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
     <link href="https://fonts.googleapis.com/css?family=Lato|Patua+One" rel="stylesheet"/>
+    <link rel="shortcut icon"  th:href="@{../img/fur-baby-icon.png}"/>
 
 </head>
 
@@ -28,19 +29,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Logo</a>
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Administrative <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/pets/add">Add Guest Animal</a></li>
-                        <li><a href="/searchUser">Search Users</a></li>
-                        <li><a href="/pets/findOne">Find Guest Animal by Name/ID</a></li>
-                        <li><a href="/pets/searchByUser">Find Guest Animals by Foster/Adopter</a></li>
-                    </ul>
-                </li>
-            </ul>
+            <a class="navbar-brand" href="/"><img class="logo" th:src="@{../img/fur-baby-logo.png}"/></a>
         </div><!-- /.navbar-header -->
 
 
@@ -60,6 +49,18 @@
                 <li><a href="/events">Events</a></li>
                 <li><a href="/about/us">About Us</a></li>
                 <li><a href="/login">Login</a></li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle admin-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Admin <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/pets/add">Add Guest Animal</a></li>
+                        <li><a href="/searchUser">Search Users</a></li>
+                        <li><a href="/pets/findOne">Find Guest Animal by Name/ID</a></li>
+                        <li><a href="/pets/searchByUser">Find Guest Animals by Foster/Adopter</a></li>
+                    </ul>
+                </li>
+
                 <!--<li><a class="cursor-hand" data-toggle="modal" data-target=".bs-login-modal-sm">Register/Login</a></li>-->
             </ul>
         </div><!-- /.navbar-collapse -->
@@ -164,10 +165,10 @@
                 <div class="contact-info"> 4450 Candyland Pkwy</div>
                 <div class="contact-info"> San Antonio, TX 78210</div>
                 <div class="contact-info"> 210-456-8383</div>
-                <i class="fa fa-facebook" aria-hidden="true" style="font-size:48px;color:#EC9A29"></i>
-                <i class="fa fa-twitter" aria-hidden="true" style="font-size:48px;color:#EC9A29"></i>
-                <i class="fa fa-google-plus" aria-hidden="true" style="font-size:48px;color:#EC9A29"></i>
-                <i class="fa fa-instagram" aria-hidden="true" style="font-size:48px;color:#EC9A29"></i>
+                <i class="fa fa-facebook" aria-hidden="true" style="font-size:48px;color:#27213C"></i>
+                <i class="fa fa-twitter" aria-hidden="true" style="font-size:48px;color:#27213C"></i>
+                <i class="fa fa-google-plus" aria-hidden="true" style="font-size:48px;color:#27213C"></i>
+                <i class="fa fa-instagram" aria-hidden="true" style="font-size:48px;color:#27213C"></i>
             </div>
         </div>
         <!--<div class="col-sm-6">-->
