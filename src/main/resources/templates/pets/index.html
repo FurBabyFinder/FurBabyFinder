@@ -24,10 +24,11 @@
 
         <div class="col-sm-12">
             <ul id="nav-filter">
-                <li>
+                <div class="row col-md-offset-4">
+                <li class="col-md-3">
                     <div class="dropdown" th:attr="data-types=${list}">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false"> Types Of Animals <span class="caret"></span></a>
+                           aria-expanded="false"><h4> Types Of Animals </h4><span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a th:href="@{'/pets/all'}">all</a></li>
                             <li th:each="oneSpecies : ${list}"><a th:href="@{'/pets/'+ ${oneSpecies} + '/type/all'}"
@@ -35,18 +36,20 @@
                         </ul>
                     </div>
                 </li>
-                <li>
+                <li class="col-md-2">
                     <div class="dropdown" th:attr="data-types=${breeds}">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false"> Breeds <span class="caret"></span></a>
+                           aria-expanded="false"><h4> Breeds </h4><span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li th:each="oneBreed : ${breeds}"><a th:if="${oneBreed} != null"
                                                                   th:href="@{'/pets/'+ ${species} + '/breed/' + ${oneBreed} +'/all'}"
-                                                                  th:text="${oneBreed}+'s'"></a></li>
+                                                                  th:text="${oneBreed}"></a></li>
                         </ul>
                     </div>
 
                 </li>
+                    </div>
+                <div class="row col-md-offset-3">
                 <li>
                     <div class="checkbox">
                         <label><input type="checkbox" id="male"/>Male</label>
@@ -77,7 +80,9 @@
                         <label><input type="checkbox" id="crateTrained"/>Crate Trained</label>
                     </div>
                 </li>
-                <li>
+                </div>
+                <div class="row col-md-offset-2">
+                    <li>
                     <div class="checkbox">
                         <label><input type="checkbox" id="greatWDogs"/>Great With Dogs</label>
                     </div>
@@ -87,6 +92,7 @@
                         <label><input type="checkbox" id="noDogs"/>Not Dog Friendly</label>
                     </div>
                 </li>
+
                 <li>
                     <div class="checkbox">
                         <label><input type="checkbox" id="medicalFoster"/>Medical Foster</label>
@@ -112,8 +118,8 @@
                         <label><input type="checkbox" id="underYear"/>Under a Year</label>
                     </div>
                 </li>
-
-                <li>
+                </div>
+                <li class="col-md-offset-5">
                     <div>
                         <div class="btn btn-primary filter-button" id="searchFiltered">Search</div>
                     </div>

@@ -80,12 +80,10 @@ public class PetSearchController {
     }
 
     @GetMapping("/petBreeds.json")
-    public @ResponseBody
-    Iterable<String> listBreeds(@RequestParam String species) {
-        return petsRepository.findBreedBySpecies(species);
-    }
-
-
+     public @ResponseBody
+     Iterable<String> listBreeds(@RequestParam String species) {
+                return petsRepository.findBreedBySpecies(species);
+            }
 
     @RequestMapping(path = "/pets/{selection}", method = RequestMethod.GET)
     public String indexPage(Model model,
