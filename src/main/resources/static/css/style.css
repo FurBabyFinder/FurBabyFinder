@@ -479,10 +479,26 @@ a:hover {
 .login-row {
     background-color: #143642;
     color: white;
-    padding-top: 200px;
-    padding-bottom: 200px;
+    padding-top: 4.5vw;
+    padding-bottom: 4vw;
 }
 
+#wrapLogin {
+    color: #27213C;
+    background-color: white;
+    height: 10vw;
+}
+
+#login-form{
+    margin-top: 2vw;
+}
+
+.register-row {
+    background-color: #143642;
+    color: white;
+    padding-top: 5vw;
+    padding-bottom: 5vw;
+}
 
 .add-pet-container {
     padding:50px;

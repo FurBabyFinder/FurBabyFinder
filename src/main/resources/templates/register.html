@@ -3,29 +3,46 @@
 <head th:replace="fragments :: head('Register form')"/>
 <body>
 
-<nav th:replace="fragments :: my-navbar"/>
+<nav th:replace="fragments :: navbar" />
 
-
-<div class="container">
-
-
-    <div class="row">
-
+<div class="container-fluid">
+    <div class="row row-header">
 
         <div class="col-sm-12">
+            <div class="text-center footer footer-contact">
+                <h1>Register</h1>
+                <h4>So you can have more options!</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container-fluid">
+
+
+    <!--<div class="row">-->
+
+
+        <!--<div class="col-sm-12">-->
+    <div class="row register-row text-center">
+
+        <div class="col-sm-12 login-container">
+            <div id="wrapRegister" class="col-md-4 col-md-offset-4">
 
             <form th:action="@{/register}" method="post" th:object="${user}">
                 <label for="username">Username</label>
                 <input id="username" class="form-control" th:field="*{username}"/>
 
                 <label for="email">Email</label>
-                <input id="email" class="form-control" th:field="*{email}"/>
+                <input id="email" type="email" class="form-control" th:field="*{email}"/>
 
                 <label for="password">Password</label>
                 <input id="password" type="password" class="form-control" th:field="*{password}"/>
                 <input class="btn form-button" type="submit"/>
             </form>
-
+            </div>
         </div>
 
     </div>
