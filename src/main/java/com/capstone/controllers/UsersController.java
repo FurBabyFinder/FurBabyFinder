@@ -72,6 +72,15 @@ PetsRepository petsRepository;
         return "users/searchUsers";
     }
 
+     @GetMapping("/users/searchAll")
+    public String SearchAll (Model model){
+        Iterable<User> usersIt = (usersDao.findAll());
+        List<User> users = (List<User>) usersIt;
+        model.addAttribute("list", petsRepository.findSpecies());
+        model.addAttribute("users", users);
+        return "users/searchUsers";
+    }
+
     @GetMapping("/users/{firstName}/searchName/{lastName}")
     public String SearchUsersByName (Model model,
                                        @PathVariable String firstName,
