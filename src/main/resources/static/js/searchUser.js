@@ -37,5 +37,10 @@ $("#searchUser").click(function() {
         hideWarnings();
     }
 
+    else {
+        window.location.href = "/users/searchAll";
+        hideWarnings();
+    }
+
 
 });
