@@ -5,7 +5,7 @@ body, html {
 }
 
 body{
-    padding-top: 50px;
+    padding-top: 95px;
 }
 
 h1 {
@@ -45,7 +45,7 @@ p {
 }
 
 .background-orange {
-    background-color: #EC9A29;
+    background-color: #27213C;
 }
 
 .font-white {
@@ -65,11 +65,15 @@ p {
 .navbar {
     background-color: #143642;
     border: #143642;
+    height: 100px;
     /*width: 90.2%;*/
     /*margin: auto;*/
 }
+
 .navbar-default .navbar-nav>li>a {
     color: white;
+    padding-top: 38px;
+    font-size: 19px;
 }
 
 .navbar-default .navbar-nav>li>a:hover {
@@ -82,6 +86,10 @@ p {
 
 .navbar-default .navbar-brand:hover {
     color: white;
+}
+
+.navbar-nav {
+    margin-right: 5px;
 }
 
 
@@ -102,19 +110,24 @@ p {
 .dog-homepage {
     object-fit: cover;
     height: 532px;
-    padding: 16px;
+    padding: 8px;
 }
 
 .cat-homepage {
     object-fit: cover;
     height: 266px;
-    padding: 16px;
+    padding: 8px;
 }
 
 .hamster-homepage {
     object-fit: cover;
     height: 266px;
-    padding: 16px;
+    padding: 8px;
+}
+
+.container-homepage-main {
+    padding-top: 14px;
+    padding-bottom: 6px;
 }
 
 
@@ -238,26 +251,29 @@ p {
     margin-left: 5px;
 }
 
-
-
+.logo {
+    height: 73px;
+    width: 184px;
+    margin-left: 11px;
+}
 
 
 
 
 /*/////////////////////////////////////////// quote section*/
 .quote-container {
-    background-color: #EC9A29;
+    background-color: #27213C;
     color: #143642;
     padding-top: 90px;
     padding-bottom: 90px;
 }
 
 blockquote footer {
-    color: #143642;
+    color: #0F8B8D;
 }
 
 cite {
-    color: #143642;
+    color: #0F8B8D;
 }
 
 
@@ -308,12 +324,12 @@ cite {
 
 
 a {
-    color: #143642;
+    color: #27213C;
     text-decoration: none;
 }
 
 a:hover {
-    color: #143642;
+    color: #27213C;
     text-decoration: none;
 }
 
@@ -519,5 +535,61 @@ a:hover {
     padding-right: 90px;
 }
 
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #0F8B8D;
+}
 
+.navbar-default .navbar-toggle {
+    border-color: #0F8B8D;
+}
+
+.fur-icon {
+    height: 200px;
+    width: 200px;
+    margin: auto;
+    margin-bottom: 41px;
+}
+
+
+
+@media (max-width: 1050px) {
+    .navbar-header {
+        float: none;
+    }
+
+    .navbar-toggle {
+        display: block;
+    }
+
+    .navbar-collapse {
+        background-color: #143642;
+    }
+
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+
+    .navbar-nav>li {
+        float: none;
+    }
+
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a {
+        color: #143642;
+        background-color: white;
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
+        color: white;
+    }
+
+
+
+
+}
 
