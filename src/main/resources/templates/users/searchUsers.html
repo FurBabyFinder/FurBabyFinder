@@ -13,7 +13,6 @@
         <div class="col-sm-12">
             <div class="text-center footer footer-contact">
                 <h1>Search For Users</h1>
-                <h4>You have the power!</h4>
             </div>
         </div>
     </div>
@@ -74,7 +73,8 @@
             <p class="card-text font-dark-blue" th:text="'Email: ' + ${user.email}"></p>
             <p class="card-text font-dark-blue" th:text="'Main Phone: '+ ${user.mainPhone}"></p>
             <p class="card-text font-dark-blue" th:text="'Alt Phone: ' + ${user.altPhone}"></p>
-            <a th:href="@{'/users/user/'+ ${user.id}}" class="card-link">Edit User</a>
+            <a th:href="@{'/users/user/'+ ${user.id}}" class="card-link">View User</a>
+            <a th:href="@{'/users/update/'+ ${user.id}}" class="card-link">Edit User</a>
         </div>
     </div>
     </div>
