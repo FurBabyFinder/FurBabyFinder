@@ -38,7 +38,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/login?logout") // append a query string value
+                .logoutSuccessUrl("/") // append a query string value
                 .and()
                 .authorizeRequests()
                 .antMatchers(
