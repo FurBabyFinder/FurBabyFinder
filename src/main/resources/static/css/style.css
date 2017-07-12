@@ -546,6 +546,14 @@ a:hover {
     margin-top: 10px;
 }
 
+#usersearchscreen {
+    max-width: 1400px;
+}
+
+.card {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
 #searchIndividual {
     margin-top: 10px;
 }
