@@ -10,8 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AuthenticationController {
 PetsRepository petsRepository;
+
+    public AuthenticationController(PetsRepository petsRepository) {
+        this.petsRepository = petsRepository;
+    }
+
     @GetMapping("/login")
-    public String showLoginForm() {
+    public String showLoginForm(Model model) {
+
+        model.addAttribute("list", petsRepository.findSpecies());
         return "login";
     }
 
