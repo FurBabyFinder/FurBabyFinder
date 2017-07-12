@@ -81,7 +81,14 @@ public class PetsController {
 
         ArrayList<Pet> pets = (ArrayList<Pet>) petsRepository.findAllByReadyToAdopt(true);
         ArrayList<Pet> filteredPets = new ArrayList<>(pets);
-        filterThePets(selection, filteredPets);
+//        filterThePets(selection, filteredPets);
+        if (!selection.get(0).equals("all")) {
+            for (int i = 0; i < selection.size(); i++) {
+                Long filterID = filterRepository.findFilterIDByFilterName(selection.get(i));
+                ArrayList tempArray = petsRepository.findPetsByFilter(filterID);
+                filteredPets.retainAll(tempArray);
+            }
+        }
         model.addAttribute("list", petsRepository.findSpecies());
         model.addAttribute("pets", filteredPets);
         return "pets/index";
@@ -166,7 +173,14 @@ public class PetsController {
 
         ArrayList<Pet> pets = (ArrayList<Pet>) petsRepository.findAllByReadyToAdoptAndSpecies(true, species);
         ArrayList<Pet> filteredPets = new ArrayList<>(pets);
-        filterThePets(selection, filteredPets);
+//        filterThePets(selection, filteredPets);
+        if (!selection.get(0).equals("all")) {
+            for (int i = 0; i < selection.size(); i++) {
+                Long filterID = filterRepository.findFilterIDByFilterName(selection.get(i));
+                ArrayList tempArray = petsRepository.findPetsByFilter(filterID);
+                filteredPets.retainAll(tempArray);
+            }
+        }
         model.addAttribute("breeds", petsRepository.findBreedBySpecies(species));
         model.addAttribute("list", petsRepository.findSpecies());
         model.addAttribute("species", species);
@@ -182,7 +196,14 @@ public class PetsController {
 
         ArrayList<Pet> pets = (ArrayList<Pet>) petsRepository.findAllByReadyToAdoptAndSpeciesAndBreed(true, species, breed);
         ArrayList<Pet> filteredPets = new ArrayList<>(pets);
-        filterThePets(selection, filteredPets);
+//        filterThePets(selection, filteredPets);
+        if (!selection.get(0).equals("all")) {
+            for (int i = 0; i < selection.size(); i++) {
+                Long filterID = filterRepository.findFilterIDByFilterName(selection.get(i));
+                ArrayList<Pet> tempArray = petsRepository.findPetsByFilter(filterID);
+                filteredPets.retainAll(tempArray);
+            }
+        }
         model.addAttribute("breeds", petsRepository.findBreedBySpecies(species));
         model.addAttribute("list", petsRepository.findSpecies());
         model.addAttribute("species", species);
@@ -197,14 +218,9 @@ public class PetsController {
         Pet pet = petsRepository.findById(id);
         List <Filter> petsFilters = pet.getFilters();
         List<PetImage> petsImages = pet.getImages();
-//        for(PetImage image: petsImages){
-//            petsImages.add(image);
-//        }
         int numberImages = petsImages.size();
         PetDTO petDTO = new PetDTO(pet, petsImages);
-//        model.addAttribute("pet", pet);
         model.addAttribute("filters", petsFilters);
-//        model.addAttribute("images", petsImages);
         model.addAttribute("petDTO", petDTO);
         model.addAttribute("imageCount", numberImages);
         model.addAttribute("list", petsRepository.findSpecies());
@@ -240,39 +256,47 @@ public class PetsController {
             List<PetImage> imageList = petDTO.getImageList();
             pet.setId(id);
             pet.setFiltersPets(filters);
-
-
-            petsRepository.save(pet);
-            for(int i = 0; i < imageList.size(); i++){
-                System.out.println(replacefiles.get(i).getOriginalFilename());
-                if (!replacefiles.get(i).getOriginalFilename().equals("")){
-
-                    String filename = replacefiles.get(i).getOriginalFilename().replace(" ", "_");
-                    filename = id + filename;
-                    String filepath = Paths.get(uploadPath, filename).toString();
-                    File destinationFile = new File(filepath);
-                    imageList.get(i).setImageUrl(filename);
-                    System.out.println(imageList.get(i).getImageUrl() + " current url");
-                    System.out.println(filename);
-                    replacefiles.get(i).transferTo(destinationFile);
+            List<PetImage> existingAndNewImages = new ArrayList<>();
+            System.out.println("made it location 1");
+            if(imageList != null) {
+                System.out.println("made it location a");
+                for (int i = 0; i < imageList.size(); i++) {
+//                System.out.println(replacefiles.get(i).getOriginalFilename());
+                    if (!replacefiles.get(i).getOriginalFilename().equals("")) {
+                        System.out.println("made it location b");
+                        String filename = replacefiles.get(i).getOriginalFilename().replace(" ", "_");
+                        filename = id + filename;
+                        String filepath = Paths.get(uploadPath, filename).toString();
+                        File destinationFile = new File(filepath);
+                        imageList.get(i).setImageUrl(filename);
+                        System.out.println(imageList.get(i).getImageUrl() + " current url");
+                        System.out.println(filename);
+                        replacefiles.get(i).transferTo(destinationFile);
+                    }
                 }
             }
-            for(PetImage image : imageList){
-                String url = image.getImageUrl();
-                System.out.println(image.getId());
-                image.setId(id);
-                String d = image.getImageDescription();
-                System.out.println(image.getImageDescription());
-                boolean p = image.isProfilePic();
-                boolean a = image.isAfterAdoption();
-                image.setImageDescription(d);
-                image.setProfilePic(p);
-                image.setAfterAdoption(a);
-                image.setImageUrl(url);
-                petImageRepository.save(image);
+            System.out.println("made it location 2");
+            if(imageList != null) {
+                for (PetImage image : imageList) {
+                    String url = image.getImageUrl();
+                    System.out.println(url);
+                    System.out.println("image id "+image.getId());
+                    int imageId = (int) image.getId();
+                    image.setId(imageId);
+                    String d = image.getImageDescription();
+                    System.out.println(image.getImageDescription());
+                    boolean p = image.isProfilePic();
+                    boolean a = image.isAfterAdoption();
+                    image.setImageDescription(d);
+                    image.setProfilePic(p);
+                    image.setAfterAdoption(a);
+                    image.setImageUrl(url);
+                    image.setPet(pet);
+//                     existingAndNewImages.add(image);
+                    petImageRepository.save(image);
+                }
             }
-
-
+            System.out.println("made it location 3");
             for (int i = 0; i < uploadedfiles.size(); i++) {
                 if (!uploadedfiles.get(i).isEmpty()) {
                     String filename = uploadedfiles.get(i).getOriginalFilename().replace(" ", "_");
@@ -290,6 +314,8 @@ public class PetsController {
                         imageAdded.setImageDescription(imageDescriptions.get(i));
                         imageAdded.setProfilePic(profilePicture.get(i));
                         imageAdded.setAfterAdoption(afterAdopt.get(i));
+//                        existingAndNewImages.add(petImage);
+                        System.out.println("made it location 7");
                         petImageRepository.save(imageAdded);
                         model.addAttribute("message", "File successfully uploaded!");
                     } catch (IOException e) {
@@ -298,6 +324,10 @@ public class PetsController {
                     }
                 }
             }
+            System.out.println("made it location 8");
+//            pet.setImages(existingAndNewImages);
+            System.out.println("made it location 9");
+            petsRepository.save(pet);
             return "redirect:/pets/pet" + id;
         }
     }
