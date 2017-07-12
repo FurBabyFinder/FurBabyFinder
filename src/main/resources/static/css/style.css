@@ -558,6 +558,9 @@ a:hover {
     margin-top: 10px;
 }
 
+#update-user-container {
+    max-width: 1300px;
+}
 .one-pet-container {
     padding:50px;
 }
