@@ -44,7 +44,7 @@ p {
     background-color: #0F8B8D;
 }
 
-.background-orange {
+.background-purple {
     background-color: #27213C;
 }
 
@@ -54,6 +54,10 @@ p {
 
 .font-dark-blue {
     color: #143642;
+}
+
+.font-purple {
+    color: #27213C;
 }
 
 
@@ -68,6 +72,10 @@ p {
     height: 100px;
     /*width: 90.2%;*/
     /*margin: auto;*/
+}
+
+.nav-filter-links {
+    margin-right: 18px;
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -317,11 +325,11 @@ cite {
 .container-pet-view {
     margin-top: 20px;
     margin-bottom: 20px;
-    background-color: #DAD2D8;
-    color: white;
 }
 
-
+.pets-all-col {
+    margin:auto;
+}
 
 a {
     color: #27213C;
@@ -383,6 +391,7 @@ a:hover {
 .img-pet {
     height: 200px;
     width: 200px;
+    border-radius: 50%;
 }
 
 
@@ -404,7 +413,9 @@ a:hover {
 .row-header {
     background-color: #0F8B8D;
     color: white;
-    padding-bottom: 50px;
+    /* padding-bottom: 50px; */
+    margin-top: -27px;
+    padding-bottom: 5px;
 }
 
 .row-individual-pet {
@@ -416,6 +427,7 @@ a:hover {
 
 .pets-all-row {
     background-color: white;
+    margin: auto;
 }
 
 
@@ -426,6 +438,10 @@ a:hover {
     padding-left: 30px;
     padding-top: 27px;
     display: inline-block;
+}
+
+.modal-filter{
+    display: inline-grid;
 }
 
 #nav-filter {
