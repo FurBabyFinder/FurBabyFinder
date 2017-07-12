@@ -227,7 +227,14 @@ body {
         width: 40px;
         padding: 10px 0px 9px;
     }
-}</style>
+
+}
+.map {
+    height: 100%;
+    width:100%;
+    min-height: 200px;
+}
+</style>
 
 <head th:replace="fragments :: head('Events')"/>
 <body>
@@ -263,24 +270,17 @@ body {
                         </div>
                     </li>
                     <div class="event-details">
-                        <div class="info" style="height:auto">
+                        <div class="info" style="height:100%">
                             <p class="desc" th:text="${event.eventDesc}"/>
                             <ul>
                                 <li style="width:50%;"><a th:href="@{events.link}"><span class="fa fa-globe"></span>
                                     Website</a></li>
 
+                                <div class="map" th:id="${'map' + event.id}"></div>
+
                                 Street Address:
-                                <li th:text="${event.street1}"/>
-                                <li th:text="${event.street2}"/>
-                                <br/>
-                                City:
-                                <li th:text="${event.city1}"/>
-                                <br/>
-                                State:
-                                <li th:text="${event.state1}"/>
-                                <br/>
-                                Zip:
-                                <li th:text="${event.zip1}"/>
+                                <li class="address" th:text="${event.street1 + ', ' + event.city1 + ', ' + event.state1 + ', ' + event.zip1}" th:data-target="${'map' + event.id}"/>
+
                                 <br/>
                             </ul>
                         </div>
@@ -292,6 +292,8 @@ body {
 
     <div th:replace="fragments :: footer"/>
     <div th:replace="fragments :: scripts"/>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8myyJLZLLyxisVE_Mlqb_zf1BxBNWa4M"></script>
     <script src="/js/events.js"></script>
 </ul>
 </body>
