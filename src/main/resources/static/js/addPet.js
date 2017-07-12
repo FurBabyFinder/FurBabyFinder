@@ -70,6 +70,7 @@ $(document).ready(function(){
         if(adoptdateGoodOrNot==false || arrivaldateGoodOrNot == false || maleFemaleChecksGoodOrNot ==false || catsGoodOrNot == false || dogsGoodOrNot == false) {
             event.preventDefault();
         }
+
     }
 
     // ==================  LIMIT ONLY ONE PROFILE PIC SELECTOR AND UPDATE VALUE OF HIDDEN INPUTS ===============
