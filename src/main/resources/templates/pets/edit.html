@@ -154,7 +154,7 @@
                     <div class="form-group">
                         <p><img th:src="@{'/uploads/img/'+ *{imageList[__${status.index}__].imageUrl}}" /></p>
 
-                        <input type="hidden existImg" id="" th:field="*{imageList[__${status.index}__].imageUrl}"/>
+                        <input type="hidden" th:field="*{imageList[__${status.index}__].imageUrl}" />
                         <input type="hidden" th:field="*{imageList[__${status.index}__].id}" th:value="${petImage.id}"/>
                         <label>Upload a new image<input type="file" class="imageInputs" name="imageReplace" id=""/></label>
                         <p><input th:field="*{imageList[__${status.index}__].imageDescription}" size="150" type="text"/>Description of Image</p>
