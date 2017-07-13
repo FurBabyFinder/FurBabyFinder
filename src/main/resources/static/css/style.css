@@ -104,10 +104,10 @@ p {
     color: white;
 }
 
-/*.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {*/
-    /*color: white;*/
-    /*background-color: transparent;*/
-/*}*/
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
+    color: white;
+    background-color: transparent;
+}
 
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
