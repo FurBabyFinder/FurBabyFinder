@@ -2,6 +2,7 @@
  * Created by frenchfryes on 7/7/17.
  */
 $(document).ready(function () {
+    var map;
     $('.event-details').css('display', 'block');
     $('.event-details').css('height', 'auto');
     $('.event-details').css('margin-top', '-17px');
@@ -20,7 +21,7 @@ $(document).ready(function () {
 
     function initMap(location, id) {
 
-        var map = new google.maps.Map(document.getElementById(id), {
+         map = new google.maps.Map(document.getElementById(id), {
             center: location,
             zoom: 15
         });
