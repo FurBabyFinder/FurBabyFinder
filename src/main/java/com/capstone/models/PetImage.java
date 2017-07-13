@@ -13,7 +13,7 @@ public class PetImage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, length = 45)
+    @Column(nullable = false, length = 500)
     @NotBlank(message = "Image must have a url")
     private String imageUrl;
 

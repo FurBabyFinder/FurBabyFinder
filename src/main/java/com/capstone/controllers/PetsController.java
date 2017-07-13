@@ -232,6 +232,71 @@ public class PetsController {
         }
     }
 
+    @GetMapping("/pets/addPetFilestack")
+    public String showCreateFilestackForm(Model model) {
+        model.addAttribute("list", petsRepository.findSpecies());
+        model.addAttribute("pet", new Pet());
+        return "pets/addPetFilestack";
+    }
+
+    @PostMapping("/pets/addPetFilestack")
+    public String createFilstack(
+            @Valid Pet pet,
+            Errors validation,
+            @RequestParam(name = "filterName") List<String> filterNames,
+            @RequestParam(name = "image") List<MultipartFile> uploadedfiles,
+            @RequestParam(name = "imageDescription[]") List<String> imageDescriptions,
+            @RequestParam(name = "imageUrl[]") List<String> imageUrls,
+            @RequestParam(name = "profilePic[]") List<Boolean> profilePicture,
+            Model model) {
+        if (validation.hasErrors()) {
+            model.addAttribute("errors", validation);
+            model.addAttribute("pet", pet);
+            return "pets/addPet";
+        } else {
+            System.out.println("running outer");
+            List<Filter> filters = new ArrayList<>();
+            for (String name : filterNames) {
+                filters.add(filterRepository.findByFilterName(name));
+            }
+            pet.setFiltersPets(filters);
+            petsRepository.save(pet);
+            Long id = pet.getId();
+            Pet addedPet = petsRepository.findById(id);
+            System.out.println(imageUrls);
+            for (int i = 0; i < imageUrls.size(); i++) {
+                if (!imageUrls.get(i).isEmpty()) {
+                    System.out.println("running i loop");
+//                    String filename = uploadedfiles.get(i).getOriginalFilename().replace(" ", "_");
+//                    filename = id.toString() + filename;
+//                    String filepath = Paths.get(uploadPath, filename).toString();
+//                    File destinationFile = new File(filepath);
+                    PetImage petImage = new PetImage(addedPet);
+
+//
+//                    try {
+//                        petImage.setImageUrl(filename);
+                    petImage.setImageUrl(imageUrls.get(i));
+                        petImageRepository.save(petImage);
+                        long imageID = petImage.getId();
+                        PetImage imageAdded = petImageRepository.findById(imageID);
+//                        uploadedfiles.get(i).transferTo(destinationFile);
+                        imageAdded.setImageDescription(imageDescriptions.get(i));
+                    System.out.println(imageUrls.get(i) + "   url");
+//                        imageAdded.setImageUrl(imageUrls.get(i));
+                        imageAdded.setProfilePic(profilePicture.get(i));
+                        petImageRepository.save(imageAdded);
+                        model.addAttribute("message", "File successfully uploaded!");
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                        model.addAttribute("message", "Oops! Something went wrong! " + e);
+//                    }
+                }
+            }
+
+            return "redirect:/pets/pet/" + id;
+        }
+    }
 
 
 
