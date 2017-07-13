@@ -14,103 +14,129 @@
         </div>
     </div>
 </div>
+<div id="UserSearchScreen">
+    <div class="container-fluid search-user-container" >
 
-<div class="container-fluid search-user-container" id="UserSearchScreen">
-    <div class="row">
-        <div class="col-sm-12">
-            <p><h4>ID: <span th:text="${user.id}"></span></h4></p>
-            <p><h2>Name:  <span th:text="${user.firstName}"></span><span> </span><span th:text="${user.lastName}"></span></h2></p>
-            <p><h4>Username: <span th:text="${user.username}"></span></h4></p>
-            <p><h4>Email: <span th:text="${user.email}"></span></h4></p>
-            <p><h4>Street Address 1 <span th:text="${user.streetAdd1}"></span></h4></p>
-            <p><h4>Street Address 2 <span th:text="${user.streetAdd2}"></span></h4></p>
-            <p><h4>City <span th:text="${user.city}"></span></h4></p>
-            <p><h4>State <span th:text="${user.state}"></span></h4></p>
-            <p><h4>Zip <span th:text="${user.zip}"></span></h4></p>
-            <p><h4>Main Phone  <span th:text="${user.mainPhone}"></span></h4></p>
-            <p><h4>Alternate Phone  <span th:text="${user.altPhone}"></span></h4></p>
-            <div>
-                <p><h4>Roles</h4></p>
-                <div th:if="${roles != null}">
-                    <div class="row">
-                        <div class="col-sm-2" th:each="role : ${roles}">
-                            <p><h4><span th:text="${role.role}"></span></h4></p>
-                        </div>
-                    </div>
-                </div>
+        <p sec:authorize="hasRole('ROLE_admin')"><h4>ID: <span th:text="${user.id}"></span></h4></p>
+        <p><h2 class="userInfo">Name:  <span class="userInfo" th:text="${user.firstName}"></span><span> </span><span th:text="${user.lastName}"></span></h2></p>
+        <div class="row">
+            <div class="col-md-6">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td><h4>Username: </h4></td>
+                        <td align="right"><h4><span class="userInfo" th:text="${user.username}"></span></h4></td>
+                    </tr>
+                    <tr>
+                        <td><h4>Email: </h4></td>
+                        <td align="right"><h4><span class="userInfo" th:text="${user.email}"></span></h4></td>
+                    </tr>
+                    <tr>
+                        <td><h4>Main Phone:</h4></td>
+                        <td align="right"><h4><span class="userInfo" th:text="${user.mainPhone}"></span></h4></td>
+                    </tr>
+                    <tr>
+                        <td><h4 class="userInfo" >Alternate Phone:</h4></td>
+                        <td align="right"><h4><span class="userInfo" th:text="${user.altPhone}"></span></h4></td>
+                    </tr>
+                    </tbody>
+                </table>
+
             </div>
-            <button><a th:href="@{'/users/update/'+ ${user.id}}" id="updateUser" style="text-decoration: none">Update User</a></button>
+            <div class="col-md-6">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td><h4 class="userInfo">Street Address 1: </h4></td>
+                        <td align="right"><h4><span class="userInfo" th:text="${user.streetAdd1}"></span></h4></td>
+                    </tr>
+                    <tr>
+                        <td><h4 class="userInfo">Street Address 2: </h4></td>
+                        <td align="right"><h4><span class="userInfo" th:text="${user.streetAdd2}"></span></h4></td>
+                    </tr>
+                    <tr>
+                        <td><h4>City: </h4></td>
+                        <td align="right"><h4><span class="userInfo" th:text="${user.city}"></span></h4></td>
+                    </tr>
+                    <tr>
+                        <td><h4>State:</h4></td>
+                        <td align="right"><h4><span class="userInfo" th:text="${user.state}"></span></h4></td>
+                    </tr>
+                    <tr>
+                        <td><h4>Zip: </h4></td>
+                        <td align="right"><h4><span class="userInfo" th:text="${user.zip}"></span></h4></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
         </div>
 
-        <!--<div th:if="${user.getPets().size() > 0 }" class="col-sm-10">-->
-        <!-- <p>   =================================================================  </p>-->
-        <!--<h2>Favorited Animals</h2>-->
-        <!--  <p>   =================================================================  </p>-->
-        <!--<div class="pet-container" th:each="pet : ${user.getpets()}">-->
-        <!--<div class="row">-->
-        <!--<div class="col-sm-3 pet-picture" th:if="${pet.getImages().size() > 0}">-->
-        <!--<div th:each="petImage : ${pet.getImages()}">-->
-        <!--<div th:if="${petImage.profilePic} == true">-->
-        <!--<img class="img-thumbnail" th:alt="${petImage.ImageDescription}" th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}"/>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--<div class="col-sm-9 pet-info">-->
-        <!--<h2>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet" style="text-decoration: none"><span th:text="${pet.name}"></span></a></h2>-->
-        <!--<p><h4>Info: <span th:text="${pet.story}"></span></h4></p>-->
-        <!--<p><h4>Age <span th:text="${pet.age}"></span></h4></p>-->
-        <!--<p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-
-        <div th:if="${fosteredPets.size() > 0}" class="col-sm-10">
-            <p>   =================================================================  </p>
-            <h2>Fostered Animals</h2>
-            <p>   =================================================================  </p>
-            <div class="pet-container" th:each="pet : ${fosteredPets}">
+        <div>
+            <p class="col-md-offset-5"><h4>Roles</h4></p>
+            <div th:if="${roles != null}">
                 <div class="row">
-                    <div class="col-sm-3 pet-picture" th:if="${pet.getImages().size() > 0}">
-                        <div th:each="petImage : ${pet.getImages()}">
-                            <div th:if="${petImage.profilePic} == true">
-                                <img class="img-thumbnail" th:alt="${petImage.ImageDescription}" th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-9 pet-info">
-                        <h2>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet" style="text-decoration: none"><span th:text="${pet.name}"></span></a></h2>
-                        <p><h4>Info: <span th:text="${pet.story}"></span></h4></p>
-                        <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
-                        <p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>
+                    <div class="col-sm-2" th:each="role : ${roles}">
+                        <p><h4><span th:text="${role.role}"></span></h4></p>
                     </div>
                 </div>
             </div>
         </div>
-        <div th:if="${adoptedPets.size() > 0}" class="col-sm-10">
-            <p>   =================================================================  </p>
-            <h2>Adopted Animals</h2>
-            <p>   =================================================================  </p>
-            <div class="pet-container" th:each="pet : ${adoptedPets}">
-                <div class="row">
-                    <div class="col-sm-3 pet-picture" th:if="${pet.getImages().size() > 0}">
-                        <div th:each="petImage : ${pet.getImages()}">
-                            <div th:if="${petImage.profilePic} == true">
-                                <img class="img-thumbnail" th:alt="${petImage.ImageDescription}" th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-9 pet-info">
-                        <h2>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet" style="text-decoration: none"><span th:text="${pet.name}"></span></a></h2>
-                        <p><h4>Info: <span th:text="${pet.story}"></span></h4></p>
-                        <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
-                        <p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        <button><a th:href="@{'/users/update/'+ ${user.id}}" id="updateUser" style="text-decoration: none">Update User</a></button>
     </div>
+
+
+
+    <!--  =============================================PETS========================================== -->
+    <div th:if="${fosteredPets.size() > 0}">
+
+        <h2 class="userPetsSection">Fostered Animals</h2>
+
+        <div class="pet-container" th:each="pet : ${fosteredPets}">
+            <div class="row">
+                <div>
+                    <div class="col-sm-3 pet-picture" th:if="${pet.getImages().size() > 0}">
+                        <div th:each="petImage : ${pet.getImages()}">
+                            <div th:if="${petImage.profilePic} == true">
+                                <img class="img-thumbnail" th:alt="${petImage.ImageDescription}" th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-9 pet-info">
+                        <h3>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet" style="text-decoration: none"><span th:text="${pet.name}"></span></a></h3>
+                        <p><h4>Info: <span th:text="${pet.story}"></span></h4></p>
+                        <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
+                        <p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:if="${adoptedPets.size() > 0}">
+
+        <h2 class="userPetsSection">Adopted Animals</h2>
+
+        <div class="pet-container" th:each="pet : ${adoptedPets}">
+            <div class="row">
+                <div>
+                    <div class="col-sm-3 pet-picture" th:if="${pet.getImages().size() > 0}">
+                        <div th:each="petImage : ${pet.getImages()}">
+                            <div th:if="${petImage.profilePic} == true">
+                                <img class="img-thumbnail" th:alt="${petImage.ImageDescription}" th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-9 pet-info">
+                        <h3>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet" style="text-decoration: none"><span th:text="${pet.name}"></span></a></h3>
+                        <p><h4>Info: <span th:text="${pet.story}"></span></h4></p>
+                        <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
+                        <p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 <div th:replace="fragments :: footer"/>
 <div th:replace="fragments :: scripts"/>
