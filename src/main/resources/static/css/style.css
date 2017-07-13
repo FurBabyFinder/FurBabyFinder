@@ -398,6 +398,16 @@ a:hover {
 .checkbox {
     color: #143642;
 }
+#editPetLink {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    padding: 2em;
+    margin: -2em;
+    text-decoration: none;
+    color: white;
+}
+
 
 #editPetForm {
     max-width: 1400px;
