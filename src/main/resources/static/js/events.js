@@ -9,6 +9,10 @@ $(document).ready(function () {
     $('.event-details > .info').css('height', 'auto');
     $('.disabled').prev().css('cursor', 'default');
 
+    setTimeout(function() {
+        $('.event-details').slideUp();
+    }, 250);
+
 
     $('.event-list > li').click(function () {
         if (!$(this).nextAll('.event-details').first().hasClass('disabled')) {
@@ -17,7 +21,6 @@ $(document).ready(function () {
             $(this).nextAll('.event-details').first().slideToggle();
         }
     });
-
 
     function initMap(location, id) {
 
@@ -56,8 +59,6 @@ $(document).ready(function () {
 
     }
     var addressElements = document.getElementsByClassName("address");
-    console.log(addressElements);
-    console.log(addressElements[0].getAttribute("data"));
     var count=0;
      var intervalId = setInterval(function () {
          console.log(count);
