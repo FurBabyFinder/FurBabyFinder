@@ -574,6 +574,20 @@ a:hover {
 
 #usersearchscreen {
     max-width: 1400px;
+    margin-left: 5em;
+}
+
+.userInfo {
+    padding-right: .7em;
+}
+
+.userPets {
+    max-width: 300px;
+    max-height: 300px;
+}
+.userPetsSection{
+    border-bottom: double;
+    margin-left: .5em;
 }
 
 .card {
