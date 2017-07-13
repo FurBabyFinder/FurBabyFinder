@@ -128,8 +128,7 @@ p {
     background-color: #143642;
 }
 
-
-.pets-menu {
+.open>.dropdown-menu {
     display: inline-grid;
 }
 /*////////////////////////////////////////////////////////////////*/
