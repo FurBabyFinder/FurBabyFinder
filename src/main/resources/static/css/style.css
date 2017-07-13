@@ -522,8 +522,8 @@ a:hover {
 }
 
 #wrapLogin {
-    color: #27213C;
-    background-color: white;
+    color: white;
+    background-color: #27213C;
     height: 12vw;
 }
 

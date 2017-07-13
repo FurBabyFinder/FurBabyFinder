@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.sun.tools.doclint.Entity.not;
 
 /**
  * Created by melodytempleton on 7/11/17.
