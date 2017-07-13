@@ -23,19 +23,23 @@
         <div class="col-sm-12">
             <form class="form-group">
 
-            <label for="petID" class="control-label">Search by ID</label>
-            <input class="form-control" id="petID" type="text" size="15" name="petID"/>
+                <label for="petID" class="control-label">Search by ID</label>
+                <input class="form-control" id="petID" type="text" size="15" name="petID"/>
 
 
-            <label for="petName" class="control-label">Search by Name</label>
-            <input class="form-control" id="petName" type="text" size="30" name="petName"/>
+                <label for="petName" class="control-label">Search by Name</label>
+                <input class="form-control" id="petName" type="text" size="30" name="petName"/>
 
 
-            <div class="btn btn-default" id="searchIndividual">Search</div>
+                <div class="btn btn-default" id="searchIndividual">Search</div>
 
-            <div style="display: none" id="warningMessage" class="alert alert-danger alert-dismissible" role="alert">
-                <strong>Please search by ID or Name, but not both at the same time. </strong>
-            </div>
+                <div style="display: none" id="warningMessage" class="alert alert-danger alert-dismissible" role="alert">
+                    <strong>Please search by ID or Name, but not both at the same time. </strong>
+                </div>
+                <div style="display: none" id="warningMessageNumeric" class="alert alert-danger alert-dismissible"
+                     role="alert">
+                    <strong>ID must be numeric</strong>
+                </div>
 
             </form>
         </div>
@@ -56,11 +60,16 @@
                              style="text-decoration: none"><span
                         th:text="${pet.name}"></span></a></h2>
 
+                <p><h4>Breed: <span th:text="${pet.breed}"></span></h4></p>
                 <p><h4>Info: <span th:text="${pet.story}"></span></h4></p>
-
-
                 <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
-
+                <!--<p th:if="${foster != null }"><h4>Foster ID <span th:text="${foster.id}"></span></h4></p>-->
+                <!--<p th:if="${foster != null }"><h4>Foster Name <span th:text="${foster.firstName}"></span> <span-->
+                    <!--th:text="${foster.lastName}"></span></h4></p>-->
+                <!--<p th:if="${adopter != null }"><h4>Adopter ID <span th:text="${adopter.id}"></span></h4></p>-->
+                <!--<p th:if="${adopter != null }"><h4>Adopter Name <span th:text="${adopter.firstName}"></span> <span-->
+                    <!--th:text="${adopter.lastName}"></span></h4></p>-->
+                <p><h4>Adoption Date: <span th:text="${pet.adoptionDate}"></span></h4></p>
                 <p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>
             </div>
 

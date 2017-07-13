@@ -6,6 +6,7 @@ import com.capstone.repositories.FilterRepository;
 import com.capstone.repositories.PetImageRepository;
 import com.capstone.repositories.PetsRepository;
 import com.capstone.repositories.UsersRepository;
+import com.capstone.svcs.PetAdopterFosterDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.sun.tools.doclint.Entity.not;
 
 /**
  * Created by melodytempleton on 7/11/17.
@@ -148,10 +151,20 @@ public class PetSearchController {
     }
 
 
+    @GetMapping("/pets/searchAllPets")
+    public String SearchAllPets (Model model){
+        Iterable<Pet> pets = petsRepository.findAll();
+        model.addAttribute("list", petsRepository.findSpecies());
+        model.addAttribute("pets", pets);
+        return "pets/searchIndividual";
+    }
+
+
+
     @GetMapping("/pets/searchName/{name}")
     public String SearchByName (Model model,
                                 @PathVariable String name ){
-        List<Pet> pets = petsRepository.findAllByName(name);
+        List<Pet> pets = petsRepository.findAllByNameStartingWith(name);
         model.addAttribute("list", petsRepository.findSpecies());
         model.addAttribute("pets", pets);
         return "pets/searchIndividual";
@@ -163,11 +176,28 @@ public class PetSearchController {
         return "pets/findPetsByUser";
     }
 
-    @GetMapping("/pets/searchAdopterID/{id}")
+     @GetMapping("/pets/searchAdopterID/{id}")
     public String SearchByAdopterId (Model model,
                                      @PathVariable long id ){
         User adopter = usersRepository.findOne(id);
         List<Pet> pets = petsRepository.findAllByAdopter(adopter);
+        model.addAttribute("list", petsRepository.findSpecies());
+        model.addAttribute("pets", pets);
+        return "pets/findPetsByUser";
+    }
+
+
+     @GetMapping("/pets/searchAllAdopter")
+    public String SearchAllAdopter (Model model){
+        List<Pet> pets = petsRepository.findAllPetsWithAdopter();
+//        List<User> adopters = new ArrayList<>();
+//        List<User> fosters = new ArrayList<>();
+//        for (int i = 0; i < pets.size(); i++){
+//            adopters.add( pets.get(i).getAdopter());
+//            fosters.add( pets.get(i).getFoster());
+//        }
+//        PetAdopterFosterDTO petAdopterFosterDTO = new PetAdopterFosterDTO(adopters, fosters, pets);
+
         model.addAttribute("list", petsRepository.findSpecies());
         model.addAttribute("pets", pets);
         return "pets/findPetsByUser";
@@ -220,5 +250,29 @@ public class PetSearchController {
         model.addAttribute("pets", pets);
         return "pets/findPetsByUser";
     }
+//
+//    @GetMapping("/pets/searchAllFoster/{ready}/{exclude}")
+//    public String SearchAllFoster (Model model,
+//                                   @PathVariable boolean ready,
+//                                   @PathVariable boolean exclude){
+//        List<Pet> pets = new ArrayList<>();
+//
+//        List<Pet> getFosteredPets() {
+//            if ((ready == true) & (exclude == true)) {
+//                pets = petsRepository.findAllByAdopterAndFosterAndReadyToAdopt(null, not null, true);
+//            } else if (exclude == true) {
+//                pets = petsRepository.findAllByAdopterAndFoster(null, not null);
+//            } else if (ready == true) {
+//                pets = petsRepository.findAllByReadyToAdoptAndFoster(true, not null);
+//            } else {
+//                pets = petsRepository.findAllPetsWithFoster(not null);
+//            }
+//        return
+//        }
+//        model.addAttribute("list", petsRepository.findSpecies());
+//        model.addAttribute("pets", pets);
+//        return "pets/findPetsByUser";
+//    }
+
 
 }

@@ -24,15 +24,15 @@
             <form class="form-horizontal form-group">
 
 
-                    <label for="readyToAdoptOnly" class="control-label">Only Ready To Adopt (FosterSearch)</label>
-                    <input class="form-control" type="checkbox" id="readyToAdoptOnly"
-                           value="ready"/>
+                <label for="readyToAdoptOnly" class="control-label">Only Ready To Adopt (FosterSearch)</label>
+                <input class="form-control" type="checkbox" id="readyToAdoptOnly"
+                       value="ready"/>
 
 
-                    <label for="excludedAdopted" class="control-label">ExcludeAdopted Former Guest (Foster Search)</label>
-                    <input class="form-control" type="checkbox" id="excludedAdopted"
-                           name="excludeAdopted" value="exclude"/>
-                    <input class="form-control" type="hidden" value="on" name="_excludeAdopted"/>
+                <label for="excludedAdopted" class="control-label">ExcludeAdopted Former Guest (Foster Search)</label>
+                <input class="form-control" type="checkbox" id="excludedAdopted"
+                       name="excludeAdopted" value="exclude"/>
+                <input class="form-control" type="hidden" value="on" name="_excludeAdopted"/>
 
                 <label for="adopter" class="control-label">Search By Adopter</label>
                 <input class="form-control" type="radio" id="adopter" name="userType" value="adopter"/>
@@ -70,6 +70,10 @@
                      role="alert">
                     <strong>Ready to Adopt and Exlucde Adopted are for Foster searches only</strong>
                 </div>
+                <div style="display: none" id="warningMessageNumeric" class="alert alert-danger alert-dismissible"
+                     role="alert">
+                    <strong>ID must be numeric</strong>
+                </div>
 
             </form>
         </div>
@@ -85,8 +89,8 @@
         <div class="row">
 
             <div class="col-sm-3 pet-picture"
-                 th:if="${pet.getImages().size() > 0}"><img class="img-thumbnail"
-                                                            th:src="@{'/uploads/img/'+ ${pet.getImages().get(0).imageUrl}}"/>
+                th:if="${pet.getImages().size() > 0}"><img class="img-thumbnail"
+                                                           th:src="@{'/uploads/img/'+ ${pet.getImages().get(0).imageUrl}}"/>
             </div>
 
             <div class="col-sm-9 pet-info">
@@ -94,16 +98,46 @@
                              style="text-decoration: none"><span
                         th:text="${pet.name}"></span></a></h2>
 
+                <p><h4>Breen: <span th:text="${pet.breed}"></span></h4></p>
                 <p><h4>Info: <span th:text="${pet.story}"></span></h4></p>
-
-
                 <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
-
+                <p><h4>Adoption Date: <span th:text="${pet.adoptionDate}"></span></h4></p>
                 <p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>
             </div>
-
         </div>
     </div>
+
+    <!--<div th:if="${petsAndPeople.pets != null}">-->
+    <!--<div th:if="${petsAndPeople.pets.size() == 0 }">No animal guests found with that criteria</div>-->
+    <!--</div>-->
+    <!--<div c  lass="pet-container" th:each="pet, status : ${petsAndPeople.pets}">-->
+    <!--<div class="row">-->
+    <!--<input type="hidden" th:field="*{imageList[__${status.index}__].id}" th:value="${petImage.id}"/>-->
+    <!--<div class="col-sm-3 pet-picture"-->
+    <!--th:if="${pet.getImages().size() > 0}"><img class="img-thumbnail"-->
+    <!--th:src="@{'/uploads/img/'+ ${pet.getImages().get(0).imageUrl}}"/>-->
+    <!--</div>-->
+
+    <!--<div class="col-sm-9 pet-info">-->
+    <!--<h2>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet"-->
+    <!--style="text-decoration: none"><span-->
+    <!--th:text="${pet.name}"></span></a></h2>-->
+
+    <!--<p><h4>Breen: <span th:text="${pet.breed}"></span></h4></p>-->
+    <!--<p><h4>Info: <span th:text="${pet.story}"></span></h4></p>-->
+    <!--<p><h4>Age <span th:text="${pet.age}"></span></h4></p>-->
+    <!--<p th:if="${petsAndPeople.fosters[__${status.index}__}].id != null }"><h4>Foster ID <span th:text="${petsAndPeople.fosters[__${status.index}__}].id}"></span></h4></p>-->
+    <!--<p th:if="${petsAndPeople.fosters[__${status.index}__}].id != null }"><h4>Foster Name <span th:text="${petsAndPeople.fosters[__${status.index}__}].firstName}"></span> <span-->
+    <!--th:text="${petsAndPeople.fosters[__${status.index}__}].lastName}"></span></h4></p>-->
+    <!--<p th:if="${petsAndPeople.adopters[__${status.index}__}].id != null}"><h4>Adopter ID <span th:text="${petsAndPeople.adopters[__${status.index}__}].id}"></span></h4></p>-->
+    <!--<p th:if="${petsAndPeople.adopters[__${status.index}__}].id != null }"><h4>Adopter Name <span th:text="${petsAndPeople.adopters[__${status.index}__}].firstName}"></span> <span-->
+    <!--th:text="${petsAndPeople.adopters[__${status.index}__}].lastName}"></span></h4></p>-->
+    <!--<p><h4>Adoption Date: <span th:text="${pet.adoptionDate}"></span></h4></p>-->
+    <!--<p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>-->
+    <!--</div>-->
+    <!--[__${status.index}__]-->
+    <!--</div>-->
+    <!--</div>-->
 </div>
 
 <div th:replace="fragments :: scripts"/>
