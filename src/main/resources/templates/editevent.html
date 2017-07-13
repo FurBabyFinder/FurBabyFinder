@@ -45,6 +45,10 @@
             <input type="submit" />
             <input type="hidden" th:field="*{id}" />
         </form>
+        <form th:method="post" th:action="@{/event/delete}">
+            <input type="hidden" name="id" th:value="${event.id}"/>
+            <button class="btn btn-danger">Delete</button>
+        </form>
     </div>
 
     <div th:replace="fragments :: footer"/>

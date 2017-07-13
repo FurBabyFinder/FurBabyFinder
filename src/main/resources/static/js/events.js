@@ -2,11 +2,16 @@
  * Created by frenchfryes on 7/7/17.
  */
 $(document).ready(function () {
+    var map;
     $('.event-details').css('display', 'block');
     $('.event-details').css('height', 'auto');
     $('.event-details').css('margin-top', '-17px');
     $('.event-details > .info').css('height', 'auto');
     $('.disabled').prev().css('cursor', 'default');
+
+    setTimeout(function() {
+        $('.event-details').slideUp();
+    }, 250);
 
 
     $('.event-list > li').click(function () {
@@ -17,10 +22,9 @@ $(document).ready(function () {
         }
     });
 
-
     function initMap(location, id) {
 
-        var map = new google.maps.Map(document.getElementById(id), {
+         map = new google.maps.Map(document.getElementById(id), {
             center: location,
             zoom: 15
         });
@@ -55,8 +59,6 @@ $(document).ready(function () {
 
     }
     var addressElements = document.getElementsByClassName("address");
-    console.log(addressElements);
-    console.log(addressElements[0].getAttribute("data"));
     var count=0;
      var intervalId = setInterval(function () {
          console.log(count);

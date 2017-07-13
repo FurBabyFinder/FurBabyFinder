@@ -17,7 +17,7 @@
 <div id="UserSearchScreen">
     <div class="container-fluid search-user-container" >
 
-        <p sec:authorize="hasRole('ROLE_admin')"><h4>ID: <span th:text="${user.id}"></span></h4></p>
+        <p sec:authorize="hasAuthority('admin')"><h4>ID: <span th:text="${user.id}"></span></h4></p>
         <p><h2 class="userInfo">Name:  <span class="userInfo" th:text="${user.firstName}"></span><span> </span><span th:text="${user.lastName}"></span></h2></p>
         <div class="row">
             <div class="col-md-6">
@@ -82,7 +82,7 @@
                 </div>
             </div>
         </div>
-        <button><a th:href="@{'/users/update/'+ ${user.id}}" id="updateUser" style="text-decoration: none">Update User</a></button>
+        <button sec:authorize="hasAuthority('admin')"><a th:href="@{'/users/update/'+ ${user.id}}" id="updateUser" style="text-decoration: none">Update User</a></button>
     </div>
 
 

@@ -9,4 +9,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface EventsRepository extends CrudRepository<Event, Long>{
+
 }
+
+

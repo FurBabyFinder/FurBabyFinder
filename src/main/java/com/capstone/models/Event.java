@@ -36,6 +36,8 @@ public class Event {
     private String link;
     @Column(nullable = false)
     private String date;
+    /*@Column(nullable = false)
+    private String time;*/
 
     @Column()
     private String street1;

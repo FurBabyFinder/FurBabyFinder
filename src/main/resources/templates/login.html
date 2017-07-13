@@ -19,52 +19,10 @@
 <!--</div>-->
 
 
+
 <div th:if="${param.error}">
     That is an incorrect username or password.
 </div>
-
-
-<!--<div class="container-fluid">-->
-
-
-    <!--<div class="row background-purple text-center font-white login">-->
-
-        <!--<div class="col-sm-12">-->
-
-
-            <!--<div th:if="${param.error}">-->
-                <!--That is an incorrect username or password.-->
-            <!--</div>-->
-
-            <!--<form th:action="@{/login}" method="post" id="login-form" class="form-group text-center">-->
-
-                <!--<div class="form-group center">-->
-                    <!--<label class="control-label" for="username">Username</label>-->
-                    <!--<input class="form-control" id="username" name="username" type="text"/>-->
-                <!--</div>-->
-                <!--<div class="form-group center">-->
-                    <!--<label class="control-label" for="password">Password</label>-->
-                    <!--<input class="form-control" id="password" name="password" type="password"/>-->
-                <!--</div>-->
-                <!--<div class="form-group center">-->
-                    <!--<button type="submit" class="btn btn-default form-button">Log In</button>-->
-                <!--</div>-->
-
-                <!--<div class="col-sm-12 need-an-account">-->
-                    <!--<h3>Need an account?</h3>-->
-                    <!--<button type="button" class="btn btn-default form-button"><a href="/register">Register</a>-->
-                    <!--</button>-->
-                <!--</div>-->
-
-
-
-
-            <!--</form>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
-
-
 
 <div class="container-fluid">
 
@@ -96,6 +54,15 @@
                 </button>
                 </div>
 
+                <form th:action="@{/login}" method="post" id="login-form">
+                    <label for="username">Username
+                    <input id="username" class="font-dark-blue" name="username" type="text"/>
+                    </label>
+                    <label for="password">Password
+                    <input id="password" class="font-dark-blue" name="password" type="password"/>
+                    </label>
+                 <div><button type="submit" class="btn btn-default form-button">Log In</button></div>
+                </form>
 
             </div>
         </div>

@@ -26,7 +26,7 @@
             <div th:each="petImage : ${pet.getImages()}">
                 <div th:if="${petImage.profilePic} == true">
                     <img class="img-pet" th:alt="${petImage.ImageDescription}"
-                         th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}"/>
+                         th:src="@{${petImage.imageUrl}}"/>
                 </div>
 
                 <!-- Modal -->
@@ -46,7 +46,7 @@
                                 <div th:each="petImage : ${pet.getImages()}">
                                     <img class="single-pet img-responsive text-center"
                                          th:alt="${petImage.imageDescription}"
-                                         th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}"/>
+                                         th:src="@{${petImage.imageUrl}}"/>
                                 </div>
 
 
