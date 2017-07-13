@@ -36,7 +36,7 @@ body {
 }
 
 .event-list > li:nth-child(even) > time {
-    background-color: rgb(165, 82, 167);
+    background-color: rgb(242, 239, 239);
 }
 
 .event-list > li > time > span {
@@ -105,7 +105,7 @@ body {
 .event-list > li > .info > ul > li > a {
     display: block;
     width: 100%;
-    color: rgb(30, 30, 30);
+    color: white;
     text-decoration: none;
 }
 
@@ -175,7 +175,7 @@ body {
     }
 
     .event-list > li > .info {
-        background-color: rgb(245, 245, 245);
+        background-color: #27213C;
         overflow: hidden;
     }
 
@@ -203,6 +203,7 @@ body {
         position: absolute;
         left: 0px;
         bottom: 0px;
+        background-color: #DAD2D8;
     }
 
     .event-list > li > .social {
@@ -226,21 +227,24 @@ body {
         display: block;
         width: 40px;
         padding: 10px 0px 9px;
+        background-color: #DAD2D8;
+    }
+
+
+    .map {
+        height: 100%;
+        width:80%;
+        min-height: 400px;
     }
 
 }
-.map {
-    height: 100%;
-    width:80%;
-    min-height: 400px;
-}
+
 </style>
 
 <head th:replace="fragments :: head('Events')"/>
 <body>
 <ul>
     <nav th:replace="fragments :: navbar"/>
-
 
     <div th:replace="fragments :: login"/>
     <div th:replace="fragments :: register"/>
