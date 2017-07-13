@@ -131,6 +131,16 @@ p {
 .open>.dropdown-menu {
     display: inline-grid;
 }
+
+.navbar-default .navbar-toggle {
+    border-color: #0F8B8D;
+    margin-top: 55px;
+    margin-right: 55px;
+}
+
+.navbar-default .navbar-toggle:hover {
+    background-color: #0F8B8D;
+}
 /*////////////////////////////////////////////////////////////////*/
 .homepage-left-col {
     aalign-items: center;
