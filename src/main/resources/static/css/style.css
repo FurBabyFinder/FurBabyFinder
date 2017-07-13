@@ -139,7 +139,8 @@ p {
 }
 
 .navbar-default .navbar-toggle:hover {
-    background-color: #0F8B8D;
+    background-color: #143642;
+    border-color: #0F8B8D;
 }
 /*////////////////////////////////////////////////////////////////*/
 .homepage-left-col {

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
     <link href="https://fonts.googleapis.com/css?family=Lato|Patua+One" rel="stylesheet"/>
-    <link rel="shortcut icon"  th:href="@{/img/fur-baby-icon.png}"/>
+    <link rel="shortcut icon" th:href="@{/img/fur-baby-icon.png}"/>
 
 </head>
 
@@ -69,146 +69,116 @@
 </nav>
 
 <div class="form-group">
-<div th:fragment="petdata">
-    <div class="form-group">
-        <label class="control-label" for="name">Pet Name</label>
-        <input class="form-control" id="name" type="text" size="20" th:field="*{name}"/>
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('name')}">
-            <p th:errors="*{name}"/>
+    <div th:fragment="petdata">
+        <div class="form-group">
+            <label class="control-label" for="name">Pet Name</label>
+            <input class="form-control" id="name" type="text" size="20" th:field="*{name}"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('name')}">
+                <p th:errors="*{name}"/>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label" for="age">Animal Age in Years</label>
-        <input class="form-control" id="age" type="text" size="2" th:field="*{age}"/>
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('age')}">
-            <p th:errors="*{age}"/>
+        <div class="form-group">
+            <label class="control-label" for="age">Animal Age in Years</label>
+            <input class="form-control" id="age" type="text" size="2" th:field="*{age}"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('age')}">
+                <p th:errors="*{age}"/>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label" for="species">Animal Species</label>
-        <input class="form-control" id="species" type="text" size="20" th:field="*{species}"/>
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('species')}">
-            <p th:errors="*{species}"/>
+        <div class="form-group">
+            <label class="control-label" for="species">Animal Species</label>
+            <input class="form-control" id="species" type="text" size="20" th:field="*{species}"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('species')}">
+                <p th:errors="*{species}"/>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label" for="species">Animal Breed</label>
-        <input class="form-control" id="species" type="text" size="20" th:field="*{breed}"/>
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('breed')}">
-            <p th:errors="*{breed}"/>
+        <div class="form-group">
+            <label class="control-label" for="species">Animal Breed</label>
+            <input class="form-control" id="species" type="text" size="20" th:field="*{breed}"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('breed')}">
+                <p th:errors="*{breed}"/>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <input class="form-control" type="radio" id="readyToAdopt1" name="readyToAdopt" th:field="*{readyToAdopt}" value="true"/>Ready To
-        Adopt<br/>
-        <input class="form-control" type="radio" id="readyToAdopt2" name="readyToAdopt" th:field="*{readyToAdopt}" value="false"/>Not Ready
-        To Adopt<br/>
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('readyToAdopt')}">
-            <p th:errors="*{readyToAdopt}"/>
+        <div class="form-group">
+            <input class="form-control" type="radio" id="readyToAdopt1" name="readyToAdopt" th:field="*{readyToAdopt}"
+                   value="true"/>Ready To
+            Adopt<br/>
+            <input class="form-control" type="radio" id="readyToAdopt2" name="readyToAdopt" th:field="*{readyToAdopt}"
+                   value="false"/>Not Ready
+            To Adopt<br/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('readyToAdopt')}">
+                <p th:errors="*{readyToAdopt}"/>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label" for="story">Story</label>
-        <input class="form-control" id="story" type="text" size="500" th:field="*{story}"/>
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('story')}">
-            <p th:errors="*{story}"/>
+        <div class="form-group">
+            <label class="control-label" for="story">Story</label>
+            <input class="form-control" id="story" type="text" size="500" th:field="*{story}"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('story')}">
+                <p th:errors="*{story}"/>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label" for="arrivalDate">Date Of Arrival</label>
-        <input class="form-control" id="arrivalDate" type="text" placeholder="MM/DD/YYYY" size="15" th:field="*{arrivalDate}"/>
-        <div class="alert alert-danger" style="display: none" id="arrivalDateWarning"><span>Date Must Be in mm/dd/yyyy format</span>
+        <div class="form-group">
+            <label class="control-label" for="arrivalDate">Date Of Arrival</label>
+            <input class="form-control" id="arrivalDate" type="text" placeholder="MM/DD/YYYY" size="15"
+                   th:field="*{arrivalDate}"/>
+            <div class="alert alert-danger" style="display: none" id="arrivalDateWarning"><span>Date Must Be in mm/dd/yyyy format</span>
+            </div>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('arrivalDate')}">
+                <p th:errors="*{arrivalDate}"/>
+            </div>
         </div>
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('arrivalDate')}">
-            <p th:errors="*{arrivalDate}"/>
+        <div class="form-group">
+            <label class="control-label" for="foster">ID Number of Foster</label>
+            <input class="form-control" id="foster" type="text" size="20" th:field="*{foster}"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('foster')}">
+                <p th:errors="*{foster}"/>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label" for="foster">ID Number of Foster</label>
-        <input class="form-control" id="foster" type="text" size="20" th:field="*{foster}"/>
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('foster')}">
-            <p th:errors="*{foster}"/>
+        <div class="form-group">
+            <label class="control-label" for="adopter">ID Number of Adopting Person/Family</label>
+            <input clas="form-control" class="form-control" id="adopter" type="text" size="20" th:field="*{adopter}"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('adopter')}">
+                <p th:errors="*{adopter}"/>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label" for="adopter">ID Number of Adopting Person/Family</label>
-        <input clas="form-control" class="form-control" id="adopter" type="text" size="20" th:field="*{adopter}"/>
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('adopter')}">
-            <p th:errors="*{adopter}"/>
+        <div class="form-group">
+            <label class="control-label" for="adoptionDate">Date Of Adoption</label>
+            <input class="form-control" id="adoptionDate" type="text" placeholder="MM/DD/YYYY" size="15"
+                   th:field="*{adoptionDate}"/>
+            <div class="alert alert-danger" style="display: none" id="adoptionDateWarning"><span>Date Must Be in mm/dd/yyyy format</span>
+            </div>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('adoptionDate')}">
+                <p th:errors="*{adoptionDate}"/>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label" for="adoptionDate">Date Of Adoption</label>
-        <input class="form-control" id="adoptionDate" type="text" placeholder="MM/DD/YYYY" size="15" th:field="*{adoptionDate}"/>
-        <div class="alert alert-danger" style="display: none" id="adoptionDateWarning"><span>Date Must Be in mm/dd/yyyy format</span>
+        <div class="form-group">
+            <label class="control-label" for="privateNotes">Notes for Employees and Fosters Only</label>
+            <input class="form-control" id="privateNotes" type="text" size="500" th:field="*{privateNotes}"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('privateNotes')}">
+                <p th:errors="*{privateNotes}"/>
+            </div>
         </div>
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('adoptionDate')}">
-            <p th:errors="*{adoptionDate}"/>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label" for="privateNotes">Notes for Employees and Fosters Only</label>
-        <input class="form-control" id="privateNotes" type="text" size="500" th:field="*{privateNotes}"/>
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('privateNotes')}">
-            <p th:errors="*{privateNotes}"/>
-        </div>
-    </div>
 
 
-</div>
+    </div>
 </div>
 <footer th:fragment="footer" class="">
     <div class="row footer-row">
 
-        <div class="col-sm-12">
+        <div class="col-xs-12">
             <div class="text-center footer footer-contact">
                 <div class="contact-info"> 4450 Candyland Pkwy</div>
                 <div class="contact-info"> San Antonio, TX 78210</div>
                 <div class="contact-info"> 210-456-8383</div>
-                <i class="fa fa-facebook" aria-hidden="true" style="font-size:48px;color:#27213C"></i>
-                <i class="fa fa-twitter" aria-hidden="true" style="font-size:48px;color:#27213C"></i>
-                <i class="fa fa-google-plus" aria-hidden="true" style="font-size:48px;color:#27213C"></i>
-                <i class="fa fa-instagram" aria-hidden="true" style="font-size:48px;color:#27213C"></i>
             </div>
         </div>
-        <!--<div class="col-sm-6">-->
-        <!--<div class="text-center footer footer-map">-->
-        <!--<div class="placeholder-map">-->
-        <!--<img class="map" th:src="@{../img/map-placeholder.jpg}"/>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--<div class="col-sm-3">-->
-        <!--<div class="text-center footer footer-nav">-->
-        <!--<h4>Navigation</h4>-->
-        <!--<ul class="text-center footer-list">-->
-        <!--<li class="dropdown" th:attr="data-types=${list}">-->
-        <!--<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"-->
-        <!--aria-expanded="false">View Pets <span class="caret"></span></a>-->
-        <!--<ul class="dropdown-menu">-->
-        <!--<li><a th:href="@{'/pets/all'}">all</a></li>-->
-        <!--<li th:each="oneSpecies : ${list}"><a th:href="@{'/pets/'+ ${oneSpecies} + '/type/all'}" th:text="${oneSpecies}+'s'"></a></li>-->
-        <!--</ul>-->
-        <!--</li>-->
-        <!--<li><a href="/about-us">About Us</a></li>-->
-        <!--<li><a href="/how-it-works">How It Works</a></li>-->
-        <!--<li><a href="/volunteer">Volunteer</a></li>-->
-        <!--<li><a href="/foster">Foster</a></li>-->
-        <!--<li><a href="/events">Events</a></li>-->
-        <!--<li><a href="/donate">Donate</a></li>-->
-        <!--<li><a href="/register-login">Register/Login</a></li>-->
-        <!--</ul>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--<div class="col-sm-3">-->
-        <!--<div class="text-center footer footer-follow">-->
-        <!--<h4>Follow Us</h4>-->
-        <!--<img class="icon" th:src="@{../img/Facebook.png}"/>-->
-        <!--<img class="icon" th:src="@{../img/Google.png}"/>-->
-        <!--<img class="icon" th:src="@{../img/Instagram.png}"/>-->
-        <!--<img class="icon" th:src="@{../img/Twitter.png}"/>-->
-        <!--</div>-->
-        <!--</div>-->
+    </div>
+    <div class="row text-center">
+        <div class="col-xs-12">
+            <i class="fa fa-facebook" aria-hidden="true" style="font-size:48px;color:#27213C"></i>
+            <i class="fa fa-twitter" aria-hidden="true" style="font-size:48px;color:#27213C"></i>
+            <i class="fa fa-google-plus" aria-hidden="true" style="font-size:48px;color:#27213C"></i>
+            <i class="fa fa-instagram" aria-hidden="true" style="font-size:48px;color:#27213C"></i>
+        </div>
     </div>
 </footer>
 
@@ -344,6 +314,9 @@
 <!--</div>-->
 
 <!--</div>-->
+
+
+
 
 
 <div th:fragment="scripts">
