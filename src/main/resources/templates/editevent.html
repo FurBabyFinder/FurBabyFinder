@@ -42,12 +42,12 @@
             <div><label>Upload an image<input type="file" name="imageLoc" id="eventImage" /></label>
             </div>
             <br />
-            <form method="post" action="/event/delete">
-                <input type="hidden" name="id" th:value="${event.id}"/>
-                <button class="btn btn-danger">Delete</button>
-            </form>
             <input type="submit" />
             <input type="hidden" th:field="*{id}" />
+        </form>
+        <form th:method="post" th:action="@{/event/delete}">
+            <input type="hidden" name="id" th:value="${event.id}"/>
+            <button class="btn btn-danger">Delete</button>
         </form>
     </div>
 

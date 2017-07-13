@@ -86,10 +86,11 @@ public class EventsController {
     }
 
     @PostMapping("/event/delete")
-    public String deletePost(@ModelAttribute Event event, Model model) {
-        eventsRepository.deleteEvent(event.getId());
-        model.addAttribute("msg", "Your post was deleted correctly");
-        return "return the view with a success message";
+    public String deletePost(@RequestParam Long id, Model model) {
+        Event event = eventsRepository.findOne(id);
+        eventsRepository.delete(event);
+        model.addAttribute("msg", "Your event was deleted correctly");
+        return "redirect:/events";
     }
 
 
