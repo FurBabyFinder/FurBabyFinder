@@ -101,13 +101,14 @@ p {
 }
 
 .navbar-default .navbar-nav .open .dropdown-menu>li>a {
-    color: #0F8B8D;
+    color: white;
 }
 
 .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
     color: white;
     background-color: transparent;
 }
+
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
     border-color: #143642;
@@ -120,7 +121,17 @@ p {
     background-color: #143642;
 }
 
+.navbar-nav>li>.dropdown-menu {
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background-color: #143642;
+}
 
+
+.pets-menu {
+    display: inline-grid;
+}
 /*////////////////////////////////////////////////////////////////*/
 .homepage-left-col {
     aalign-items: center;

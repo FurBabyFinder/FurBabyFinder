@@ -27,7 +27,7 @@
                     <div class="dropdown" th:attr="data-types=${list}">
                         <a class="nav-filter-links font-purple" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false"> Types Of Animals <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu pets-menu">
                             <li><a th:href="@{'/pets/all'}">all</a></li>
                             <li th:each="oneSpecies : ${list}"><a th:href="@{'/pets/'+ ${oneSpecies} + '/type/all'}"
                                                                   th:text="${oneSpecies}+'s'"></a></li>
