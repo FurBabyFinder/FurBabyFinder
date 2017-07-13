@@ -8,6 +8,10 @@ $("#searchIndividual").click(function(){
         $('#warningMessage').css("display", "inline-block");
     }
     else if (petID != "") {
+         if(!($.isNumeric(petID))){
+             $('#warningMessageNumeric').css("display", "inline-block");
+             return;
+         }
 
         window.location.href =  "/pets/searchID/" + petID;
          $('#warningMessage').css("display", "none");
@@ -16,4 +20,10 @@ $("#searchIndividual").click(function(){
         window.location.href =  "/pets/searchName/" + petName;
          $('#warningMessage').css("display", "none");
     }
+
+     else {
+         window.location.href = "/pets/searchAllPets";
+         hideWarnings();
+     }
 });
+

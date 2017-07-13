@@ -19,6 +19,8 @@ public interface PetsRepository extends CrudRepository<Pet, Long> {
 
     public List<Pet> findAllByName(String name);
 
+    public List<Pet> findAllByNameStartingWith(String name);
+
     public List<Pet> findAllByAdopter(User adopter);
 
     public List<Pet> findAllByFoster(User foster);
@@ -37,6 +39,12 @@ public interface PetsRepository extends CrudRepository<Pet, Long> {
 
     @Query ("Select p from Pet p inner join p.filtersPets f where f.id = :passID")
     public ArrayList<Pet> findPetsByFilter(@Param("passID") long passID);
+//    from CountryDTO c where ((:status is null and c.status is null) or c.status = :status) and c.type =:type
+    @Query ("Select p from Pet p where adopter is not null")
+    public ArrayList<Pet> findAllPetsWithAdopter();
+
+    @Query ("Select p from Pet p where foster is not null")
+    public ArrayList<Pet> findAllPetsWithFoster();
 
     @Query(value = "select p.species from Pet p where p.readyToAdopt = true group by p.species")
     public List<String> findSpecies();

@@ -41,7 +41,10 @@ $("#searchUser").click(function(){
 
             else {
                 if (userID != "") {
-
+                    if(!($.isNumeric(userID))){
+                        $('#warningMessageNumeric').css("display", "inline-block");
+                        return;
+                    }
                     window.location.href = "/pets/searchAdopterID/" + userID;
                    hideWarnings();
                 }
@@ -59,6 +62,10 @@ $("#searchUser").click(function(){
                     window.location.href = "/pets/" + userFirstName + "/searchAdopterName/" + userLastName;
                     hideWarnings();
                 }
+                else {
+                    window.location.href = "/pets/searchAllAdopter";
+                    hideWarnings();
+                }
             }
 
         }
@@ -66,7 +73,10 @@ $("#searchUser").click(function(){
 
         if ($("#foster").is(':checked')) {
             if (userID != "") {
-
+                if(!($.isNumeric(userID))){
+                    $('#warningMessageNumeric').css("display", "inline-block");
+                    return;
+                }
                 window.location.href = "/pets/searchFosterID/" + userID +"/" + ready + "/" + exclude;
                 hideWarnings();
             }
@@ -84,6 +94,10 @@ $("#searchUser").click(function(){
                 window.location.href = "/pets/" + userFirstName + "/searchFosterName/" + userLastName +"/"+ ready + "/" + exclude;
                 hideWarnings();
             }
+            // else {
+            //     window.location.href = "/pets/searchAllFoster/" + ready +"/" + exclude;
+            //     hideWarnings();
+            // }
         }
     }
 
