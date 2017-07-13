@@ -656,8 +656,41 @@ a:hover {
 }
 
 
+.need-an-account {
+    margin-top: 17px;
+}
 
 
+.login {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
 
 
+.center {
+    margin: auto;
+}
 
+.login-button {
+    margin-top: 15px;
+}
+
+
+.button-register {
+    background-color: white;
+    color: #A8201A;
+    border: none;
+    height: 40px;
+    width: 150px;
+    margin: 5px;
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+}
+
+
+.login-icon {
+    height: 200px;
+    width: 200px;
+    margin: auto;
+    margin-bottom: 15px;
+}
