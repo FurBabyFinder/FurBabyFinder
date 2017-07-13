@@ -100,9 +100,25 @@ p {
     margin-right: 5px;
 }
 
+.navbar-default .navbar-nav .open .dropdown-menu>li>a {
+    color: #0F8B8D;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
+    color: white;
+    background-color: transparent;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: #143642;
+    background-color: #143642;
+}
 
 
-
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+    color: white;
+    background-color: #143642;
+}
 
 
 /*////////////////////////////////////////////////////////////////*/
