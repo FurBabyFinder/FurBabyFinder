@@ -20,10 +20,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsLoader userDetails;
 
-//    @Bean(name = "passwordEncoder")
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
+    @Bean(name = "passwordEncoder")
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -53,8 +53,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userDetails).passwordEncoder(passwordEncoder());
-        auth.userDetailsService(userDetails);
+        auth.userDetailsService(userDetails).passwordEncoder(passwordEncoder());
+//        auth.userDetailsService(userDetails);
     }
 
 }

@@ -32,8 +32,8 @@ PetsRepository petsRepository;
 
     @Autowired
     UserRolesRepository userRolesRepository;
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     @PostMapping("register")
@@ -41,11 +41,11 @@ PetsRepository petsRepository;
                            Model model){
 
 //        THIS IS THE ENCODED VERSION WE NEED TO PUT BACK IN LATER
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        usersDao.save(user);
-//
-        user.setPassword((user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         usersDao.save(user);
+
+//        user.setPassword((user.getPassword()));
+//        usersDao.save(user);
 
         UserRole userRole = new UserRole(user.getId(), "basic");
         model.addAttribute("list", petsRepository.findSpecies());

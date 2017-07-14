@@ -222,7 +222,7 @@ p {
     color: white;
     border: none;
     font-size: 35px;
-    padding: 10px;
+    padding: 15px;
     font-family: Lato;
 }
 .how-it-works-body {
@@ -335,10 +335,7 @@ cite {
     margin-top: 50px;
 }
 
-.fa {
-    padding:20px;
-    margin-bottom: 50px;
-}
+
 
 
 .footer-list {
@@ -799,7 +796,7 @@ a:hover {
 
 .timepicker,
 .datetimepicker {
-}
+
 .form-control {
     background: #fff;
 }
@@ -809,7 +806,12 @@ a:hover {
     height: 34px;
 }
 
-
-.red-border{
-    border: 2px solid red;
+.padding-bottom-footer{
+    padding-bottom:20px;
 }
+
+
+.padding-bottom-icons {
+    padding-bottom: 50px;
+}
+
