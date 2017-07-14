@@ -98,7 +98,7 @@
                     <div class="col-sm-3 pet-picture" th:if="${pet.getImages().size() > 0}">
                         <div th:each="petImage : ${pet.getImages()}">
                             <div th:if="${petImage.profilePic} == true">
-                                <img class="img-thumbnail" th:alt="${petImage.ImageDescription}" th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}"/>
+                                <img class="img-thumbnail" th:alt="${petImage.ImageDescription}" th:src="@{${petImage.imageUrl}}"/>
                             </div>
                         </div>
                     </div>
@@ -122,7 +122,7 @@
                     <div class="col-sm-3 pet-picture" th:if="${pet.getImages().size() > 0}">
                         <div th:each="petImage : ${pet.getImages()}">
                             <div th:if="${petImage.profilePic} == true">
-                                <img class="img-thumbnail" th:alt="${petImage.ImageDescription}" th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}"/>
+                                <img class="img-thumbnail" th:alt="${petImage.ImageDescription}" th:src="@{${petImage.imageUrl}}"/>
                             </div>
                         </div>
                     </div>
