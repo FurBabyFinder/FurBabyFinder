@@ -3,20 +3,32 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="fragments :: head('Events')"/>
 <body>
-<ul>
+
     <nav th:replace="fragments :: navbar"/>
 
 
     <div th:replace="fragments :: login"/>
     <div th:replace="fragments :: register"/>
 
-    <div class="container">
+    <div class="container-fluid">
+        <div class="row row-header">
+
+            <div class="col-sm-12">
+                <div class="text-center footer footer-contact">
+                    <h1>Create Your Event</h1>
+                    <h4>Fill out the form below to create your event!</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center create-event-container form-group">
         <form th:action="@{/events/create}" th:method="post" th:object="${event}">
             Title:
-            <input th:field="*{title}"/>
-            <br/>
+            <input class="form-control" th:field="*{title}" />
+            <br />
             <div class="row">
-                <div class="col-xs-4">
+                <div class="col-xs-6">
                     <h3>Event Starts</h3>
                     <div class="form-group">
                         <div class="input-group datetimepicker">
@@ -29,52 +41,56 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-4">
+                <div class="col-xs-6">
                     <h3>Event Ends</h3>
                     <div class="form-group">
                         <div class="input-group datetimepicker">
                             <input th:field="*{endDate}" type="text" class="form-control" readonly="readonly"/>
                             <div class="input-group-addon no-padding">
-                                <div class="fa fa-calendar no-padding"></div>
+                                <span class="fa fa-calendar"></span>
+                                +
+                                <span class="fa fa-clock-o"></span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <br/>
+            <br />
             Description:
-            <input th:field="*{eventDesc}"/>
-            <br/>
+            <input class="form-control" th:field="*{eventDesc}" />
+            <br />
             Link:
-            <input th:field="*{link}"/>
-            <br/>
+            <input class="form-control" th:field="*{link}" />
+            <br />
             Street Address:
-            <input th:field="*{street1}"/>
-            <br/>
+            <input class="form-control" th:field="*{street1}" />
+            <br />
             Street Address continued:
-            <input th:field="*{street2}"/>
-            <br/>
+            <input class="form-control" th:field="*{street2}" />
+            <br />
             City:
-            <input th:field="*{city1}"/>
-            <br/>
+            <input class="form-control" th:field="*{city1}" />
+            <br />
             State:
-            <input th:field="*{state1}"/>
-            <br/>
+            <input class="form-control" th:field="*{state1}" />
+            <br />
             Zip:
-            <input th:field="*{zip1}"/>
-            <br/>
-            <div><label>Upload an image<input type="file" name="imageLoc" id="eventImage"/></label>
+            <input class="form-control" th:field="*{zip1}" />
+            <br />
+            <div><label>Upload an image<input type="file" name="imageLoc" id="eventImage" /></label>
             </div>
-            <br/>
-            <input type="submit"/>
+            <br />
+            <input class="form-control" type="submit" />
+            <input class="form-control" type="hidden" th:field="*{id}" />
         </form>
-
-
+        <form th:method="post" th:action="@{/event/delete}">
+            <input type="hidden" name="id" th:value="${event.id}"/>
+            <button class="btn btn-danger">Delete</button>
+        </form>
     </div>
 
     <div th:replace="fragments :: footer"/>
     <div th:replace="fragments :: scripts"/>
     <script src="/js/events.js"></script>
-</ul>
 </body>
 </html>

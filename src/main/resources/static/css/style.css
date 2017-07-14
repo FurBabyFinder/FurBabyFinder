@@ -796,7 +796,7 @@ a:hover {
 
 .timepicker,
 .datetimepicker {
-
+}
 .form-control {
     background: #fff;
 }
@@ -813,5 +813,12 @@ a:hover {
 
 .padding-bottom-icons {
     padding-bottom: 50px;
+}
+
+.edit-event-container{
+    padding-top: 50px;
+}
+.create-event-container{
+    padding-top: 50px;
 }
 
