@@ -53,10 +53,13 @@
                     <a class="dropdown-toggle admin-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Admin <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/pets/addPetFilestack" sec:authorize="hasAuthority('admin')">Add Guest Animal</a></li>
+                        <li><a href="/pets/addPetFilestack" sec:authorize="hasAuthority('admin')">Add Guest Animal</a>
+                        </li>
                         <li><a href="/searchUser" sec:authorize="hasAuthority('admin')">Search Users</a></li>
-                        <li><a href="/pets/findOne" sec:authorize="hasAuthority('admin') or hasAuthority('foster')">Find Guest Animal by Name/ID</a></li>
-                        <li><a href="/pets/searchByUser" sec:authorize="hasAuthority('admin')">Find Guest Animals by Foster/Adopter</a></li>
+                        <li><a href="/pets/findOne" sec:authorize="hasAuthority('admin') or hasAuthority('foster')">Find
+                            Guest Animal by Name/ID</a></li>
+                        <li><a href="/pets/searchByUser" sec:authorize="hasAuthority('admin')">Find Guest Animals by
+                            Foster/Adopter</a></li>
                         <li><a href="/events/create" sec:authorize="hasAuthority('admin')">Create Event</a></li>
                         <li><a href="/events" sec:authorize="hasAuthority('admin')">Edit Event</a></li>
                     </ul>
@@ -170,21 +173,15 @@
                 <div class="contact-info"> San Antonio, TX 78210</div>
                 <div class="contact-info"> 210-456-8383</div>
             </div>
-        </div>
-    </div>
-    <div class="row text-center media-icons">
-        <div class="col-xs-12">
-            <i class="fa fa-facebook" aria-hidden="true" style="font-size:48px;color:#27213C"></i>
-            <i class="fa fa-twitter" aria-hidden="true" style="font-size:48px;color:#27213C"></i>
-            <i class="fa fa-google-plus" aria-hidden="true" style="font-size:48px;color:#27213C"></i>
-            <i class="fa fa-instagram" aria-hidden="true" style="font-size:48px;color:#27213C"></i>
+            <div class="row text-center media-icons">
+                <i class="fa fa-facebook" aria-hidden="true" style="font-size:48px;color:#27213C"></i>
+                <i class="fa fa-twitter" aria-hidden="true" style="font-size:48px;color:#27213C"></i>
+                <i class="fa fa-google-plus" aria-hidden="true" style="font-size:48px;color:#27213C"></i>
+                <i class="fa fa-instagram" aria-hidden="true" style="font-size:48px;color:#27213C"></i>
+            </div>
         </div>
     </div>
 </footer>
-
-
-
-
 
 
 <div th:fragment="scripts">
