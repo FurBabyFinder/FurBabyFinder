@@ -25,7 +25,7 @@ public class Pet {
     @Size(min = 2, message = "Pet name must be at least 2 characters")
     private String name;
 
-    @Column(nullable = false, length = 1000)
+    @Column(nullable = false, length = 5000)
     @NotBlank(message = "Pet must have a story")
     @Size(min = 10, message = "Pet story must be at least 50 characters")
     private String story;

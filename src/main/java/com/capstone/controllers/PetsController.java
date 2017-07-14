@@ -326,17 +326,22 @@ public class PetsController {
             pet.setId(id);
             pet.setFiltersPets(filters);
             if(imageList != null) {
+                System.out.println("Location 1");
                 for (int i = 0; i < imageList.size(); i++) {
-                    if (replacefiles.size() > 0) {
-                        if (!replacefiles.get(i).equals("")) {
-                            imageList.get(i).setImageUrl(replacefiles.get(i));
+                    System.out.println("Location 2");
+                    if (replacefiles != null) {
+                        System.out.println("Location 3");
+                        if (replacefiles.size() > 0) {
+                            System.out.println("Location 4");
+                            if (!replacefiles.get(i).equals("")) {
+                                imageList.get(i).setImageUrl(replacefiles.get(i));
 
+                            }
                         }
                     }
                 }
             }
             if(imageList != null) {
-
                 for (PetImage image : imageList) {
                     String url = image.getImageUrl();
                     int imageId = (int) image.getId();
