@@ -36,8 +36,8 @@ public class Event {
     private String link;
     @Column(nullable = false)
     private String date;
-    /*@Column(nullable = false)
-    private String time;*/
+    @Column
+    private String endDate;
 
     @Column()
     private String street1;
@@ -65,6 +65,7 @@ public class Event {
         this.eventDesc = eventDesc;
         this.link = link;
         this.date = date;
+        this.endDate = endDate;
         this.street1 = street1;
         this.street2 = street2;
         this.city1 = city1;
@@ -173,5 +174,13 @@ public class Event {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 }

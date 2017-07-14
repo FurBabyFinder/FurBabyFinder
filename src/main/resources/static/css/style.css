@@ -736,7 +736,7 @@ a:hover {
 .btn-hackerrank{
     background-color: #27AB5B;
 }
-.btn-soundcloud{
+.btn-soundcloud {
     background-color: #FF7202;
 
 .need-an-account {
@@ -754,17 +754,15 @@ a:hover {
     font-family: 'Lato', sans-serif;
 }
 
-.centered-text{
+.centered-text {
     text-align: center;
 }
 
-
-.panel-body{
+.panel-body {
     background-color: #27213C;
     color: white;
     border-radius: 25px;
 }
-
 
 .media-icons {
     background-color: #DAD2D8;
@@ -774,18 +772,20 @@ a:hover {
     padding: 80px 50px;
 }
 
-.aboutus{
+.aboutus {
     color: white;
-  }
+}
 
 .state-icon {
     padding-right: 5px;
 }
+
 .filter-choice-primary {
     color: white;
     background-color: #143642;
     width: 100%;
 }
+
 .list-group {
     width: 100%;
 }
@@ -795,4 +795,25 @@ a:hover {
     margin-left: 10px;
 }
 
+.datepicker,
+.table-condensed {
+    width: 500px;
+    height: 500px;
+}
 
+.timepicker,
+.datetimepicker {
+
+.form-control {
+    background: #fff;
+}
+
+}
+
+.input-group-addon {
+    height: 34px;
+}
+
+.no-padding {
+    padding: 0;
+}
