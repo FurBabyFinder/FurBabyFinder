@@ -25,7 +25,8 @@
             <ul id="nav-filter">
                 <li>
                     <div class="dropdown" th:attr="data-types=${list}">
-                        <a class="nav-filter-links font-purple" data-toggle="dropdown" role="button" aria-haspopup="true"
+                        <a class="nav-filter-links font-purple" data-toggle="dropdown" role="button"
+                           aria-haspopup="true"
                            aria-expanded="false"> Types Of Animals <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a th:href="@{'/pets/all'}">all</a></li>
@@ -36,7 +37,8 @@
                 </li>
                 <li>
                     <div class="dropdown" th:attr="data-types=${breeds}">
-                        <a class="nav-filter-links font-purple" data-toggle="dropdown" role="button" aria-haspopup="true"
+                        <a class="nav-filter-links font-purple" data-toggle="dropdown" role="button"
+                           aria-haspopup="true"
                            aria-expanded="false">Breeds <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li th:each="oneBreed : ${breeds}"><a th:if="${oneBreed} != null"
@@ -47,183 +49,60 @@
                 </li>
                 <li>
                     <!-- Button trigger modal -->
-                    <a class="font-purple nav-filter-links more-filters cursor-hand" data-toggle="modal" data-target="#modalLong">More filters
+                    <a class="font-purple nav-filter-links more-filters cursor-hand" data-toggle="modal"
+                       data-target="#modalLong">More filters
                     </a>
 
 
-                <div class="modal fade" id="modalLong" tabindex="-1" role="dialog" aria-labelledby="modalLongTitle"
-                     aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalLongTitle">Title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-<ul class="modal-filter">
-                <li>
-                    <div class="checkbox">
-                        <label><input type="checkbox" id="male"/>Male</label>
-                    </div>
-                </li>
-                <li>
-                    <div class="checkbox">
-                        <label><input type="checkbox" id="female"/>Female</label>
-                    </div>
-                </li>
-                <li>
-                    <div class="checkbox">
-                        <label><input type="checkbox" id="neutered_spayed"/>Neutered/Spayed</label>
-                    </div>
-                </li>
-                <li>
-                    <div class="checkbox">
-                        <label><input type="checkbox" id="potty_trained"/>Potty Trained</label>
-                    </div>
-                </li>
-                <li>
-                    <div class="checkbox">
-                        <label><input type="checkbox" id="goodWKids"/>Great With Kids</label>
-                    </div>
-                </li>
-                <li>
-                    <div class="checkbox">
-                        <label><input type="checkbox" id="crateTrained"/>Crate Trained</label>
-                    </div>
-                </li>
-                <li>
-                    <div class="checkbox">
-                        <label><input type="checkbox" id="greatWDogs"/>Great With Dogs</label>
-                    </div>
-                </li>
-                <li>
-                    <div class="checkbox">
-                        <label><input type="checkbox" id="noDogs"/>Not Dog Friendly</label>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="checkbox">
-                        <label><input type="checkbox" id="medicalFoster"/>Medical Foster</label>
-                    </div>
-                </li>
-                <li>
-                    <div class="checkbox">
-                        <label><input type="checkbox" id="microchipped"/>Microchipped</label>
-                    </div>
-                </li>
-                <li>
-                    <div class="checkbox">
-                        <label><input type="checkbox" id="noCats"/>Not Cat Friendly</label>
-                    </div>
-                </li>
-                <li>
-                    <div class="checkbox">
-                        <label><input type="checkbox" id="#catFriendly"/>Great with Cats</label>
-                    </div>
-                </li>
-                <li>
-                    <div class="checkbox">
-                        <label><input type="checkbox" id="underYear"/>Under a Year</label>
-                    </div>
-                </li>
-
-                <li>
-                    <div>
-                        <div class="btn btn-primary filter-button" id="searchFiltered">Search</div>
-                    </div>
-                </li>
-</ul>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <div class="modal fade" id="modalLong" tabindex="-1" role="dialog" aria-labelledby="modalLongTitle"
+                         aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalLongTitle">Refine Your Search</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <ul class="modal-filter list-group checked-list-box">
+                                        <li class="filter-choice" id="male">Male</li>
+                                        <li class="filter-choice" id="female">Female</li>
+                                        <li class="filter-choice" id="neutered_spayed">Neutered/Spayed</li>
+                                        <li class="filter-choice" id="potty_trained">Potty Trained</li>
+                                        <li class="filter-choice" id="goodWKids">Great With Kids</li>
+                                        <li class="filter-choice" id="crateTrained">Crate Trained</li>
+                                        <li class="filter-choice" id="greatWDogs">Great With Dogs</li>
+                                        <li class="filter-choice" id="noDogs">Not Dog Friendly</li>
+                                        <li class="filter-choice" id="medicalFoster">Medical Foster</li>
+                                        <li class="filter-choice" id="microchipped">Microchipped</li>
+                                        <li class="filter-choice" id="noCats">Not Cat Friendly</li>
+                                        <li class="filter-choice" id="#catFriendly">Great With Cats</li>
+                                        <li class="filter-choice" id="underYear">Under a Year</li>
+                                    </ul>
+                                    <div class="modal-footer">
+                                        <div class="btn btn-primary filter-button" id="searchFiltered">Apply</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
                 </li>
-
-                <!--<li>-->
-                    <!--<div class="checkbox">-->
-                        <!--<label><input type="checkbox" id="male"/>Male</label>-->
-                    <!--</div>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<div class="checkbox">-->
-                        <!--<label><input type="checkbox" id="female"/>Female</label>-->
-                    <!--</div>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<div class="checkbox">-->
-                        <!--<label><input type="checkbox" id="neutered_spayed"/>Neutered/Spayed</label>-->
-                    <!--</div>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<div class="checkbox">-->
-                        <!--<label><input type="checkbox" id="potty_trained"/>Potty Trained</label>-->
-                    <!--</div>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<div class="checkbox">-->
-                        <!--<label><input type="checkbox" id="goodWKids"/>Great With Kids</label>-->
-                    <!--</div>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<div class="checkbox">-->
-                        <!--<label><input type="checkbox" id="crateTrained"/>Crate Trained</label>-->
-                    <!--</div>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<div class="checkbox">-->
-                        <!--<label><input type="checkbox" id="greatWDogs"/>Great With Dogs</label>-->
-                    <!--</div>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<div class="checkbox">-->
-                        <!--<label><input type="checkbox" id="noDogs"/>Not Dog Friendly</label>-->
-                    <!--</div>-->
-                <!--</li>-->
-
-                <!--<li>-->
-                    <!--<div class="checkbox">-->
-                        <!--<label><input type="checkbox" id="medicalFoster"/>Medical Foster</label>-->
-                    <!--</div>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<div class="checkbox">-->
-                        <!--<label><input type="checkbox" id="microchipped"/>Microchipped</label>-->
-                    <!--</div>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<div class="checkbox">-->
-                        <!--<label><input type="checkbox" id="noCats"/>Not Cat Friendly</label>-->
-                    <!--</div>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<div class="checkbox">-->
-                        <!--<label><input type="checkbox" id="#catFriendly"/>Great with Cats</label>-->
-                    <!--</div>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<div class="checkbox">-->
-                        <!--<label><input type="checkbox" id="underYear"/>Under a Year</label>-->
-                    <!--</div>-->
-                <!--</li>-->
-
-                <!--<li>-->
-                    <!--<div>-->
-                        <!--<div class="btn btn-primary filter-button" id="searchFiltered">Search</div>-->
-                    <!--</div>-->
-                <!--</li>-->
             </ul>
         </div>
-
     </div>
 </div>
+<!--</div>-->
+<!--</div>-->
+
+<!--</li>-->
+
+
+<!--</ul>-->
+<!--</div>-->
+
+<!--</div>-->
+<!--</div>-->
 
 
 <div class="container-fluid container-pet-view">
@@ -256,130 +135,6 @@
 </div>
 
 
-<!--<div class="col-sm-2 pet-filter">-->
-<!--<div class="dropdown" th:attr="data-types=${list}">-->
-<!--<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"-->
-<!--aria-expanded="false"> Types Of Animals <span class="caret"></span></a>-->
-<!--<ul class="dropdown-menu">-->
-<!--<li><a th:href="@{'/pets/all'}">all</a></li>-->
-<!--<li th:each="oneSpecies : ${list}"><a th:href="@{'/pets/'+ ${oneSpecies} + '/type/all'}"-->
-<!--th:text="${oneSpecies}+'s'"></a></li>-->
-<!--</ul>-->
-<!--</div>-->
-
-<!--<div class="dropdown" th:attr="data-types=${breeds}">-->
-<!--<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"-->
-<!--aria-expanded="false"> Breeds <span class="caret"></span></a>-->
-<!--<ul class="dropdown-menu">-->
-<!--<li th:each="oneBreed : ${breeds}"><a th:if="${oneBreed} != null"-->
-<!--th:href="@{'/pets/'+ ${species} + '/breed/' + ${oneBreed} +'/all'}"-->
-<!--th:text="${oneBreed}+'s'"></a></li>-->
-<!--</ul>-->
-<!--</div>-->
-
-
-<!--<div class="checkbox">-->
-<!--<label><input type="checkbox" id="male"/>Male</label>-->
-<!--</div>-->
-<!--<div class="checkbox">-->
-<!--<label><input type="checkbox" id="female"/>Female</label>-->
-<!--</div>-->
-<!--<div class="checkbox">-->
-<!--<label><input type="checkbox" id="neutered_spayed"/>Neutered/Spayed</label>-->
-<!--</div>-->
-<!--<div class="checkbox">-->
-<!--<label><input type="checkbox" id="potty_trained"/>Potty Trained</label>-->
-<!--</div>-->
-<!--<div class="checkbox">-->
-<!--<label><input type="checkbox" id="goodWKids"/>Great With Kids</label>-->
-<!--</div>-->
-<!--<div class="checkbox">-->
-<!--<label><input type="checkbox" id="crateTrained"/>Crate Trained</label>-->
-<!--</div>-->
-<!--<div class="checkbox">-->
-<!--<label><input type="checkbox" id="greatWDogs"/>Great With Dogs</label>-->
-<!--</div>-->
-<!--<div class="checkbox">-->
-<!--<label><input type="checkbox" id="noDogs"/>Not Dog Friendly</label>-->
-<!--</div>-->
-<!--<div class="checkbox">-->
-<!--<label><input type="checkbox" id="medicalFoster"/>Medical Foster</label>-->
-<!--</div>-->
-<!--<div class="checkbox">-->
-<!--<label><input type="checkbox" id="microchipped"/>Microchipped</label>-->
-<!--</div>-->
-<!--<div class="checkbox">-->
-<!--<label><input type="checkbox" id="noCats"/>Not Cat Friendly</label>-->
-<!--</div>-->
-<!--<div class="checkbox">-->
-<!--<label><input type="checkbox" id="#catFriendly"/>Great with Cats</label>-->
-<!--</div>-->
-<!--<div class="checkbox">-->
-<!--<label><input type="checkbox" id="underYear"/>Under a Year</label>-->
-<!--</div>-->
-<!--<div class="btn btn-primary" id="searchFiltered">Search</div>-->
-
-
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-
-<!--<div class="row text-center">-->
-<!--<button class="button-primary journey-btn"><a href="pets/all" style="color: white">More Info</a></button>-->
-<!--</div>-->
-
-
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="col-sm-6 pet-info text-center">-->
-<!--<h2>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet"-->
-<!--style="text-decoration: none"><span-->
-<!--th:text="${pet.name}"></span></a></h2>-->
-
-<!--<p><h4>Age <span th:text="${pet.age}"></span></h4></p>-->
-
-<!--</div>-->
-
-<!--<div class="col-sm-3 pet-info">-->
-<!--<div class="row text-center">-->
-<!--<button class="button-primary journey-btn"><a href="pets/all" style="color: white">More Info</a></button>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="col-sm-9 pet-info">-->
-<!--<h2>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet"-->
-<!--style="text-decoration: none"><span-->
-<!--th:text="${pet.name}"></span></a></h2>-->
-
-<!--<p><h4>Info: <span th:text="${pet.story}"></span></h4></p>-->
-
-
-<!--<p><h4>Age <span th:text="${pet.age}"></span></h4></p>-->
-
-<!--<p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>-->
-<!--</div>-->
-
-
-<!--<div th:each="pet : ${pets}">-->
-<!--<p><h2>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet" style="text-decoration: none"><span th:text="${pet.name}"></span></a></h2></p>-->
-<!--<p><h4>Info: <span th:text="${pet.story}"></span></h4></p>-->
-<!--<p><h4>Age <span th:text="${pet.age}"></span></h4></p>-->
-<!--<p><h4>Internal Notes:  <span th:text="${pet.privateNotes}"></span></h4></p>-->
-
-
-<!--<p th:if = "${pet.getImages().size() > 0}"><img th:src="@{'/img/'+ ${pet.getImages().get(0).imageUrl}}" /></p>-->
-<!---->
-<!--</div>-->
-
-
 <input type="hidden" th:value="${species}" id="species"/>
 <input type="hidden" th:value="${breed}" id="breed"/>
 
@@ -389,9 +144,6 @@
 <div th:replace="fragments :: scripts"/>
 <script src="/js/species.js"></script>
 <script src="/js/petsIndex.js"></script>
-<script>
-
-
-</script>
+<script src="/js/checkbox.js"></script>
 </body>
 </html>
