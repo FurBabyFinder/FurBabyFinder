@@ -160,6 +160,8 @@
 
 
                 <input type="hidden" th:value="${imageCount}" id="imageCount" />
+
+
                 <div>
                     <div  class="pet-picture" th:each="petImage, status : ${petDTO.imageList}">
                         <div class="imageForm">
@@ -185,7 +187,7 @@
                         </div>
                     </div>
                 </div>
-
+                <input type="hidden"   name="imageReplace[]" />
 
                 <div id="additionalImages">
 
