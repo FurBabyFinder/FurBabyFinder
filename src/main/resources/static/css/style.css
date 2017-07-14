@@ -222,7 +222,7 @@ p {
     color: white;
     border: none;
     font-size: 35px;
-    padding: 10px;
+    padding: 15px;
     font-family: Lato;
 }
 .how-it-works-body {
@@ -335,10 +335,7 @@ cite {
     margin-top: 50px;
 }
 
-.fa {
-    padding:20px;
-    margin-bottom: 50px;
-}
+
 
 
 .footer-list {
@@ -806,11 +803,13 @@ a:hover {
 .timepicker,
 .datetimepicker {
 
+}
+
+
 .form-control {
     background: #fff;
 }
 
-}
 
 .input-group-addon {
     height: 34px;
