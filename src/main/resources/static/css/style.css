@@ -222,9 +222,9 @@ p {
     color: white;
     border: none;
     font-size: 35px;
-    padding: 16px
+    padding: 10px;
+    font-family: Lato;
 }
-
 .how-it-works-body {
     color: white;
     border: none;
@@ -765,6 +765,15 @@ a:hover {
     border-radius: 25px;
 }
 
+
+.media-icons {
+    background-color: #DAD2D8;
+}
+
+.icons-container {
+    padding: 80px 50px;
+}
+
 .aboutus{
     color: white;
   }
@@ -785,4 +794,5 @@ a:hover {
     height: 25px;
     margin-left: 10px;
 }
+
 
