@@ -710,3 +710,28 @@ a:hover {
     margin: auto;
     margin-bottom: 15px;
 }
+
+
+
+
+
+
+
+
+
+.state-icon {
+    padding-right: 5px;
+}
+.filter-choice-primary {
+    color: white;
+    background-color: #143642;
+    width: 100%;
+}
+.list-group {
+    width: 100%;
+}
+
+.filter-choice {
+    height: 25px;
+    margin-left: 10px;
+}
