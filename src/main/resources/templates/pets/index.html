@@ -121,7 +121,7 @@
                         <div th:if="${petImage.profilePic} == true">
 
                             <img class="img-pet" th:alt="${petImage.ImageDescription}"
-                                 th:src="@{'/uploads/img/'+ ${petImage.imageUrl}}"/>
+                                 th:src="@{${petImage.imageUrl}}"/>
                         </div>
                     </div>
                 </div>
