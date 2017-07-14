@@ -815,4 +815,10 @@ a:hover {
     height: 34px;
 }
 
+.padding-bottom-footer{
+    padding-bottom:20px;
+}
 
+.padding-bottom-icons {
+    padding-bottom: 50px;
+}
