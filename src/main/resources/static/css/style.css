@@ -797,23 +797,19 @@ a:hover {
     margin-left: 10px;
 }
 
-.datepicker,
-.table-condensed {
-    width: 500px;
-    height: 500px;
-}
-
 .timepicker,
 .datetimepicker {
-
+}
 .form-control {
     background: #fff;
 }
 
-}
 
 .input-group-addon {
     height: 34px;
 }
 
 
+.red-border{
+    border: 2px solid red;
+}

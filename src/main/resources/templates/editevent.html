@@ -15,8 +15,32 @@
             Title:
             <input th:field="*{title}" />
             <br />
-            Date:
-            <input placeholder="MM/DD/YYYY" th:field="*{date}" />
+            <div class="row">
+                <div class="col-xs-4">
+                    <h3>Event Starts</h3>
+                    <div class="form-group">
+                        <div class="input-group datetimepicker">
+                            <input th:field="*{date}" type="text" class="form-control" readonly="readonly"/>
+                            <span class="input-group-addon">
+						<span class="fa fa-calendar"></span>
+                        +
+						<span class="fa fa-clock-o"></span>
+					</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <h3>Event Ends</h3>
+                    <div class="form-group">
+                        <div class="input-group datetimepicker">
+                            <input th:field="*{endDate}" type="text" class="form-control" readonly="readonly"/>
+                            <div class="input-group-addon no-padding">
+                                <div class="fa fa-calendar no-padding"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <br />
             Description:
             <input th:field="*{eventDesc}" />
@@ -53,6 +77,7 @@
 
     <div th:replace="fragments :: footer"/>
     <div th:replace="fragments :: scripts"/>
+    <script src="/js/events.js"></script>
 </ul>
 </body>
 </html>
