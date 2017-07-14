@@ -1,6 +1,7 @@
 /**
- * Created by melodytempleton on 7/7/17.
+ * Created by melodytempleton on 7/13/17.
  */
+
 $(document).ready(function(){
 
     var imageCount = $('#imageCount').val();
@@ -21,9 +22,9 @@ $(document).ready(function(){
     function updateIds (classname, idbase){
         var number = 1;
         var id;
-
         $(classname).each(function () {
             id = idbase + number;
+
             $(this).attr("id", id);
             number++;
         })
@@ -31,50 +32,14 @@ $(document).ready(function(){
 
     updateIds('.hiddenChecks', 'hiddenCheck');
     updateIds('.hiddenChecksAdopt', 'hiddenCheckAdopt');
-    updateIds('.imageInputs', 'image');
     updateIds('.profilePic', 'profilePic');
     updateIds('.profilePicHidden', 'profilePicHidden');
     updateIds('.afterAdopt', 'afterAdopt');
-    updateIds('.afterAdoptHidden', 'afterAdoptHidden');
-    updateIds('existImg', 'existImg');
-    updateIds('imageInputs', 'imageInputs');
-
-// ======================================check checkboxes for existing images if profile or after adoption ============
-//     (function checkTheProfile() {
-
-    //   $('.profilePicHidden').each(function(){
-    //        var trueOrNot = $(this).val();
-    //       var currentID = $(this).attr('id');
-    //       console.log(currentID);
-    //       var idEndingNumber = currentID.slice(15,2);
-    //       console.log("ending num "+ idEndingNumber);
-    //       currentID = currentID.slice(0, 10);
-    //       currentID = "#"+currentID+idEndingNumber;
-    //       console.log(currentID);
-    //       if(trueOrNot == "true"){
-    //           $(currentID).attr('checked', true);
-    //       }
-    //   })
-    //
-    // })();
-    //
-    // (function checkAfterAdopt() {
-    //
-    //     $('.afterAdoptHidden').each(function(){
-    //         var trueOrNot = $(this).val();
-    //         var currentID = $(this).attr('id');
-    //         console.log(currentID);
-    //         var idEndingNumber = currentID.slice(15,2);
-    //         console.log("ending num "+ idEndingNumber);
-    //         currentID = currentID.slice(0, 10);
-    //         currentID = "#"+currentID+idEndingNumber;
-    //         console.log(currentID);
-    //         if(trueOrNot == "true"){
-    //             $(currentID).attr('checked', true);
-    //         }
-    //     })
-    //
-    // })();
+    updateIds('.hiddenChecksAdopt', 'hiddenChecksAdopt');
+    updateIds('.fs', 'fs');
+    updateIds('.existingfs', 'existingfs');
+    updateIds('.fspics', 'fspics');
+    updateIds('.existingfspics', 'existingfspics');
 
 
 
@@ -117,32 +82,29 @@ $(document).ready(function(){
         }
     });
 
-    function replaceImages(){
-        var i = 1
-        $(".imageInputs").each(function(){
-           var file = $(this).val();
-            var replaceID = "#existImg" + i;
-            i++
-            console.log(replaceID);
-            console.log(file);
-            if(file != "" && file != null){
-                var pass = document.createElement('input');
-                pass.type = 'password';
-                document.body.appendChild(pass);
-                pass.type = 'text';
-                pass.value = 'Password';
-                console.log($(replaceID).attr("type") + " type");
-                $(replaceID).val(file);
-            }
-        });
-    }
-
-    // <input type="hidden existImg" id="" th:field="*{imageList[__${status.index}__].imageUrl}"/>
-    //     <input type="hidden" th:field="*{imageList[__${status.index}__].id}" th:value="${petImage.id}"/>
-    //     <label>Upload a new image<input type="file" class="imageInputs" name="image" id="" /></label>
+    // function replaceImages(){
+    //     var i = 1
+    //     $(".imageInputs").each(function(){
+    //         var file = $(this).val();
+    //         var replaceID = "#existImg" + i;
+    //         i++;
+    //         console.log(replaceID);
+    //         console.log(file);
+    //         if(file != "" && file != null){
+    //             // var pass = document.createElement('input');
+    //             // pass.type = 'password';
+    //             // document.body.appendChild(pass);
+    //             // pass.type = 'text';
+    //             // pass.value = 'Password';
+    //             // console.log($(replaceID).attr("type") + " type");
+    //             $(replaceID).val(file);
+    //         }
+    //     });
+    // }
 
 
-        // ===========check which filters the pet already has and check them ====================
+
+    // ===========check which filters the pet already has and check them ====================
 
     function checkFiltersPetHas (filterName){
         var hiddenID = "#petHas" + filterName;
@@ -234,7 +196,7 @@ $(document).ready(function(){
         }
         else {
             event.preventDefault();
-            replaceImages();
+            // replaceImages();
             this.submit();
         }
     }
@@ -242,3 +204,4 @@ $(document).ready(function(){
 
 
 });
+
