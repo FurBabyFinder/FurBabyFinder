@@ -450,6 +450,10 @@ a:hover {
     max-width: 1400px;
 }
 
+.petPicConstrain {
+    max-width: 15em;
+}
+
 .checkboxEdit {
     display: inline-block;
     margin-right: 1vw;
@@ -457,6 +461,7 @@ a:hover {
 
 .imageForm {
     background-color: #f6f7fb;
+    margin-top: 2em;
 }
 
 .single-pet {
@@ -666,6 +671,27 @@ a:hover {
     margin-bottom: 41px;
 }
 
+.login-button {
+    margin-top: 15px;
+
+}
+  .login-icon {
+    height: 200px;
+    width: 200px;
+    margin: auto;
+    margin-bottom: 15px;
+
+}
+.login {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+
+.center {
+    margin: auto;
+}
+
 
 /*<-----------About Us ------->*/
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css");
@@ -712,13 +738,26 @@ a:hover {
 }
 .btn-soundcloud{
     background-color: #FF7202;
+
+.need-an-account {
+    margin-top: 17px;
 }
 
-
+.button-register {
+    background-color: white;
+    color: #A8201A;
+    border: none;
+    height: 40px;
+    width: 150px;
+    margin: 5px;
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+}
 
 .centered-text{
     text-align: center;
 }
+
 
 .panel-body{
     background-color: #27213C;
@@ -727,4 +766,5 @@ a:hover {
 }
 .aboutus{
     color: white;
-}
+  }
+
