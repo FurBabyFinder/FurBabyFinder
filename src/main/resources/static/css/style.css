@@ -222,9 +222,9 @@ p {
     color: white;
     border: none;
     font-size: 35px;
-    padding: 16px
+    padding: 10px;
+    font-family: Lato;
 }
-
 .how-it-works-body {
     color: white;
     border: none;
