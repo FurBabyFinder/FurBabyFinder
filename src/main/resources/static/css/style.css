@@ -794,17 +794,8 @@ a:hover {
     margin-left: 10px;
 }
 
-.datepicker,
-.table-condensed {
-    width: 500px;
-    height: 500px;
-}
-
 .timepicker,
 .datetimepicker {
-
-}
-
 
 .form-control {
     background: #fff;
@@ -819,6 +810,8 @@ a:hover {
     padding-bottom:20px;
 }
 
+
 .padding-bottom-icons {
     padding-bottom: 50px;
 }
+
