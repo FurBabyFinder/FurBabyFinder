@@ -709,3 +709,7 @@ a:hover {
 .media-icons {
     background-color: #DAD2D8;
 }
+
+.icons-container {
+    padding: 80px 50px;
+}
