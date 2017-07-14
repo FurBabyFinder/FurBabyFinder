@@ -6,11 +6,16 @@
 
 <body>
 <nav th:replace="fragments :: navbar"/>
-<div class="container">
-<div class="jumbotron">
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeVXgbfyk-iEw7ta72Xiz0yX5eQdy5Ack7yD_XqoEJusDw_cQ/viewform?embedded=true" width="760" height="700" frameborder="0" marginheight="0" marginwidth="0" style="margin-left: 13%">Loading...</iframe>
-</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeVXgbfyk-iEw7ta72Xiz0yX5eQdy5Ack7yD_XqoEJusDw_cQ/viewform?embedded=true"
+                    width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">
+                Loading...
+            </iframe>
+        </div>
     </div>
+</div>
 <div th:replace="fragments :: login"/>
 <div th:replace="fragments :: register"/>
 <div th:replace="fragments :: scripts"/>
