@@ -52,10 +52,12 @@
                     <a class="dropdown-toggle admin-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Admin <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/pets/add" sec:authorize="hasAuthority('admin')">Add Guest Animal</a></li>
+                        <li><a href="/pets/addPetFilestack" sec:authorize="hasAuthority('admin')">Add Guest Animal</a></li>
                         <li><a href="/searchUser" sec:authorize="hasAuthority('admin')">Search Users</a></li>
                         <li><a href="/pets/findOne" sec:authorize="hasAuthority('admin') or hasAuthority('foster')">Find Guest Animal by Name/ID</a></li>
                         <li><a href="/pets/searchByUser" sec:authorize="hasAuthority('admin')">Find Guest Animals by Foster/Adopter</a></li>
+                        <li><a href="/events/create" sec:authorize="hasAuthority('admin')">Create Event</a></li>
+                        <li><a href="/events" sec:authorize="hasAuthority('admin')">Edit Event</a></li>
                     </ul>
                 </li>
 

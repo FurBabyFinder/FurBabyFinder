@@ -450,6 +450,10 @@ a:hover {
     max-width: 1400px;
 }
 
+.petPicConstrain {
+    max-width: 15em;
+}
+
 .checkboxEdit {
     display: inline-block;
     margin-right: 1vw;
@@ -457,6 +461,7 @@ a:hover {
 
 .imageForm {
     background-color: #f6f7fb;
+    margin-top: 2em;
 }
 
 .single-pet {
@@ -666,12 +671,17 @@ a:hover {
     margin-bottom: 41px;
 }
 
+.login-button {
+    margin-top: 15px;
 
-.need-an-account {
-    margin-top: 17px;
 }
+  .login-icon {
+    height: 200px;
+    width: 200px;
+    margin: auto;
+    margin-bottom: 15px;
 
-
+}
 .login {
     padding-top: 100px;
     padding-bottom: 100px;
@@ -682,10 +692,56 @@ a:hover {
     margin: auto;
 }
 
-.login-button {
-    margin-top: 15px;
+
+/*<-----------About Us ------->*/
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css");
+
+.social-btn-holder{
+    padding:10px;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+.social-btn-holder .btn-social{
+    font-size:12px;
+    font-weight:bold;
 }
 
+.btn-social{
+    color: white;
+    opacity:0.9;
+}
+.btn-social:hover {
+    color: white;
+    opacity:1;
+}
+.btn-facebook {
+    background-color: #3b5998;
+}
+.btn-twitter {
+    background-color: #00aced;
+}
+.btn-linkedin {
+    background-color:#0e76a8;
+}
+.btn-github{
+    background-color:#000000;
+}
+.btn-google {
+    background-color: #c32f10;
+}
+.btn-stackoverflow{
+    background-color: #D38B28;
+}
+
+.btn-hackerrank{
+    background-color: #27AB5B;
+}
+.btn-soundcloud{
+    background-color: #FF7202;
+
+.need-an-account {
+    margin-top: 17px;
+}
 
 .button-register {
     background-color: white;
@@ -698,13 +754,17 @@ a:hover {
     font-family: 'Lato', sans-serif;
 }
 
-
-.login-icon {
-    height: 200px;
-    width: 200px;
-    margin: auto;
-    margin-bottom: 15px;
+.centered-text{
+    text-align: center;
 }
+
+
+.panel-body{
+    background-color: #27213C;
+    color: white;
+    border-radius: 25px;
+}
+
 
 .media-icons {
     background-color: #DAD2D8;
@@ -713,3 +773,26 @@ a:hover {
 .icons-container {
     padding: 80px 50px;
 }
+
+.aboutus{
+    color: white;
+  }
+
+.state-icon {
+    padding-right: 5px;
+}
+.filter-choice-primary {
+    color: white;
+    background-color: #143642;
+    width: 100%;
+}
+.list-group {
+    width: 100%;
+}
+
+.filter-choice {
+    height: 25px;
+    margin-left: 10px;
+}
+
+
