@@ -593,6 +593,10 @@ a:hover {
     background-color: #DAD2D8;
 }
 
+#foster-checks{
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
 
 .form-control {
     background-color: #DAD2D8;
@@ -607,6 +611,7 @@ a:hover {
     max-width: 1400px;
     margin-left: 5em;
 }
+
 
 .userCards {
     background-color: white;
@@ -634,14 +639,6 @@ a:hover {
     margin-top: 10px;
 }
 
-
-.one-pet-container {
-    padding:50px;
-}
-
-.pet-by-user-container {
-    padding:50px;
-}
 
 .user-roles-wrapper{
     background-color: white;
