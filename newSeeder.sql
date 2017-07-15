@@ -1,18 +1,24 @@
 INSERT INTO users (id, alt_phone, city, email, first_name, last_name, main_phone, password, state, street_add1, street_add2, username, zip)
 /*The same as above the data below is not in the correct sequence*/
-VALUES (1, '5553332222', 'San Antonio', 'dave@mail.com', 'Bill', 'Smith', '2104947321', 'codeup', 'Texas',
-           '13249 Washita Way', '', 'frenchfryes', '47401'),
-  (2, '', 'San Antonio', 'tom@mail.com', 'Bob', 'Skylar', '2104437321', 'codeup', 'Texas', '13242 Apache Way', '',
-   'wannapup', '47403'),
-  (3, '', 'San Antonio', 'sarah@mail.com', 'Sarah', 'Heisenberg', '2106637321', 'codeup', 'Texas', '132 Blue Way', '',
-   'sarahisdabomb', '47405'),
-  (4, '', 'San Antonio', 'melanie@mail.com', 'Melanie', 'Tucon', '2914947321', 'codeup', 'Texas', '43249 Yahoo Way', '',
-   'mellibelly', '47401'),
-  (5, ' ', 'San Antonio', 'melody@gmail.com', 'Melody', 'Templeton', '210-413-8366', 'codeup', 'TX', '3333 Pleasant Dr',
-      '', 'melody', '78261'),
-  (6, '', 'San Antonio', 'micah@mail.com', 'Micah', 'Disney', '210-555-3421', 'codeup', 'TX', '1234 Bittersweet Dr', '',
-   'micah', '78258'),
-  (7, NULL, NULL, 'derek@mail.com', NULL, NULL, NULL, 'codeup', NULL, NULL, NULL, 'derek', NULL);
+VALUES (1, '5553332222', 'San Antonio', 'dave@mail.com', 'Bill', 'Smith', '2104947321',
+           '$2a$10$yfNI.cGx.c5FF1b67bl.9u6b/6aoLneBtrfEPXIP3z47a4s/IQYRO', 'Texas', '13249 Washita Way', '',
+        'frenchfryes', '47401'),
+  (2, '', 'San Antonio', 'tom@mail.com', 'Bob', 'Skylar', '2104437321',
+      '$2a$10$yfNI.cGx.c5FF1b67bl.9u6b/6aoLneBtrfEPXIP3z47a4s/IQYRO', 'Texas', '13242 Apache Way', '', 'wannapup',
+   '47403'),
+  (3, '', 'San Antonio', 'sarah@mail.com', 'Sarah', 'Heisenberg', '2106637321',
+      '$2a$10$yfNI.cGx.c5FF1b67bl.9u6b/6aoLneBtrfEPXIP3z47a4s/IQYRO', 'Texas', '132 Blue Way', '', 'sarahisdabomb',
+   '47405'),
+  (4, '', 'San Antonio', 'melanie@mail.com', 'Melanie', 'Tucon', '2914947321',
+      '$2a$10$yfNI.cGx.c5FF1b67bl.9u6b/6aoLneBtrfEPXIP3z47a4s/IQYRO', 'Texas', '43249 Yahoo Way', '', 'mellibelly',
+   '47401'),
+  (5, ' ', 'San Antonio', 'melody@gmail.com', 'Melody', 'Templeton', '210-413-8366',
+      '$2a$10$yfNI.cGx.c5FF1b67bl.9u6b/6aoLneBtrfEPXIP3z47a4s/IQYRO', 'TX', '3333 Pleasant Dr', '', 'melody', '78261'),
+  (6, '', 'San Antonio', 'micah@mail.com', 'Micah', 'Disney', '210-555-3421',
+      '$2a$10$yfNI.cGx.c5FF1b67bl.9u6b/6aoLneBtrfEPXIP3z47a4s/IQYRO', 'TX', '1234 Bittersweet Dr', '', 'micah',
+   '78258'),
+  (7, NULL, NULL, 'derek@mail.com', NULL, NULL, NULL, '$2a$10$yfNI.cGx.c5FF1b67bl.9u6b/6aoLneBtrfEPXIP3z47a4s/IQYRO',
+      NULL, NULL, NULL, 'derek', NULL);
 
 
 INSERT INTO pets (id, age, name, private_notes, ready_to_adopt, species, story, user_adopter_id, user_foster_id, breed, adoption_date, arrival_date)
