@@ -34,7 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .permitAll() // Anyone can go to the login page
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/logout") // anyone can see the home and logout page
+                .antMatchers("/", "/logout") // anyone can se   e the home and logout page
                 .permitAll()
                 .and()
                 .logout()
@@ -42,9 +42,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-                        "/pets/create",
-                        "/pets/?/edit",
-                        "/pets/create"
+                        "/pets/addPetFilestack",
+                        "/pets/?/editFilestack",
+                        "/pets/searchByUser",
+                        "/pets/searchAdopterID/?",
+                        "/pets/searchAllAdopter",
+                        "/pets/?/searchAdopterName/?",
+                        "/pets/?/searchFosterName/?",
+                        "/events/create",
+                        "/events/{id}/edit",
+                        "/users/user/?",
+                        "/users/update/?",
+                        "searchUser",
+                        "/users/searchAll",
+                        "/users/searchID/?",
+                        "/users/?/searchName/?"
                 ) // only authenticated users can create ads
                 .authenticated()
         ;
