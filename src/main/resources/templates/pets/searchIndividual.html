@@ -90,9 +90,11 @@
                 </div>
                 <div class="col-sm-9 pet-info">
                     <h3>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet" style="text-decoration: none"><span th:text="${pet.name}"></span></a></h3>
+                    <p th:if="${pet.foster} != null"  sec:authorize="hasAuthority('admin') or hasAuthority('foster')"><h4>Foster: <span th:text="''+${pet.foster.firstName} + ' '"></span><span th:text="${pet.foster.lastName}"></span></h4></p>
+                    <p th:if="${pet.adopter} != null"  sec:authorize="hasAuthority('admin') or hasAuthority('foster')"><h4>Adopter: <span th:text="''+${pet.adopter.firstName} + ' '"></span><span th:text="${pet.adopter.lastName}"></span></h4></p>
                     <p><h4>Info: <span th:text="${pet.story}"></span></h4></p>
                     <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
-                    <p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>
+                    <p  sec:authorize="hasAuthority('admin') or hasAuthority('foster')"><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>
                     <button  sec:authorize="hasAuthority('admin') or hasAuthority('foster')" class="button-secondary" id="searchFiltered"><a style="text-decoration: none; color: white"
                                                                                                                                              th:href="@{'/pets/' + ${pet.id}+ '/editFilestack'}" id="editPetLink">Edit</a>
                     </button>
