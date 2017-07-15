@@ -26,6 +26,10 @@ public interface UsersRepository extends CrudRepository<User, Long> {
 
     public User findByUsername(String username);
 
+    public List<User> findAllByEmailStartingWith(String email);
+
+    public List<User> findAllByUsernameStartingWith(String username);
+
 //    public User findByFirst_nameAndLast_name(String first, String last);
 
 }

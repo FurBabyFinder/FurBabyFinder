@@ -72,6 +72,26 @@ PetsRepository petsRepository;
         return "users/searchUsers";
     }
 
+    @GetMapping("/users/searchEmail/{email}")
+    public String SearchByEmail (Model model,
+                              @PathVariable String email ){
+        Iterable<User> usersemail = (usersDao.findAllByEmailStartingWith(email));
+        List<User> users = (List<User>) usersemail;
+        model.addAttribute("list", petsRepository.findSpecies());
+        model.addAttribute("users", users);
+        return "users/searchUsers";
+    }
+
+     @GetMapping("/users/searchUsername/{username}")
+    public String SearchByUsername (Model model,
+                              @PathVariable String username ){
+        Iterable<User> usersUname = (usersDao.findAllByUsernameStartingWith(username));
+        List<User> users = (List<User>) usersUname;
+        model.addAttribute("list", petsRepository.findSpecies());
+        model.addAttribute("users", users);
+        return "users/searchUsers";
+    }
+
      @GetMapping("/users/searchAll")
     public String SearchAll (Model model){
         Iterable<User> usersIt = (usersDao.findAll());

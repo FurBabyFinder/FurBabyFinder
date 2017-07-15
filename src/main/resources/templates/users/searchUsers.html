@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments :: head('Search User')">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
 </head>
 <body>
 <nav th:replace="fragments :: navbar"/>
@@ -18,7 +18,7 @@
     </div>
 </div>
 
-<div class="container-fluid search-user-container" id="UserSearchScreen">
+<div class="container-fluid form-container" id="UserSearchScreen">
     <div class="row">
         <div class="col-sm-12">
             <form class="form-horizontal">
@@ -26,16 +26,25 @@
                 <div class="form-group">
                     <label class="control-label" for="userID">Search by ID</label>
                     <input class="form-control" id="userID" type="text" size="15" name="userID"/>
-                    <label class="control-label" for="userFirstName">Search First Name</label>
-                    <input class="form-control" id="userFirstName" type="text" size="30" name="userFirstName"/>
 
-                    <label class="control-label" for="userLastName">Search Last Name</label>
-                    <input class="form-control" id="userLastName" type="text" size="30" name="userLastName"/>
+                    <label class="control-label" for="userFirstName">Search by First Name</label>
+                    <input class="form-control" id="userFirstName" type="text" size="40" name="userFirstName"/>
+
+                    <label class="control-label" for="userLastName">Search by Last Name</label>
+                    <input class="form-control" id="userLastName" type="text" size="40" name="userLastName"/>
+
+
+                    <label class="control-label" for="userEmail">Search by Email</label>
+                    <input class="form-control" id="userEmail" type="text" size="150" name="userEmail"/>
+
+
+                    <label class="control-label" for="username">Search by username</label>
+                    <input class="form-control" id="username" type="text" size="150" name="username"/>
                     <div class="btn btn-default" id="searchUser">Search</div>
 
-                    <div style="display: none" id="warningMessageNotBoth" class="alert alert-danger alert-dismissible"
+                    <div style="display: none" id="warningMessageOnlyOne" class="alert alert-danger alert-dismissible"
                          role="alert">
-                        <strong>Please search by ID or Name, but not both at the same time. </strong>
+                        <strong>First and Last Name are the only search criteria that can be combined.  Please remove excess serach entries </strong>
                     </div>
                     <div style="display: none" id="warningMessageNumeric" class="alert alert-danger alert-dismissible"
                          role="alert">
@@ -47,38 +56,38 @@
     </div>
 
 
-<div class="col-sm-11">
-    <div th:if="${users != null}">
-        <div th:if="${users.size() == 0 }">No users found with that criteria</div>
-    </div>
-    <div class="row" th:each="user : ${users}">
+    <div class="col-sm-11">
+        <div th:if="${users != null}">
+            <div th:if="${users.size() == 0 }"><h2>No users found with that criteria</h2>   </div>
+        </div>
+        <div class="row userCards" th:each="user : ${users}">
 
-        <!--<div class="eachUser">-->
-                <!--<h2>Name: <a th:href="@{'/users/user/'+ ${user.id}}" id="viewUser" style="text-decoration: none">-->
-                    <!--<span th:text="${user.firstName}"></span><span> </span> <span th:text="${user.lastName}"></span>-->
-                <!--</a></h2>-->
+            <!--<div class="eachUser">-->
+            <!--<h2>Name: <a th:href="@{'/users/user/'+ ${user.id}}" id="viewUser" style="text-decoration: none">-->
+            <!--<span th:text="${user.firstName}"></span><span> </span> <span th:text="${user.lastName}"></span>-->
+            <!--</a></h2>-->
 
-                <!--<p><h4>Email <span th:text="${user.email}"></span></h4></p>-->
+            <!--<p><h4>Email <span th:text="${user.email}"></span></h4></p>-->
 
 
-                <!--<p><h4>Main Phone <span th:text="${user.mainPhone}"></span></h4></p>-->
+            <!--<p><h4>Main Phone <span th:text="${user.mainPhone}"></span></h4></p>-->
 
-                <!--<p><h4>Alt Phone <span th:text="${user.altPhone}"></span></h4></p>-->
+            <!--<p><h4>Alt Phone <span th:text="${user.altPhone}"></span></h4></p>-->
             <!--</div>-->
 
-    <div class="card">
-        <div class="card-block">
-            <h2 class="card-title font-dark-blue" th:text="${user.firstName} +' '+ ${user.lastName}"></h2>
-            <h4 class="card-subtitle mb-2 text-muted" th:text="${user.username}"></h4>
-            <p class="card-text font-dark-blue" th:text="'Email: ' + ${user.email}"></p>
-            <p class="card-text font-dark-blue" th:text="'Main Phone: '+ ${user.mainPhone}"></p>
-            <p class="card-text font-dark-blue" th:text="'Alt Phone: ' + ${user.altPhone}"></p>
-            <p><button class="btn btn-secondary"><a th:href="@{'/users/user/'+ ${user.id}}" class="card-link">View User</a></button></p>
-            <p><button class="btn btn-secondary"><a th:href="@{'/users/update/'+ ${user.id}}" class="card-link">Edit User</a></button></p>
+            <div class="card">
+                <div class="card-block">
+                    <h2 class="card-title font-dark-blue" th:text="${user.firstName} +' '+ ${user.lastName}"></h2>
+                    <h4 class="card-subtitle mb-2 text-muted" th:text="${user.username}"></h4>
+                    <p class="card-text font-dark-blue" th:text="'Email: ' + ${user.email}"></p>
+                    <p class="card-text font-dark-blue" th:text="'Main Phone: '+ ${user.mainPhone}"></p>
+                    <p class="card-text font-dark-blue" th:text="'Alt Phone: ' + ${user.altPhone}"></p>
+                    <p><button class="btn btn-secondary"><a th:href="@{'/users/user/'+ ${user.id}}" class="card-link">View User</a></button></p>
+                    <p><button class="btn btn-secondary"><a th:href="@{'/users/update/'+ ${user.id}}" class="card-link">Edit User</a></button></p>
+                </div>
+            </div>
         </div>
     </div>
-    </div>
-</div>
 </div>
 <div th:replace="fragments :: login"/>
 <div th:replace="fragments :: register"/>
