@@ -13,7 +13,7 @@
     </div>
 </div>
 </div>
-<div class="container-fluid"  id="update-user-container">
+<div class="container-fluid form-container">
     <div class="row ">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <form th:action="${'/users/update/'+user.id}" method="post" th:object="${user}">
@@ -95,7 +95,8 @@
                     </div>
                 </div>
 
-                <div class="row rolesRow">
+
+                <div class="row user-roles-wrapper">
                     <div class="col-md-8">
                         <p><h4>Current Roles</h4></p>
                         <div th:if="${roles != null}">
@@ -120,7 +121,7 @@
 
                 <input type="hidden" value="" id="deleteRolesIds" name="deleteRolesIds"/>
                 <input type="hidden" value="" id="addRolesNames" name="addRolesNames"/>
-                <button class="btn btn-default" value="upload">Save</button>
+                <button class="btn btn-default formButton col-sm-offset-6" value="upload">Save</button>
             </form>
         </div>
     </div>

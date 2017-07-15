@@ -447,6 +447,10 @@ a:hover {
     max-width: 1400px;
 }
 
+.formButton {
+    margin-top: 1em;
+}
+
 .petPicConstrain {
     max-width: 15em;
 }
@@ -458,6 +462,7 @@ a:hover {
 
 .imageForm {
     background-color: #f6f7fb;
+    padding: 2em;
     margin-top: 2em;
 }
 
@@ -578,8 +583,14 @@ a:hover {
     padding-bottom: 5vw;
 }
 
-.add-pet-container {
-    padding:50px;
+.form-container {
+    padding-right: 8em;
+    padding-left: 8em;
+    background-color: #0F8B8D;
+}
+
+.add-pet-row {
+    background-color: #DAD2D8;
 }
 
 
@@ -622,9 +633,7 @@ a:hover {
     margin-top: 10px;
 }
 
-#update-user-container {
-    max-width: 1300px;
-}
+
 .one-pet-container {
     padding:50px;
 }
@@ -633,6 +642,10 @@ a:hover {
     padding:50px;
 }
 
+.user-roles-wrapper{
+    background-color: white;
+    border-radius: 4px;
+}
 
 .padding-height-50 {
     padding-top: 50px;
