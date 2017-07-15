@@ -38,7 +38,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/") // append a query string value
+                .logoutSuccessUrl("/")
                 .and()
                 .authorizeRequests()
                 .antMatchers(
@@ -57,7 +57,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/users/searchAll",
                         "/users/searchID/?",
                         "/users/?/searchName/?"
-                ) // only authenticated users can create ads
+                ) // only authenticated users
                 .authenticated()
         ;
         http.csrf().disable(); // remove later

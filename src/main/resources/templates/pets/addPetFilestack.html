@@ -11,22 +11,112 @@
 
         <div class="col-sm-12">
             <div class="text-center footer footer-contact">
-                <h1>Add A Fur Baby Here</h1>
-                <h4>Let's get them in the database so we can get them into a home.</h4>
+                <h1>Add Record</h1>
             </div>
         </div>
     </div>
 </div>
 
 
-<div class="container-fluid add-pet-container">
-    <div class="row add-pet-row">
+<div class="container-fluid form-container">
+    <div class="add-pet-row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <form class="form-horizontal" action="/pets/addPetFilestack" method="post" th:object="${pet}"
                   enctype="multipart/form-data">
 
 
-                <div th:include="fragments :: petdata"></div>
+                <div class="form-group">
+                    <div th:fragment="petdata">
+                        <div class="form-group">
+                            <label class="control-label" for="name">Pet Name</label>
+                            <input class="form-control" id="name" type="text" size="20" th:field="*{name}"/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('name')}">
+                                <p th:errors="*{name}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="age">Animal Age in Years</label>
+                            <input class="form-control" id="age" type="text" size="2" th:field="*{age}"/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('age')}">
+                                <p th:errors="*{age}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="species">Animal Species</label>
+                            <input class="form-control" id="species" type="text" size="20" th:field="*{species}"/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('species')}">
+                                <p th:errors="*{species}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="species">Animal Breed</label>
+                            <input class="form-control" id="species" type="text" size="20" th:field="*{breed}"/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('breed')}">
+                                <p th:errors="*{breed}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="radio" id="readyToAdopt1" name="readyToAdopt" th:field="*{readyToAdopt}"
+                                   value="true"/>Ready To
+                            Adopt<br/>
+                            <input class="form-control" type="radio" id="readyToAdopt2" name="readyToAdopt" th:field="*{readyToAdopt}"
+                                   value="false"/>Not Ready
+                            To Adopt<br/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('readyToAdopt')}">
+                                <p th:errors="*{readyToAdopt}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="story">Story</label>
+                            <textarea class="form-control" id="story" rows="5"  th:field="*{story}"/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('story')}">
+                                <p th:errors="*{story}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="arrivalDate">Date Of Arrival</label>
+                            <input class="form-control" id="arrivalDate" type="text" placeholder="MM/DD/YYYY" size="15"
+                                   th:field="*{arrivalDate}"/>
+                            <div class="alert alert-danger" style="display: none" id="arrivalDateWarning"><span>Date Must Be in mm/dd/yyyy format</span>
+                            </div>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('arrivalDate')}">
+                                <p th:errors="*{arrivalDate}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="foster">ID Number of Foster</label>
+                            <input class="form-control" id="foster" type="text" size="20" th:field="*{foster}"/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('foster')}">
+                                <p th:errors="*{foster}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="adopter">ID Number of Adopting Person/Family</label>
+                            <input clas="form-control" class="form-control" id="adopter" type="text" size="20" th:field="*{adopter}"/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('adopter')}">
+                                <p th:errors="*{adopter}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="adoptionDate">Date Of Adoption</label>
+                            <input class="form-control" id="adoptionDate" type="text" placeholder="MM/DD/YYYY" size="15"
+                                   th:field="*{adoptionDate}"/>
+                            <div class="alert alert-danger" style="display: none" id="adoptionDateWarning"><span>Date Must Be in mm/dd/yyyy format</span>
+                            </div>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('adoptionDate')}">
+                                <p th:errors="*{adoptionDate}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="privateNotes">Notes for Employees and Fosters Only</label>
+                            <textarea class="form-control" id="privateNotes" rows="4" th:field="*{privateNotes}"/>
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('privateNotes')}">
+                                <p th:errors="*{privateNotes}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
 
                 <div class="checkbox">
@@ -168,9 +258,9 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <button id="saveButton" class="btn btn-default" value="upload">Save</button>
-                </div>
+
+                    <button id="saveButton" class="btn btn-default formButton col-sm-offset-5" value="upload">Save</button>
+
             </form>
         </div>
     </div>

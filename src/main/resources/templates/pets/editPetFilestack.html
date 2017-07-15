@@ -9,13 +9,13 @@
 
         <div class="col-sm-12">
             <div class="text-center footer footer-contact">
-                <h1>Update Fur Baby</h1>
+                <h1>Update Record</h1>
             </div>
         </div>
     </div>
 </div>
-<div class="container-fluid add-pet-container">
-    <div class="row add-pet-row" id="editPetForm">
+<div class="container-fluid form-container">
+    <div class="add-pet-row" id="">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <form th:action="${'/pets/'+petDTO.pet.id+'/editFilestack'}" method="post" th:object="${petDTO}" enctype="multipart/form-data"  modelAttribute="imageList">
 
@@ -195,7 +195,7 @@
 
                 <br/>
 
-                <button class="btn btn-default" value="upload">Save</button>
+                <button class="btn btn-default formButton col-sm-offset-5" value="upload">Save</button>
             </form>
         </div>
     </div>
