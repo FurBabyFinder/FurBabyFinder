@@ -93,6 +93,9 @@
                     <p><h4>Info: <span th:text="${pet.story}"></span></h4></p>
                     <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
                     <p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>
+                    <button  sec:authorize="hasAuthority('admin') or hasAuthority('foster')" class="button-secondary" id="searchFiltered"><a style="text-decoration: none; color: white"
+                                                                                                                                             th:href="@{'/pets/' + ${pet.id}+ '/editFilestack'}" id="editPetLink">Edit</a>
+                    </button>
                 </div>
             </div>
         </div>
