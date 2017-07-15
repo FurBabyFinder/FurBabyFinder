@@ -98,6 +98,8 @@
                              style="text-decoration: none"><span
                         th:text="${pet.name}"></span></a></h2>
 
+                <p th:if="${pet.foster} != null"><h3>Foster: <span th:text="''+${pet.foster.firstName} + ' '"></span><span th:text="${pet.foster.lastName}"></span></h3></p>
+                <p th:if="${pet.adopter} != null"><h3>Adopter: <span th:text="''+${pet.adopter.firstName} + ' '"></span><span th:text="${pet.adopter.lastName}"></span></h3></p>
                 <p><h4>Breed: <span th:text="${pet.breed}"></span></h4></p>
                 <p><h4>Info: <span th:text="${pet.story}"></span></h4></p>
                 <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
