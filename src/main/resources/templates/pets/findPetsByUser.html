@@ -18,29 +18,36 @@
 </div>
 
 
-<div class="container-fluid pet-by-user-container">
+<div class="container-fluid form-container">
     <div class="row">
         <div class="col-sm-12">
             <form class="form-horizontal form-group">
 
+                <div class="row">
+                    <div class="col-sm-2">
 
-                <label for="readyToAdoptOnly" class="control-label">Only Ready To Adopt (FosterSearch)</label>
-                <input class="form-control" type="checkbox" id="readyToAdoptOnly"
-                       value="ready"/>
+                        <label for="adopter" class="control-label">Search By Adopter</label>
+                        <input  type="radio" id="adopter" name="userType" value="adopter"/>
+                    </div>
+                    <div class="col-sm-2">
+                        <label for="foster" class="control-label">Search By Foster</label>
+                        <input type="radio" id="foster" name="userType" value="foster"/>
+                    </div>
+                </div>
+                <div class="row" id="foster-checks">
+                    <div class="col-md-4">
+                        <label for="readyToAdoptOnly" class="control-label">Only Ready To Adopt (FosterSearch)</label>
+                        <input type="checkbox" id="readyToAdoptOnly"
+                               value="ready"/>
 
-
-                <label for="excludedAdopted" class="control-label">ExcludeAdopted Former Guest (Foster Search)</label>
-                <input class="form-control" type="checkbox" id="excludedAdopted"
-                       name="excludeAdopted" value="exclude"/>
-                <input class="form-control" type="hidden" value="on" name="_excludeAdopted"/>
-
-                <label for="adopter" class="control-label">Search By Adopter</label>
-                <input class="form-control" type="radio" id="adopter" name="userType" value="adopter"/>
-
-                <label for="foster" class="control-label">Search By Foster</label>
-                <input class="form-control" type="radio" id="foster" name="userType" value="foster"/>
-
-
+                    </div>
+                    <div class="col-md-4">
+                        <label for="excludedAdopted" class="control-label">ExcludeAdopted Former Guest (Foster Search)</label>
+                        <input type="checkbox" id="excludedAdopted"
+                               name="excludeAdopted" value="exclude"/>
+                        <input  type="hidden" value="on" name="_excludeAdopted"/>
+                    </div>
+                </div>
                 <label for="userID" class="control-label">Search by ID</label>
                 <input class="form-control" id="userID" type="text" size="15"
                        name="userID"/>
@@ -89,8 +96,8 @@
         <div class="row">
 
             <div class="col-sm-3 pet-picture"
-                th:if="${pet.getImages().size() > 0}"><img class="img-thumbnail"
-                                                           th:src="@{${pet.getImages().get(0).imageUrl}}"/>
+                 th:if="${pet.getImages().size() > 0}"><img class="img-thumbnail"
+                                                            th:src="@{${pet.getImages().get(0).imageUrl}}"/>
             </div>
 
             <div class="col-sm-9 pet-info">
