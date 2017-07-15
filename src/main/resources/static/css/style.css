@@ -599,10 +599,6 @@ a:hover {
 }
 
 
-.search-user-container {
-    padding: 50px;
-}
-
 #searchUser {
     margin-top: 10px;
 }
@@ -610,6 +606,11 @@ a:hover {
 #usersearchscreen {
     max-width: 1400px;
     margin-left: 5em;
+}
+
+.userCards {
+    background-color: white;
+    margin-bottom: 1em;
 }
 
 .userInfo {
