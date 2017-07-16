@@ -6,7 +6,7 @@ $("#searchUser").click(function(){
     var userFirstName = $("#userFirstName").val();
     var userLastName = $("#userLastName").val();
     var ready = "false";
-    var exclude = "false";
+    var excludeAdopted = "false";
 
     function hideWarnings() {
         $('#warningMessageNotBoth').css("display", "none");
@@ -18,14 +18,22 @@ $("#searchUser").click(function(){
         ready = "true";
     }
 
+    if($("#excludeReadyToAdopt:checked").val()){
+        ready = "exclude";
+    }
+
 
     if($("#excludedAdopted:checked").val()){
-        exclude = "true";
+        excludeAdopted = "true";
+    }
+
+   if($("#onlyAdopted:checked").val()){
+        excludeAdopted = "only";
     }
 
 
 
-    if (!$("input[name='userType']:checked").val()){
+    if (!$("input[name='userType']:checked").val() &&((((userFirstName != "") || (userLastName != "")) & (userID != "")))){
         $('#warningMessageChooseUser').css("display", "inline-block");
     }
 
@@ -37,7 +45,7 @@ $("#searchUser").click(function(){
     else {
 
         if ($("#adopter").is(':checked')) {
-            if ((ready == "true") || (exclude == "true")){$('#warningMessageReadyExclude').css("display", "inline-block");}
+            if ((ready != "false") || (excludeAdopted != "false")){$('#warningMessageReadyExclude').css("display", "inline-block");}
 
             else {
                 if (userID != "") {
@@ -45,60 +53,76 @@ $("#searchUser").click(function(){
                         $('#warningMessageNumeric').css("display", "inline-block");
                         return;
                     }
-                    window.location.href = "/pets/searchAdopterID/" + userID;
                    hideWarnings();
+                    window.location.href = "/pets/searchAdopterID/" + userID;
                 }
                 else if (userFirstName != "") {
-                    window.location.href = "/pets/" + userFirstName + "/searchAdopterName/none";
                     hideWarnings();
+                    window.location.href = "/pets/" + userFirstName + "/searchAdopterName/none";
                 }
 
                 else if (userLastName != "") {
-                    window.location.href = "/pets/none/searchAdopterName/" + userLastName;
                     hideWarnings();
+                    window.location.href = "/pets/none/searchAdopterName/" + userLastName;
                 }
 
                 else if (userFirstName != "" & userLastName != "") {
-                    window.location.href = "/pets/" + userFirstName + "/searchAdopterName/" + userLastName;
                     hideWarnings();
+                    window.location.href = "/pets/" + userFirstName + "/searchAdopterName/" + userLastName;
                 }
                 else {
-                    window.location.href = "/pets/searchAllAdopter";
                     hideWarnings();
+                    window.location.href = "/pets/searchAllAdopter";
                 }
             }
 
         }
 
 
-        if ($("#foster").is(':checked')) {
+        else if ($("#foster").is(':checked')) {
             if (userID != "") {
                 if(!($.isNumeric(userID))){
                     $('#warningMessageNumeric').css("display", "inline-block");
                     return;
                 }
-                window.location.href = "/pets/searchFosterID/" + userID +"/" + ready + "/" + exclude;
                 hideWarnings();
+                window.location.href = "/pets/searchFosterID/" + userID +"/" + ready + "/" + excludeAdopted;
             }
             else if (userFirstName != "") {
-                window.location.href = "/pets/" + userFirstName + "/searchFosterName/none" +"/"+ ready + "/" + exclude;
                 hideWarnings();
+                window.location.href = "/pets/" + userFirstName + "/searchFosterName/none" +"/"+ ready + "/" + excludeAdopted;
             }
 
             else if (userLastName != "") {
-                window.location.href = "/pets/none/searchFosterName/" + userLastName +"/" +ready + "/" + exclude;
                 hideWarnings();
+                window.location.href = "/pets/none/searchFosterName/" + userLastName +"/" +ready + "/" + excludeAdopted;
             }
 
             else if (userFirstName != "" & userLastName != "") {
-                window.location.href = "/pets/" + userFirstName + "/searchFosterName/" + userLastName +"/"+ ready + "/" + exclude;
                 hideWarnings();
+                window.location.href = "/pets/" + userFirstName + "/searchFosterName/" + userLastName +"/"+ ready + "/" + excludeAdopted;
             }
-            // else {
-            //     window.location.href = "/pets/searchAllFoster/" + ready +"/" + exclude;
-            //     hideWarnings();
-            // }
+            else {
+                hideWarnings();
+                window.location.href = "/pets/searchAllFoster/" + ready +"/" + excludeAdopted;
+            }
         }
+
+        else {
+
+            // if((ready == "exclude") && (excludeAdopted == "true")) {
+                hideWarnings();
+                window.location.href = "/pets/searchAll/" + ready + "/" + excludeAdopted;
+            }
+            // else if(ready == "exclude"){}
+            //
+            // else if (ready == "true"){}
+            //
+            // else if (excludeAdopted=="true"){}
+            //
+            // else if (excludeAdopted=="only"){}
+
+        // }
     }
 
 });
