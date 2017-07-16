@@ -14,6 +14,17 @@ $("#searchUser").click(function(){
         $('#warningMessageReadyExclude').css("display", "none");
     }
 
+    function resetSearchOptions() {
+        ready = "fasle";
+        excludeAdopted = "false";
+        $("#userID").val("");
+        $("#userFirstName").val("");
+        $("#userLastName").val("");
+        $("#readyToAdoptOnly").prop('checked', false);
+        $("#excludeReadyToAdopt").prop('checked', false);
+        $("#onlyAdopted").prop('checked', false);
+    }
+
     if($("#readyToAdoptOnly:checked").val()){
         ready = "true";
     }
@@ -35,26 +46,34 @@ $("#searchUser").click(function(){
 
     if (!$("input[name='userType']:checked").val() &&((((userFirstName != "") || (userLastName != "")) & (userID != "")))){
         $('#warningMessageChooseUser').css("display", "inline-block");
+        resetSearchOptions();
     }
 
 
     else if (((userFirstName != "") || (userLastName != "")) & (userID != "")) {
         $('#warningMessageNotBoth').css("display", "inline-block");
+        resetSearchOptions();
     }
 
     else {
 
         if ($("#adopter").is(':checked')) {
-            if ((ready != "false") || (excludeAdopted != "false")){$('#warningMessageReadyExclude').css("display", "inline-block");}
+            if ((ready != "false") || (excludeAdopted != "false")){
+                $('#warningMessageReadyExclude').css("display", "inline-block");
+                resetSearchOptions();
+                }
 
             else {
                 if (userID != "") {
                     if(!($.isNumeric(userID))){
                         $('#warningMessageNumeric').css("display", "inline-block");
+                        resetSearchOptions();
                         return;
                     }
                    hideWarnings();
                     window.location.href = "/pets/searchAdopterID/" + userID;
+
+
                 }
                 else if (userFirstName != "") {
                     hideWarnings();
@@ -83,6 +102,7 @@ $("#searchUser").click(function(){
             if (userID != "") {
                 if(!($.isNumeric(userID))){
                     $('#warningMessageNumeric').css("display", "inline-block");
+                    resetSearchOptions();
                     return;
                 }
                 hideWarnings();
@@ -110,19 +130,10 @@ $("#searchUser").click(function(){
 
         else {
 
-            // if((ready == "exclude") && (excludeAdopted == "true")) {
                 hideWarnings();
                 window.location.href = "/pets/searchAll/" + ready + "/" + excludeAdopted;
             }
-            // else if(ready == "exclude"){}
-            //
-            // else if (ready == "true"){}
-            //
-            // else if (excludeAdopted=="true"){}
-            //
-            // else if (excludeAdopted=="only"){}
 
-        // }
     }
 
 });

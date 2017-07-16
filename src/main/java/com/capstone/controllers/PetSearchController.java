@@ -193,7 +193,7 @@ public class PetSearchController {
         else if (ready.equals("true")){
             pets = petsRepository.findAllByReadyToAdopt(true);
         }
-        else if (ready.equals("exclue")){
+        else if (ready.equals("exclude")){
             pets = petsRepository.findAllByReadyToAdopt(false);
         }
         else if (excludeAdopted.equals("true")){

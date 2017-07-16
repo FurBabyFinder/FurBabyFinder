@@ -252,7 +252,6 @@ public class PetsController {
             model.addAttribute("pet", pet);
             return "pets/addPet";
         } else {
-            System.out.println("running outer");
             List<Filter> filters = new ArrayList<>();
             for (String name : filterNames) {
                 filters.add(filterRepository.findByFilterName(name));
@@ -261,7 +260,6 @@ public class PetsController {
             petsRepository.save(pet);
             Long id = pet.getId();
             Pet addedPet = petsRepository.findById(id);
-            System.out.println(imageUrls);
             for (int i = 0; i < imageUrls.size(); i++) {
                 if (!imageUrls.get(i).isEmpty()) {
                     PetImage petImage = new PetImage(addedPet);
@@ -326,13 +324,9 @@ public class PetsController {
             pet.setId(id);
             pet.setFiltersPets(filters);
             if(imageList != null) {
-                System.out.println("Location 1");
                 for (int i = 0; i < imageList.size(); i++) {
-                    System.out.println("Location 2");
                     if (replacefiles != null) {
-                        System.out.println("Location 3");
                         if (replacefiles.size() > 0) {
-                            System.out.println("Location 4");
                             if (!replacefiles.get(i).equals("")) {
                                 imageList.get(i).setImageUrl(replacefiles.get(i));
 
