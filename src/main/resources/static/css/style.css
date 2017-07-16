@@ -28,6 +28,11 @@ h4 {
     font-size: 19px;
 }
 
+h5 {
+    font-size: 16px;
+    padding-right: 10px;
+}
+
 
 p {
     color: white;
@@ -186,14 +191,27 @@ p {
     background-color: #A8201A;
     border: none;
     height: 40px;
-    width: 150px;
+    width: 183px;
     margin: 5px;
     font-size: 20px;
     font-family: 'Lato', sans-serif;
+    letter-spacing: 1px;
 }
 
 
 .button-secondary {
+    background-color: #143642;
+    border: none;
+    height: 40px;
+    width: 183px;
+    margin: 5px;
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 1px;
+}
+
+
+.button-admin {
     background-color: dodgerblue;
     border: none;
     height: 40px;
@@ -833,3 +851,41 @@ a:hover {
     padding-top: 50px;
 }
 
+
+
+.adopt {
+    font-family: 'Lato';
+    font-size: 22px;
+    padding-top: 11px;
+    margin-top: 0;
+}
+
+.foster {
+    font-family: 'Lato';
+    font-size: 22px;
+    padding-top: 11px;
+    margin-top: 0;
+}
+
+.play-date {
+    font-family: 'Lato';
+    font-size: 22px;
+    padding-top: 11px;
+    margin-top: 0;
+}
+
+.pet-cta {
+    list-style: none;
+    margin-right:46px;
+}
+
+.cta-buttons {
+    display: inline-flex;
+    margin: 13px;
+}
+
+.what-next {
+    font-size: 32px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}

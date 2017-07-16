@@ -54,6 +54,12 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
+                            <button sec:authorize="hasAuthority('admin') or hasAuthority('foster')"
+                                    class="button-admin" id="searchFiltered"><a
+                                    style="text-decoration: none; color: white"
+                                    th:href="@{'/pets/' + ${pet.id}+ '/editFilestack'}" id="editPetLink">Edit</a>
+                            </button>
+
                         </div>
                     </div>
                 </div>
@@ -61,8 +67,8 @@
 
 
             <!-- Button trigger modal -->
-            <button class="button-primary font-white" data-toggle="modal" data-target="#modalLong">More Pictures
-            </button>
+            <a class="" data-toggle="modal" data-target="#modalLong">More Pictures
+            </a>
 
         </div>
 
@@ -71,39 +77,66 @@
             <h4>Info: <span th:text="${pet.story}"></span></h4>
             <p><h4>Breed: <span th:text="${pet.breed}"></span></h4></p>
             <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
-            <p><h4  sec:authorize="hasAuthority('admin') or hasAuthority('foster')">Date of Arrival: <span th:text="${pet.arrivalDate}"></span></h4></p>
-            <p><h4  sec:authorize="hasAuthority('admin') or hasAuthority('foster')">Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>
-            <p th:if="${foster != null }"><h4  sec:authorize="hasAuthority('admin') or hasAuthority('foster')">Foster ID <span th:text="${foster.id}"></span></h4></p>
-            <p th:if="${foster != null }"><h4  sec:authorize="hasAuthority('admin') or hasAuthority('foster')">Foster Name <span th:text="${foster.firstName}"></span> <span
-                th:text="${foster.lastName}"></span></h4></p>
-            <p th:if="${adopter != null }"><h4  sec:authorize="hasAuthority('admin') or hasAuthority('foster')">Adopter ID <span th:text="${adopter.id}"></span></h4></p>
-            <p th:if="${adopter != null }"><h4  sec:authorize="hasAuthority('admin') or hasAuthority('foster')">Adopter Name <span th:text="${adopter.firstName}"></span> <span
-                th:text="${adopter.lastName}"></span></h4></p>
-            <p><h4  sec:authorize="hasAuthority('admin') or hasAuthority('foster')">Adoption Date: <span th:text="${pet.adoptionDate}"></span></h4></p>
 
 
         </div>
+
+
+        <p><h4 sec:authorize="hasAuthority('admin') or hasAuthority('foster')">Date of Arrival: <span
+            th:text="${pet.arrivalDate}"></span></h4></p>
+        <p><h4 sec:authorize="hasAuthority('admin') or hasAuthority('foster')">Internal Notes: <span
+            th:text="${pet.privateNotes}"></span></h4></p>
+        <p th:if="${foster != null }"><h4 sec:authorize="hasAuthority('admin') or hasAuthority('foster')">Foster ID
+        <span th:text="${foster.id}"></span></h4></p>
+        <p th:if="${foster != null }"><h4 sec:authorize="hasAuthority('admin') or hasAuthority('foster')">Foster Name
+        <span th:text="${foster.firstName}"></span> <span
+                th:text="${foster.lastName}"></span></h4></p>
+        <p th:if="${adopter != null }"><h4 sec:authorize="hasAuthority('admin') or hasAuthority('foster')">Adopter ID
+        <span th:text="${adopter.id}"></span></h4></p>
+        <p th:if="${adopter != null }"><h4 sec:authorize="hasAuthority('admin') or hasAuthority('foster')">Adopter Name
+        <span th:text="${adopter.firstName}"></span> <span
+                th:text="${adopter.lastName}"></span></h4></p>
+        <p><h4 sec:authorize="hasAuthority('admin') or hasAuthority('foster')">Adoption Date: <span
+            th:text="${pet.adoptionDate}"></span></h4></p>
 
 
         <div class="col-xs-12 col-md-4 text-center">
             <div>
 
-                <button class="button-primary"><a href="/adoptionForm" style="color: white">Adopt</a>
-                </button>
+                <div class="what-next">What's Next?</div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="pet-cta text-center">
+                            <li class="adopt">
+                                <button class="button-primary"><a href="/adoptionForm" style="color: white">Apply To
+                                    Adopt</a>
+                                </button>
+                            </li>
 
-                <button class="button-primary"><a href="/fosterForm" style="color: white">Foster</a>
-                </button>
-
-                <button  sec:authorize="hasAuthority('admin') or hasAuthority('foster')" class="button-secondary" id="searchFiltered"><a style="text-decoration: none; color: white"
-                                                                        th:href="@{'/pets/' + ${pet.id}+ '/editFilestack'}" id="editPetLink">Edit</a>
-                </button>
+                            <li>
+                                <div class="foster"></div>
+                                <button class="button-primary"><a href="/fosterForm" style="color: white">Apply To
+                                    Foster</a>
+                                </button>
+                            </li>
+                            <li>
+                                <div class="play-date"></div>
+                                <button class="button-primary"><a href="/fosterForm" style="color: white">Set Up Play
+                                    Date</a>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!---->
+                <!--<button  sec:authorize="hasAuthority('admin') or hasAuthority('foster')" class="button-secondary" id="searchFiltered"><a style="text-decoration: none; color: white"-->
+                <!--th:href="@{'/pets/' + ${pet.id}+ '/editFilestack'}" id="editPetLink">Edit</a>-->
+                <!--</button>-->
 
             </div>
         </div>
-
     </div>
 </div>
-
 
 <div th:replace="fragments :: login"/>
 <div th:replace="fragments :: register"/>
