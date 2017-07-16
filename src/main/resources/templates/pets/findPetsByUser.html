@@ -11,7 +11,7 @@
 
         <div class="col-sm-12">
             <div class="text-center footer footer-contact">
-                <h1>Search By Foster or Adopter</h1>
+                <h1>Search By Foster / Adopter / Status</h1>
             </div>
         </div>
     </div>
@@ -24,28 +24,36 @@
             <form class="form-horizontal form-group">
 
                 <div class="row">
-                    <div class="col-sm-2">
 
-                        <label for="adopter" class="control-label">Search By Adopter</label>
-                        <input  type="radio" id="adopter" name="userType" value="adopter"/>
-                    </div>
-                    <div class="col-sm-2">
-                        <label for="foster" class="control-label">Search By Foster</label>
+                    <div class="col-sm-4">
+                        <label for="foster" class="control-label"><h3>Search By Foster</h3></label>
                         <input type="radio" id="foster" name="userType" value="foster"/>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label for="adopter" class="control-label"><h3>Search By Adopter</h3></label>
+                        <input  type="radio" id="adopter" name="userType" value="adopter"/>
                     </div>
                 </div>
                 <div class="row" id="foster-checks">
-                    <div class="col-md-4">
-                        <label for="readyToAdoptOnly" class="control-label">Only Ready To Adopt (FosterSearch)</label>
-                        <input type="checkbox" id="readyToAdoptOnly"
-                               value="ready"/>
-
+                    <!--<div class="col-md-4">-->
+                        <!--<label for="readyToAdoptOnly" class="control-label">Only Ready To Adopt</label>-->
+                        <!--<input type="checkbox" id="readyToAdoptOnly"-->
+                               <!--value="ready"/>-->
+                    <!--</div>-->
+                    <div  class="col-md-4">
+                        <input type="radio" id="readyToAdoptOnly" value="ready" name="readyOrNot"/>Only Ready To Adopt<br/>
+                        <input  type="radio" id="excludeReadyToAdopt" value="excludeReady" name="readyOrNot"/>Exclude Ready To Adopt<br/>
                     </div>
-                    <div class="col-md-4">
-                        <label for="excludedAdopted" class="control-label">ExcludeAdopted Former Guest (Foster Search)</label>
-                        <input type="checkbox" id="excludedAdopted"
-                               name="excludeAdopted" value="exclude"/>
-                        <input  type="hidden" value="on" name="_excludeAdopted"/>
+                    <!--<div class="col-md-4">-->
+                        <!--<label for="excludedAdopted" class="control-label">Exclude Adopted Pets</label>-->
+                        <!--<input type="checkbox" id="excludedAdopted"-->
+                               <!--name="excludeAdopted" value="exclude"/>-->
+                        <!--<input  type="hidden" value="on" name="_excludeAdopted"/>-->
+                    <!--</div>-->
+                    <div  class="col-md-4">
+                        <input  type="radio" id="onlyAdopted" value="adopted" name="AdoptedOrNot"/>Only Adopted <br/>
+                        <input type="radio" id="excludedAdopted" value="exclude" name="AdoptedOrNot"/>Exclude Adopted<br/>
                     </div>
                 </div>
                 <label for="userID" class="control-label">Search by ID</label>
@@ -71,11 +79,11 @@
 
                 <div style="display: none" id="warningMessageChooseUser" class="alert alert-danger alert-dismissible"
                      role="alert">
-                    <strong>Please Select Foster or Adopter for Search</strong>
+                    <strong>Please Select Foster or Adopter for Search By ID or Name</strong>
                 </div>
                 <div style="display: none" id="warningMessageReadyExclude" class="alert alert-danger alert-dismissible"
                      role="alert">
-                    <strong>Ready to Adopt and Exlucde Adopted are for Foster searches only</strong>
+                    <strong>Cannot use selected options with Adopter Searches </strong>
                 </div>
                 <div style="display: none" id="warningMessageNumeric" class="alert alert-danger alert-dismissible"
                      role="alert">
@@ -110,6 +118,7 @@
                 <p><h4>Breed: <span th:text="${pet.breed}"></span></h4></p>
                 <p><h4>Info: <span th:text="${pet.story}"></span></h4></p>
                 <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
+                <p><h4>Ready To Adopt: <span th:text="${pet.readyToAdopt}"></span></h4></p>
                 <p><h4>Adoption Date: <span th:text="${pet.adoptionDate}"></span></h4></p>
                 <p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>
                 <button  sec:authorize="hasAuthority('admin') or hasAuthority('foster')" class="button-secondary" id="searchFiltered"><a style="text-decoration: none; color: white"

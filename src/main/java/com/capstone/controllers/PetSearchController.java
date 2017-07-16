@@ -49,25 +49,31 @@ public class PetSearchController {
     private List<User> getUserList(String firstName, String lastName){
         List <User> users = new ArrayList<>();
         if (firstName.equals("none")){
-            users = usersRepository.findAllByLastName(lastName);
+            users = usersRepository.findAllByLastNameStartingWith(lastName);
         }
         else if (lastName.equals("none")){
-            users = usersRepository.findAllByFirstName(firstName);
+            users = usersRepository.findAllByFirstNameStartingWith(firstName);
         }
         else {
-            users = usersRepository.findAllByFirstNameAndLastName(firstName, lastName);
+            users = usersRepository.findAllByFirstNameStartingWithAndLastName(firstName, lastName);
         }
         return users;
     }
 
-    private List<Pet> getPetList (Boolean ready, Boolean exclude, User foster) {
+    private List<Pet> getPetList (String ready, String excludeAdopted, User foster) {
         List<Pet> pets = new ArrayList<>();
-        if ((ready == true) & (exclude == true)) {
+        if ((ready.equals("true")) & (excludeAdopted.equals("true"))) {
             pets = petsRepository.findAllByAdopterAndFosterAndReadyToAdopt(null, foster, true);
-        } else if (exclude == true) {
+        } else if ((ready.equals("exclude")) & (excludeAdopted.equals("true"))) {
+            pets = petsRepository.findAllByAdopterAndFosterAndReadyToAdopt(null, foster, false);
+        } else if (excludeAdopted.equals("only")) {
+            pets = petsRepository.findAllByFosterAndAdopterIsNotNull(foster);
+        } else if (excludeAdopted.equals("true")) {
             pets = petsRepository.findAllByAdopterAndFoster(null, foster);
-        } else if (ready == true) {
+        } else if (ready.equals("true")) {
             pets = petsRepository.findAllByReadyToAdoptAndFoster(true, foster);
+        } else if (ready.equals("exclude")) {
+            pets = petsRepository.findAllByReadyToAdoptAndFoster(false, foster);
         } else {
             pets = petsRepository.findAllByFoster(foster);
         }
@@ -175,6 +181,35 @@ public class PetSearchController {
         return "pets/findPetsByUser";
     }
 
+
+   @GetMapping("/pets/searchAll/{ready}/{excludeAdopted}")
+    public String SearchByUser (Model model,
+                                @PathVariable String ready,
+                                @PathVariable String excludeAdopted){
+        List<Pet> pets = new ArrayList<>();
+        if(ready.equals("exclude") & excludeAdopted.equals("true")){
+         pets = petsRepository.findAllByReadyToAdoptAndAdopterIsNull(false);
+        }
+        else if (ready.equals("true")){
+            pets = petsRepository.findAllByReadyToAdopt(true);
+        }
+        else if (ready.equals("exclue")){
+            pets = petsRepository.findAllByReadyToAdopt(false);
+        }
+        else if (excludeAdopted.equals("true")){
+            pets = petsRepository.findAllByAdopter(null);
+        }
+
+        else if (excludeAdopted.equals("only")){
+            pets = petsRepository.findAllByAdopterIsNotNull();
+        }
+
+        model.addAttribute("list", petsRepository.findSpecies());
+       model.addAttribute("pets", pets);
+        return "pets/findPetsByUser";
+    }
+
+
      @GetMapping("/pets/searchAdopterID/{id}")
     public String SearchByAdopterId (Model model,
                                      @PathVariable long id ){
@@ -189,13 +224,6 @@ public class PetSearchController {
      @GetMapping("/pets/searchAllAdopter")
     public String SearchAllAdopter (Model model){
         List<Pet> pets = petsRepository.findAllPetsWithAdopter();
-//        List<User> adopters = new ArrayList<>();
-//        List<User> fosters = new ArrayList<>();
-//        for (int i = 0; i < pets.size(); i++){
-//            adopters.add( pets.get(i).getAdopter());
-//            fosters.add( pets.get(i).getFoster());
-//        }
-//        PetAdopterFosterDTO petAdopterFosterDTO = new PetAdopterFosterDTO(adopters, fosters, pets);
 
         model.addAttribute("list", petsRepository.findSpecies());
         model.addAttribute("pets", pets);
@@ -218,14 +246,14 @@ public class PetSearchController {
     }
 
 
-    @GetMapping("/pets/searchFosterID/{id}/{ready}/{exclude}")
+    @GetMapping("/pets/searchFosterID/{id}/{ready}/{excludeAdopted}")
     public String SearchByFosterId (Model model,
                                     @PathVariable long id,
-                                    @PathVariable boolean ready,
-                                    @PathVariable boolean exclude){
+                                    @PathVariable String ready,
+                                    @PathVariable String excludeAdopted){
         User foster = usersRepository.findOne(id);
 
-        List<Pet> pets = getPetList(ready,exclude,foster);
+        List<Pet> pets = getPetList(ready,excludeAdopted,foster);
 
         model.addAttribute("list", petsRepository.findSpecies());
         model.addAttribute("pets", pets);
@@ -233,45 +261,58 @@ public class PetSearchController {
     }
 
 
-    @GetMapping("/pets/{firstName}/searchFosterName/{lastName}/{ready}/{exclude}")
+    @GetMapping("/pets/{firstName}/searchFosterName/{lastName}/{ready}/{excludeAdopted}")
     public String SearchByFosterName (Model model,
                                       @PathVariable String firstName,
                                       @PathVariable String lastName,
-                                      @PathVariable boolean ready,
-                                      @PathVariable boolean exclude){
+                                      @PathVariable String ready,
+                                      @PathVariable String excludeAdopted){
         List<User> fosters = getUserList(firstName, lastName);
         List <Pet> pets = new ArrayList<>();
         for (User foster : fosters) {
-            List<Pet> tempPets = getPetList(ready,exclude,foster);
+            List<Pet> tempPets = getPetList(ready,excludeAdopted,foster);
             pets.addAll(tempPets);
         }
         model.addAttribute("list", petsRepository.findSpecies());
         model.addAttribute("pets", pets);
         return "pets/findPetsByUser";
     }
-//
-//    @GetMapping("/pets/searchAllFoster/{ready}/{exclude}")
-//    public String SearchAllFoster (Model model,
-//                                   @PathVariable boolean ready,
-//                                   @PathVariable boolean exclude){
-//        List<Pet> pets = new ArrayList<>();
-//
-//        List<Pet> getFosteredPets() {
-//            if ((ready == true) & (exclude == true)) {
-//                pets = petsRepository.findAllByAdopterAndFosterAndReadyToAdopt(null, not null, true);
-//            } else if (exclude == true) {
-//                pets = petsRepository.findAllByAdopterAndFoster(null, not null);
-//            } else if (ready == true) {
-//                pets = petsRepository.findAllByReadyToAdoptAndFoster(true, not null);
-//            } else {
-//                pets = petsRepository.findAllPetsWithFoster(not null);
-//            }
-//        return
-//        }
-//        model.addAttribute("list", petsRepository.findSpecies());
-//        model.addAttribute("pets", pets);
-//        return "pets/findPetsByUser";
-//    }
+
+    @GetMapping("/pets/searchAllFoster/{ready}/{excludeAdopted}")
+    public String SearchAllFoster (Model model,
+                                   @PathVariable String ready,
+                                   @PathVariable String excludeAdopted){
+        List<Pet> pets= new ArrayList<>();
+
+            if ((ready.equals("true")) & (excludeAdopted.equals("true"))) {
+                pets = petsRepository.findAllByReadyToAdoptAndAdopterAndFosterIsNotNull(true,null);
+            }
+            else if((ready.equals("exclude")) & (excludeAdopted.equals("true"))){
+                pets = petsRepository.findAllByReadyToAdoptAndAdopterAndFosterIsNotNull(false, null);
+            }
+            else if (excludeAdopted.equals("true")) {
+                pets = petsRepository.findAllByFosterIsNotNullAndAdopter(null);
+            }
+            else if (excludeAdopted.equals("only")) {
+                pets = petsRepository.findAllByFosterIsNotNullAndAdopterIsNotNull();
+            }
+            else if (ready.equals("true")) {
+                pets = petsRepository.findAllByReadyToAdoptAndFosterIsNotNull(true);
+            }
+            else if (ready.equals("exclude")) {
+                pets = petsRepository.findAllByReadyToAdoptAndFosterIsNotNull(false);
+            }
+            else {
+                pets = petsRepository.findAllByFosterIsNotNull();
+            }
+
+
+        model.addAttribute("list", petsRepository.findSpecies());
+        model.addAttribute("pets", pets);
+        return "pets/findPetsByUser";
+    }
+
+
 
 
 }

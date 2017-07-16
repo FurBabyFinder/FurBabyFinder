@@ -25,9 +25,25 @@ public interface PetsRepository extends CrudRepository<Pet, Long> {
 
     public List<Pet> findAllByFoster(User foster);
 
+    public List<Pet> findAllByFosterIsNotNull();
+
     public List<Pet> findAllByReadyToAdopt(Boolean trueOrFalse);
 
+    public List<Pet> findAllByReadyToAdoptAndFosterIsNotNull(Boolean ready);
+
     public List<Pet> findAllByReadyToAdoptAndFoster(Boolean ready, User foster);
+
+    public List<Pet> findAllByReadyToAdoptAndAdopterAndFosterIsNotNull(Boolean ready, User adopter);
+
+    public List<Pet> findAllByReadyToAdoptAndAdopterIsNull(boolean ready);
+
+    public List<Pet> findAllByAdopterIsNotNull();
+
+    public List<Pet> findAllByFosterAndAdopterIsNotNull(User foster);
+
+    public List<Pet> findAllByFosterIsNotNullAndAdopter(User adopter);
+
+    public List<Pet> findAllByFosterIsNotNullAndAdopterIsNotNull();
 
     public List<Pet> findAllByAdopterAndFosterAndReadyToAdopt(User adopter, User foster, Boolean ready);
 
