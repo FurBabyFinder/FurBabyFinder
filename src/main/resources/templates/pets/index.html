@@ -24,10 +24,14 @@
         <div class="col-sm-12">
             <ul id="nav-filter">
                 <li>
+                    <h5>Narrow down your search:</h5>
+                </li>
+
+                <li>
                     <div class="dropdown" th:attr="data-types=${list}">
-                        <a class="nav-filter-links font-purple" data-toggle="dropdown" role="button"
+                        <a class="nav-filter-links" data-toggle="dropdown" role="button"
                            aria-haspopup="true"
-                           aria-expanded="false"> Types Of Animals <span class="caret"></span></a>
+                           aria-expanded="false">Animal <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a th:href="@{'/pets/all'}">all</a></li>
                             <li th:each="oneSpecies : ${list}"><a th:href="@{'/pets/'+ ${oneSpecies} + '/type/all'}"
@@ -37,9 +41,9 @@
                 </li>
                 <li>
                     <div class="dropdown" th:attr="data-types=${breeds}">
-                        <a class="nav-filter-links font-purple" data-toggle="dropdown" role="button"
+                        <a class="nav-filter-links" data-toggle="dropdown" role="button"
                            aria-haspopup="true"
-                           aria-expanded="false">Breeds <span class="caret"></span></a>
+                           aria-expanded="false">Breed <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li th:each="oneBreed : ${breeds}"><a th:if="${oneBreed} != null"
                                                                   th:href="@{'/pets/'+ ${species} + '/breed/' + ${oneBreed} +'/all'}"
@@ -47,10 +51,13 @@
                         </ul>
                     </div>
                 </li>
+
+
+
                 <li>
                     <!-- Button trigger modal -->
-                    <a class="font-purple nav-filter-links more-filters cursor-hand" data-toggle="modal"
-                       data-target="#modalLong">More filters
+                    <a class="nav-filter-links more-filters cursor-hand" data-toggle="modal"
+                       data-target="#modalLong">Refine <span class="caret"></span>
                     </a>
 
 
@@ -126,7 +133,7 @@
                     </div>
                 </div>
                 <button class="button-primary allpets-btn"><a th:href="@{'/pets/pet'+ ${pet.id}}"
-                                                              id="viewPet" style="color: white">More Info</a>
+                                                              id="viewPet" style="color: white">Learn More</a>
                 </button>
 
             </div>
