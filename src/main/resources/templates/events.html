@@ -6,7 +6,7 @@
 
 body {
     padding: 60px 0px;
-    background-color: rgb(220, 220, 220);
+    background-color: rgb(214, 211, 211);
 }
 
 .event-list {
@@ -62,6 +62,7 @@ body {
 }
 
 .event-list > li > .info {
+    background-color: #27213C;
     padding-top: 5px;
     text-align: center;
 }
@@ -70,6 +71,7 @@ body {
     font-size: 17pt;
     font-weight: 700;
     margin: 0px;
+    color: white;
 }
 
 .event-list > li > .info > .desc {
@@ -183,7 +185,7 @@ body {
     .event-list > li > img {
         width: 120px;
         height: 120px;
-        padding: 0px;
+        padding-top: 38px;
         margin: 0px;
     }
 
@@ -258,6 +260,7 @@ body {
                     <div class="info">
                         <h2 class="title" th:text="${event.title}"/>
                         <p class="desc" th:text="${event.eventDesc}"/>
+
                     </div>
                     <div class="social">
                         <ul>
@@ -274,19 +277,22 @@ body {
                 </li>
                 <div class="event-details">
                     <div class="info" style="height:100%">
-                        <p class="desc" th:text="${event.eventDesc}"/>
-                        <ul>
+                       <!-- <p class="desc" th:text="${event.eventDesc}"/>-->
+                        <ul><h4>
+                            <li style="width:100%;">Event Starts:</li>
+                            <p style="color: black; width:100%;" th:text="${event.date}" />
+                            <li style="width:100%;">Event Ends:</li>
+                            <p style="color: black; width:100%;" th:text="${event.endDate}" />
                             <li style="width:100%;"><a th:href="@{${event.link}}"><span class="fa fa-globe"></span>
-                                Website</a></li>
-
-                            <div class="map" th:id="${'map' + event.id}"></div>
-
-                            Street Address:
+                                Website</a></li></h4>
+                            <h4>Street Address:
                             <li class="address"
                                 th:text="${event.street1 + ', ' + event.city1 + ', ' + event.state1 + ', ' + event.zip1}"
-                                th:data="${'map' + event.id}"/>
-
+                                th:data="${'map' + event.id}"/></h4>
+                            <br />
+                            <div class="map" th:id="${'map' + event.id}"></div>
                             <br/>
+                            <li><a th:sec="isAuthenticated()" th:href="@{'/events/' + ${event.id} + '/edit/'}" >Edit Event</a></li>
                         </ul>
                     </div>
                 </div>
