@@ -77,7 +77,11 @@
     <!--</div>-->
 <!--</div>-->
 <!--<div th:if="${pets.size() > 0}">-->
+<div th:if="${pets != null}">
+    <div th:if="${pets.size() == 0 }">No pets found with that criteria</div>
+</div>
     <div class="pet-container" th:each="pet : ${pets}">
+
         <div class="row">
 
                 <div class="col-sm-3 pet-picture" th:if="${pet.getImages().size() > 0}">

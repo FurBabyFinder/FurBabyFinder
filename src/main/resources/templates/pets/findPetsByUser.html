@@ -98,7 +98,7 @@
 <div class="col-sm-10">
 
     <div th:if="${pets != null}">
-        <div th:if="${pets.size() == 0 }">No animal guests found with that criteria</div>
+        <div th:if="${pets.size() == 0 }">No pets found with that criteria</div>
     </div>
     <div class="pet-container" th:each="pet : ${pets}">
         <div class="row">
