@@ -47,8 +47,7 @@
 
                 <li><a href="/events">Events</a></li>
                 <li><a href="/about-us">About Us</a></li>
-                <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
-                <li sec:authorize="isAuthenticated()"><a href="/logout">Logout</a></li>
+
 
                 <li class="dropdown" sec:authorize="hasAuthority('admin') or hasAuthority('foster')">
                     <a class="dropdown-toggle admin-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -65,6 +64,8 @@
                         <li><a href="/events" sec:authorize="hasAuthority('admin')">Edit Event</a></li>
                     </ul>
                 </li>
+                <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
+                <li sec:authorize="isAuthenticated()"><a href="/logout">Logout</a></li>
 
                 <!--<li><a class="cursor-hand" data-toggle="modal" data-target=".bs-login-modal-sm">Register/Login</a></li>-->
             </ul>
