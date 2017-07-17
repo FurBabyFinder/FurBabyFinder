@@ -1,6 +1,5 @@
 package com.capstone.controllers;
 
-import com.capstone.models.User;
 import com.capstone.repositories.PetsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,6 +44,14 @@ public class IndexController {
 
         model.addAttribute("list", petsRepository.findSpecies());
         return "fosterForm";
+
+    }
+
+    @GetMapping("/playDateForm")
+    public String playDateForm(Model model){
+
+        model.addAttribute("list", petsRepository.findSpecies());
+        return "play-date-form";
 
     }
 

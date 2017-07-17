@@ -237,14 +237,14 @@ p {
 
 /*//////////////////////////////////////////////////////// how it works section*/
 .how-it-works-heading {
-    color: white;
+    color: #143642;
     border: none;
     font-size: 35px;
     padding: 15px;
     font-family: Lato;
 }
 .how-it-works-body {
-    color: white;
+    color: #143642;
     border: none;
     padding-right: 16px;
     padding-left: 16px;
@@ -252,11 +252,10 @@ p {
     font-size: 17px;
 }
 
-.how-it-works {
-    padding-top: 90px;
-    padding-bottom: 90px;
-    background-color: #143642;
-}
+/*.how-it-works {*/
+    /*padding-top: 100px;*/
+    /*padding-bottom: 90px;*/
+/*}*/
 
 .how-it-works-content {
     color: #143642;
@@ -444,6 +443,7 @@ a:hover {
     height: 200px;
     width: 200px;
     border-radius: 50%;
+    margin-top:12px;
 }
 
 
@@ -794,10 +794,11 @@ a:hover {
 
 .media-icons {
     background-color: #DAD2D8;
+    letter-spacing: 13px;
 }
 
 .icons-container {
-    padding: 80px 50px;
+    padding: 95px 50px 80px 50px;
 }
 
 .aboutus {
@@ -888,4 +889,13 @@ a:hover {
     font-size: 32px;
     margin-top: 0;
     margin-bottom: 15px;
+}
+
+.admin-info {
+    margin-top: 50px;
+}
+
+.more-pictures {
+    font-family: Lato;
+    font-size: 25px;
 }

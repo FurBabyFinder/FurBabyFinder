@@ -12,7 +12,11 @@
         <div class="col-sm-12">
             <div class="text-center footer footer-contact">
                 <h1 th:text="${pet.name}"></h1>
-                <h4 th:text="${pet.breed}"></h4>
+                <!--<h4 th:text="${pet.breed}"></h4>-->
+                <!--<span th:text="${foster.firstName}"></span> <span-->
+                    <!--th:text="${foster.lastName}"></span>-->
+                <!--<h4>Age <span th:text="${pet.age}"></span></h4>-->
+                <h4 th:text="${pet.breed}+' '+'Age '+${pet.age}"></h4>
             </div>
         </div>
     </div>
@@ -28,6 +32,7 @@
                     <img class="img-pet" th:alt="${petImage.ImageDescription}"
                          th:src="@{${petImage.imageUrl}}"/>
                 </div>
+
 
                 <!-- Modal -->
                 <div class="modal fade" id="modalLong" tabindex="-1" role="dialog" aria-labelledby="modalLongTitle"
@@ -67,20 +72,28 @@
 
 
             <!-- Button trigger modal -->
-            <a class="" data-toggle="modal" data-target="#modalLong">More Pictures
+            <div>
+            <a class="more-pictures cursor-hand" data-toggle="modal" data-target="#modalLong">More Pictures
             </a>
+            </div>
+
+            <div>
+            <button  sec:authorize="hasAuthority('admin') or hasAuthority('foster')" class="button-secondary" id="searchFiltered"><a style="text-decoration: none; color: white"
+            th:href="@{'/pets/' + ${pet.id}+ '/editFilestack'}" id="editPetLink">Edit</a>
+            </button>
+            </div>
 
         </div>
 
         <div class="col-xs-12 col-md-4 single-pets-info">
             <!--<h2 th:text="${pet.name}"></h2>-->
-            <h4>Info: <span th:text="${pet.story}"></span></h4>
-            <p><h4>Breed: <span th:text="${pet.breed}"></span></h4></p>
-            <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
+            <h4 th:text="${pet.story}"></h4>
+            <!--<p><h4>Breed: <span th:text="${pet.breed}"></span></h4></p>-->
+            <!--<p><h4>Age <span th:text="${pet.age}"></span></h4></p>-->
 
 
-        </div>
 
+<div class="admin-info">
 
         <p><h4 sec:authorize="hasAuthority('admin') or hasAuthority('foster')">Date of Arrival: <span
             th:text="${pet.arrivalDate}"></span></h4></p>
@@ -98,7 +111,9 @@
                 th:text="${adopter.lastName}"></span></h4></p>
         <p><h4 sec:authorize="hasAuthority('admin') or hasAuthority('foster')">Adoption Date: <span
             th:text="${pet.adoptionDate}"></span></h4></p>
+</div>
 
+        </div>
 
         <div class="col-xs-12 col-md-4 text-center">
             <div>
@@ -121,7 +136,7 @@
                             </li>
                             <li>
                                 <div class="play-date"></div>
-                                <button class="button-primary"><a href="/fosterForm" style="color: white">Set Up Play
+                                <button class="button-primary"><a href="/playDateForm" style="color: white">Set Up Play
                                     Date</a>
                                 </button>
                             </li>
