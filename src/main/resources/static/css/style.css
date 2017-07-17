@@ -636,9 +636,9 @@ label {
     margin: 40px;
 }
 
-#searchUser {
-    margin-top: 10px;
-}
+/*#searchUser {*/
+    /*margin-top: 10px;*/
+/*}*/
 
 #usersearchscreen {
     max-width: 1400px;
