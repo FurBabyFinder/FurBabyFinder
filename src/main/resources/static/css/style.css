@@ -479,9 +479,18 @@ a:hover {
 }
 
 .imageForm {
-    background-color: #f6f7fb;
-    padding: 2em;
-    margin-top: 2em;
+    padding-top: 27px;
+    margin-top: 27px;
+    margin-bottom: 27px;
+}
+
+.add-pet-checkbox {
+    list-style: none;
+}
+
+
+#description {
+    margin-top: 6px;
 }
 
 .single-pet {
@@ -493,14 +502,21 @@ a:hover {
     padding-bottom: 5px;
 }
 
+/*#saveButton {*/
+    /*margin: auto;*/
+/*}*/
+
+label {
+    font-size: 16px;
+}
 
 
 .row-header {
     background-color: #0F8B8D;
     color: white;
     /* padding-bottom: 50px; */
-    margin-top: -27px;
-    padding-bottom: 5px;
+    margin-top: 0;
+    padding-bottom: 34px;
 }
 
 .row-individual-pet {
@@ -601,11 +617,7 @@ a:hover {
     padding-bottom: 5vw;
 }
 
-.form-container {
-    padding-right: 8em;
-    padding-left: 8em;
-    background-color: #0F8B8D;
-}
+
 
 .add-pet-row {
     background-color: #DAD2D8;
@@ -620,10 +632,13 @@ a:hover {
     background-color: #DAD2D8;
 }
 
-
-#searchUser {
-    margin-top: 10px;
+.margin-40 {
+    margin: 40px;
 }
+
+/*#searchUser {*/
+    /*margin-top: 10px;*/
+/*}*/
 
 #usersearchscreen {
     max-width: 1400px;
@@ -827,10 +842,6 @@ a:hover {
 .timepicker,
 .datetimepicker {
 }
-.form-control {
-    background: #fff;
-}
-
 
 .input-group-addon {
     height: 34px;
