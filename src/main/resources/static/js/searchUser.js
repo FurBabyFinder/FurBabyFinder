@@ -7,6 +7,7 @@ $("#searchUser").click(function() {
     var userLastName = $("#userLastName").val();
     var userEmail = $("#userEmail").val();
     var username = $("#username").val();
+    var role = $("#role").val();
     var numberOfSelectionsMade = 1;
 
 
@@ -28,6 +29,10 @@ $("#searchUser").click(function() {
     }
 
        if ( username != "" ) {
+       numberOfSelectionsMade++;
+    }
+
+    if ( role != "" ) {
        numberOfSelectionsMade++;
     }
 
@@ -67,6 +72,10 @@ $("#searchUser").click(function() {
      else if (username != "") {
         hideWarnings();
         window.location.href = "/users/searchUsername/" + username;
+    }
+    else if (role != "") {
+        hideWarnings();
+        window.location.href = "/users/searchRole/" + role;
     }
 
     else {

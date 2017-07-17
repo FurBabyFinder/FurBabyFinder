@@ -92,7 +92,19 @@ PetsRepository petsRepository;
         return "users/searchUsers";
     }
 
-     @GetMapping("/users/searchAll")
+    @GetMapping("/users/searchRole/{role}")
+    public String SearchByRole (Model model,
+                                    @PathVariable String role ){
+
+        Iterable<User> usersByRoles = (usersDao.getAdminList(role));
+        List<User> users = (List<User>) usersByRoles;
+        model.addAttribute("list", petsRepository.findSpecies());
+        model.addAttribute("users", users);
+        return "users/searchUsers";
+    }
+
+
+    @GetMapping("/users/searchAll")
     public String SearchAll (Model model){
         Iterable<User> usersIt = (usersDao.findAll());
         List<User> users = (List<User>) usersIt;

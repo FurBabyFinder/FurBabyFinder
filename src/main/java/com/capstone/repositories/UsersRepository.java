@@ -1,7 +1,10 @@
 package com.capstone.repositories;
 
 import com.capstone.models.User;
+import com.capstone.models.UserRole;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -23,6 +26,12 @@ public interface UsersRepository extends CrudRepository<User, Long> {
     public List<User> findAllByFirstNameStartingWith(String firstName);
 
     public List<User> findAllByLastName(String lastNAme);
+
+
+
+    @Query("SELECT u FROM User u WHERE u.id IN (SELECT ur.userId FROM UserRole ur WHERE ur.role = :role) group by u.id")
+    List<User> getAdminList(@Param("role") String userRole);
+
 
     public User findByUsername(String username);
 
