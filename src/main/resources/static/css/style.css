@@ -454,8 +454,8 @@ a:hover {
     display: inline-block;
     position: relative;
     z-index: 1;
-    padding: 2em;
-    margin: -2em;
+    padding: .75em 3em .75em 3em;
+    margin: -.75em -3em -.75em -3em;
     text-decoration: none;
     color: white;
 }
