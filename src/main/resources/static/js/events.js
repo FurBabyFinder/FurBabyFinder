@@ -75,7 +75,8 @@ $(document).ready(function () {
      }, 400);
 
     var defaults = {
-        calendarWeeks: true,
+        calendarWeeks: false,
+        sideBySide: true,
         showClear: true,
         showClose: true,
         allowInputToggle: true,
@@ -98,9 +99,9 @@ $(document).ready(function () {
     };
 
     $(function() {
-        var optionsDatetime = $.extend({}, defaults, {format:'MM-DD-YYYY HH:mm'});
+        var optionsDatetime = $.extend({}, defaults, {format:'MM-DD-YYYY hh:mm A'});
         var optionsDate = $.extend({}, defaults, {format:'MM-DD-YYYY'});
-        var optionsTime = $.extend({}, defaults, {format:'HH:mm'});
+        var optionsTime = $.extend({}, defaults, {format:'hh:mm'});
 
         $('.datepicker').datetimepicker(optionsDate);
         $('.timepicker').datetimepicker(optionsTime);

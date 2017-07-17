@@ -230,10 +230,9 @@ body {
         background-color: #DAD2D8;
     }
 
-
     .map {
         height: 100%;
-        width:80%;
+        width: 80%;
         min-height: 400px;
     }
 
@@ -243,62 +242,65 @@ body {
 
 <head th:replace="fragments :: head('Events')"/>
 <body>
-<ul>
-    <nav th:replace="fragments :: navbar"/>
 
-    <div th:replace="fragments :: login"/>
-    <div th:replace="fragments :: register"/>
+<nav th:replace="fragments :: navbar"/>
 
-    <div class="event-container" th:each="event : ${events}">
-        <div class="row">
-            <div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ]">
-                <ul class="event-list">
-                    <li>
-                        <time th:text="${event.date}"/>
+<div th:replace="fragments :: login"/>
+<div th:replace="fragments :: register"/>
 
-                        <div class="info">
-                            <h2 class="title" th:text="${event.title}"/>
-                            <p class="desc" th:text="${event.eventDesc}"/>
-                        </div>
-                        <div class="social">
-                            <ul>
-                                <li class="facebook" style="width:33%;"><a
-                                        href="https://www.facebook.com/alamocitypitbull/"><span
-                                        class="fa fa-facebook"></span></a></li>
-                                <!--<li class="twitter" style="width:34%;"><a href="http://www.alamocitypitbull.org"><span
-                                        class="fa fa-twitter"></span></a></li>
-                                <li class="google-plus" style="width:33%;"><a
-                                        href="https://www.youtube.com"><span
-                                        class="fa fa-youtube-play"></span></a></li>-->
-                            </ul>
-                        </div>
-                    </li>
-                    <div class="event-details">
-                        <div class="info" style="height:100%">
-                            <p class="desc" th:text="${event.eventDesc}"/>
-                            <ul>
-                                <li style="width:100%;"><a th:href="@{${event.link}}"><span class="fa fa-globe"></span>
-                                    Website</a></li>
+<div class="event-container" th:each="event : ${events}">
+    <div class="row">
+        <div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ]">
+            <ul class="event-list">
+                <li>
+                    <time th:text="${event.date}"/>
 
-                                <div class="map" th:id="${'map' + event.id}"></div>
-
-                                Street Address:
-                                <li class="address" th:text="${event.street1 + ', ' + event.city1 + ', ' + event.state1 + ', ' + event.zip1}" th:data="${'map' + event.id}"/>
-
-                                <br/>
-                            </ul>
-                        </div>
+                    <div class="info">
+                        <h2 class="title" th:text="${event.title}"/>
+                        <p class="desc" th:text="${event.eventDesc}"/>
                     </div>
-                </ul>
-            </div>
+                    <div class="social">
+                        <ul>
+                            <li class="facebook" style="width:33%;"><a
+                                    href="https://www.facebook.com/alamocitypitbull/"><span
+                                    class="fa fa-facebook"></span></a></li>
+                            <!--<li class="twitter" style="width:34%;"><a href="http://www.alamocitypitbull.org"><span
+                                    class="fa fa-twitter"></span></a></li>
+                            <li class="google-plus" style="width:33%;"><a
+                                    href="https://www.youtube.com"><span
+                                    class="fa fa-youtube-play"></span></a></li>-->
+                        </ul>
+                    </div>
+                </li>
+                <div class="event-details">
+                    <div class="info" style="height:100%">
+                        <p class="desc" th:text="${event.eventDesc}"/>
+                        <ul>
+                            <li style="width:100%;"><a th:href="@{${event.link}}"><span class="fa fa-globe"></span>
+                                Website</a></li>
+
+                            <div class="map" th:id="${'map' + event.id}"></div>
+
+                            Street Address:
+                            <li class="address"
+                                th:text="${event.street1 + ', ' + event.city1 + ', ' + event.state1 + ', ' + event.zip1}"
+                                th:data="${'map' + event.id}"/>
+
+                            <br/>
+                        </ul>
+                    </div>
+                </div>
+            </ul>
         </div>
     </div>
+</div>
 
-    <div th:replace="fragments :: footer"/>
-    <div th:replace="fragments :: scripts"/>
+<div th:replace="fragments :: footer"/>
+<div th:replace="fragments :: scripts"/>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeBPdm_RDTNZ3V2ooakIHvy4yg29DrMJ8" async="async" defer="defer"></script>
-    <script src="/js/events.js"></script>
-</ul>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeBPdm_RDTNZ3V2ooakIHvy4yg29DrMJ8" async="async"
+        defer="defer"></script>
+<script src="/js/events.js"></script>
+
 </body>
 </html>

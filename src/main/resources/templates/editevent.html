@@ -22,14 +22,14 @@
         </div>
     </div>
 
-    <div class="container text-center edit-event-container form-group">
-        <form th:action="@{/events/edit}" th:method="post" th:object="${event}">
-            Title:
+    <div class="container text-center create-event-container form-group">
+        <form th:action="@{/events/create}" th:method="post" th:object="${event}">
+            <h4>Title:</h4>
             <input class="form-control" th:field="*{title}" />
             <br />
             <div class="row">
                 <div class="col-xs-6">
-                    <h3>Event Starts</h3>
+                    <h4>Event Starts</h4>
                     <div class="form-group">
                         <div class="input-group datetimepicker">
                             <input th:field="*{date}" type="text" class="form-control" readonly="readonly"/>
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="col-xs-6">
-                    <h3>Event Ends</h3>
+                    <h4>Event Ends</h4>
                     <div class="form-group">
                         <div class="input-group datetimepicker">
                             <input th:field="*{endDate}" type="text" class="form-control" readonly="readonly"/>
@@ -56,35 +56,36 @@
                 </div>
             </div>
             <br />
-            Description:
+            <h4>Description:</h4>
             <input class="form-control" th:field="*{eventDesc}" />
             <br />
-            Link:
+            <h4>Link:</h4>
             <input class="form-control" th:field="*{link}" />
             <br />
-            Street Address:
+            <h4>Street Address:</h4>
             <input class="form-control" th:field="*{street1}" />
             <br />
-            Street Address continued:
+            <h4>Street Address continued:</h4>
             <input class="form-control" th:field="*{street2}" />
             <br />
-            City:
+            <h4>City:</h4>
             <input class="form-control" th:field="*{city1}" />
             <br />
-            State:
+            <h4>State:</h4>
             <input class="form-control" th:field="*{state1}" />
             <br />
-            Zip:
+            <h4>Zip:</h4>
             <input class="form-control" th:field="*{zip1}" />
             <br />
             <div><label>Upload an image<input type="file" name="imageLoc" id="eventImage" /></label>
             </div>
             <br />
-            <input class="form-control" type="submit" />
+            <input class="form-control background-light-blue" type="submit" />
             <input class="form-control" type="hidden" th:field="*{id}" />
         </form>
         <form th:method="post" th:action="@{/event/delete}">
             <input type="hidden" name="id" th:value="${event.id}"/>
+            <br />
             <button class="btn btn-danger">Delete</button>
         </form>
     </div>
