@@ -18,22 +18,27 @@
 </div>
 
 
-<div class="container-fluid form-container">
+<div class="container-fluid margin-40">
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12 col-md-4 col-md-offset-4">
             <form class="form-group">
 
-                <label for="petID" class="control-label">Search by ID</label>
-                <input class="form-control" id="petID" type="text" size="15" name="petID"/>
+                <div class="form-group">
+                    <label for="petID" class="control-label">Search by ID</label>
+                    <input class="form-control" id="petID" type="text" size="15" name="petID"/>
+                </div>
 
+                <div class="form-group">
+                    <label for="petName" class="control-label">Search by Name</label>
+                    <input class="form-control" id="petName" type="text" size="30" name="petName"/>
+                </div>
 
-                <label for="petName" class="control-label">Search by Name</label>
-                <input class="form-control" id="petName" type="text" size="30" name="petName"/>
+                <div class="form-group text-center">
+                    <button class="button-secondary font-white" id="searchIndividual">Search</button>
+                </div>
 
-
-                <div class="btn btn-default" id="searchIndividual">Search</div>
-
-                <div style="display: none" id="warningMessage" class="alert alert-danger alert-dismissible" role="alert">
+                <div style="display: none" id="warningMessage" class="alert alert-danger alert-dismissible"
+                     role="alert">
                     <strong>Please search by ID or Name, but not both at the same time. </strong>
                 </div>
                 <div style="display: none" id="warningMessageNumeric" class="alert alert-danger alert-dismissible"
@@ -47,64 +52,72 @@
 </div>
 
 <!--<div class="col-sm-10">-->
-    <!--<div class="pet-container" th:each="pet : ${pets}">-->
-        <!--<div class="row">-->
+<!--<div class="pet-container" th:each="pet : ${pets}">-->
+<!--<div class="row">-->
 
-            <!--<div class="col-sm-3 pet-picture"-->
-                 <!--th:if="${pet.getImages().size() > 0}"><img class="img-thumbnail"-->
-                                                            <!--th:src="@{${pet.getImages().get(0).imageUrl}}"/>-->
-            <!--</div>-->
+<!--<div class="col-sm-3 pet-picture"-->
+<!--th:if="${pet.getImages().size() > 0}"><img class="img-thumbnail"-->
+<!--th:src="@{${pet.getImages().get(0).imageUrl}}"/>-->
+<!--</div>-->
 
-            <!--<div class="col-sm-9 pet-info">-->
-                <!--<h2>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet"-->
-                             <!--style="text-decoration: none"><span-->
-                        <!--th:text="${pet.name}"></span></a></h2>-->
+<!--<div class="col-sm-9 pet-info">-->
+<!--<h2>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet"-->
+<!--style="text-decoration: none"><span-->
+<!--th:text="${pet.name}"></span></a></h2>-->
 
-                <!--<p><h4>Breed: <span th:text="${pet.breed}"></span></h4></p>-->
-                <!--<p><h4>Info: <span th:text="${pet.story}"></span></h4></p>-->
-                <!--<p><h4>Age <span th:text="${pet.age}"></span></h4></p>-->
-                <!--&lt;!&ndash;<p th:if="${foster != null }"><h4>Foster ID <span th:text="${foster.id}"></span></h4></p>&ndash;&gt;-->
-                <!--&lt;!&ndash;<p th:if="${foster != null }"><h4>Foster Name <span th:text="${foster.firstName}"></span> <span&ndash;&gt;-->
-                    <!--&lt;!&ndash;th:text="${foster.lastName}"></span></h4></p>&ndash;&gt;-->
-                <!--&lt;!&ndash;<p th:if="${adopter != null }"><h4>Adopter ID <span th:text="${adopter.id}"></span></h4></p>&ndash;&gt;-->
-                <!--&lt;!&ndash;<p th:if="${adopter != null }"><h4>Adopter Name <span th:text="${adopter.firstName}"></span> <span&ndash;&gt;-->
-                    <!--&lt;!&ndash;th:text="${adopter.lastName}"></span></h4></p>&ndash;&gt;-->
-                <!--<p><h4>Adoption Date: <span th:text="${pet.adoptionDate}"></span></h4></p>-->
-                <!--<p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>-->
-            <!--</div>-->
+<!--<p><h4>Breed: <span th:text="${pet.breed}"></span></h4></p>-->
+<!--<p><h4>Info: <span th:text="${pet.story}"></span></h4></p>-->
+<!--<p><h4>Age <span th:text="${pet.age}"></span></h4></p>-->
+<!--&lt;!&ndash;<p th:if="${foster != null }"><h4>Foster ID <span th:text="${foster.id}"></span></h4></p>&ndash;&gt;-->
+<!--&lt;!&ndash;<p th:if="${foster != null }"><h4>Foster Name <span th:text="${foster.firstName}"></span> <span&ndash;&gt;-->
+<!--&lt;!&ndash;th:text="${foster.lastName}"></span></h4></p>&ndash;&gt;-->
+<!--&lt;!&ndash;<p th:if="${adopter != null }"><h4>Adopter ID <span th:text="${adopter.id}"></span></h4></p>&ndash;&gt;-->
+<!--&lt;!&ndash;<p th:if="${adopter != null }"><h4>Adopter Name <span th:text="${adopter.firstName}"></span> <span&ndash;&gt;-->
+<!--&lt;!&ndash;th:text="${adopter.lastName}"></span></h4></p>&ndash;&gt;-->
+<!--<p><h4>Adoption Date: <span th:text="${pet.adoptionDate}"></span></h4></p>-->
+<!--<p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>-->
+<!--</div>-->
 
-        <!--</div>-->
-    <!--</div>-->
+<!--</div>-->
+<!--</div>-->
 <!--</div>-->
 <!--<div th:if="${pets.size() > 0}">-->
 <div th:if="${pets != null}">
     <div th:if="${pets.size() == 0 }">No pets found with that criteria</div>
 </div>
-    <div class="pet-container" th:each="pet : ${pets}">
+<div class="pet-container" th:each="pet : ${pets}">
 
-        <div class="row">
+    <div class="row">
 
-                <div class="col-sm-3 pet-picture" th:if="${pet.getImages().size() > 0}">
-                    <div th:each="petImage : ${pet.getImages()}">
-                        <div th:if="${petImage.profilePic} == true">
-                            <img class="img-thumbnail" th:alt="${petImage.ImageDescription}"
-                                                                       th:src="@{${pet.getImages().get(0).imageUrl}}"/>
-                        </div>
-                    </div>
+        <div class="col-sm-3 pet-picture" th:if="${pet.getImages().size() > 0}">
+            <div th:each="petImage : ${pet.getImages()}">
+                <div th:if="${petImage.profilePic} == true">
+                    <img class="img-thumbnail" th:alt="${petImage.ImageDescription}"
+                         th:src="@{${pet.getImages().get(0).imageUrl}}"/>
                 </div>
-                <div class="col-sm-9 pet-info">
-                    <h3>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet" style="text-decoration: none"><span th:text="${pet.name}"></span></a></h3>
-                    <p th:if="${pet.foster} != null"  sec:authorize="hasAuthority('admin') or hasAuthority('foster')"><h4>Foster: <span th:text="''+${pet.foster.firstName} + ' '"></span><span th:text="${pet.foster.lastName}"></span></h4></p>
-                    <p th:if="${pet.adopter} != null"  sec:authorize="hasAuthority('admin') or hasAuthority('foster')"><h4>Adopter: <span th:text="''+${pet.adopter.firstName} + ' '"></span><span th:text="${pet.adopter.lastName}"></span></h4></p>
-                    <p><h4>Info: <span th:text="${pet.story}"></span></h4></p>
-                    <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
-                    <p  sec:authorize="hasAuthority('admin') or hasAuthority('foster')"><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>
-                    <button  sec:authorize="hasAuthority('admin') or hasAuthority('foster')" class="button-secondary" id="searchFiltered"><a style="text-decoration: none; color: white" th:href="@{'/pets/' + ${pet.id}+ '/editFilestack'}" id="editPetLink">Edit</a>
-                    </button>
-                </div>
-
+            </div>
         </div>
+        <div class="col-sm-9 pet-info">
+            <h3>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet" style="text-decoration: none"><span
+                    th:text="${pet.name}"></span></a></h3>
+            <p th:if="${pet.foster} != null" sec:authorize="hasAuthority('admin') or hasAuthority('foster')"><h4>Foster:
+            <span th:text="''+${pet.foster.firstName} + ' '"></span><span th:text="${pet.foster.lastName}"></span>
+        </h4></p>
+            <p th:if="${pet.adopter} != null" sec:authorize="hasAuthority('admin') or hasAuthority('foster')"><h4>
+            Adopter: <span th:text="''+${pet.adopter.firstName} + ' '"></span><span
+                th:text="${pet.adopter.lastName}"></span></h4></p>
+            <p><h4>Info: <span th:text="${pet.story}"></span></h4></p>
+            <p><h4>Age <span th:text="${pet.age}"></span></h4></p>
+            <p sec:authorize="hasAuthority('admin') or hasAuthority('foster')"><h4>Internal Notes: <span
+                th:text="${pet.privateNotes}"></span></h4></p>
+            <button sec:authorize="hasAuthority('admin') or hasAuthority('foster')" class="button-secondary"
+                    id="searchFiltered"><a style="text-decoration: none; color: white"
+                                           th:href="@{'/pets/' + ${pet.id}+ '/editFilestack'}" id="editPetLink">Edit</a>
+            </button>
+        </div>
+
     </div>
+</div>
 <!--</div>-->
 
 <div th:replace="fragments :: scripts"/>
