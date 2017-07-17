@@ -4,94 +4,113 @@
 <head th:replace="fragments :: head('Events')"/>
 <body>
 
-    <nav th:replace="fragments :: navbar"/>
+<nav th:replace="fragments :: navbar"/>
 
 
-    <div th:replace="fragments :: login"/>
-    <div th:replace="fragments :: register"/>
+<div th:replace="fragments :: login"/>
+<div th:replace="fragments :: register"/>
 
-    <div class="container-fluid">
-        <div class="row row-header">
+<div class="container-fluid">
+    <div class="row row-header">
 
-            <div class="col-sm-12">
-                <div class="text-center footer footer-contact">
-                    <h1>Create Your Event</h1>
-                    <h4>Fill out the form below to create your event!</h4>
-                </div>
+        <div class="col-sm-12">
+            <div class="text-center footer footer-contact">
+                <h1>Create Your Event</h1>
+                <h4>Fill out the form below to create your event!</h4>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="container text-center create-event-container form-group">
-        <form th:action="@{/events/create}" th:method="post" th:object="${event}">
-            <h4>Title:</h4>
-            <input class="form-control" th:field="*{title}" />
-            <br />
-            <div class="row">
-                <div class="col-xs-6">
-                    <h4>Event Starts</h4>
-                    <div class="form-group">
-                        <div class="input-group datetimepicker">
-                            <input th:field="*{date}" type="text" class="form-control" readonly="readonly"/>
-                            <span class="input-group-addon">
+
+<div class="container-fluid margin-40">
+    <div class="row">
+        <div class="col-sm-12 col-sm-4 col-sm-offset-4">
+
+            <form class="form-group" th:action="@{/events/create}" th:method="post" th:object="${event}">
+                <h4>Title:</h4>
+                <input class="form-control" th:field="*{title}"/>
+                <br/>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <h4>Event Starts</h4>
+                        <div class="form-group">
+                            <div class="input-group datetimepicker">
+                                <input th:field="*{date}" type="text" class="form-control" readonly="readonly"/>
+                                <span class="input-group-addon">
 						<span class="fa fa-calendar"></span>
                         +
 						<span class="fa fa-clock-o"></span>
 					</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xs-6">
-                    <h4>Event Ends</h4>
-                    <div class="form-group">
-                        <div class="input-group datetimepicker">
-                            <input th:field="*{endDate}" type="text" class="form-control" readonly="readonly"/>
-                            <div class="input-group-addon no-padding">
-                                <span class="fa fa-calendar"></span>
-                                +
-                                <span class="fa fa-clock-o"></span>
+                    <div class="col-xs-6">
+                        <h4>Event Ends</h4>
+                        <div class="form-group">
+                            <div class="input-group datetimepicker">
+                                <input th:field="*{endDate}" type="text" class="form-control" readonly="readonly"/>
+                                <div class="input-group-addon no-padding">
+                                    <span class="fa fa-calendar"></span>
+                                    +
+                                    <span class="fa fa-clock-o"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <br />
-            <h4>Description:</h4>
-            <input class="form-control" th:field="*{eventDesc}" />
-            <br />
-            <h4>Link:</h4>
-            <input class="form-control" th:field="*{link}" />
-            <br />
-            <h4>Street Address:</h4>
-            <input class="form-control" th:field="*{street1}" />
-            <br />
-            <h4>Street Address continued:</h4>
-            <input class="form-control" th:field="*{street2}" />
-            <br />
-            <h4>City:</h4>
-            <input class="form-control" th:field="*{city1}" />
-            <br />
-            <h4>State:</h4>
-            <input class="form-control" th:field="*{state1}" />
-            <br />
-            <h4>Zip:</h4>
-            <input class="form-control" th:field="*{zip1}" />
-            <br />
-            <div><label>Upload an image<input type="file" name="imageLoc" id="eventImage" /></label>
-            </div>
-            <br />
-            <input class="form-control background-light-blue" type="submit" />
-            <input class="form-control" type="hidden" th:field="*{id}" />
-        </form>
-        <form th:method="post" th:action="@{/event/delete}">
-            <input type="hidden" name="id" th:value="${event.id}"/>
-            <br />
-            <button class="btn btn-danger">Delete</button>
-        </form>
-    </div>
+                <br/>
+                <h4>Description:</h4>
+                <input class="form-control" th:field="*{eventDesc}"/>
+                <br/>
+                <h4>Link:</h4>
+                <input class="form-control" th:field="*{link}"/>
+                <br/>
+                <h4>Street Address:</h4>
+                <input class="form-control" th:field="*{street1}"/>
+                <br/>
+                <h4>Street Address continued:</h4>
+                <input class="form-control" th:field="*{street2}"/>
+                <br/>
+                <h4>City:</h4>
+                <input class="form-control" th:field="*{city1}"/>
+                <br/>
+                <h4>State:</h4>
+                <input class="form-control" th:field="*{state1}"/>
+                <br/>
+                <h4>Zip:</h4>
+                <input class="form-control" th:field="*{zip1}"/>
+                <br/>
+                <div><label>Upload an image<input type="file" name="imageLoc" id="eventImage"/></label>
+                </div>
+                <br/>
 
-    <div th:replace="fragments :: footer"/>
-    <div th:replace="fragments :: scripts"/>
-    <script src="/js/events.js"></script>
+                <form th:method="post" th:action="@{/event/delete}">
+                    <input type="hidden" name="id" th:value="${event.id}"/>
+                    <br/>
+                    <button class="btn text-center">Delete Event</button>
+                </form>
+
+                <div class="form-group text-center">
+                    <button class="button-secondary font-white">Create</button>
+                </div>
+
+                <!--<input class="form-control background-light-blue" type="submit"/>-->
+                <input class="form-control" type="hidden" th:field="*{id}"/>
+
+
+            </form>
+            <!--<form th:method="post" th:action="@{/event/delete}">-->
+                <!--<input type="hidden" name="id" th:value="${event.id}"/>-->
+                <!--<br/>-->
+                <!--<button class="btn btn-danger text-center">Delete</button>-->
+            <!--</form>-->
+        </div>
+    </div>
+</div>
+
+        <div th:replace="fragments :: footer"/>
+        <div th:replace="fragments :: scripts"/>
+        <script src="/js/events.js"></script>
 </body>
 </html>
