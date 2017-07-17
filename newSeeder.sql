@@ -171,6 +171,5 @@ VALUES (5, 'basic', 5), (7, 'adopter', 1), (10, 'admin', 1), (13, 'foster', 5), 
   (16, 'basic', 2), (17, 'foster', 2), (18, 'basic', 3), (19, 'foster', 3), (20, 'basic', 4), (21, 'foster', 4),
   (22, 'basic', 6), (23, 'basic', 7), (24, 'admin', 6), (25, 'foster', 6),  (31, 'basic', 8);
 
-/*(27, 'adopter', NULL), (28, 'foster', NULL),
-(29, 'admin', NULL), (30, 'basic', NULL),*/
+
 
