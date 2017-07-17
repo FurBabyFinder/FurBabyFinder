@@ -149,7 +149,9 @@ public class PetSearchController {
     public String SearchById (Model model,
                               @PathVariable long id ){
         List<Pet> pets = new ArrayList<>();
-        pets.add(petsRepository.findById(id));
+        if (petsRepository.findById(id) != null) {
+            pets.add(petsRepository.findById(id));
+        }
         model.addAttribute("list", petsRepository.findSpecies());
         model.addAttribute("pets", pets);
         return "pets/searchIndividual";
