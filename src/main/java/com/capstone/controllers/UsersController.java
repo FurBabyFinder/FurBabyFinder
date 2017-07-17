@@ -47,10 +47,10 @@ PetsRepository petsRepository;
 //        user.setPassword((user.getPassword()));
 //        usersDao.save(user);
 
-        UserRole userRole = new UserRole(user.getId(), "basic");
+
         model.addAttribute("list", petsRepository.findSpecies());
-        userRolesRepository.save(userRole);
-        //Create a default user role for the new user
+
+
 
         return "login";
     }
