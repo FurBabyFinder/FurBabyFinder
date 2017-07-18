@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments :: head('Search User')">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
 </head>
 <body>
 <nav th:replace="fragments :: navbar"/>
@@ -18,87 +19,112 @@
     </div>
 </div>
 
-<div class="container-fluid form-container" id="UserSearchScreen">
+<div class="container-fluid margin-40" id="UserSearchScreen">
     <div class="row">
-        <div class="col-sm-12">
-            <form class="form-horizontal">
+        <div class="col-sm-12 col-md-4 col-md-offset-4">
+            <form class="form-group">
 
                 <div class="form-group">
                     <label class="control-label" for="userID">Search by ID</label>
                     <input class="form-control" id="userID" type="text" size="15" name="userID"/>
+                </div>
 
+                <div class="form-group">
                     <label class="control-label" for="userFirstName">Search by First Name</label>
                     <input class="form-control" id="userFirstName" type="text" size="40" name="userFirstName"/>
+                </div>
 
+                <div class="form-group">
                     <label class="control-label" for="userLastName">Search by Last Name</label>
                     <input class="form-control" id="userLastName" type="text" size="40" name="userLastName"/>
+                </div>
 
-
+                <div class="form-group">
                     <label class="control-label" for="userEmail">Search by Email</label>
                     <input class="form-control" id="userEmail" type="text" size="150" name="userEmail"/>
+                </div>
 
-
+                <div class="form-group">
                     <label class="control-label" for="username">Search by username</label>
                     <input class="form-control" id="username" type="text" size="150" name="username"/>
+                </div>
 
+                <div class="form-group">
                     <label class="control-label" for="role">Search by role</label>
                     <input class="form-control" id="role" type="text" size="20" name="role"/>
-
-                    <div class="btn btn-default" id="searchUser">Search</div>
-
-                    <div style="display: none" id="warningMessageOnlyOne" class="alert alert-danger alert-dismissible"
-                         role="alert">
-                        <strong>First and Last Name are the only search criteria that can be combined.  Please remove excess serach entries </strong>
-                    </div>
-                    <div style="display: none" id="warningMessageNumeric" class="alert alert-danger alert-dismissible"
-                         role="alert">
-                        <strong>ID must be numeric</strong>
-                    </div>
                 </div>
-            </form>
-        </div>
+
+                <div class="form-group text-center">
+                <button class="button-secondary font-white" id="searchUser">Search</button>
+                </div>
+
+                <div style="display: none" id="warningMessageOnlyOne" class="alert alert-danger alert-dismissible"
+                     role="alert">
+                    <strong>First and Last Name are the only search criteria that can be combined. Please remove excess
+                        serach entries </strong>
+                </div>
+
+                <div style="display: none" id="warningMessageNumeric" class="alert alert-danger alert-dismissible"
+                     role="alert">
+                    <strong>ID must be numeric</strong>
+                </div>
+
+        </form>
     </div>
+</div>
 
 
-    <div class="col-sm-11">
-        <div th:if="${users != null}">
-            <div th:if="${users.size() == 0 }"><h2>No users found with that criteria</h2>   </div>
-        </div>
-        <div class="row userCards" th:each="user : ${users}">
+<div class="col-sm-11">
+    <div th:if="${users != null}">
+        <div th:if="${users.size() == 0 }"><h2>No users found with that criteria</h2></div>
+    </div>
+    <div class="row userCards" th:each="user : ${users}">
 
-            <!--<div class="eachUser">-->
-            <!--<h2>Name: <a th:href="@{'/users/user/'+ ${user.id}}" id="viewUser" style="text-decoration: none">-->
-            <!--<span th:text="${user.firstName}"></span><span> </span> <span th:text="${user.lastName}"></span>-->
-            <!--</a></h2>-->
+        <!--<div class="eachUser">-->
+        <!--<h2>Name: <a th:href="@{'/users/user/'+ ${user.id}}" id="viewUser" style="text-decoration: none">-->
+        <!--<span th:text="${user.firstName}"></span><span> </span> <span th:text="${user.lastName}"></span>-->
+        <!--</a></h2>-->
 
-            <!--<p><h4>Email <span th:text="${user.email}"></span></h4></p>-->
+        <!--<p><h4>Email <span th:text="${user.email}"></span></h4></p>-->
 
 
-            <!--<p><h4>Main Phone <span th:text="${user.mainPhone}"></span></h4></p>-->
+        <!--<p><h4>Main Phone <span th:text="${user.mainPhone}"></span></h4></p>-->
 
-            <!--<p><h4>Alt Phone <span th:text="${user.altPhone}"></span></h4></p>-->
-            <!--</div>-->
+        <!--<p><h4>Alt Phone <span th:text="${user.altPhone}"></span></h4></p>-->
+        <!--</div>-->
 
-            <div class="card">
-                <div class="card-block">
-                    <h2 class="card-title font-dark-blue" th:text="${user.firstName} +' '+ ${user.lastName}"></h2>
-                    <h4 class="card-subtitle mb-2 text-muted" th:text="${user.username}"></h4>
-                    <p class="card-text font-dark-blue" th:text="'Email: ' + ${user.email}"></p>
-                    <p class="card-text font-dark-blue" th:text="'Main Phone: '+ ${user.mainPhone}"></p>
-                    <p class="card-text font-dark-blue" th:text="'Alt Phone: ' + ${user.altPhone}"></p>
-                    <p><button class="btn btn-secondary"><a th:href="@{'/users/user/'+ ${user.id}}" class="card-link">View User</a></button></p>
-                    <p><button class="btn btn-secondary"><a th:href="@{'/users/update/'+ ${user.id}}" class="card-link">Edit User</a></button></p>
-                </div>
+        <div class="card text-center">
+            <div class="card-block">
+                <h2 class="card-title font-dark-blue" th:text="${user.firstName} +' '+ ${user.lastName}"></h2>
+                <h4 class="card-subtitle mb-2 text-muted" th:text="${user.username}"></h4>
+                <p class="card-text font-dark-blue" th:text="'Email: ' + ${user.email}"></p>
+                <p class="card-text font-dark-blue" th:text="'Main Phone: '+ ${user.mainPhone}"></p>
+                <p class="card-text font-dark-blue" th:text="'Alt Phone: ' + ${user.altPhone}"></p>
+                <p>
+                    <button class="btn btn-secondary"><a th:href="@{'/users/user/'+ ${user.id}}" class="card-link">View
+                        User</a></button>
+                </p>
+                <p>
+                    <button class="btn btn-secondary"><a th:href="@{'/users/update/'+ ${user.id}}" class="card-link">Edit
+                        User</a></button>
+                </p>
             </div>
         </div>
     </div>
 </div>
+</div>
 <div th:replace="fragments :: login"/>
 <div th:replace="fragments :: register"/>
 <div th:replace="fragments :: scripts"/>
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+        integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
 <script src="/js/searchUser.js"></script>
 
 </body>
