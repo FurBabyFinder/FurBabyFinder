@@ -70,7 +70,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="story">Story</label>
-                            <textarea class="form-control" id="story" rows="5" th:field="*{story}"/>
+                            <textarea class="form-control" id="story" rows="7" th:field="*{story}"/>
                             <div class="alert alert-danger" th:if="${#fields.hasErrors('story')}">
                                 <p th:errors="*{story}"/>
                             </div>
