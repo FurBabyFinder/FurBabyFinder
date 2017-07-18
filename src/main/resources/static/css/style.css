@@ -189,6 +189,7 @@ p {
 /*//////////////////////////////////////////////////////buttons*/
 .button-primary {
     background-color: #A8201A;
+    color: white;
     border: none;
     height: 40px;
     width: 183px;
@@ -201,6 +202,19 @@ p {
 
 .button-secondary {
     background-color: #143642;
+    color: white;
+    border: none;
+    height: 40px;
+    width: 183px;
+    margin: 5px;
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 1px;
+}
+
+.button-secondary:hover {
+    background-color: #143642;
+    color: white;
     border: none;
     height: 40px;
     width: 183px;
@@ -659,13 +673,17 @@ label {
     max-width: 300px;
     max-height: 300px;
 }
-.userPetsSection{
-    border-bottom: double;
-    margin-left: .5em;
-}
+/*.userPetsSection{*/
+    /*border-bottom: double;*/
+    /*margin-left: .5em;*/
+/*}*/
 
 .card {
     border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card-block {
+    display: inline-block;
 }
 
 #searchIndividual {
@@ -909,4 +927,17 @@ label {
 .more-pictures {
     font-family: Lato;
     font-size: 25px;
+}
+
+td {
+    text-align: left;
+    padding-right: 49px;
+}
+
+.user-background {
+    background-color: #DAD2D8;
+}
+
+.roles{
+    display: inline-block;
 }
