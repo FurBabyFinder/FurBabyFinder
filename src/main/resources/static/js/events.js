@@ -80,7 +80,7 @@ $(document).ready(function () {
         showClear: true,
         showClose: true,
         allowInputToggle: true,
-        useCurrent: true,
+        useCurrent: false,
         ignoreReadonly: true,
         minDate: new Date(),
         toolbarPlacement: 'top',
