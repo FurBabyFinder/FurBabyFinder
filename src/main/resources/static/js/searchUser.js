@@ -21,6 +21,10 @@ $("#searchUser").click(function() {
     }
 
      if ( userID != "" ) {
+         if(!($.isNumeric(userID))){
+             $('#warningMessageNumeric').css("display", "inline-block");
+             return;
+         }
         numberOfSelectionsMade++;
     }
 
