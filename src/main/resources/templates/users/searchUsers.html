@@ -55,7 +55,7 @@
                 </div>
 
                 <!--<div class="form-group text-center">-->
-                    <!--<button class="button-secondary font-white" id="searchUser">Search</button>-->
+                <!--<button class="button-secondary font-white" id="searchUser">Search</button>-->
                 <!--</div>-->
 
                 <div class="form-group text-center">
@@ -78,41 +78,44 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-sm-112">
+            <div th:if="${users != null}">
+                <div th:if="${users.size() == 0 }"><h2>No users found with that criteria</h2></div>
+            </div>
+            <div class="userCards" th:each="user : ${users}">
 
-    <div class="col-sm-11">
-        <div th:if="${users != null}">
-            <div th:if="${users.size() == 0 }"><h2>No users found with that criteria</h2></div>
-        </div>
-        <div class="row userCards" th:each="user : ${users}">
+                <!--<div class="eachUser">-->
+                <!--<h2>Name: <a th:href="@{'/users/user/'+ ${user.id}}" id="viewUser" style="text-decoration: none">-->
+                <!--<span th:text="${user.firstName}"></span><span> </span> <span th:text="${user.lastName}"></span>-->
+                <!--</a></h2>-->
 
-            <!--<div class="eachUser">-->
-            <!--<h2>Name: <a th:href="@{'/users/user/'+ ${user.id}}" id="viewUser" style="text-decoration: none">-->
-            <!--<span th:text="${user.firstName}"></span><span> </span> <span th:text="${user.lastName}"></span>-->
-            <!--</a></h2>-->
-
-            <!--<p><h4>Email <span th:text="${user.email}"></span></h4></p>-->
+                <!--<p><h4>Email <span th:text="${user.email}"></span></h4></p>-->
 
 
-            <!--<p><h4>Main Phone <span th:text="${user.mainPhone}"></span></h4></p>-->
+                <!--<p><h4>Main Phone <span th:text="${user.mainPhone}"></span></h4></p>-->
 
-            <!--<p><h4>Alt Phone <span th:text="${user.altPhone}"></span></h4></p>-->
-            <!--</div>-->
+                <!--<p><h4>Alt Phone <span th:text="${user.altPhone}"></span></h4></p>-->
+                <!--</div>-->
 
-            <div class="card text-center">
-                <div class="card-block">
-                    <h2 class="card-title font-dark-blue" th:text="${user.firstName} +' '+ ${user.lastName}"></h2>
-                    <h4 class="card-subtitle mb-2 text-muted" th:text="${user.username}"></h4>
-                    <p class="card-text font-dark-blue" th:text="'Email: ' + ${user.email}"></p>
-                    <p class="card-text font-dark-blue" th:text="'Main Phone: '+ ${user.mainPhone}"></p>
-                    <p class="card-text font-dark-blue" th:text="'Alt Phone: ' + ${user.altPhone}"></p>
-                    <p>
-                        <button class="btn btn-secondary"><a th:href="@{'/users/user/'+ ${user.id}}" class="card-link">View
-                            User</a></button>
-                    </p>
-                    <p>
-                        <button class="btn btn-secondary"><a th:href="@{'/users/update/'+ ${user.id}}" class="card-link">Edit
-                            User</a></button>
-                    </p>
+                <div class="card text-center">
+                    <div class="card-block">
+                        <h2 class="card-title font-dark-blue" th:text="${user.firstName} +' '+ ${user.lastName}"></h2>
+                        <h4 class="card-subtitle mb-2 text-muted" th:text="${user.username}"></h4>
+                        <p class="card-text font-dark-blue" th:text="'Email: ' + ${user.email}"></p>
+                        <p class="card-text font-dark-blue" th:text="'Main Phone: '+ ${user.mainPhone}"></p>
+                        <p class="card-text font-dark-blue" th:text="'Alt Phone: ' + ${user.altPhone}"></p>
+                        <p>
+                            <button class="btn btn-secondary"><a th:href="@{'/users/user/'+ ${user.id}}"
+                                                                 class="card-link">View
+                                User</a></button>
+                        </p>
+                        <p>
+                            <button class="btn btn-secondary"><a th:href="@{'/users/update/'+ ${user.id}}"
+                                                                 class="card-link">Edit
+                                User</a></button>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
