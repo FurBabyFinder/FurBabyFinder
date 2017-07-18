@@ -81,18 +81,9 @@
                 <h4>Zip:</h4>
                 <input class="form-control" th:field="*{zip1}"/>
                 <br/>
-                <div><label>Upload an image<input type="file" name="imageLoc" id="eventImage"/></label>
-                </div>
-                <br/>
-
-                <form th:method="post" th:action="@{/event/delete}">
-                    <input type="hidden" name="id" th:value="${event.id}"/>
-                    <br/>
-                    <button class="btn text-center">Delete Event</button>
-                </form>
 
                 <div class="form-group text-center">
-                    <button class="button-secondary font-white">Create</button>
+                    <input class="btn button-secondary font-white" type="submit" />
                 </div>
 
                 <!--<input class="form-control background-light-blue" type="submit"/>-->

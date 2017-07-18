@@ -941,3 +941,8 @@ td {
 .roles{
     display: inline-block;
 }
+
+.event-details {
+    padding: 20px;
+    background-color: #EEEEEE;
+}
