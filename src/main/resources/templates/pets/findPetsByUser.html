@@ -22,36 +22,29 @@
     <div class="row">
         <div class="col-sm-12 col-md-4 col-md-offset-4">
             <form class="form-horizontal form-group">
+                <div class="row">
 
-                <div class="form-group">
-                    <label for="foster" class="control-label">Search By Foster</label>
-                    <input class="form-control" type="radio" id="foster" name="userType" value="foster"/>
+                    <div class="col-lg-6">
+                        <label for="foster" class="control-label"><h4>Search By Foster</h4></label>
+                        <input type="radio" id="foster" name="userType" value="foster"/>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="adopter" class="control-label"><h4>Search By Adopter</h4></label>
+                        <input  type="radio" id="adopter" name="userType" value="adopter"/>
+                    </div>
                 </div>
+                <div class="row" id="foster-checks">
 
-                <div class="form-group">
-                    <label for="adopter" class="control-label">Search By Adopter</label>
-                    <input class="form-control" type="radio" id="adopter" name="userType" value="adopter"/>
-                </div>
+                    <div  class="col-lg-6">
+                        <input type="radio" id="readyToAdoptOnly" value="ready" name="readyOrNot"/>Only Ready To Adopt<br/>
+                        <input  type="radio" id="excludeReadyToAdopt" value="excludeReady" name="readyOrNot"/>Exclude Ready To Adopt<br/>
+                    </div>
 
-                <div class="form-group">
-                    <label for="readyToAdoptOnly" class="control-label">Only ready to adopt</label>
-                    <input class="form-control" type="radio" id="readyToAdoptOnly" value="ready" name="readyOrNot"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label" for="excludeReadyToAdopt">Exclude ready to adopt</label>
-                    <input class="form-control" type="radio" id="excludeReadyToAdopt" value="excludeReady"
-                           name="readyOrNot"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label" for="onlyAdopted">Only adopted</label>
-                    <input class="form-control" type="radio" id="onlyAdopted" value="adopted" name="AdoptedOrNot"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label" for="excludedAdopted">Exclude adopted</label>
-                    <input class="form-control" type="radio" id="excludedAdopted" value="exclude" name="AdoptedOrNot"/>
+                    <div  class="col-lg-6">
+                        <input  type="radio" id="onlyAdopted" value="adopted" name="AdoptedOrNot"/>Only Adopted <br/>
+                        <input type="radio" id="excludedAdopted" value="exclude" name="AdoptedOrNot"/>Exclude Adopted<br/>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -73,7 +66,7 @@
                 </div>
 
                 <div class="form-group text-center">
-                    <button id="searchUser" class="button-secondary font-white">Search</button>
+                    <div id="searchUser" class=" btn button-secondary font-white">Search</div>
                 </div>
 
 
