@@ -1,6 +1,5 @@
 package com.capstone.models;
 
-import com.User;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.constraints.NotBlank;
 

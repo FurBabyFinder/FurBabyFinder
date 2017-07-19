@@ -1,7 +1,7 @@
 package com.capstone.svcs;
 
 import com.capstone.models.Pet;
-import com.User;
+import com.capstone.models.User;
 
 import java.io.Serializable;
 import java.util.List;

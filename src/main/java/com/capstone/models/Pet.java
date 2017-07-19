@@ -1,6 +1,5 @@
 package com.capstone.models;
 
-import com.User;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;

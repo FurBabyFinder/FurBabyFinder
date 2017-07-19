@@ -4,7 +4,7 @@ import com.capstone.models.Filter;
 import com.capstone.models.Pet;
 
 import com.capstone.models.PetImage;
-import com.User;
+import com.capstone.models.User;
 import com.capstone.repositories.FilterRepository;
 import com.capstone.repositories.PetImageRepository;
 import com.capstone.repositories.PetsRepository;
