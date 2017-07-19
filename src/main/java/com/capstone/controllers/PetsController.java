@@ -1,32 +1,25 @@
 package com.capstone.controllers;
 
-import com.capstone.Pojos.ImageList;
 import com.capstone.models.Filter;
 import com.capstone.models.Pet;
 
 import com.capstone.models.PetImage;
-import com.capstone.models.User;
+import com.User;
 import com.capstone.repositories.FilterRepository;
 import com.capstone.repositories.PetImageRepository;
 import com.capstone.repositories.PetsRepository;
 import com.capstone.repositories.UsersRepository;
 import com.capstone.svcs.PetDTO;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.jws.WebParam;
 import javax.validation.Valid;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**

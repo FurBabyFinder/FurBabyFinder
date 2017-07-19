@@ -1,8 +1,7 @@
 package com.capstone.repositories;
 
-import com.capstone.models.Filter;
 import com.capstone.models.Pet;
-import com.capstone.models.User;
+import com.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

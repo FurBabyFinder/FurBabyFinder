@@ -1,6 +1,6 @@
 package com.capstone.controllers;
 
-import com.capstone.models.User;
+import com.User;
 import com.capstone.repositories.PetsRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
