@@ -132,7 +132,7 @@
                     <div class="pet-container" th:each="pet : ${adoptedPets}">
                         <div class="row">
                             <div>
-                                <div class="col-sm-12 text-center" th:if="${pet.getImages().size() > 0}">
+                                <div class="col-sm-12 single-pet img-responsive text-center" th:if="${pet.getImages().size() > 0}">
                                     <div th:each="petImage : ${pet.getImages()}">
                                         <div th:if="${petImage.profilePic} == true">
                                             <img class="img-pet img-responsive text-center" th:alt="${petImage.ImageDescription}"

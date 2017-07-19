@@ -471,7 +471,8 @@ a:hover {
     width: 200px;
     border-radius: 50%;
     margin-top:12px;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
