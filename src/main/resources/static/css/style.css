@@ -200,6 +200,19 @@ p {
 }
 
 
+.button-primary-pet-page {
+    background-color: #A8201A;
+    color: white;
+    border: none;
+    height: 40px;
+    width: 183px;
+    margin: 5px;
+    font-size: 17px;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 1px;
+}
+
+
 .button-secondary {
     background-color: #143642;
     color: white;
@@ -643,7 +656,7 @@ label {
 }
 
 .form-control {
-    background-color: #DAD2D8;
+    background-color: #EEE;
 }
 
 .margin-40 {
@@ -721,6 +734,16 @@ label {
     padding-left: 90px;
     padding-right: 90px;
 }
+
+.padding-width-40 {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.margin-bottom-50 {
+    margin-bottom: 30px;
+}
+
 
 .navbar-default .navbar-toggle .icon-bar {
     background-color: #0F8B8D;
@@ -825,15 +848,23 @@ label {
     text-align: center;
 }
 
-.panel-body {
+/*.panel-body {*/
+    /*background-color: #27213C;*/
+    /*color: white;*/
+    /*border-radius: 25px;*/
+/*}*/
+
+.panel {
     background-color: #27213C;
+    border: none;
+    /*border-radius: 25px;*/
     color: white;
-    border-radius: 25px;
 }
 
 .media-icons {
     background-color: #DAD2D8;
     letter-spacing: 13px;
+    margin-left: -5px;
 }
 
 .icons-container {
@@ -873,6 +904,10 @@ label {
 
 .padding-bottom-footer{
     padding-bottom:20px;
+}
+
+.padding-40 {
+    padding:40px;
 }
 
 
@@ -933,6 +968,7 @@ label {
 .more-pictures {
     font-family: Lato;
     font-size: 25px;
+    margin-top: 8px;
 }
 
 td {
@@ -951,4 +987,33 @@ td {
 .event-details {
     padding: 20px;
     background-color: #EEEEEE;
+}
+
+.about-us-pic {
+    height: 200px;
+    width: 200px;
+    margin: 15px auto;
+}
+
+.aboutus:hover {
+    color: white;
+}
+
+.micah-melody-links {
+    margin-top: 62px;
+}
+
+.padding-top-50{
+    padding-top: 50px;
+}
+
+.padding-bottom-50 {
+    padding-bottom: 50px;
+}
+
+input[type=radio] {
+    margin: 4px 0 0;
+    margin-top: 1px\9;
+    line-height: normal;
+    margin-right: 7px;
 }
