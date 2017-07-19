@@ -200,6 +200,19 @@ p {
 }
 
 
+.button-primary-pet-page {
+    background-color: #A8201A;
+    color: white;
+    border: none;
+    height: 40px;
+    width: 183px;
+    margin: 5px;
+    font-size: 17px;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 1px;
+}
+
+
 .button-secondary {
     background-color: #143642;
     color: white;
@@ -933,6 +946,7 @@ label {
 .more-pictures {
     font-family: Lato;
     font-size: 25px;
+    margin-top: 8px;
 }
 
 td {
