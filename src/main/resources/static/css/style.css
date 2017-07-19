@@ -1017,3 +1017,8 @@ input[type=radio] {
     line-height: normal;
     margin-right: 7px;
 }
+
+.pet-story {
+    padding-left: 10px;
+    padding-right: 10px;
+}
