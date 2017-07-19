@@ -1,6 +1,6 @@
 package com.capstone.svcs;
 
-import com.capstone.models.User;
+import com.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;

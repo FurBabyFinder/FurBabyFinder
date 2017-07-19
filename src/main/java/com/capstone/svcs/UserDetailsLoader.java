@@ -1,6 +1,6 @@
 package com.capstone.svcs;
 
-import com.capstone.models.User;
+import com.User;
 import com.capstone.repositories.Roles;
 import com.capstone.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;

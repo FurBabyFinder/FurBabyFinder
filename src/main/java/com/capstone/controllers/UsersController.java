@@ -1,7 +1,7 @@
 package com.capstone.controllers;
 
 import com.capstone.models.Pet;
-import com.capstone.models.User;
+import com.User;
 import com.capstone.models.UserRole;
 import com.capstone.repositories.PetsRepository;
 import com.capstone.repositories.UserRolesRepository;

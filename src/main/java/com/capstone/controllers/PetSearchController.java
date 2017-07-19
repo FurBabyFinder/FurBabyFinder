@@ -1,12 +1,11 @@
 package com.capstone.controllers;
 
 import com.capstone.models.Pet;
-import com.capstone.models.User;
+import com.User;
 import com.capstone.repositories.FilterRepository;
 import com.capstone.repositories.PetImageRepository;
 import com.capstone.repositories.PetsRepository;
 import com.capstone.repositories.UsersRepository;
-import com.capstone.svcs.PetAdopterFosterDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
