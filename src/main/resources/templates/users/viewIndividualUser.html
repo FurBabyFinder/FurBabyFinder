@@ -19,7 +19,7 @@
 <div id="UserSearchScreen">
     <div class="container-fluid margin-40">
         <div class="row">
-            <div class="col-md-4 text-center user-background">
+            <div class="col-md-4">
                 <!--<p sec:authorize="hasAuthority('admin')"><h4>ID: <span th:text="${user.id}"></span></h4></p>-->
                 <h2 class="userInfo" th:text="${user.firstName}+ '   ' + ${user.lastName}"></h2>
 
@@ -98,7 +98,7 @@
                     <div class="pet-container" th:each="pet : ${fosteredPets}">
                         <div class="row">
                             <div>
-                                <div class="col-sm-12 pet-picture" th:if="${pet.getImages().size() > 0}">
+                                <div class="col-sm-12 single-pet img-responsive text-center" th:if="${pet.getImages().size() > 0}">
                                     <div th:each="petImage : ${pet.getImages()}">
                                         <div th:if="${petImage.profilePic} == true">
                                             <img class="img-thumbnail" th:alt="${petImage.ImageDescription}"
@@ -132,7 +132,7 @@
                     <div class="pet-container" th:each="pet : ${adoptedPets}">
                         <div class="row">
                             <div>
-                                <div class="col-sm-12 text-center pet-picture" th:if="${pet.getImages().size() > 0}">
+                                <div class="col-sm-12 single-pet img-responsive text-center" th:if="${pet.getImages().size() > 0}">
                                     <div th:each="petImage : ${pet.getImages()}">
                                         <div th:if="${petImage.profilePic} == true">
                                             <img class="img-thumbnail" th:alt="${petImage.ImageDescription}"
