@@ -650,6 +650,12 @@ label {
     margin: 40px;
 }
 
+.searchByUser {
+    color: black;
+    font-family: Helvetica Neue;
+    font-size: 14px;
+}
+
 /*#searchUser {*/
     /*margin-top: 10px;*/
 /*}*/
