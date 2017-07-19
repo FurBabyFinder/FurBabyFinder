@@ -847,6 +847,7 @@ label {
 .media-icons {
     background-color: #DAD2D8;
     letter-spacing: 13px;
+    margin-left: -5px;
 }
 
 .icons-container {
