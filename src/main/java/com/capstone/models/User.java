@@ -1,6 +1,5 @@
-package com;
+package com.capstone.models;
 
-import com.capstone.models.Pet;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;

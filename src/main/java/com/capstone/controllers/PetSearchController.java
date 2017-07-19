@@ -1,7 +1,7 @@
 package com.capstone.controllers;
 
 import com.capstone.models.Pet;
-import com.User;
+import com.capstone.models.User;
 import com.capstone.repositories.FilterRepository;
 import com.capstone.repositories.PetImageRepository;
 import com.capstone.repositories.PetsRepository;
