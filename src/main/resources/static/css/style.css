@@ -1011,3 +1011,9 @@ td {
     padding-bottom: 50px;
 }
 
+input[type=radio] {
+    margin: 4px 0 0;
+    margin-top: 1px\9;
+    line-height: normal;
+    margin-right: 7px;
+}
