@@ -101,7 +101,7 @@
                                 <div class="col-sm-12 single-pet img-responsive text-center" th:if="${pet.getImages().size() > 0}">
                                     <div th:each="petImage : ${pet.getImages()}">
                                         <div th:if="${petImage.profilePic} == true">
-                                            <img class="img-thumbnail" th:alt="${petImage.ImageDescription}"
+                                            <img class="img-pet img-responsive text-center" th:alt="${petImage.ImageDescription}"
                                                  th:src="@{${petImage.imageUrl}}"/>
                                         </div>
                                     </div>
@@ -135,7 +135,7 @@
                                 <div class="col-sm-12 text-center" th:if="${pet.getImages().size() > 0}">
                                     <div th:each="petImage : ${pet.getImages()}">
                                         <div th:if="${petImage.profilePic} == true">
-                                            <img class="img-pet img-responsive " th:alt="${petImage.ImageDescription}"
+                                            <img class="img-pet img-responsive text-center" th:alt="${petImage.ImageDescription}"
                                                  th:src="@{${petImage.imageUrl}}"/>
                                         </div>
                                     </div>
@@ -160,66 +160,66 @@
 </div>
 
 
-        <!--&lt;!&ndash;  =============================================PETS========================================== &ndash;&gt;-->
-        <!--<div th:if="${fosteredPets.size() > 0}">-->
+<!--&lt;!&ndash;  =============================================PETS========================================== &ndash;&gt;-->
+<!--<div th:if="${fosteredPets.size() > 0}">-->
 
-        <!--<h2 class="userPetsSection">Fostered Animals</h2>-->
+<!--<h2 class="userPetsSection">Fostered Animals</h2>-->
 
-        <!--<div class="pet-container" th:each="pet : ${fosteredPets}">-->
-        <!--<div class="row">-->
-        <!--<div>-->
-        <!--<div class="col-sm-3 pet-picture" th:if="${pet.getImages().size() > 0}">-->
-        <!--<div th:each="petImage : ${pet.getImages()}">-->
-        <!--<div th:if="${petImage.profilePic} == true">-->
-        <!--<img class="img-thumbnail" th:alt="${petImage.ImageDescription}"-->
-        <!--th:src="@{${petImage.imageUrl}}"/>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--<div class="col-sm-9 pet-info">-->
-        <!--<h3><a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet" style="text-decoration: none"><span-->
-        <!--th:text="${pet.name}"></span></a></h3>-->
-        <!--<p><h4>Info: <span th:text="${pet.story}"></span></h4></p>-->
-        <!--<p><h4>Age <span th:text="${pet.age}"></span></h4></p>-->
-        <!--<p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>-->
-        <!--<p><h4>Arrival Date: <span th:text="${pet.arrivalDate}"></span></h4></p>-->
-        <!--<p><h4>Adopted Date: <span th:text="${pet.adoptionDate}"></span></h4></p>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--<div th:if="${adoptedPets.size() > 0}">-->
+<!--<div class="pet-container" th:each="pet : ${fosteredPets}">-->
+<!--<div class="row">-->
+<!--<div>-->
+<!--<div class="col-sm-3 pet-picture" th:if="${pet.getImages().size() > 0}">-->
+<!--<div th:each="petImage : ${pet.getImages()}">-->
+<!--<div th:if="${petImage.profilePic} == true">-->
+<!--<img class="img-thumbnail" th:alt="${petImage.ImageDescription}"-->
+<!--th:src="@{${petImage.imageUrl}}"/>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-sm-9 pet-info">-->
+<!--<h3><a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet" style="text-decoration: none"><span-->
+<!--th:text="${pet.name}"></span></a></h3>-->
+<!--<p><h4>Info: <span th:text="${pet.story}"></span></h4></p>-->
+<!--<p><h4>Age <span th:text="${pet.age}"></span></h4></p>-->
+<!--<p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>-->
+<!--<p><h4>Arrival Date: <span th:text="${pet.arrivalDate}"></span></h4></p>-->
+<!--<p><h4>Adopted Date: <span th:text="${pet.adoptionDate}"></span></h4></p>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div th:if="${adoptedPets.size() > 0}">-->
 
-        <!--<h2 class="userPetsSection">Adopted Animals</h2>-->
+<!--<h2 class="userPetsSection">Adopted Animals</h2>-->
 
-        <!--<div class="pet-container" th:each="pet : ${adoptedPets}">-->
-        <!--<div class="row">-->
-        <!--<div>-->
-        <!--<div class="col-sm-3 pet-picture" th:if="${pet.getImages().size() > 0}">-->
-        <!--<div th:each="petImage : ${pet.getImages()}">-->
-        <!--<div th:if="${petImage.profilePic} == true">-->
-        <!--<img class="img-thumbnail" th:alt="${petImage.ImageDescription}"-->
-        <!--th:src="@{${petImage.imageUrl}}"/>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--<div class="col-sm-9 pet-info">-->
-        <!--<h3>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet" style="text-decoration: none"><span-->
-        <!--th:text="${pet.name}"></span></a></h3>-->
-        <!--&lt;!&ndash;<p><h4>Info: <span th:text="${pet.story}"></span></h4></p>&ndash;&gt;-->
-        <!--<h4>Age: <span th:text="${pet.age}"></span></h4>-->
-        <!--&lt;!&ndash;<p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>&ndash;&gt;-->
-        <!--<h4>Arrival Date: <span th:text="${pet.arrivalDate}"></span></h4>-->
-        <!--<h4>Adopted Date: <span th:text="${pet.adoptionDate}"></span></h4>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <div th:replace="fragments :: footer"/>
-        <div th:replace="fragments :: scripts"/>
+<!--<div class="pet-container" th:each="pet : ${adoptedPets}">-->
+<!--<div class="row">-->
+<!--<div>-->
+<!--<div class="col-sm-3 pet-picture" th:if="${pet.getImages().size() > 0}">-->
+<!--<div th:each="petImage : ${pet.getImages()}">-->
+<!--<div th:if="${petImage.profilePic} == true">-->
+<!--<img class="img-thumbnail" th:alt="${petImage.ImageDescription}"-->
+<!--th:src="@{${petImage.imageUrl}}"/>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-sm-9 pet-info">-->
+<!--<h3>Name: <a th:href="@{'/pets/pet'+ ${pet.id}}" id="viewPet" style="text-decoration: none"><span-->
+<!--th:text="${pet.name}"></span></a></h3>-->
+<!--&lt;!&ndash;<p><h4>Info: <span th:text="${pet.story}"></span></h4></p>&ndash;&gt;-->
+<!--<h4>Age: <span th:text="${pet.age}"></span></h4>-->
+<!--&lt;!&ndash;<p><h4>Internal Notes: <span th:text="${pet.privateNotes}"></span></h4></p>&ndash;&gt;-->
+<!--<h4>Arrival Date: <span th:text="${pet.arrivalDate}"></span></h4>-->
+<!--<h4>Adopted Date: <span th:text="${pet.adoptionDate}"></span></h4>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<div th:replace="fragments :: footer"/>
+<div th:replace="fragments :: scripts"/>
 </body>
 </html>
