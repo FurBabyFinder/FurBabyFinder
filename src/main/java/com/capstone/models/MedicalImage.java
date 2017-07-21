@@ -21,6 +21,9 @@ public class MedicalImage {
     @NotBlank(message = "Image must have a url")
     private String imageUrl;
 
+    @Column
+    private String imageDescription;
+
 
     @ManyToOne
     @JoinTable(name = "record_to_image")
@@ -33,6 +36,8 @@ public class MedicalImage {
         this.medicalRecord = medicalRecord;
     }
 
+    public MedicalImage() {
+    }
 
     public long getId() {
         return id;
