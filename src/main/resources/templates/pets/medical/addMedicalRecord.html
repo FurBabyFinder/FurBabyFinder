@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments :: head('Add Medical Record')"/>
+<body>
+<nav th:replace="fragments :: navbar"/>
+
+
+<div class="container-fluid">
+    <div class="row row-header">
+
+        <div class="col-sm-12">
+            <div class="text-center footer footer-contact">
+                <h1 th:text="${pet.name}"></h1>
+                <h4 th:text="${pet.breed}"></h4>
+                <h4>ADD MEDICAL RECORD</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid margin-40">
+
+    <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+        <form class="form-horizontal" th:action="${'/pets/addMedicalRecord/'+ pet.id}" method="post" th:object="${medicalRecord}"
+              enctype="multipart/form-data">
+
+
+            <div class="form-group">
+                <div class="form-group">
+                    <label class="control-label" for="date">Date Of Visit/Procedure</label>
+                    <input class="form-control" id="date" type="text" placeholder="MM/DD/YYYY" size="15"
+                           th:field="*{date}"/>
+                    <div class="alert alert-danger" style="display: none" id="dateWarning"><span>Date Must Be in mm/dd/yyyy format</span>
+                    </div>
+                    <div class="alert alert-danger" th:if="${#fields.hasErrors('date')}">
+                        <p th:errors="*{date}"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="description">Description</label>
+                    <textarea class="form-control" id="description" type="text" rows="20" th:field="*{description}"/>
+                    <div class="alert alert-danger" th:if="${#fields.hasErrors('description')}">
+                        <p th:errors="*{description}"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="radio" id="vaccination1" name="vaccination"
+                           th:field="*{vaccination}"
+                           value="true"/>Vaccination Visit<br/>
+                    <input class="form-control" type="radio" id="vaccination2" name="vaccination"
+                           th:field="*{vaccination}"
+                           value="false"/>Not Vaccination Visit<br/>
+                    <div class="alert alert-danger" th:if="${#fields.hasErrors('vaccination')}">
+                        <p th:errors="*{vaccination}"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="imageForm">
+                <div class="form-group">
+                    <input class="input fspics" type="button" value="Upload Image" name="image" id="image1"/>
+                    <input type="hidden" id="fs1" name="imageUrl[]"/>
+                    <input class="form-control" name="imageDescription[]" placeholder="image description" size="150"
+                           type="text" id="description"/>
+                </div>
+            </div>
+            <div class="imageForm">
+                <div class="form-group">
+                    <input class="input fspics" type="button" value="Upload Image" name="image" id="image2"/>
+                    <input type="hidden" id="fs2" name="imageUrl[]"/>
+                    <input class="form-control" name="imageDescription[]" placeholder="image description" size="150"
+                           type="text" id="description"/>
+                </div>
+            </div>
+            <div class="imageForm">
+                <div class="form-group">
+                    <input class="input fspics" type="button" value="Upload Image" name="image" id="image3"/>
+                    <input type="hidden" id="fs3" name="imageUrl[]"/>
+                    <input class="form-control" name="imageDescription[]" placeholder="image description" size="150"
+                           type="text" id="description"/>
+                </div>
+            </div>
+            <div class="imageForm">
+                <div class="form-group">
+                    <input class="input fspics" type="button" value="Upload Image" name="image" id="image4"/>
+                    <input type="hidden" id="fs4" name="imageUrl[]"/>
+                    <input class="form-control" name="imageDescription[]" placeholder="image description" size="150"
+                           type="text" id="description"/>
+                </div>
+            </div>
+            <div class="imageForm">
+                <div class="form-group">
+                    <input class="input fspics" type="button" value="Upload Image" name="image" id="image5"/>
+                    <input type="hidden" id="fs5" name="imageUrl[]"/>
+                    <input class="form-control" name="imageDescription[]" placeholder="image description" size="150"
+                           type="text" id="description"/>
+                </div>
+            </div>
+            <div class="imageForm">
+                <div class="form-group">
+                    <input class="input fspics" type="button" value="Upload Image" name="image" id="image6"/>
+                    <input type="hidden" id="fs6" name="imageUrl[]"/>
+                    <input class="form-control" name="imageDescription[]" placeholder="image description" size="150"
+                           type="text" id="description"/>
+                </div>
+            </div>
+
+            <div class="form-group text-center">
+                <button id="saveButton" class="button-secondary font-white" value="upload">Save
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+<div th:replace="fragments :: scripts"/>
+<script src="https://static.filestackapi.com/v3/filestack.js"></script>
+<script src="/js/addMedicalRecord.js"></script>
+<script>
+
+    var client = filestack.init('ANWk7XTLRTuh0RY1BOwNwz');
+    function showPicker(id) {
+        client.pick({}).then(function (result) {
+
+            var linkaddress = result.filesUploaded[0].url;
+            $(id).val(linkaddress);
+            $(id).prop("placeholder", linkaddress);
+            $(id).prop("type", "text");
+        });
+    }
+
+    $(".fspics").click(function () {
+        var self = this;
+        var id = $(self).attr("id");
+        id = id.substr(-1);
+        id = "#fs" + id;
+        showPicker(id);
+
+
+    });
+</script>
+</body>
+</html>

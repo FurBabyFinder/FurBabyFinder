@@ -8,5 +8,6 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface MedicalRecordImagesRepository extends CrudRepository<MedicalImage, Long>{
 
+    public MedicalImage findById(long id);
 
 }

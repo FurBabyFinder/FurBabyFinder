@@ -36,6 +36,10 @@ public class MedicalImage {
         this.medicalRecord = medicalRecord;
     }
 
+    public MedicalImage(MedicalRecord medicalRecord){
+        this.medicalRecord = medicalRecord;
+    }
+
     public MedicalImage() {
     }
 
@@ -53,6 +57,14 @@ public class MedicalImage {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getImageDescription() {
+        return imageDescription;
+    }
+
+    public void setImageDescription(String imageDescription) {
+        this.imageDescription = imageDescription;
     }
 
     public MedicalRecord getMedicalRecord() {

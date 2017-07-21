@@ -5,7 +5,7 @@ $(document).ready(function () {
 
     vaccinationFlag = $("#vaccination").text();
 
-    if (vaccinationFlag==true){
+    if (vaccinationFlag=="true"){
 
         $("#vaccination").text("Yes");
     }
