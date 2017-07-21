@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments :: head('View Medical Record')"/>
+<body>
+<nav th:replace="fragments :: navbar"/>
+<div class="container-fluid">
+    <div class="row row-header">
+
+        <div class="col-sm-12">
+            <div class="text-center footer footer-contact">
+                <h1 th:text="${pet.name}"></h1>
+                <h4 th:text="${pet.breed}"></h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="fluid-container">
+    <div class="row">
+        <div class="col-xs-12 col-md-9 text-center">
+
+            <!--<h4 th:text="${medical.id}"></h4>-->
+            <!--<h4 th:text="${medical.date}"></h4>-->
+            <!--<h4 th:text="${medical.description}"></h4>-->
+            <!--<h4 th:text="${medical.vaccination}"></h4>-->
+
+
+            <table>
+                <tbody>
+                <tr>
+                    <td><h4>Record #: </h4></td>
+                    <td align="right"><h4><span class="userInfo" th:text="${medical.id}"></span>
+                    </h4></td>
+                </tr>
+                <tr>
+                    <td><h4>Date: </h4></td>
+                    <td align="right"><h4><span th:text="${medical.date}"></span></h4></td>
+                </tr>
+
+                <tr>
+                    <td><h4>Description </h4></td>
+                    <td align="right"><h4><span th:text="${medical.description}"></span></h4></td>
+                </tr>
+                <tr>
+                    <td><h4>Vaccination?</h4></td>
+                    <td align="right"><h4><span id="vaccination" th:text="${medical.vaccination}"></span></h4></td>
+                </tr>
+                </tbody>
+            </table>
+
+
+
+
+            <div th:each="image : ${medical.getMedicalImages()}">
+                <img class="img-responsive text-center"
+                     th:alt="${image.imageDescription}"
+                     th:src="@{${image.imageUrl}}"/>
+            </div>
+            </div>
+        </div>
+    </div>
+
+<div th:replace="fragments :: footer"/>
+<div th:replace="fragments :: scripts"/>
+<script src="/js/medicalRecordView.js"></script>
+
+</body>
+</html>
