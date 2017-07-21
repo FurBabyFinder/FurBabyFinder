@@ -57,7 +57,7 @@ public class Pet {
     @JoinColumn (name = "user_adopter_id")
     private User adopter;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet") //, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
     private List<PetImage> images;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
