@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments :: head('Medical Records List')"/>
+<body>
+<nav th:replace="fragments :: navbar"/>
+
+
+
+<div class="container-fluid">
+    <div class="row filter-row">
+
+<div class="container">
+
+
+        <div class="col-sm-12 text-center">
+            <div class="text-center med-record-list" th:each="record : ${medical}">
+
+                <h3 class="font-dark-blue" th:text="${record.date}"></h3>
+                <h3 class="font-dark-blue" th:text="${record.title}"></h3>
+
+                <div th:if="${record.getMedicalImages().size() > 0}">
+
+                    <div th:each="image : ${record.getMedicalImages()}">
+
+                            <img class="medThumbnail" th:alt="${image.imageDescription}"
+                                 th:src="@{${image.imageUrl}}"/>
+                        </div>
+                    </div>
+
+                <button class="btn button-secondary font-white"><a th:href="@{'/pets/'+${pet.id}+'/medical'+ ${record.id}}"
+                                                              id="viewPet" style="color: white">View Record</a>
+                </button>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="fragments :: login"/>
+<div th:replace="fragments :: register"/>
+<div th:replace="fragments :: footer"/>
+<div th:replace="fragments :: scripts"/>
+
+</body>
+</html>
