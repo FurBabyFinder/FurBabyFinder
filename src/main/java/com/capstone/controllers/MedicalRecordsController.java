@@ -31,6 +31,19 @@ public class MedicalRecordsController {
         this.petsRepository = petsRepository;
     }
 
+        @GetMapping("/pets/{pid}/viewAllMed")
+    public String showCreateForm(@PathVariable long pid,
+                                 Model model) {
+        Pet pet = petsRepository.findById(pid);
+        List<MedicalRecord> medicalRecords = medDao.findAllByPet(pet);
+
+        model.addAttribute("medical", medicalRecords);
+        model.addAttribute("pet", pet);
+        model.addAttribute("list", petsRepository.findSpecies());
+        return "pets/medical/viewAllMedicalRecords";
+    }
+
+
 
     @GetMapping("/pets/{pid}/medical{mid}")
     public String showCreateForm(@PathVariable long pid,

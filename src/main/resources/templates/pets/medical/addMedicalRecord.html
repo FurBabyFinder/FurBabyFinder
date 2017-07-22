@@ -29,6 +29,13 @@
 
             <div class="form-group">
                 <div class="form-group">
+                    <label class="control-label" for="title">Title</label>
+                    <input class="form-control" id="title" type="text" size="150" th:field="*{title}"/>
+                    <div class="alert alert-danger" th:if="${#fields.hasErrors('title')}">
+                        <p th:errors="*{title}"/>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="control-label" for="date">Date Of Visit/Procedure</label>
                     <input class="form-control" id="date" type="text" placeholder="MM/DD/YYYY" size="15"
                            th:field="*{date}"/>

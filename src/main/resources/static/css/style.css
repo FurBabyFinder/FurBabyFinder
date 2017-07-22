@@ -783,6 +783,15 @@ label {
     margin: auto;
 }
 
+/*------------------Medical Records----------------*/
+
+.medThumbnail {
+    max-width: 75px;
+}
+
+.med-record-list{
+    border-bottom: solid 1px black;
+}
 
 /*<-----------About Us ------->*/
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css");

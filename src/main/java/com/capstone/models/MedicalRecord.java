@@ -12,10 +12,13 @@ public class MedicalRecord {
     private long id;
 
     @Column(nullable = false)
-    private String description;
+    private String title;
 
     @Column(nullable = false)
     private String date;
+
+    @Column(nullable = false)
+    private String description;
 
     @Column
     private Boolean vaccination;
@@ -34,11 +37,12 @@ public class MedicalRecord {
         this.vaccination = vaccination;
         this.pet = pet;
     }
-   public MedicalRecord(String description, Boolean vaccination, Pet pet, List<MedicalImage> medicalImages) {
+   public MedicalRecord(String description, Boolean vaccination, Pet pet, List<MedicalImage> medicalImages, String title) {
         this.description = description;
         this.vaccination = vaccination;
         this.pet = pet;
         this.medicalImages = medicalImages;
+        this.title = title;
     }
 
     public MedicalRecord() {
@@ -50,6 +54,14 @@ public class MedicalRecord {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
