@@ -19,12 +19,6 @@
     <div class="row">
         <div class="col-xs-12 col-md-9 text-center">
 
-            <!--<h4 th:text="${medical.id}"></h4>-->
-            <!--<h4 th:text="${medical.date}"></h4>-->
-            <!--<h4 th:text="${medical.description}"></h4>-->
-            <!--<h4 th:text="${medical.vaccination}"></h4>-->
-
-
             <table>
                 <tbody>
                 <tr>
@@ -33,6 +27,11 @@
                     </h4></td>
                 </tr>
                 <tr>
+                    <td><h4>Date: </h4></td>
+                    <td align="right"><h4><span th:text="${medical.title}"></span></h4></td>
+                </tr>
+
+                  <tr>
                     <td><h4>Date: </h4></td>
                     <td align="right"><h4><span th:text="${medical.date}"></span></h4></td>
                 </tr>
@@ -47,6 +46,10 @@
                 </tr>
                 </tbody>
             </table>
+
+            <button class="btn button-secondary font-white"><a th:href="@{'/pets/'+${pet.id}+'/editMedical/'+ ${medical.id}}"
+                                                               id="viewPet" style="color: white">Edit Record</a>
+            </button>
 
 
 

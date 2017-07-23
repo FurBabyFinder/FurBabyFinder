@@ -4,15 +4,14 @@ import com.capstone.models.*;
 import com.capstone.repositories.MedicalRecordImagesRepository;
 import com.capstone.repositories.MedicalRecordsRepository;
 import com.capstone.repositories.PetsRepository;
+import com.capstone.svcs.MedDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,6 +107,86 @@ public class MedicalRecordsController {
         }
     }
 
+    @GetMapping("/pets/{pid}/editMedical/{mid}")
+    public String showMedEditForm(@PathVariable long mid,
+                                        Model model) {
+        MedicalRecord medicalRecord = medDao.findById(mid);
+        List<MedicalImage> medicalImages = medicalRecord.getMedicalImages();
+        int numberImages = medicalImages.size();
+        MedDTO medDTO = new MedDTO(medicalRecord, medicalImages);
+        model.addAttribute("medDTO", medDTO);
+        model.addAttribute("imageCount", numberImages);
+        model.addAttribute("list", petsRepository.findSpecies());
+
+        return "pets/medical/editMedicalRecord";
+    }
+
+    @PostMapping("/pets/{pid}/editMedical/{mid}")
+    public String editMedicalRecord(
+
+            @ModelAttribute("medDTO") MedDTO medDTO,
+            Errors validation,
+            @PathVariable long mid,
+            @PathVariable long pid,
+            @RequestParam(name = "imageUrl[]") List<String> imageUrls,
+            @RequestParam(name = "imageReplace[]") List<String> replacefiles,
+            @RequestParam(name = "imageDescription[]") List<String> imageDescriptions,
+            Model model) throws IOException {
+        if (validation.hasErrors()) {
+            model.addAttribute("errors", validation);
+            model.addAttribute("medicalRecord", medDTO.getMedicalRecord());
+            return "pets/medical/editMedicalRecord";
+        } else {
+
+            Pet pet = petsRepository.findById(pid);
+            MedicalRecord medicalRecord = medDTO.getMedicalRecord();
+            List<MedicalImage> imageList = medDTO.getImageList();
+            medicalRecord.setId(mid);
+            if(imageList != null) {
+                for (int i = 0; i < imageList.size(); i++) {
+                    if (replacefiles != null) {
+                        if (replacefiles.size() > 0) {
+                            if (!replacefiles.get(i).equals("")) {
+                                imageList.get(i).setImageUrl(replacefiles.get(i));
+
+                            }
+                        }
+                    }
+                }
+            }
+            if(imageList != null) {
+                for (MedicalImage image : imageList) {
+                    String url = image.getImageUrl();
+                    int imageId = (int) image.getId();
+                    image.setId(imageId);
+                    String d = image.getImageDescription();
+                    image.setImageDescription(d);
+                    image.setImageUrl(url);
+                    image.setMedicalRecord(medicalRecord);
+                    medImageDao.save(image);
+                }
+            }
+
+            for (int i = 0; i < imageUrls.size(); i++) {
+
+                if (!imageUrls.get(i).isEmpty()) {
+                    MedicalImage medicalImage = new MedicalImage(medicalRecord);
+
+                    medicalImage.setImageUrl(imageUrls.get(i));
+                    medImageDao.save(medicalImage);
+                    long imageID = medicalImage.getId();
+                    MedicalImage imageAdded = medImageDao.findById(imageID);
+                    imageAdded.setImageDescription(imageDescriptions.get(i));
+                    medImageDao.save(imageAdded);
+                    model.addAttribute("message", "File successfully uploaded!");
+
+                }
+            }
+            medicalRecord.setPet(pet);
+            medDao.save(medicalRecord);
+            return "redirect:/pets/" + pid +"/medical" + mid;
+        }
+    }
 
 
 

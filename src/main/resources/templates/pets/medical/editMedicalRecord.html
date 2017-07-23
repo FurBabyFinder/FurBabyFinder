@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:include="fragments :: head ('Edit Medical Record')" />
+<body>
+<nav th:replace="fragments :: navbar" />
+<div class="container-fluid">
+    <div class="row row-header">
+
+        <div class="col-sm-12">
+            <div class="text-center footer footer-contact">
+                <h1>Update Medical Record</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid margin-40">
+    <div class="row">
+        <div class="col-sm-12 col-md-4 col-md-offset-4">
+            <form th:action="${'/pets/'+medDTO.medicalRecord.pet.id+'/editMedical/' + medDTO.medicalRecord.id}" method="post" th:object="${medDTO}" enctype="multipart/form-data"  modelAttribute="imageList">
+
+                <div class="form-group">
+                    <label class="control-label" for="id">Medical record #</label>
+                    <input class="form-control"  id="id" type="text" size="20" th:field="*{medicalRecord.id}"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="title">Title</label>
+                    <input class="form-control"  id="title" type="text" size="20" th:field="*{medicalRecord.title}"/>
+
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="date">Procedure / Visit Date</label>
+                    <input class="form-control"  id="date" type="text" size="20" th:field="*{medicalRecord.date}"/>
+                </div>
+                <div class="alert alert-danger" style="display: none" id="dateWarning"><span>Date Must Be in mm/dd/yyyy format</span>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="radio" id="vaccination1" name="vaccination" th:field="*{medicalRecord.vaccination}" value="true" />Vaccination Visit<br/>
+                    <input class="form-control" type="radio" id="vaccination2" name="vaccination"  th:field="*{medicalRecord.vaccination}" value="false" />Not a Vaccination Visit<br/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="description">Description</label>
+                    <textarea class="form-control"  id="description" type="text" rows="20" th:field="*{medicalRecord.description}"/>
+                </div>
+
+                <input type="hidden" th:value="${imageCount}" id="imageCount" />
+
+
+                <div>
+                    <div  class="pet-picture" th:each="medicalImage, status : ${medDTO.imageList}">
+                        <div class="imageForm">
+                            <div class="form-group">
+                                <p><img class="petPicConstrain" th:src="@{*{imageList[__${status.index}__].imageUrl}}" /></p>
+
+                                <input type="hidden" th:field="*{imageList[__${status.index}__].imageUrl}" />
+                                <input type="hidden" th:field="*{imageList[__${status.index}__].id}" th:value="${medicalImage.id}"/>
+                                <label class="control-label">Upload a new image
+                                    <input class="input existingfspics imageInputs" type="button" value="Upload"  id=""/></label>
+                                <input type="hidden" id="" class="existingfs"  name="imageReplace[]"/>
+                                <p class="font-dark-blue"><input class="form-control" th:field="*{imageList[__${status.index}__].imageDescription}" size="150" type="text"/>Description of Image</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden"   name="imageReplace[]" />
+
+                <div id="additionalImages">
+
+                </div>
+
+                <br/>
+
+                <button class="btn btn-default formButton col-sm-offset-5" value="upload">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="imageInput" hidden="hidden">
+    <div class="imageForm">
+        <div class="form-group">
+            <label class="control-label">Upload an image
+                <input class="fspics input" type="button" value="Upload"  name="image" id=""/></label>
+            <input type="hidden" id=""  class="fs"  name="imageUrl[]"/>
+            <p class="uploadImage font-dark-blue"><input class="form-control uploadImage" name="imageDescription[]" size="150" type="text"/>Description of Image</p>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments :: scripts"/>
+<script src="https://static.filestackapi.com/v3/filestack.js"></script>
+<script src="/js/editMedicalRecord.js"></script>
+<script>
+
+    $(document).ready(function() {
+        var client = filestack.init('ANWk7XTLRTuh0RY1BOwNwz');
+
+        function showPicker(id) {
+            client.pick({
+
+            }).then(function (result) {
+
+                var linkaddress = result.filesUploaded[0].url;
+
+                $(id).val(linkaddress);
+                $(id).prop("placeholder", linkaddress);
+                $(id).prop("type", "text");
+            });
+        }
+
+        $(".fspics").click(function () {
+            console.log("click");
+            var self = this;
+            var id = $(self).attr("id");
+            console.log(self);
+            console.log(id);
+            id = id.substr(-1);
+            id = "#fs" + id;
+            showPicker(id);
+        });
+
+        $(".existingfspics").click(function () {
+            console.log("click");
+            var self = this;
+            var id = $(self).attr("id");
+            console.log(self);
+            console.log(id);
+            id = id.substr(-1);
+            id = "#existingfs" + id;
+            showPicker(id);
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -31,6 +31,10 @@
                 <button class="btn button-secondary font-white"><a th:href="@{'/pets/'+${pet.id}+'/medical'+ ${record.id}}"
                                                               id="viewPet" style="color: white">View Record</a>
                 </button>
+                 <button class="btn button-secondary font-white"><a th:href="@{'/pets/'+${pet.id}+'/editMedical/'+ ${record.id}}"
+                                                              id="viewPet" style="color: white">Edit Record</a>
+                </button>
+
             </div>
             </div>
         </div>
