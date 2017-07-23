@@ -89,6 +89,7 @@ public class MedicalRecordsController {
             medDao.save(medicalRecord);
             long id = medicalRecord.getId();
             MedicalRecord addedMedRecord = medDao.findById(id);
+            addedMedRecord.setPet(pet);
             for (int i = 0; i < imageUrls.size(); i++) {
                 if (!imageUrls.get(i).isEmpty()) {
                     MedicalImage medicalImage = new MedicalImage(addedMedRecord);
