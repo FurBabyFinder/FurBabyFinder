@@ -114,6 +114,20 @@
                     id="searchFiltered"><a style="text-decoration: none; color: white"
                                            th:href="@{'/pets/' + ${pet.id}+ '/editFilestack'}" id="editPetLink">Edit</a>
             </button>
+            <div>
+                <button sec:authorize="hasAuthority('admin') or hasAuthority('foster')" class="button-secondary"
+                        id="searchFiltered"><a style="text-decoration: none; color: white"
+                                               th:href="@{'/pets/' + ${pet.id}+ '/viewAllMed'}"
+                                               id="editPetLink">View Medical</a>
+                </button>
+            </div>
+            <div>
+                <button sec:authorize="hasAuthority('admin') or hasAuthority('foster')" class="button-secondary"
+                        id="searchFiltered"><a style="text-decoration: none; color: white"
+                                               th:href="@{'/pets/addMedicalRecord/' + ${pet.id}}"
+                                               id="editPetLink">Add Medical</a>
+                </button>
+            </div>
         </div>
 
     </div>
