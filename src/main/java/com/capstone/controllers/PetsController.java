@@ -12,6 +12,8 @@ import com.capstone.repositories.UsersRepository;
 import com.capstone.svcs.PetDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -49,6 +51,31 @@ public class PetsController {
     @GetMapping("/pets/pet{id}")
     public String showCreateForm(@PathVariable long id, Model model) {
         Pet pet = petsRepository.findById(id);
+        User foster = pet.getFoster();
+        User adopter = pet.getAdopter();
+        model.addAttribute("pet", pet);
+        model.addAttribute("foster", foster);
+        model.addAttribute("adopter", adopter);
+        model.addAttribute("list", petsRepository.findSpecies());
+        return "pets/individualPet";
+    }
+  @PostMapping("/pets/pet{id}")
+    public String addToFavorites(@PathVariable long id,
+//                                 @PathVariable long uid,
+                                 Model model) {
+      System.out.println("location 1");
+        Pet pet = petsRepository.findById(id);
+      System.out.println("location 2");
+      UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+      String username = (userDetails.getUsername());
+      User user = usersRepository.findByUsername(username);
+      System.out.println("location 3");
+        List<Pet> favorite = new ArrayList<>();
+        favorite.add(pet);
+      System.out.println(favorite.get(0).getName());
+        user.setFavorites(favorite);
+      System.out.println(user.getFavorites().get(0).getName());
+        usersRepository.save(user);
         User foster = pet.getFoster();
         User adopter = pet.getAdopter();
         model.addAttribute("pet", pet);

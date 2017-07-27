@@ -72,7 +72,12 @@
                 <a class="more-pictures cursor-hand" data-toggle="modal" data-target="#modalLong">More Pictures
                 </a>
             </div>
-
+            <form   th:action="@{/pets/pet__${pet.id}__}" method="post" th:object="${user}">
+            <div>
+                <button class="button-secondary" id="favoriteButton" value="submit">Favorite
+                </button>
+            </div>
+            </form>
             <div>
                 <button sec:authorize="hasAuthority('admin') or hasAuthority('foster')" class="button-secondary"
                         id="searchFiltered"><a style="text-decoration: none; color: white"

@@ -58,7 +58,7 @@ public class User {
             joinColumns = {@JoinColumn(name="user")},
             inverseJoinColumns = {@JoinColumn(name="pet_id")}
     )
-    private List<Pet> pets;
+    private List<Pet> favorites;
 
     public User(long id, String username, String email, String password) {
         this.id = id;
@@ -182,11 +182,11 @@ public class User {
         this.altPhone = altPhone;
     }
 
-    public List<Pet> getPets() {
-        return pets;
+    public List<Pet> getFavorites() {
+        return favorites;
     }
 
-    public void setPets(List<Pet> pets) {
-        this.pets = pets;
+    public void setFavorites(List<Pet> favorites) {
+        this.favorites = favorites;
     }
 }
