@@ -796,7 +796,10 @@ label {
 /*------------------Happily Ever After----------------*/
 .adoptedImage {
     width: 20em;
+}
 
+.journey-btn {
+    height: 3em;
 }
 
 /*<-----------About Us ------->*/
