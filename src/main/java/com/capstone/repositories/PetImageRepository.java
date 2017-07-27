@@ -15,5 +15,7 @@ public interface PetImageRepository extends CrudRepository <PetImage, Long>{
 
     public List<PetImage> findAllByPet(Pet pet);
 
+    public List<PetImage> findAllByAfterAdoption(boolean trueOrFalse);
+
 
 }

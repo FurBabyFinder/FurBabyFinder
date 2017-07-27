@@ -793,6 +793,12 @@ label {
     border-bottom: solid 1px black;
 }
 
+/*------------------Happily Ever After----------------*/
+.adoptedImage {
+    width: 20em;
+
+}
+
 /*<-----------About Us ------->*/
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css");
 

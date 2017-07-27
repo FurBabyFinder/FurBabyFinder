@@ -1,6 +1,7 @@
 package com.capstone.controllers;
 
 import com.capstone.models.Pet;
+import com.capstone.models.PetImage;
 import com.capstone.models.User;
 import com.capstone.repositories.FilterRepository;
 import com.capstone.repositories.PetImageRepository;
@@ -313,7 +314,13 @@ public class PetSearchController {
         return "pets/findPetsByUser";
     }
 
-
+    @RequestMapping(path = "/pets/happilyEverAfter", method = RequestMethod.GET)
+    public String indexPage(Model model) {
+        ArrayList<Pet> pets = (ArrayList<Pet>) petsRepository.findAllByAdopterIsNotNull();
+        model.addAttribute("list", petsRepository.findSpecies());
+        model.addAttribute("pets", pets);
+        return "pets/happilyEverAfter";
+    }
 
 
 }

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments :: head('Happily Ever After')"/>
+<body>
+<nav th:replace="fragments :: navbar"/>
+
+
+
+<div class="container-fluid container-pet-view">
+    <div class="row pets-all-row">
+
+
+        <div class="col-sm-12 pets-all-col text-center">
+            <div class="pet-container text-center" th:each="pet : ${pets}">
+
+
+                <div th:if="${pet.getImages().size() > 0}">
+
+                    <div th:each="petImage : ${pet.getImages()}">
+                        <div th:if="${petImage.afterAdoption} == true">
+                            <h3 class="font-dark-blue" th:text="${pet.name}"></h3>
+                            <img class="adoptedImage" th:alt="${petImage.ImageDescription}"
+                                 th:src="@{${petImage.imageUrl}}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div th:replace="fragments :: footer"/>
+<div th:replace="fragments :: scripts"/>
+<script src="/js/species.js"></script>
+</body>
+</html>
