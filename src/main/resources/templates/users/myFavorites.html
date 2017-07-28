@@ -13,5 +13,38 @@
         </div>
     </div>
 </div>
+<h2 class="userPetsSection text-center">Favorite Animals</h2>
+
+    <div th:if="${favoritePets.size() > 0}">
+
+
+
+        <div class="pet-container" th:each="pet : ${favoritePets}">
+
+            <div class="row">
+
+                <div class="text-center">
+                    <div class="col-sm-12 single-pet img-responsive text-center" th:if="${pet.getImages().size() > 0}">
+                        <div th:each="petImage : ${pet.getImages()}">
+                            <div th:if="${petImage.profilePic} == true">
+                                <img class="img-pet img-responsive text-center" th:alt="${petImage.ImageDescription}"
+                                     th:src="@{${petImage.imageUrl}}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 pet-info">
+                        <h3><span th:text="${pet.name}"></span></h3>
+                        <p><h4>Age: <span th:text="${pet.age}"></span></h4></p>
+                    </div>
+                    <div>
+                        <button class="button-secondary"><a style="text-decoration: none; color: white"
+                                                       th:href="@{'/pets/pet'+ ${pet.id}}">View</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

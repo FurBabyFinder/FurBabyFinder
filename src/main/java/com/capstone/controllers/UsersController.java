@@ -206,5 +206,16 @@ PetsRepository petsRepository;
         }
     }
 
+    @GetMapping("/users/myFavorites{id}")
+    public String viewFavorites (Model model,
+                            @PathVariable long id ){
+        User user = usersDao.findOne(id);
+        List<Pet> favoritePets = user.getFavorites();
+        model.addAttribute("list", petsRepository.findSpecies());
+        model.addAttribute("favoritePets", favoritePets);
+        model.addAttribute("user", user);
+        return "users/myFavorites";
+    }
+
 
 }

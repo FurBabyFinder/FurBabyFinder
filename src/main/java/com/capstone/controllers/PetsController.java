@@ -70,7 +70,7 @@ public class PetsController {
       String username = (userDetails.getUsername());
       User user = usersRepository.findByUsername(username);
       System.out.println("location 3");
-        List<Pet> favorite = new ArrayList<>();
+        List<Pet> favorite = user.getFavorites();
         favorite.add(pet);
       System.out.println(favorite.get(0).getName());
         user.setFavorites(favorite);
