@@ -10,8 +10,11 @@ import com.capstone.repositories.PetImageRepository;
 import com.capstone.repositories.PetsRepository;
 import com.capstone.repositories.UsersRepository;
 import com.capstone.svcs.PetDTO;
+import com.capstone.svcs.UserDetailsLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -49,8 +52,42 @@ public class PetsController {
     @GetMapping("/pets/pet{id}")
     public String showCreateForm(@PathVariable long id, Model model) {
         Pet pet = petsRepository.findById(id);
+        UserDetails userDetails;
+        boolean favorited = false;
+        if(!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
+            userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            String username = (userDetails.getUsername());
+            User user = usersRepository.findByUsername(username);
+            List<Pet> favorites = user.getFavorites();
+            for (int i = 0; i < favorites.size(); i++){
+                if (favorites.get(i).getId() == id){
+                    favorited = true;
+                }
+            }
+        }
         User foster = pet.getFoster();
         User adopter = pet.getAdopter();
+        model.addAttribute("favorited", favorited);
+        model.addAttribute("pet", pet);
+        model.addAttribute("foster", foster);
+        model.addAttribute("adopter", adopter);
+        model.addAttribute("list", petsRepository.findSpecies());
+        return "pets/individualPet";
+    }
+  @PostMapping("/pets/pet{id}")
+    public String addToFavorites(@PathVariable long id,
+                                 Model model) {
+        Pet pet = petsRepository.findById(id);
+      UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+      String username = (userDetails.getUsername());
+      User user = usersRepository.findByUsername(username);
+        List<Pet> favorite = user.getFavorites();
+        favorite.add(pet);
+        user.setFavorites(favorite);
+        usersRepository.save(user);
+        User foster = pet.getFoster();
+        User adopter = pet.getAdopter();
+        model.addAttribute("favorited", true);
         model.addAttribute("pet", pet);
         model.addAttribute("foster", foster);
         model.addAttribute("adopter", adopter);

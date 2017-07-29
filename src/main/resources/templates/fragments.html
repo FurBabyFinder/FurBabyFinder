@@ -65,7 +65,14 @@
                     </ul>
                 </li>
                 <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
-                <li sec:authorize="isAuthenticated()"><a href="/logout">Logout</a></li>
+                <li class="dropdown" sec:authorize="isAuthenticated()">
+                    <a class="dropdown-toggle admin-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Account<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                <li><a href="/users/myFavorites">Favorites</a></li>
+                <li><a href="/logout">Logout</a></li>
+                    </ul>
+                </li>
 
                 <!--<li><a class="cursor-hand" data-toggle="modal" data-target=".bs-login-modal-sm">Register/Login</a></li>-->
             </ul>

@@ -560,6 +560,16 @@ label {
     margin: auto;
 }
 
+#favoriteButton {
+    background: none;
+    padding: 0px;
+    border: none;
+    margin-top: 2em;
+}
+
+.favInstruct{
+    font-size: .9em;
+}
 
 /*/////////////////////////////////////////////////////filter*/
 .pet-filter {

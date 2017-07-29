@@ -72,7 +72,20 @@
                 <a class="more-pictures cursor-hand" data-toggle="modal" data-target="#modalLong">More Pictures
                 </a>
             </div>
-
+            <form   th:action="@{/pets/pet__${pet.id}__}" method="post" th:object="${user}">
+            <div>
+                <button  id="favoriteButton" value="submit"><i class="fa fa-heart fa-3x" style="color: #A8201A;" aria-hidden="true"></i>
+                </button>
+                <i id="favoriteChecked" class="fa fa-check-circle fa-3x" style="color: #A8201A; display: none" aria-hidden="true"></i>
+                <p sec:authorize="isAuthenticated()" class="font-dark-blue favInstruct" id="addedToFavorite" style="display: none">Favorited</p>
+                <p sec:authorize="isAuthenticated()" class="font-dark-blue favInstruct" id="addToFavorite">Add pet to favorites</p>
+                <p sec:authorize="isAnonymous()" class="font-dark-blue favInstruct">Login to favorite this pet</p>
+                <input sec:authorize="isAnonymous()" type="hidden" id="cannotFav" value="true" />
+                <input sec:authorize="isAuthenticated()" type="hidden" id="alreadyFaved" th:value="${favorited}" />
+                <div class="alert alert-danger" style="display: none" id="favoriteWarning"><span>You must register/login to favorite a pet</span>
+                </div>
+            </div>
+            </form>
             <div>
                 <button sec:authorize="hasAuthority('admin') or hasAuthority('foster')" class="button-secondary"
                         id="searchFiltered"><a style="text-decoration: none; color: white"
@@ -177,7 +190,7 @@
 <div th:replace="fragments :: footer"/>
 <div th:replace="fragments :: scripts"/>
 <script src="/js/species.js"></script>
-<script src="/js/petsIndex.js"></script>
+<script src="/js/individualPet.js"></script>
 
 
 </body>
