@@ -231,5 +231,28 @@ PetsRepository petsRepository;
         return "users/myFavorites";
     }
 
+   @PostMapping("/users/myFavorites")
+    public String removeAFavorite (Model model,
+                                   @RequestParam(name = "removeFavedPet") long id
+    ){
+       UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+       String username = (userDetails.getUsername());
+       User user = usersDao.findByUsername(username);
+        List<Pet> favoritePets = user.getFavorites();
+        int indexRemovePet = 100;
+        for (int i = 0; i < favoritePets.size(); i++){
+            if (favoritePets.get(i).getId() == id){
+                indexRemovePet = i;
+            }
+        }
+       favoritePets.remove(indexRemovePet);
+        user.setFavorites(favoritePets);
+        usersDao.save(user);
+        model.addAttribute("list", petsRepository.findSpecies());
+        model.addAttribute("favoritePets", favoritePets);
+        model.addAttribute("user", user);
+        return "users/myFavorites";
+    }
+
 
 }

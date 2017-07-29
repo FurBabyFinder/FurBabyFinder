@@ -41,6 +41,13 @@
                                                        th:href="@{'/pets/pet'+ ${pet.id}}">View</a>
                         </button>
                     </div>
+                    <form   th:action="@{/users/myFavorites}" method="post" th:object="${pet}">
+                        <div>
+                            <button  id="favoriteButton" value="submit"><i id="favoriteRemove" class="fa fa-times-circle fa-3x" style="color: #A8201A;" aria-hidden="true"></i></button>
+                            <p class="font-dark-blue favInstruct" id="addedToFavorite">Remove From Favorites</p>
+                            <input  type="hidden" name="removeFavedPet" th:value="${pet.id}" />
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
