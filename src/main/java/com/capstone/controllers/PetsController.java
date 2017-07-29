@@ -61,20 +61,14 @@ public class PetsController {
     }
   @PostMapping("/pets/pet{id}")
     public String addToFavorites(@PathVariable long id,
-//                                 @PathVariable long uid,
                                  Model model) {
-      System.out.println("location 1");
         Pet pet = petsRepository.findById(id);
-      System.out.println("location 2");
       UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
       String username = (userDetails.getUsername());
       User user = usersRepository.findByUsername(username);
-      System.out.println("location 3");
         List<Pet> favorite = user.getFavorites();
         favorite.add(pet);
-      System.out.println(favorite.get(0).getName());
         user.setFavorites(favorite);
-      System.out.println(user.getFavorites().get(0).getName());
         usersRepository.save(user);
         User foster = pet.getFoster();
         User adopter = pet.getAdopter();
