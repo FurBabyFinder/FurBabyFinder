@@ -76,9 +76,12 @@
             <div>
                 <button  id="favoriteButton" value="submit"><i class="fa fa-heart fa-3x" style="color: #A8201A;" aria-hidden="true"></i>
                 </button>
-                <p sec:authorize="isAuthenticated()" class="font-dark-blue" id="addToFavorite">Add pet to favorites</p>
-                <p sec:authorize="isAnonymous()" class="font-dark-blue" id="addToFavorite">Login to favorite this pet</p>
+                <i id="favoriteChecked" class="fa fa-check-circle fa-3x" style="color: #A8201A; display: none" aria-hidden="true"></i>
+                <p sec:authorize="isAuthenticated()" class="font-dark-blue favInstruct" id="addedToFavorite" style="display: none">Favorited</p>
+                <p sec:authorize="isAuthenticated()" class="font-dark-blue favInstruct" id="addToFavorite">Add pet to favorites</p>
+                <p sec:authorize="isAnonymous()" class="font-dark-blue favInstruct">Login to favorite this pet</p>
                 <input sec:authorize="isAnonymous()" type="hidden" id="cannotFav" value="true" />
+                <input sec:authorize="isAuthenticated()" type="hidden" id="alreadyFaved" th:value="${favorited}" />
                 <div class="alert alert-danger" style="display: none" id="favoriteWarning"><span>You must register/login to favorite a pet</span>
                 </div>
             </div>

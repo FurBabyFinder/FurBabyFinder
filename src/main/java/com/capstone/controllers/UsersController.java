@@ -7,6 +7,8 @@ import com.capstone.repositories.PetsRepository;
 import com.capstone.repositories.UserRolesRepository;
 import com.capstone.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -210,6 +212,18 @@ PetsRepository petsRepository;
     public String viewFavorites (Model model,
                             @PathVariable long id ){
         User user = usersDao.findOne(id);
+        List<Pet> favoritePets = user.getFavorites();
+        model.addAttribute("list", petsRepository.findSpecies());
+        model.addAttribute("favoritePets", favoritePets);
+        model.addAttribute("user", user);
+        return "users/myFavorites";
+    }
+
+   @GetMapping("/users/myFavorites")
+    public String viewFavorites (Model model){
+       UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+       String username = (userDetails.getUsername());
+       User user = usersDao.findByUsername(username);
         List<Pet> favoritePets = user.getFavorites();
         model.addAttribute("list", petsRepository.findSpecies());
         model.addAttribute("favoritePets", favoritePets);

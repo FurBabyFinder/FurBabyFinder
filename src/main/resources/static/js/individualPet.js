@@ -3,9 +3,16 @@
  */
 $(document).ready(function () {
 
+if($("#alreadyFaved").val() == "true"){
 
+    $("#addToFavorite").css("display", "none");
+    $("#favoriteButton").css("display", "none");
+    $("#addedToFavorite").css("display", "inline-block");
+    $("#favoriteChecked").css("display", "inline-block");
+
+}
 document.querySelector('form').onsubmit = function(event) {
-    $(".alert").css("display", "none");
+
     var signedIn = $("#cannotFav").val();
     if(signedIn) {
         event.preventDefault();

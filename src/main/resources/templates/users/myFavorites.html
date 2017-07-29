@@ -13,7 +13,7 @@
         </div>
     </div>
 </div>
-<h2 class="userPetsSection text-center">Favorite Animals</h2>
+<h2 class="userPetsSection text-center">Favorite Pets</h2>
 
     <div th:if="${favoritePets.size() > 0}">
 
@@ -45,6 +45,8 @@
             </div>
         </div>
     </div>
-
+<div th:replace="fragments :: footer"/>
+<div th:replace="fragments :: scripts"/>
+<script src="/js/species.js"></script>
 </body>
 </html>
