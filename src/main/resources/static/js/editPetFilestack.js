@@ -35,7 +35,6 @@ $(document).ready(function(){
     updateIds('.profilePic', 'profilePic');
     updateIds('.profilePicHidden', 'profilePicHidden');
     updateIds('.afterAdopt', 'afterAdopt');
-    updateIds('.hiddenChecksAdopt', 'hiddenChecksAdopt');
     updateIds('.fs', 'fs');
     updateIds('.existingfs', 'existingfs');
     updateIds('.fspics', 'fspics');
@@ -73,34 +72,17 @@ $(document).ready(function(){
             thatID = thatID.substr(-1);
             var newID = "#hiddenCheckAdopt" + thatID;
             $(newID).val("true");
+            var value = $(newID).val();
+
         }
         else if($(this).not(':checked')) {
             var thatID = $(this).attr('id');
             thatID = thatID.substr(-1);
             var newID = "#hiddenCheckAdopt" + thatID;
             $(newID).val("false");
+
         }
     });
-
-    // function replaceImages(){
-    //     var i = 1
-    //     $(".imageInputs").each(function(){
-    //         var file = $(this).val();
-    //         var replaceID = "#existImg" + i;
-    //         i++;
-    //         console.log(replaceID);
-    //         console.log(file);
-    //         if(file != "" && file != null){
-    //             // var pass = document.createElement('input');
-    //             // pass.type = 'password';
-    //             // document.body.appendChild(pass);
-    //             // pass.type = 'text';
-    //             // pass.value = 'Password';
-    //             // console.log($(replaceID).attr("type") + " type");
-    //             $(replaceID).val(file);
-    //         }
-    //     });
-    // }
 
 
 
@@ -180,6 +162,8 @@ $(document).ready(function(){
         }
         else {return true}
     }
+
+
 // ===================PREVENT SUBMISSION IF THERE ARE ERRORS ===========================
     document.querySelector('form').onsubmit = function(event) {
         $(".alert").css("display", "none");
